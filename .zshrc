@@ -8,12 +8,13 @@ export PATH="/opt/local/:$PATH"
 export MANPATH="/opt/local/share/man:/opt/local/man:$MANPATH"
 export PATH=/usr/bin:/bin:/sbin:/usr/sbin:$PATH
 export JAVA_HOME=`/usr/libexec/java_home -v 1.8`
-export PATH=/usr/local/bin:$PATH
 export PATH="/Applications/sdk/tools:$PATH"
 export PATH=$HOME/.rbenv/bin:$PATH
 export PYENV_ROOT="$HOME/.pyenv"
 export PATH="$PYENV_ROOT/bin:$PATH"
 export PATH="$HOME/.rbenv/bin:$PATH"
+export PATH=/usr/local/bin:$PATH
+
 eval "$(rbenv init - zsh)"
 eval "$(pyenv init - zsh)"
 
