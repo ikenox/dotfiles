@@ -10,28 +10,20 @@ export PATH=/usr/bin:/bin:/sbin:/usr/sbin:$PATH
 export JAVA_HOME=`/usr/libexec/java_home -v 1.8`
 export PATH=/usr/local/bin:$PATH
 export PATH="/Applications/sdk/tools:$PATH"
-
+export PATH=$HOME/.rbenv/bin:$PATH
+export PYENV_ROOT="$HOME/.pyenv"
+export PATH="$PYENV_ROOT/bin:$PATH"
 export PATH="$HOME/.rbenv/bin:$PATH"
 eval "$(rbenv init - zsh)"
+eval "$(pyenv init - zsh)"
 
-### Virtualenvwrapper
-if [ -f /usr/local/bin/virtualenvwrapper.sh ]; then
-      export WORKON_HOME=$HOME/.virtualenvs
-      source /usr/local/bin/virtualenvwrapper.sh
-fi
-
-source ~/.profile
-
-########################################
+#######################################
 # 環境変数
 export LANG=ja_JP.UTF-8
 
 # 色を使用出来るようにする
 autoload -Uz colors
 colors
-
-# emacs 風キーバインドにする
-bindkey -e
 
 # ヒストリの設定
 HISTFILE=~/.zsh_history
@@ -154,19 +146,6 @@ alias sudo='sudo '
 alias -g L='| less'
 alias -g G='| grep'
 
-# C で標準出力をクリップボードにコピーする
-# mollifier delta blog : http://mollifier.hatenablog.com/entry/20100317/p1
-if which pbcopy >/dev/null 2>&1 ; then
-    # Mac
-    alias -g C='| pbcopy'
-elif which xsel >/dev/null 2>&1 ; then
-    # Linux
-    alias -g C='| xsel --input --clipboard'
-elif which putclip >/dev/null 2>&1 ; then
-    # Cygwin
-    alias -g C='| putclip'
-fi
-
 # Gitのエイリアス
 git config --global alias.co checkout
 git config --global alias.st 'status'
@@ -188,8 +167,3 @@ case ${OSTYPE} in
         ;;
 esac
 
-export PATH=$HOME/.rbenv/bin:$PATH
-
-export PYENV_ROOT="$HOME/.pyenv"
-export PATH="$PYENV_ROOT/bin:$PATH"
-eval "$(pyenv init - zsh)"
