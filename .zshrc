@@ -4,8 +4,6 @@
 
 export LANG=en_US.UTF-8
 export LESSCHARSET=utf-8
-export PATH="/opt/local/:$PATH"
-export MANPATH="/opt/local/share/man:/opt/local/man:$MANPATH"
 export PATH=/usr/bin:/bin:/sbin:/usr/sbin:$PATH
 export JAVA_HOME=`/usr/libexec/java_home -v 1.8`
 export PATH="/Applications/sdk/tools:$PATH"
