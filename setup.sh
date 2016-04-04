@@ -22,4 +22,5 @@ fi
 # /Applications/Karabiner.app/Contents/Library/bin/karabiner export > karabiner.sh
 # を事前にしておく
 source karabiner.sh
+cp private.xml ~/Library/Application\ Support/Karabiner/private.xml
 echo "set karabiner settings"
