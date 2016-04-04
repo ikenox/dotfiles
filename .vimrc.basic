@@ -1,0 +1,185 @@
+" vi互換モード解除
+set nocompatible
+
+"カーソルを行頭，行末で止まらないようにする
+set whichwrap=b,s,h,l,<,>,[,]
+
+"ファイルを上書きする前にバックアップファイルを作る
+"set backup
+"バックアップのディレクトリ
+"set backupdir=~/.vim/vim_backup
+"バックアップを取らない
+set nobackup
+"スワップファイルを使用する設定
+"set swapfile
+"スワップファイル用のディレクトリ名を、コンマで区切って指定する
+"set directory=~/.vim/vim_swap
+"スワップファイルを作らない
+set noswapfile
+
+"現在のモードを表示する
+set showmode
+
+" インサートモード時に改行を削除できるようにする
+set bs=start,indent
+set backspace=indent,eol,start
+
+"開いているファイルのタイプ
+"filetype indent plugin on
+filetype off
+
+"変更中のファイルでも、保存しないで他のファイルを表示することが出来るようにする
+set hidden
+
+"外部のエディタで編集中のファイルが変更されたら、自動的に読み直す
+set autoread
+
+"タイプ途中のコマンドを画面最下行に表示
+set showcmd
+
+"画面最下行にルーラーを表示する
+set ruler
+
+"ステータスラインの設定
+""0:一番下のウィンドウはステータスラインを表示しない
+""1:ウィンドウが1つの時はステータスラインを表示しない。2つ以上ある場合は、ステータスラインを表示する
+""2:常にステータスラインを表示する
+set laststatus=2
+
+"ビープの代わりにビジュアルベル（画面フラッシュ）を使う
+set visualbell
+
+"マウスを有効にするモードを設定する。
+""n:ノーマルモード
+""v:ビジュアルモード
+""i:挿入モード
+""c:コマンドライン
+""h:上の全てのモード（マウスをクリックしてもカーソルは動かない）
+""a:上の全てのモード（マウスをクリックするとカーソルが動く）
+""r:hit-enter や more-prompt プロンプト
+set mouse=a
+
+"クリップボードの動作設定
+set clipboard=unnamed,autoselect
+
+"コマンドラインに使われるスクリーン上の行数。
+set cmdheight=2
+
+"インクリメンタルサーチを行う
+set incsearch
+
+"カーソル行をハイライト
+set cursorline
+
+let g:Powerline_symbols = 'fancy'
+
+set scrolloff=8                " 上下8行の視界を確保
+set sidescrolloff=16           " 左右スクロール時の視界を確保
+set sidescroll=1               " 左右スクロールは一文字づつ行う
+
+"行番号を表示する
+set number
+
+"新しい行を開始したときに、新しい行のインデントを現在行と同じ量にする
+set autoindent
+
+"新しい行を作ったときに高度な自動インデントを行う
+set smartindent
+
+"タブの代わりに空白文字を挿入する
+set expandtab
+
+"ファイル内の <Tab> が対応する空白の数
+set tabstop=4
+
+"tabstopを変えずに空白を含めることにより、見た目のtabstopを変える
+set softtabstop=4
+
+"自動インデントの各段階に使われる空白の数
+set shiftwidth=4
+
+"シンタックス設定
+syntax on
+
+"補完候補を表示する
+set wildmenu
+
+"カーソル行をハイライト
+set cursorline
+
+"検索語を強調表示（<C-L>を押すと現在の強調表示を解除する）
+set hlsearch
+
+"検索で、大文字小文字を区別しない
+set ignorecase
+"検索で小文字なら大文字を無視、大文字なら無視しない設定
+set smartcase
+
+"インクリメンタルサーチを行う
+set incsearch
+
+"オートインデント、改行、インサートモード開始直後にバックスペースキーで削除できるようにする
+set backspace=indent,eol,start
+
+"insertモードを抜けるとIMEオフ
+"set noimdisable
+"set iminsert=0 imsearch=0
+"set noimcmdline
+inoremap <silent> <ESC> <ESC>:set iminsert=0<CR>
+
+"保存時に行末の空白を除去する
+autocmd BufWritePre * :%s/\s\+$//e
+
+"NERDTreeでdotfilesを表示する
+"let NERDTreeShowHidden=1
+
+"autoreadのチェック
+augroup vimrc-checktime
+  autocmd!
+  autocmd WinEnter * checktime
+augroup END
+
+" https://sites.google.com/site/fudist/Home/vim-nihongo-ban/-vimrc-sample
+""""""""""""""""""""""""""""""
+" 挿入モード時、ステータスラインの色を変更
+""""""""""""""""""""""""""""""
+let g:hi_insert = 'highlight StatusLine guifg=darkblue guibg=darkyellow gui=none ctermfg=blue ctermbg=yellow cterm=none'
+
+if has('syntax')
+  augroup InsertHook
+    autocmd!
+    autocmd InsertEnter * call s:StatusLine('Enter')
+    autocmd InsertLeave * call s:StatusLine('Leave')
+  augroup END
+endif
+
+let s:slhlcmd = ''
+function! s:StatusLine(mode)
+  if a:mode == 'Enter'
+    silent! let s:slhlcmd = 'highlight ' . s:GetHighlight('StatusLine')
+    silent exec g:hi_insert
+  else
+    highlight clear StatusLine
+    silent exec s:slhlcmd
+  endif
+endfunction
+
+function! s:GetHighlight(hi)
+  redir => hl
+  exec 'highlight '.a:hi
+  redir END
+  let hl = substitute(hl, '[\r\n]', '', 'g')
+  let hl = substitute(hl, 'xxx', '', '')
+  return hl
+endfunction
+""""""""""""""""""""""""""""""
+
+
+" indent settings
+autocmd FileType json setlocal shiftwidth=2 tabstop=2 softtabstop=2
+autocmd FileType yaml setlocal shiftwidth=2 tabstop=2 softtabstop=2
+autocmd FileType yml  setlocal shiftwidth=2 tabstop=2 softtabstop=2
+autocmd FileType xml  setlocal shiftwidth=2 tabstop=2 softtabstop=2
+autocmd FileType sh   setlocal shiftwidth=2 tabstop=2 softtabstop=2
+autocmd FileType zsh  setlocal shiftwidth=2 tabstop=2 softtabstop=2
+autocmd FileType rb   setlocal shiftwidth=2 tabstop=2 softtabstop=2

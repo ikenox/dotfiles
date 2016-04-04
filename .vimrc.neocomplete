@@ -1,0 +1,104 @@
+"------------------------------------
+" neocomplete.vim
+"------------------------------------
+let g:neocomplete#force_overwrite_completefunc = 1
+" AutoComplPopを無効にする
+let g:acp_enableAtStartup = 0
+" neocompleteを有効にする
+let g:neocomplete#enable_at_startup = 1
+" 補完が自動で開始される文字数
+let g:neocomplete#auto_completion_start_length = 2
+" smarrt case有効化。 大文字が入力されるまで大文字小文字の区別を無視する
+let g:neocomplete#enable_smart_case = 1
+" camle caseを有効化。大文字を区切りとしたワイルドカードのように振る舞う
+let g:neocomplete#enable_camel_case_completion = 1
+" _(アンダーバー)区切りの補完を有効化
+let g:neocomplete#enable_underbar_completion = 1
+" シンタックスをキャッシュするときの最小文字長を3に
+let g:neocomplete#min_syntax_length = 3
+" neocompleteを自動的にロックするバッファ名のパターン
+let g:neocomplete#lock_buffer_name_pattern = '\*ku\*'
+" -入力による候補番号の表示
+let g:neocomplete#enable_quick_match = 1
+" 補完候補の一番先頭を選択状態にする(AutoComplPopと似た動作)
+let g:neocomplete#enable_auto_select = 1
+"ポップアップメニューで表示される候補の数。初期値は100
+let g:neocomplete#max_list = 20
+
+" Define dictionary.
+let g:neocomplete#dictionary_filetype_lists = {
+    \ 'default' : '',
+    \ 'vimshell' : $HOME.'/.vimshell_hist',
+    \ 'scala' : $HOME.'/.vim/bundle/vim-scala/dict/scala.dict',
+    \ 'java' : $HOME.'/.vim/dict/java.dict',
+    \ 'javascript' : $HOME.'/.vim/dict/javascript.dict'
+    \ }
+
+" Define keyword.
+if !exists('g:neocomplete#keyword_patterns')
+    let g:neocomplete#keyword_patterns = {}
+endif
+let g:neocomplete#keyword_patterns['default'] = '\h\w*'
+
+" buffer開いたらneoconでcache
+autocmd BufReadPost,BufEnter,BufWritePost :neocompleteCachingBuffer <buffer>
+
+" FileType毎のOmni補完を設定
+autocmd FileType python     setlocal omnifunc=jedi#completions
+autocmd FileType javascript setlocal omnifunc=javascriptcomplete#CompleteJS
+autocmd FileType html       setlocal omnifunc=htmlcomplete#CompleteTags
+autocmd FileType css        setlocal omnifunc=csscomplete#CompleteCSS
+autocmd FileType xml        setlocal omnifunc=xmlcomplete#CompleteTags
+autocmd FileType php        setlocal omnifunc=phpcomplete#CompletePHP
+autocmd FileType c          setlocal omnifunc=ccomplete#Complete
+autocmd FileType ruby       setlocal omnifunc=rubycomplete#Complete
+autocmd FileType java       setlocal omnifunc=javacomplete#Complete
+
+" Enable heavy omni completion.
+"if !exists('g:neocomplete#omni_patterns')
+  "let g:neocomplete#omni_patterns = {}
+"endif
+"let g:neocomplete#omni_patterns.ruby = '[^. *\t]\.\h\w*\|\h\w*::'
+"let g:neocomplete#omni_patterns.php = '[^. \t]->\h\w*\|\h\w*::'
+"let g:neocomplete#omni_patterns.c = '\%(\.\|->\)\h\w*'
+"let g:neocomplete#omni_patterns.cpp = '\h\w*\%(\.\|->\)\h\w*\|\h\w*::'
+
+" autocmd FileType ruby let g:neocomplete#source_disable = {
+  " \ 'include_complete' : 1,
+  " \ 'omni_complete' : 1
+" \ }
+" autocmd FileType ruby let g:neocomplete#source_disable = {
+  " \ 'include_complete' : 1
+" \ }
+
+"インクルードパスの指定
+let g:neocomplete#include_paths = {
+  \ 'cpp'  : '.,/opt/local/include/gcc46/c++,/opt/local/include,/usr/include',
+  \ 'c'    : '.,/usr/include',
+  \ 'ruby' : '.,$HOME/.rvm/rubies/**/lib/ruby/1.8/',
+  \ }
+"インクルード文のパターンを指定
+let g:neocomplete#include_patterns = {
+  \ 'cpp' : '^\s*#\s*include',
+  \ 'ruby' : '^\s*require',
+  \ 'perl' : '^\s*use',
+  \ }
+"インクルード先のファイル名の解析パターン
+let g:neocomplete#include_exprs = {
+  \ 'ruby' : substitute(v:fname,'::','/','g')
+  \ }
+" ファイルを探す際に、この値を末尾に追加したファイルも探す。
+let g:neocomplete#include_suffixes = {
+  \ 'ruby' : '.rb',
+  \ 'haskell' : '.hs'
+  \ }
+
+"" Python
+let g:jedi#auto_vim_configuration = 0
+let g:jedi#popup_select_first = 0
+
+if !exists('g:neocomplete#force_omni_input_patterns')
+    let g:neocomplete#force_omni_input_patterns = {}
+endif
+"let g:neocomplete#force_omni_input_patterns.python = '\%([^. \t]\.\|^\s*@\|^\s*from\s.\+import \|^\s*from \|^\s*import \)\w*'
+let g:neocomplete#force_omni_input_patterns.python = '\h\w*\|[^. \t]\.\w*'
