@@ -1,12 +1,13 @@
 # symlink ~/.* to dotfiles/.*
 IFS=$'\n'
 dotfiles=(`cat ".dotfiles"`)
+repository_root=`cd $(dirname $0); pwd`
 for dotfile in ${dotfiles[@]}
 do
   from="${repository_root}/${dotfile}"
   to="${HOME}/${dotfile}"
-  ln -s $from $to
-  echo "set ${from}"
+  ln -si $from $to
+  echo "linked ${from}"
 done
 
 # karabiner
@@ -21,3 +22,4 @@ fi
 # /Applications/Karabiner.app/Contents/Library/bin/karabiner export > karabiner.sh
 # を事前にしておく
 source karabiner.sh
+echo "set karabiner settings"
