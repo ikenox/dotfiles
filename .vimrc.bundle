@@ -43,6 +43,7 @@ NeoBundle 'justmao945/vim-clang'
 NeoBundle 'kana/vim-operator-user'
 NeoBundle 'rhysd/vim-clang-format'
 NeoBundle 'jiangmiao/auto-pairs'
+NeoBundle 'itchyny/lightline.vim'
 
 " ***** Original Settings End *****
 call neobundle#end()

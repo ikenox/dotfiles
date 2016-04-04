@@ -28,3 +28,6 @@ echo "set karabiner settings"
 #homebrew
 echo "installing brewfile"
 brew brewdle --file=~/dotfiles/Brewfile
+
+#gitのエディタをvimに変更
+git config --global core.editor 'vim -c "set fenc=utf-8"'
