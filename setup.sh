@@ -24,3 +24,7 @@ fi
 source karabiner.sh
 cp private.xml ~/Library/Application\ Support/Karabiner/private.xml
 echo "set karabiner settings"
+
+#homebrew
+echo "installing brewfile"
+brew brewdle --file=~/dotfiles/Brewfile
