@@ -9,4 +9,40 @@
       KeyCode::DELETE
     </autogen>
   </item>
+    <item>
+    <name>C-p to BackSpace</name>
+    <identifier>private.map_ctrl_p_to_backspace</identifier>
+    <autogen>
+      __KeyToKey__
+      KeyCode::P, ModifierFlag::CONTROL_L,
+      KeyCode::DELETE
+    </autogen>
+  </item>
+      <item>
+    <name>C-m to BackSpace</name>
+    <identifier>private.map_ctrl_m_to_backspace</identifier>
+    <autogen>
+      __KeyToKey__
+      KeyCode::M, ModifierFlag::CONTROL_L,
+      KeyCode::DELETE
+    </autogen>
+  </item>
+        <item>
+    <name>C-p to Minus</name>
+    <identifier>private.map_ctrl_p_to_minus</identifier>
+    <autogen>
+      __KeyToKey__
+      KeyCode::P, ModifierFlag::CONTROL_L,
+      KeyCode::MINUS
+    </autogen>
+  </item>
+          <item>
+    <name>C-[ to Escape</name>
+    <identifier>private.map_ctrl_bl_to_escape</identifier>
+    <autogen>
+      __KeyToKey__
+      KeyCode::FRENCH_HAT, ModifierFlag::CONTROL_L,
+      KeyCode::ESCAPE
+    </autogen>
+  </item>
 </root>
