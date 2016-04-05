@@ -1,6 +1,12 @@
 " vi互換モード解除
 set nocompatible
 
+set splitright
+set splitbelow
+
+" カーソルの色
+hi MatchParen term=standout ctermbg=blue ctermfg=white
+
 "カーソルを行頭，行末で止まらないようにする
 set whichwrap=b,s,h,l,<,>,[,]
 
@@ -45,6 +51,15 @@ set ruler
 ""1:ウィンドウが1つの時はステータスラインを表示しない。2つ以上ある場合は、ステータスラインを表示する
 ""2:常にステータスラインを表示する
 set laststatus=2
+
+"インサートモード時のカーソルの形状を変更
+if &term =~ "screen"
+  let &t_SI = "\eP\e]50;CursorShape=1\x7\e\\"
+  let &t_EI = "\eP\e]50;CursorShape=0\x7\e\\"
+elseif &term =~ "xterm"
+  let &t_SI = "\e]50;CursorShape=1\x7"
+  let &t_EI = "\e]50;CursorShape=0\x7"
+endif
 
 "ビープの代わりにビジュアルベル（画面フラッシュ）を使う
 set visualbell
