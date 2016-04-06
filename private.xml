@@ -9,7 +9,7 @@
       KeyCode::DELETE
     </autogen>
   </item>
-    <item>
+  <item>
     <name>C-p to BackSpace</name>
     <identifier>private.map_ctrl_p_to_backspace</identifier>
     <autogen>
@@ -18,7 +18,7 @@
       KeyCode::DELETE
     </autogen>
   </item>
-      <item>
+  <item>
     <name>C-m to BackSpace</name>
     <identifier>private.map_ctrl_m_to_backspace</identifier>
     <autogen>
@@ -27,7 +27,7 @@
       KeyCode::DELETE
     </autogen>
   </item>
-        <item>
+  <item>
     <name>C-p to Minus</name>
     <identifier>private.map_ctrl_p_to_minus</identifier>
     <autogen>
@@ -36,7 +36,7 @@
       KeyCode::MINUS
     </autogen>
   </item>
-          <item>
+  <item>
     <name>C-[ to Escape</name>
     <identifier>private.map_ctrl_bl_to_escape</identifier>
     <autogen>
@@ -44,5 +44,16 @@
       KeyCode::FRENCH_HAT, ModifierFlag::CONTROL_L,
       KeyCode::ESCAPE
     </autogen>
+  </item>
+  <item>
+    <name>左右のシフトキーを「英数／かな」としても使う</name>
+    <item>
+      <name>シフトキーの動作を優先モード （★おすすめ）</name>
+      <appendix>（シフトキーの空打ちで「英数／かな」）</appendix>
+      <appendix>（シフトキーを押している間に他のキーを打つと通常のシフトキーとして動作）</appendix>
+      <identifier>private.jis_shift2eisuukana_prefer_command</identifier>
+      <autogen>__KeyOverlaidModifier__ KeyCode::SHIFT_L, KeyCode::SHIFT_L, KeyCode::JIS_EISUU</autogen>
+      <autogen>__KeyOverlaidModifier__ KeyCode::SHIFT_R, KeyCode::SHIFT_R, KeyCode::JIS_KANA</autogen>
+    </item>
   </item>
 </root>

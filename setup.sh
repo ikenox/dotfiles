@@ -1,7 +1,7 @@
-# symlink ~/.* to dotfiles/.*
+r symlink ~/.* to dotfiles/.*
 IFS=$'\n'
 dotfiles=(`cat ".dotfiles"`)
-repository_root=`cd $(dirname $0); pwd`
+reporitory_root=`cd $(dirname $0); pwd`
 for dotfile in ${dotfiles[@]}
 do
   from="${repository_root}/${dotfile}"
@@ -26,9 +26,26 @@ source karabiner.sh
 cp private.xml ~/Library/Application\ Support/Karabiner/private.xml
 echo "set karabiner settings"
 
-#homebrew
-echo "installing brewfile"
-brew brewdle --file=~/dotfiles/Brewfile
+# homebrew
+function confirm {
+  MSG=$1
+  while :
+  do
+    echo -n "${MSG} [Y/N]: "
+    read ans
+    case $ans in
+    [yY]) return 0 ;;
+    [nN]) return 1 ;;
+    esac
+  done
+}
+
+echo "install brew formula?[y/n]"
+read answer
+if [ "$answer" == "y" ]; then
+  brew brewdle --file=~/dotfiles/Brewfile
+　exit;
+fi
 
 #gitのエディタをvimに変更
 git config --global core.editor 'vim -c "set fenc=utf-8"'

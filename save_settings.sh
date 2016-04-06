@@ -4,5 +4,5 @@ cp ~/Library/Application\ Support/Karabiner/private.xml private.xml
 echo "export karabiner settings file"
 
 # homebrew
+echo "ecport Brewfile"
 brew brewdle dump --force --file=~/dotfiles/Brewfile
-echo "export Brewfile"
