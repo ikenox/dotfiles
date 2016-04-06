@@ -1,6 +1,8 @@
 " vi互換モード解除
 set nocompatible
 
+set clipboard=unnamed,autoselect
+
 set splitright
 set splitbelow
 
