@@ -9,6 +9,7 @@ do
   ln -si $from $to
   echo "linked ${from}"
 done
+ln -si "${repository_root}/.vimrc" "${HOME}/.ideavimrc"
 
 # karabiner
 if ! pgrep -q Karabiner; then
