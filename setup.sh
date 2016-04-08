@@ -1,15 +1,12 @@
-r symlink ~/.* to dotfiles/.*
+# symlink ~/.* to dotfiles/.*
 IFS=$'\n'
-dotfiles=(`cat ".dotfiles"`)
-reporitory_root=`cd $(dirname $0); pwd`
-for dotfile in ${dotfiles[@]}
-do
-  from="${repository_root}/${dotfile}"
-  to="${HOME}/${dotfile}"
-  ln -si $from $to
-  echo "linked ${from}"
-done
-ln -si "${repository_root}/.vimrc" "${HOME}/.ideavimrc"
+
+script_dir=$(cd $(dirname ${BASH_SOURCE:-$0}); pwd)
+
+ln -si ${script_dir}/.vimrc ~/.vimrc
+ln -si ${script_dir}/.vimrc ~/.ideavimrc
+ln -si ${script_dir}/.zshrc ~/.zshrc
+ln -si ${script_dir}/.matplotlib/matplotlibrc ~/.matplotlib/matplotlibrc
 
 # karabiner
 if ! pgrep -q Karabiner; then
