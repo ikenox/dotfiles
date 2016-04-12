@@ -1,6 +1,8 @@
 "-------------------------------------------------------------------------------
 " カラー関連 Colors
 "-------------------------------------------------------------------------------
+set background=dark
+colorscheme hybrid
 
 " ターミナルタイプによるカラー設定
 if &term =~ "xterm-256color" || "screen-256color"
@@ -26,9 +28,15 @@ endif
 " ハイライト on
 syntax enable
 
+" カーソルの色
+"hi MatchParen term=standout ctermbg=blue ctermfg=white
+
 " 補完候補の色づけ for vim7
 " hi Pmenu ctermbg=255 ctermfg=0 guifg=#000000 guibg=#999999
 " hi PmenuSel ctermbg=blue ctermfg=black
-hi PmenuSel cterm=reverse ctermfg=33 ctermbg=222 gui=reverse guifg=#3399ff guibg=#f0e68c
+"hi PmenuSel cterm=reverse ctermfg=33 ctermbg=222 gui=reverse guifg=#3399ff guibg=#f0e68c
 " hi PmenuSbar ctermbg=0 ctermfg=9
 " hi PmenuSbar ctermbg=255 ctermfg=0 guifg=#000000 guibg=#FFFFFF
+
+"hi SignColumn ctermbg=black
+"hi Error ctermbg=darkred
