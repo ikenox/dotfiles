@@ -1,3 +1,6 @@
+" syntastic
+let g:syntastic_python_checkers = ['pyflakes', 'pep8']
+
 " vim-quickrun
 let g:quickrun_config = get(g:, 'quickrun_config', {})
 let g:quickrun_config = {
@@ -8,6 +11,10 @@ let g:quickrun_config = {
       \ 'outputter/buffer/close_on_empty' : 1,
 \   },
 \}
+
+" unite-outline
+let g:unite_split_rule = 'botright'
+noremap ,u <ESC>:Unite -vertical -winwidth=40 outline<Return>
 
 " 'Shougo/neocomplete.vim' {{{
 let g:neocomplete#enable_at_startup = 1

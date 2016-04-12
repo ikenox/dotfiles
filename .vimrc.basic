@@ -154,7 +154,7 @@ inoremap <silent> <ESC> <ESC>:set iminsert=0<CR>
 autocmd BufWritePre * :%s/\s\+$//e
 
 "NERDTreeでdotfilesを表示する
-"let NERDTreeShowHidden=1
+let NERDTreeShowHidden=1
 
 "autoreadのチェック
 augroup vimrc-checktime
@@ -162,6 +162,8 @@ augroup vimrc-checktime
   autocmd WinEnter * checktime
 augroup END
 
+hi SpellBad ctermbg=Red
+hi SpellCap ctermbg=Yellow
 
 " indent settings
 autocmd FileType json setlocal shiftwidth=2 tabstop=2 softtabstop=2
