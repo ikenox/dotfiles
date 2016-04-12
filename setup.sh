@@ -7,6 +7,7 @@ ln -si ${script_dir}/.vimrc ~/.vimrc
 ln -si ${script_dir}/.vimrc ~/.ideavimrc
 ln -si ${script_dir}/.zshrc ~/.zshrc
 ln -si ${script_dir}/.matplotlib/matplotlibrc ~/.matplotlib/matplotlibrc
+ln -si ${script_dir}/.config/pep8 ~/.config/pep8
 
 # karabiner
 if ! pgrep -q Karabiner; then
@@ -44,8 +45,13 @@ if [ "$answer" == "y" ]; then
 　exit;
 fi
 
+#pip
+echo "install pip packages?[y/n]"
+read answer
+if [ "$answer" == "y" ]; then
+  pip install -r ~/dotfiles/pip-packages
+　exit;
+fi
+
 #gitのエディタをvimに変更
 git config --global core.editor 'vim -c "set fenc=utf-8"'
-
-#pip
-pip install -r ~/dotfiles/pip-packages

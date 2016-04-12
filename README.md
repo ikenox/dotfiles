@@ -1,8 +1,8 @@
-# Setting files managed under this repository 
+# Setting files managed under this repository
 * .zshrc
 * .vimrc
-  * .vimrc.*
-* karabiner 
+  * .vimrc.\*
+* karabiner
   * private.xml
   * karabiner.sh
 * IntelliJ
@@ -12,6 +12,9 @@
 * iTerm
   * com.googlecode.iterm2.plist
 * Brewfile
+* pip packages list
+* .config
+  * pep8
 
 # Apply setting files
 ```
@@ -29,4 +32,3 @@ $ ./save_settings.sh
 # Applications needed to save and apply setting file manually
 * iTerm (Apply is needed only at first)
 * intelliJ
-* 

@@ -1,6 +1,8 @@
 " vi互換モード解除
 set nocompatible
 
+setl tw=79
+
 " ideaVim特有の設定
 try
     set surround
