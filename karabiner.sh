@@ -2,9 +2,9 @@
 
 cli=/Applications/Karabiner.app/Contents/Library/bin/karabiner
 
-$cli set private.map_ctrl_m_to_backspace 1
-/bin/echo -n .
 $cli set private.jis_shift2eisuukana_prefer_command 1
+/bin/echo -n .
+$cli set private.map_ctrl_m_to_backspace 1
 /bin/echo -n .
 $cli set repeat.wait 30
 /bin/echo -n .

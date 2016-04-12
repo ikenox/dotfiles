@@ -46,3 +46,6 @@ fi
 
 #gitのエディタをvimに変更
 git config --global core.editor 'vim -c "set fenc=utf-8"'
+
+#pip
+pip install -r ~/dotfiles/pip-packages
