@@ -1,0 +1,31 @@
+source ~/dotfiles/.vimrc
+
+set clipboard=unnamed
+
+nnoremap s <Nop>
+
+" formatting code
+nnoremap <silent> cf :action ReformatCode<CR>
+
+" commentout
+nnoremap <silent> <C-_> :action CommentByLineComment<CR>
+vnoremap <silent> <C-_> :action CommentByBlockComment<CR>
+
+" rename
+nnoremap <silent> <C-r> :action RenameElement<CR>
+
+" open file
+nnoremap <silent> sr :action RecentFiles<CR>
+nnoremap <silent> sc :action GotoClass<CR>
+nnoremap <silent> sf :action GotoFile<CR>
+
+" move tab
+nnoremap <silent> sn :action NextTab<CR>
+nnoremap <silent> sp :action PreviousTab<CR>
+
+" goto
+nnoremap <silent> gd :action GotoDeclaration<CR>
+nnoremap <silent> <C-f> :action GotoAction<CR>
+
+" back,forward,行末まで切り取り、行頭まで切り取り、検索ハイライト消去,選択拡大、縮小,ライブテンプレ、クリップボード履歴,タブの移動
+

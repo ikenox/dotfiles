@@ -4,7 +4,7 @@ IFS=$'\n'
 script_dir=$(cd $(dirname ${BASH_SOURCE:-$0}); pwd)
 
 ln -si ${script_dir}/.vimrc ~/.vimrc
-ln -si ${script_dir}/.vimrc ~/.ideavimrc
+ln -si ${script_dir}/.ideavimrc ~/.ideavimrc
 ln -si ${script_dir}/.zshrc ~/.zshrc
 ln -si ${script_dir}/.matplotlib/matplotlibrc ~/.matplotlib/matplotlibrc
 ln -si ${script_dir}/.config/pep8 ~/.config/pep8
