@@ -42,6 +42,3 @@ inoremap <silent> <C-n> <C-o>:action InsertLiveTemplate<CR>
 nnoremap <silent> P :action PasteMultiple<CR>
 " 貼り付け
 inoremap <silent> <C-S-p> <C-o>:action PasteMultiple<CR>
-
-" サイドバーにフォーカス
-nnoremap <silent> <C-s>0 :action FileChooser.GotoHome<CR>
