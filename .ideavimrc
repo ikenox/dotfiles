@@ -12,7 +12,7 @@ nnoremap <silent> cc :action CommentByLineComment<CR>:action Up<CR>
 vnoremap <silent> cc :action CommentByBlockComment<CR>
 
 " rename
-nnoremap <silent> cW :action RenameElement<CR>
+nnoremap <silent> <C-s>r :action RenameElement<CR>
 
 " open file
 nnoremap <silent> gr :action RecentFiles<CR>
@@ -32,14 +32,16 @@ nnoremap <silent> gp :action Back<CR>
 nnoremap <silent> gn :action Forward<CR>
 
 " 選択拡大、縮小
-vnoremap <silent> K :action GuiDesigner.ExpandSelection<CR>
-vnoremap <silent> J :action GuiDesigner.ShrinkSelection<CR>
+map <silent> K <A-Up>
+map <silent> J <A-Down>
 
 " ライブテンプレ
 inoremap <silent> <C-n> <C-o>:action InsertLiveTemplate<CR>
 
 " クリップボード履歴
 nnoremap <silent> P :action PasteMultiple<CR>
-
 " 貼り付け
 inoremap <silent> <C-S-p> <C-o>:action PasteMultiple<CR>
+
+" サイドバーにフォーカス
+nnoremap <silent> <C-s>0 :action FileChooser.GotoHome<CR>
