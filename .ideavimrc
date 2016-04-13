@@ -23,13 +23,13 @@ nnoremap <silent> sa :action GotoAction<CR>
 nnoremap <silent> se :action SearchEverywhere<CR>
 
 " move tab
-nnoremap <silent> gt :action NextTab<CR>
-nnoremap <silent> gT :action PreviousTab<CR>
+nnoremap <silent> sn :action NextTab<CR>
+nnoremap <silent> sp :action PreviousTab<CR>
 
 
 " back,forward
-nnoremap <silent> gb :action Back<CR>
-nnoremap <silent> gf :action Forward<CR>
+nnoremap <silent> gp :action Back<CR>
+nnoremap <silent> gn :action Forward<CR>
 
 " 選択拡大、縮小
 vnoremap <silent> K :action GuiDesigner.ExpandSelection<CR>
