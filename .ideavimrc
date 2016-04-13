@@ -12,28 +12,27 @@ nnoremap <silent> cc :action CommentByLineComment<CR>:action Up<CR>
 vnoremap <silent> cc :action CommentByBlockComment<CR>
 
 " rename
-nnoremap <silent> <C-s>r :action RenameElement<CR>
+nnoremap <silent> sr :action RenameElement<CR>
+nnoremap <silent> sa :action GotoAction<CR>
 
 " open file
 nnoremap <silent> gr :action RecentFiles<CR>
 nnoremap <silent> gc :action GotoClass<CR>
 nnoremap <silent> go :action GotoFile<CR>
 nnoremap <silent> gd :action GotoDeclaration<CR>
-nnoremap <silent> sa :action GotoAction<CR>
-nnoremap <silent> se :action SearchEverywhere<CR>
+nnoremap <silent> gx :action SearchEverywhere<CR>
 
 " move tab
 nnoremap <silent> sn :action NextTab<CR>
 nnoremap <silent> sp :action PreviousTab<CR>
-
 
 " back,forward
 nnoremap <silent> gp :action Back<CR>
 nnoremap <silent> gn :action Forward<CR>
 
 " 選択拡大、縮小
-map <silent> K <A-Up>
-map <silent> J <A-Down>
+"map <silent> K <A-Up>
+"map <silent> J <A-Down>
 
 " ライブテンプレ
 inoremap <silent> <C-n> <C-o>:action InsertLiveTemplate<CR>
