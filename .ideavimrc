@@ -5,27 +5,41 @@ set clipboard=unnamed
 nnoremap s <Nop>
 
 " formatting code
-nnoremap <silent> cf :action ReformatCode<CR>
+nnoremap <silent> == :action ReformatCode<CR>
 
 " commentout
-nnoremap <silent> <C-_> :action CommentByLineComment<CR>
-vnoremap <silent> <C-_> :action CommentByBlockComment<CR>
+nnoremap <silent> cc :action CommentByLineComment<CR>:action Up<CR>
+vnoremap <silent> cc :action CommentByBlockComment<CR>
 
 " rename
-nnoremap <silent> <C-r> :action RenameElement<CR>
+nnoremap <silent> cW :action RenameElement<CR>
 
 " open file
-nnoremap <silent> sr :action RecentFiles<CR>
-nnoremap <silent> sc :action GotoClass<CR>
-nnoremap <silent> sf :action GotoFile<CR>
+nnoremap <silent> gr :action RecentFiles<CR>
+nnoremap <silent> gc :action GotoClass<CR>
+nnoremap <silent> go :action GotoFile<CR>
+nnoremap <silent> gd :action GotoDeclaration<CR>
+nnoremap <silent> sa :action GotoAction<CR>
+nnoremap <silent> se :action SearchEverywhere<CR>
 
 " move tab
-nnoremap <silent> sn :action NextTab<CR>
-nnoremap <silent> sp :action PreviousTab<CR>
+nnoremap <silent> gt :action NextTab<CR>
+nnoremap <silent> gT :action PreviousTab<CR>
 
-" goto
-nnoremap <silent> gd :action GotoDeclaration<CR>
-nnoremap <silent> <C-f> :action GotoAction<CR>
 
-" back,forward,行末まで切り取り、行頭まで切り取り、検索ハイライト消去,選択拡大、縮小,ライブテンプレ、クリップボード履歴,タブの移動
+" back,forward
+nnoremap <silent> gb :action Back<CR>
+nnoremap <silent> gf :action Forward<CR>
 
+" 選択拡大、縮小
+vnoremap <silent> K :action GuiDesigner.ExpandSelection<CR>
+vnoremap <silent> J :action GuiDesigner.ShrinkSelection<CR>
+
+" ライブテンプレ
+inoremap <silent> <C-n> <C-o>:action InsertLiveTemplate<CR>
+
+" クリップボード履歴
+nnoremap <silent> P :action PasteMultiple<CR>
+
+" 貼り付け
+inoremap <silent> <C-S-p> <C-o>:action PasteMultiple<CR>
