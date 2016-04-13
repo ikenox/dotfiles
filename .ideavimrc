@@ -20,7 +20,7 @@ nnoremap <silent> gr :action RecentFiles<CR>
 nnoremap <silent> gc :action GotoClass<CR>
 nnoremap <silent> go :action GotoFile<CR>
 nnoremap <silent> gd :action GotoDeclaration<CR>
-nnoremap <silent> gx :action SearchEverywhere<CR>
+nnoremap <silent> ga :action SearchEverywhere<CR>
 
 " move tab
 nnoremap <silent> sn :action NextTab<CR>
