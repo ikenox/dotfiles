@@ -1,6 +1,6 @@
 source ~/dotfiles/.vimrc
 
-set clipboard=unnamed
+set clipboard+=unnamed
 
 nnoremap s <Nop>
 
@@ -8,19 +8,20 @@ nnoremap s <Nop>
 nnoremap <silent> == :action ReformatCode<CR>
 
 " commentout
-nnoremap <silent> cc :action CommentByLineComment<CR>:action Up<CR>
+nnoremap <silent> cc :action CommentByLineComment<CR>:action EditorUp<CR>
 vnoremap <silent> cc :action CommentByBlockComment<CR>
 
 " rename
 nnoremap <silent> sr :action RenameElement<CR>
-nnoremap <silent> sa :action GotoAction<CR>
+nnoremap <silent> so :action GotoAction<CR>
 
 " open file
 nnoremap <silent> gr :action RecentFiles<CR>
 nnoremap <silent> gc :action GotoClass<CR>
-nnoremap <silent> go :action GotoFile<CR>
+nnoremap <silent> gf :action GotoFile<CR>
 nnoremap <silent> gd :action GotoDeclaration<CR>
-nnoremap <silent> ga :action SearchEverywhere<CR>
+nnoremap <silent> go :action SearchEverywhere<CR>
+nnoremap <silent> gs :action FileStructurePopup<CR>
 
 " move tab
 nnoremap <silent> sn :action NextTab<CR>
@@ -38,6 +39,12 @@ nnoremap <silent> gn :action Forward<CR>
 inoremap <silent> <C-n> <C-o>:action InsertLiveTemplate<CR>
 
 " クリップボード履歴
-nnoremap <silent> P :action PasteMultiple<CR>
-" 貼り付け
-inoremap <silent> <C-S-p> <C-o>:action PasteMultiple<CR>
+nnoremap <silent> mp :action PasteMultiple<CR>
+nnoremap <silent> mP :action PasteMultiple<CR>
+
+nnoremap <silent> L $
+vnoremap <silent> L $
+nnoremap <silent> H ^
+vnoremap <silent> H ^
+
+nnoremap <silent> <C-y> :action QuickImplementations<CR>

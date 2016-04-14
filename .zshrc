@@ -39,13 +39,6 @@ HISTFILE=~/.zsh_history
 HISTSIZE=1000000
 SAVEHIST=1000000
 
-# プロンプト
-# 1行表示
-# PROMPT="%~ %# "
-# 2行表示
-PROMPT="%{${fg[green]}%}[%n@%m]%{${reset_color}%} %~
-"
-
 # 単語の区切り文字を指定する
 autoload -Uz select-word-style
 select-word-style default
@@ -75,7 +68,8 @@ zstyle ':completion:*:processes' command 'ps x -o pid,s,args'
 
 
 ########################################
-# vcs_info
+# PROMPT
+
 autoload -Uz vcs_info
 setopt prompt_subst
 zstyle ':vcs_info:git:*' check-for-changes true
@@ -84,7 +78,13 @@ zstyle ':vcs_info:git:*' unstagedstr "%F{red}+"
 zstyle ':vcs_info:*' formats "%F{green}%c%u(%b)%f"
 zstyle ':vcs_info:*' actionformats '(%b|%a)'
 precmd () { vcs_info }
+
+PROMPT="%{${fg[green]}%}[%n@%m]%{${reset_color}%} %~
+"
 PROMPT=$PROMPT'${vcs_info_msg_0_}%# '
+RPROMPT="%F{242}%D{%y-%m-%d %T}%f"
+
+
 
 ########################################
 # オプション
