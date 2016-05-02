@@ -42,9 +42,4 @@ inoremap <silent> <C-n> <C-o>:action InsertLiveTemplate<CR>
 nnoremap <silent> mp :action PasteMultiple<CR>
 nnoremap <silent> mP :action PasteMultiple<CR>
 
-nnoremap <silent> L $
-vnoremap <silent> L $
-nnoremap <silent> H ^
-vnoremap <silent> H ^
-
 nnoremap <silent> <C-y> :action QuickImplementations<CR>

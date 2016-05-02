@@ -50,6 +50,14 @@ NeoBundle 'jiangmiao/auto-pairs'
 NeoBundle 'itchyny/lightline.vim'
 NeoBundle "tyru/caw.vim.git"
 
+"" Markdown
+NeoBundle 'plasticboy/vim-markdown'
+NeoBundle 'kannokanno/previm'
+NeoBundle 'tyru/open-browser.vim'
+
+au BufRead,BufNewFile *.md set filetype=markdown
+let g:previm_open_cmd = 'open -a Google\ Chrome'
+
 " " === python ===
 "
 " " ~/.pyenv/shimsを$PATHに追加
