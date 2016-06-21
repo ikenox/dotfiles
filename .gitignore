@@ -1,1 +1,8 @@
-!settings.jar
+.DS_Store
+
+.idea
+
+*.lprof
+*.pyc
+
+!.gitkeep
