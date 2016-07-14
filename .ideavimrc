@@ -8,7 +8,7 @@ nnoremap s <Nop>
 nnoremap <silent> == :action ReformatCode<CR>
 
 " commentout
-nnoremap <silent> cc :action CommentByLineComment<CR>:action EditorUp<CR>
+nnoremap <silent> cc :action CommentByLineComment<CR>
 vnoremap <silent> cc :action CommentByBlockComment<CR>
 
 " rename
@@ -28,8 +28,8 @@ nnoremap <silent> sn :action NextTab<CR>
 nnoremap <silent> sp :action PreviousTab<CR>
 
 " back,forward
-nnoremap <silent> gp :action Back<CR>
-nnoremap <silent> gn :action Forward<CR>
+nnoremap <silent> gh :action Back<CR>
+nnoremap <silent> gl :action Forward<CR>
 
 " 選択拡大、縮小
 "map <silent> K <A-Up>

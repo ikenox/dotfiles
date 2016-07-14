@@ -2,6 +2,8 @@
 # License : MIT
 # http://mollifier.mit-license.org/
 
+script_dir=$(cd $(dirname ${BASH_SOURCE:-$0}); pwd)
+
 export LANG=en_US.UTF-8
 export LESSCHARSET=utf-8
 export PATH=/usr/bin:/bin:/sbin:/usr/sbin:$PATH
@@ -65,7 +67,6 @@ zstyle ':completion:*:sudo:*' command-path /usr/local/sbin /usr/local/bin \
 
 # ps コマンドのプロセス名補完
 zstyle ':completion:*:processes' command 'ps x -o pid,s,args'
-
 
 ########################################
 # PROMPT
