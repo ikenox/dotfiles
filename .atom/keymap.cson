@@ -1,15 +1,26 @@
 'atom-text-editor.vim-mode-plus.normal-mode':
+    # ex-mode
     ':': 'vim-mode-plus-ex-mode:open'
     ';': 'vim-mode-plus-ex-mode:open'
     '!': 'vim-mode-plus-ex-mode:toggle-setting'
+
+    # code format
     '=': 'unset!'
     '= =': 'atom-beautify:beautify-editor'
+
+    # surrounds
+    'S': 'vim-mode-plus:surround-smart-word'
+    'd s': 'vim-mode-plus:delete-surround-any-pair'
+    'c s': 'vim-mode-plus:change-surround-any-pair'
+    'y s': 'vim-mode-plus:surround'
+    'y s w': 'vim-mode-plus:surround-word'
+    'y s m': 'vim-mode-plus:map-surround'
 
 'atom-text-editor.vim-mode-plus.insert-mode':
     'j f':'vim-mode-plus:activate-normal-mode'
 
 'atom-text-editor.vim-mode-plus.visual-mode':
-    'S':''
+    'S':'vim-mode-plus:surround'
 
 'atom-text-editor.vim-mode-plus.normal-mode,atom-text-editor.vim-mode-plus.visual-mode':
     'L':'vim-mode-plus:move-to-last-character-of-line'
