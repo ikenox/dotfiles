@@ -1,0 +1,13 @@
+'atom-text-editor.vim-mode-plus.normal-mode':
+  '=':null
+  '= =':'atom-beautify:beautify-editor'
+
+'atom-text-editor.vim-mode-plus.normal-mode, atom-text-editor.vim-mode-plus.visual-mode':
+  'H':'vim-mode-plus:move-to-first-character-of-line'
+  'L':'vim-mode-plus:move-to-last-character-of-line'
+
+'atom-text-editor.vim-mode-plus.insert-mode':
+  'j f':'	vim-mode-plus:reset-normal-mode'
+
+'atom-text-editor.vim-mode-plus.visual-mode':
+  'S': 'vim-mode-plus:surround'

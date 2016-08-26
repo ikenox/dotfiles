@@ -19,3 +19,4 @@ chary-tree-view
 atomcasts-syntax
 vim-mode-plus
 vim-mode-plus-ex-mode
+atom-beautify
