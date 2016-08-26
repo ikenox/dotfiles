@@ -6,5 +6,7 @@
     openEmptyEditorOnStart: false
   "exception-reporting":
     userId: "45f6b7a3-20de-cfe6-c75d-167ccccb6b66"
+  "vim-mode-plus":
+    useClipboardAsDefaultRegister: true
   welcome:
     showOnStartup: false
