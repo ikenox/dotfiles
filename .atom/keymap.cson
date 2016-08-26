@@ -16,9 +16,11 @@
     'y s w': 'vim-mode-plus:surround-word'
     'y s m': 'vim-mode-plus:map-surround'
 
-    'g o': 'vim-mode-plus:map-surround'
+    'g o': 'fuzzy-finder:toggle-file-finder'
+    'g s': 'symbols-view:toggle-file-symbols'
+
+    # Tab and Pane transition
     's': 'unset!'
-    's n': 'pane:show-next-recently-used-item'
     's p': 'pane:show-previous-recently-used-item'
     's h': 'window:focus-pane-on-left'
     's j': 'window:focus-pane-on-below'
