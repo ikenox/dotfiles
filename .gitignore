@@ -9,3 +9,11 @@ projects.cson
 .npm
 .node-gyp
 blob-store
+.DS_Store
+
+.idea
+
+*.lprof
+*.pyc
+
+!.gitkeep

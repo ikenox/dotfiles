@@ -1,0 +1,14 @@
+[user]
+	name = ikeno
+	email = ikenox@gmail.com
+[alias]
+	co = checkout
+	st = status
+	ci = commit -a
+	di = diff
+	br = branch
+[core]
+  excludesfile = /Users/ikeno/.gitignore
+	editor = vim -c \"set fenc=utf-8\"
+[push]
+	default = simple
