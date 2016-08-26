@@ -1,4 +1,7 @@
 "*":
+  "atom-beautify":
+    general:
+      _analyticsUserId: "508c7378-2e50-4192-b353-6d074ea08a83"
   core:
     openEmptyEditorOnStart: false
   "exception-reporting":
