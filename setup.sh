@@ -4,6 +4,7 @@ IFS=$'\n'
 script_dir=$(cd $(dirname ${BASH_SOURCE:-$0}); pwd)
 
 ln -si ${script_dir}/.vimrc ~/.vimrc
+ln -s ${script_dir}/.atom ~/.atom
 ln -si ${script_dir}/.ideavimrc ~/.ideavimrc
 ln -si ${script_dir}/.zshrc ~/.zshrc
 ln -si ${script_dir}/.matplotlib/matplotlibrc ~/.matplotlib/matplotlibrc
@@ -42,14 +43,6 @@ echo "install brew formula?[y/n]"
 read answer
 if [ "$answer" == "y" ]; then
   brew brewdle --file=~/dotfiles/Brewfile
-　exit;
-fi
-
-#pip
-echo "install pip packages?[y/n]"
-read answer
-if [ "$answer" == "y" ]; then
-  pip install -r ~/dotfiles/pip-packages
 　exit;
 fi
 
