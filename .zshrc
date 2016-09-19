@@ -196,3 +196,74 @@ export ANDROID_TOOLS=/usr/local/Cellar/android-sdk/24.4.1_1/tools
 export ANDROID_PLATFORM_TOOLS=/usr/local/Cellar/android-sdk/24.4.1_1/platform-tools
 
 PATH=$PATH:$ANDROID_HOME:$ANDROID_TOOLS:$ANDROID_PLATFORM_TOOLS:.
+
+########################################
+## cd from history
+
+function chpwd() {
+  powered_cd_add_log
+}
+
+function powered_cd_add_log() {
+  local i=0
+  cat ~/.powered_cd.log | while read line; do
+    (( i++ ))
+    if [ i = 30 ]; then
+      sed -i -e "30,30d" ~/.powered_cd.log
+    elif [ "$line" = "$PWD" ]; then
+      sed -i -e "${i},${i}d" ~/.powered_cd.log
+    fi
+  done
+  echo "$PWD" >> ~/.powered_cd.log
+}
+
+function powered_cd() {
+  if [ $# = 0 ]; then
+    cd $(gtac ~/.powered_cd.log | peco)
+  elif [ $# = 1 ]; then
+    cd $1
+  else
+    echo "powered_cd: too many arguments"
+  fi
+}
+
+_powered_cd() {
+  _files -/
+}
+
+compdef _powered_cd powered_cd
+
+[ -e ~/.powered_cd.log ] || touch ~/.powered_cd.log
+
+zle -N powered_cd
+bindkey '^U' powered_cd
+
+########################################
+## cd
+
+function peco-cd()
+{
+    local var
+    local dir
+    if [ ! -t 0 ]; then
+    var=$(cat -)
+    dir=$(echo -n $var | peco)
+    else
+        return 1
+    fi
+
+    if [ -d "$dir" ]; then
+        cd "$dir"
+    else
+        echo "'$dir' was not directory." >&2
+        return 1
+    fi
+  }
+
+function peco-find-cd()
+{
+  find . -maxdepth 3 | peco-cd
+}
+
+zle -N peco-find-cd
+bindkey '^Q' peco-find-cd
