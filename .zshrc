@@ -188,6 +188,7 @@ function peco-history-selection() {
 zle -N peco-history-selection
 bindkey '^R' peco-history-selection
 
+
 ########################################
 # android
 
@@ -196,3 +197,6 @@ export ANDROID_TOOLS=/usr/local/Cellar/android-sdk/24.4.1_1/tools
 export ANDROID_PLATFORM_TOOLS=/usr/local/Cellar/android-sdk/24.4.1_1/platform-tools
 
 PATH=$PATH:$ANDROID_HOME:$ANDROID_TOOLS:$ANDROID_PLATFORM_TOOLS:.
+
+[ -s "/Users/ikeno/.dnx/dnvm/dnvm.sh" ] && . "/Users/ikeno/.dnx/dnvm/dnvm.sh" # Load dnvm
+
