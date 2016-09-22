@@ -225,6 +225,7 @@ function powered_cd() {
   else
     echo "powered_cd: too many arguments"
   fi
+  zle reset-prompt
 }
 
 _powered_cd() {
@@ -258,6 +259,7 @@ function peco-cd()
         echo "'$dir' was not directory." >&2
         return 1
     fi
+    zle reset-prompt
   }
 
 function peco-find-cd()
