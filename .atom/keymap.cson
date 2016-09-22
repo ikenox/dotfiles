@@ -22,6 +22,7 @@
     # Tab and Pane transition
     's': 'unset!'
     's p': 'pane:show-previous-recently-used-item'
+    's n': 'pane:show-next-recently-used-item'
     's h': 'window:focus-pane-on-left'
     's j': 'window:focus-pane-on-below'
     's k': 'window:focus-pane-on-above'
