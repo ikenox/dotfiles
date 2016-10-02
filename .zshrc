@@ -201,48 +201,6 @@ PATH=$PATH:$ANDROID_HOME:$ANDROID_TOOLS:$ANDROID_PLATFORM_TOOLS:.
 [ -s "/Users/ikeno/.dnx/dnvm/dnvm.sh" ] && . "/Users/ikeno/.dnx/dnvm/dnvm.sh" # Load dnvm
 
 ########################################
-## cd from history
-
-function chpwd() {
-  powered_cd_add_log
-}
-
-function powered_cd_add_log() {
-  local i=0
-  cat ~/.powered_cd.log | while read line; do
-    (( i++ ))
-    if [ i = 30 ]; then
-      sed -i -e "30,30d" ~/.powered_cd.log
-    elif [ "$line" = "$PWD" ]; then
-      sed -i -e "${i},${i}d" ~/.powered_cd.log
-    fi
-  done
-  echo "$PWD" >> ~/.powered_cd.log
-}
-
-function powered_cd() {
-  if [ $# = 0 ]; then
-    cd $(gtac ~/.powered_cd.log | peco)
-  elif [ $# = 1 ]; then
-    cd $1
-  else
-    echo "powered_cd: too many arguments"
-  fi
-  zle reset-prompt
-}
-
-_powered_cd() {
-  _files -/
-}
-
-compdef _powered_cd powered_cd
-
-[ -e ~/.powered_cd.log ] || touch ~/.powered_cd.log
-
-zle -N powered_cd
-bindkey '^U' powered_cd
-
-########################################
 ## cd
 
 function peco-cd()
@@ -267,7 +225,7 @@ function peco-cd()
 
 function peco-find-cd()
 {
-  find . -maxdepth 3 | peco-cd
+  find . -maxdepth 5 | peco-cd
 }
 
 zle -N peco-find-cd
