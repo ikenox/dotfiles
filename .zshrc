@@ -4,6 +4,17 @@
 
 script_dir=$(cd $(dirname ${BASH_SOURCE:-$0}); pwd)
 
+########################################
+# android
+
+export ANDROID_HOME=/usr/local/Cellar/android-sdk/24.4.1_1
+export ANDROID_TOOLS=/usr/local/Cellar/android-sdk/24.4.1_1/tools
+export ANDROID_PLATFORM_TOOLS=/usr/local/Cellar/android-sdk/24.4.1_1/platform-tools
+
+PATH=$PATH:$ANDROID_HOME:$ANDROID_TOOLS:$ANDROID_PLATFORM_TOOLS:.
+
+[ -s "/Users/ikeno/.dnx/dnvm/dnvm.sh" ] && . "/Users/ikeno/.dnx/dnvm/dnvm.sh" # Load dnvm
+
 export LANG=en_US.UTF-8
 export LESSCHARSET=utf-8
 export PATH=/usr/bin:/bin:/sbin:/usr/sbin:$PATH
@@ -190,17 +201,6 @@ bindkey '^R' peco-history-selection
 
 
 ########################################
-# android
-
-export ANDROID_HOME=/usr/local/Cellar/android-sdk/24.4.1_1
-export ANDROID_TOOLS=/usr/local/Cellar/android-sdk/24.4.1_1/tools
-export ANDROID_PLATFORM_TOOLS=/usr/local/Cellar/android-sdk/24.4.1_1/platform-tools
-
-PATH=$PATH:$ANDROID_HOME:$ANDROID_TOOLS:$ANDROID_PLATFORM_TOOLS:.
-
-[ -s "/Users/ikeno/.dnx/dnvm/dnvm.sh" ] && . "/Users/ikeno/.dnx/dnvm/dnvm.sh" # Load dnvm
-
-########################################
 ## cd
 
 function peco-cd()
@@ -230,3 +230,8 @@ function peco-find-cd()
 
 zle -N peco-find-cd
 bindkey '^Q' peco-find-cd
+
+########################################
+## enhancd
+
+source ${script_dir}/repositories/enhancd/init.sh

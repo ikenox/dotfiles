@@ -16,4 +16,6 @@ blob-store
 *.lprof
 *.pyc
 
+repositories/*
+
 !.gitkeep
