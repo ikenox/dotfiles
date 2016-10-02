@@ -235,3 +235,10 @@ bindkey '^Q' peco-find-cd
 ## enhancd
 
 source ${script_dir}/repositories/enhancd/init.sh
+function enhancd()
+{
+  cd
+}
+
+zle -N enhancd
+bindkey '^U' enhancd
