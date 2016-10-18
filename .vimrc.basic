@@ -3,6 +3,8 @@ set nocompatible
 
 setl tw=79
 
+let g:tex_conceal=''
+
 " ideaVim特有の設定
 try
     set surround

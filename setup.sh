@@ -11,6 +11,7 @@ ln -si ${script_dir}/.ideavimrc ~/.ideavimrc
 ln -si ${script_dir}/.zshrc ~/.zshrc
 ln -si ${script_dir}/.matplotlib/matplotlibrc ~/.matplotlib/matplotlibrc
 ln -si ${script_dir}/.config/pep8 ~/.config/pep8
+ln -si ${script_dir}/.latexmkrc ~/.latexmkrc
 
 # karabiner
 if ! pgrep -q Karabiner; then
