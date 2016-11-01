@@ -155,7 +155,7 @@ set backspace=indent,eol,start
 inoremap <silent> <ESC> <ESC>:set iminsert=0<CR>
 
 "保存時に行末の空白を除去する
-autocmd BufWritePre * :%s/\s\+$//e
+"autocmd BufWritePre * :%s/\s\+$//e
 
 "NERDTreeでdotfilesを表示する
 let NERDTreeShowHidden=1
