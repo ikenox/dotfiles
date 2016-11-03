@@ -71,13 +71,6 @@ let g:quickrun_config.tmptex = {
 \                        ],
 \}
 
-"autocmd BufWritePost,FileWritePost *.tex QuickRun tex
-
-vnoremap <silent><buffer> <F5> :QuickRun -mode v -type tmptex<CR>
-
-" QuickRun and view compile result quickly (but don't preview pdf file)
-nnoremap <silent><F5> :QuickRun<CR>
-
 " unite-outline
 let g:unite_split_rule = 'botright'
 noremap ,u <ESC>:Unite -vertical -winwidth=40 outline<Return>
