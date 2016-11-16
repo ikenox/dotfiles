@@ -1,40 +1,31 @@
 tap 'homebrew/brewdler'
 tap 'homebrew/bundle'
 tap 'homebrew/dupes'
-brew 'autoconf'
-brew 'xz'
-brew 'clang-format'
-brew 'docker'
-brew 'docker-machine'
-brew 'fasd'
-brew 'libpng'
-brew 'freetype'
-brew 'gdbm'
-brew 'libtool'
-brew 'pkg-config'
-brew 'jpeg'
-brew 'libtiff'
-brew 'imagemagick'
-brew 'readline'
-brew 'sqlite'
-brew 'openssl'
-brew 'python'
-brew 'libxml2'
-brew 'libxslt'
-brew 'libyaml'
-brew 'lua'
-brew 'maven'
-brew 'mysql'
-brew 'pcre'
-brew 'nginx'
+
+# ==============
+# Brew
+# ==============
 brew 'peco'
-brew 'postgresql'
+brew 'vim', args: ['with-lua', 'with-python3']
+
+# python
+brew 'python'
 brew 'pyenv'
 brew 'pyenv-virtualenv'
-brew 'python3'
+
+# ruby
 brew 'ruby-build'
 brew 'rbenv'
 brew 'rbenv-gemset'
 brew 'ruby'
-brew 'vim', args: ['with-lua', 'with-python3']
-brew 'homebrew/dupes/libiconv'
+
+# ==============
+# Cask
+# ==============
+cask 'alfred'
+cask 'skim'
+cask 'iterm2'
+cask 'karabiner'
+cask 'caffeine'
+cask 'slack'
+cask 'git'
