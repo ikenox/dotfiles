@@ -26,6 +26,8 @@ export PATH="$PYENV_ROOT/bin:$PATH"
 export PATH="$HOME/.rbenv/bin:$PATH"
 export PATH=/usr/local/bin:$PATH
 
+export HOMEBREW_CASK_OPTS="--appdir=/Applications"
+
 eval "$(rbenv init - zsh)"
 eval "$(pyenv init - zsh)"
 
