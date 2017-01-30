@@ -1,8 +1,10 @@
 source ~/dotfiles/.vimrc
 
+set surround
 set clipboard+=unnamed
 
 nnoremap s <Nop>
+vnoremap s <Nop>
 
 " formatting code
 nnoremap <silent> == :action ReformatCode<CR>

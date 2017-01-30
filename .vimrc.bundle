@@ -21,6 +21,8 @@ NeoBundle 'Shougo/vimproc', {
 
 NeoBundle 'w0ng/vim-hybrid'
 
+NeoBundle 'tpope/vim-surround'
+
 "" 補完系
 NeoBundle 'Shougo/neocomplete.vim'
 NeoBundle 'Shougo/neosnippet'

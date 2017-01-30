@@ -242,3 +242,4 @@ function enhancd()
 
 zle -N enhancd
 bindkey '^U' enhancd
+
