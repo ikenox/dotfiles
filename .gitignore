@@ -1,5 +1,8 @@
 !settings.jar
 
+.vim/autoload
+.vim/plugged
+
 # Atom
 packages/
 compile-cache
@@ -10,11 +13,6 @@ projects.cson
 .node-gyp
 blob-store
 .DS_Store
-
-.idea
-
-*.lprof
-*.pyc
 
 repositories/*
 

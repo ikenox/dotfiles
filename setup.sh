@@ -5,7 +5,7 @@ script_dir=$(cd $(dirname ${BASH_SOURCE:-$0}); pwd)
 vim_dir=${script_dir}/.vim
 
 ln -si ${script_dir}/.gitconfig ~/.gitconfig
-ln -si ${script_dir}/.gitignore ~/.gitignore
+ln -si ${script_dir}/.gitignore-global ~/.gitignore
 ln -si ${script_dir}/.vimrc ~/.vimrc
 ln -si ${vim_dir} ~/.vim
 ln -s ${script_dir}/.atom ~/.atom
