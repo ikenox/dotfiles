@@ -1,0 +1,3 @@
+# Environment specific zshrc
+# 
+# PATH=/hoge/fuga:$PATH

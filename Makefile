@@ -2,20 +2,22 @@ DOTFILES_ROOT:=$(shell pwd)
 
 all: install
 
-install: .vim/autoload/plug.vim symlinks
+install: vim/autoload/plug.vim zshrc.myenv symlinks
 
-.vim/autoload/plug.vim:
+vim/autoload/plug.vim:
 	curl -fLo $@ --create-dirs \
 		https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
 
 symlinks:
 	ln -si $(DOTFILES_ROOT)/gitconfig ~/.gitconfig
 	ln -si $(DOTFILES_ROOT)/gitignore ~/.gitignore
+	ln -si $(DOTFILES_ROOT)/repositories ~/.repositories
 	ln -si $(DOTFILES_ROOT)/vimrc ~/.vimrc
 	ln -si $(DOTFILES_ROOT)/vimrc.keymap ~/.vimrc.keymap
 	ln -si $(DOTFILES_ROOT)/vim ~/.vim
 	ln -si $(DOTFILES_ROOT)/ideavimrc ~/.ideavimrc
 	ln -si $(DOTFILES_ROOT)/zshrc ~/.zshrc
+	ln -si $(DOTFILES_ROOT)/zshrc.myenv ~/.zshrc.myenv
 	ln -si $(DOTFILES_ROOT)/matplotlib/matplotlibrc ~/.matplotlib/matplotlibrc
 	ln -si $(DOTFILES_ROOT)/latexmkrc ~/.latexmkrc
 
@@ -33,3 +35,10 @@ karabiner:
 	source karabiner.sh
 	cp private.xml ~/Library/Application\ Support/Karabiner/private.xml
 	echo "set karabiner settings"
+
+brew:
+
+brew-packages:
+
+zshrc.myenv:
+	cp $(DOTFILES_ROOT)/zshrc.myenv.template $(DOTFILES_ROOT)/zshrc.myenv

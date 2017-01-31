@@ -1,7 +1,7 @@
 !settings.jar
 
-.vim/autoload
-.vim/plugged
+vim/autoload
+vim/plugged
 
 # Atom
 packages/
@@ -13,6 +13,8 @@ projects.cson
 .node-gyp
 blob-store
 .DS_Store
+
+zshrc.myenv
 
 repositories/*
 

@@ -2,32 +2,22 @@
 # License : MIT
 # http://mollifier.mit-license.org/
 
-script_dir=$(cd $(dirname ${BASH_SOURCE:-$0}); pwd)
+REPOSITORIES_DIR=~/.repositories 
 
 ########################################
-# android
+# ENVIRONMENT
 
-export ANDROID_HOME=/usr/local/Cellar/android-sdk/24.4.1_1
-export ANDROID_TOOLS=/usr/local/Cellar/android-sdk/24.4.1_1/tools
-export ANDROID_PLATFORM_TOOLS=/usr/local/Cellar/android-sdk/24.4.1_1/platform-tools
-
-PATH=$PATH:$ANDROID_HOME:$ANDROID_TOOLS:$ANDROID_PLATFORM_TOOLS:.
-
-[ -s "/Users/ikeno/.dnx/dnvm/dnvm.sh" ] && . "/Users/ikeno/.dnx/dnvm/dnvm.sh" # Load dnvm
+export PATH=/usr/bin:/bin:/sbin:/usr/sbin:/usr/local/bin
 
 export LANG=en_US.UTF-8
 export LESSCHARSET=utf-8
-export PATH=/usr/bin:/bin:/sbin:/usr/sbin:$PATH
-export JAVA_HOME=`/usr/libexec/java_home -v 1.8`
-export PATH="/Applications/sdk/tools:$PATH"
-export PATH=$HOME/.rbenv/bin:$PATH
+
+#######################################
+# env
+
 export PYENV_ROOT="$HOME/.pyenv"
 export PATH="$PYENV_ROOT/bin:$PATH"
 export PATH="$HOME/.rbenv/bin:$PATH"
-export PATH=/usr/local/bin:$PATH
-
-export HOMEBREW_CASK_OPTS="--appdir=/Applications"
-
 eval "$(rbenv init - zsh)"
 eval "$(pyenv init - zsh)"
 
@@ -151,7 +141,7 @@ setopt extended_glob
 bindkey '^R' history-incremental-pattern-search-backward
 
 ########################################
-# エイリアス
+# Alias
 
 alias la='ls -a'
 alias ll='ls -l'
@@ -164,17 +154,6 @@ alias mkdir='mkdir -p'
 
 # sudo の後のコマンドでエイリアスを有効にする
 alias sudo='sudo '
-
-# グローバルエイリアス
-alias -g L='| less'
-alias -g G='| grep'
-
-# Gitのエイリアス
-git config --global alias.co checkout
-git config --global alias.st 'status'
-git config --global alias.ci 'commit -a'
-git config --global alias.di 'diff'
-git config --global alias.br 'branch'
 
 ########################################
 # OS 別の設定
@@ -200,7 +179,6 @@ function peco-history-selection() {
 
 zle -N peco-history-selection
 bindkey '^R' peco-history-selection
-
 
 ########################################
 ## cd
@@ -236,7 +214,7 @@ bindkey '^Q' peco-find-cd
 ########################################
 ## enhancd
 
-source ${script_dir}/repositories/enhancd/init.sh
+source ${REPOSITORIES_DIR}/enhancd/init.sh
 function enhancd()
 {
   cd
@@ -244,4 +222,11 @@ function enhancd()
 
 zle -N enhancd
 bindkey '^U' enhancd
+
+
+
+########################################
+# Private settings
+
+source ~/.zshrc.myenv
 
