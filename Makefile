@@ -12,6 +12,7 @@ symlinks:
 	ln -si $(DOTFILES_ROOT)/gitconfig ~/.gitconfig
 	ln -si $(DOTFILES_ROOT)/gitignore ~/.gitignore
 	ln -si $(DOTFILES_ROOT)/vimrc ~/.vimrc
+	ln -si $(DOTFILES_ROOT)/vimrc.keymap ~/.vimrc.keymap
 	ln -si $(DOTFILES_ROOT)/vim ~/.vim
 	ln -si $(DOTFILES_ROOT)/ideavimrc ~/.ideavimrc
 	ln -si $(DOTFILES_ROOT)/zshrc ~/.zshrc

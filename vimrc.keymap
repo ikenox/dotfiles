@@ -1,0 +1,61 @@
+"================================================================
+" Basic keymaps
+"================================================================
+" 
+nnoremap <silent> L $
+vnoremap <silent> L $
+nnoremap <silent> H ^
+vnoremap <silent> H ^
+nnoremap <silent> Y v$y
+vnoremap <silent> Y $y
+
+"" insertモードを抜ける
+inoremap <silent> jf <ESC>
+
+" ノーマルモード時にセミコロンでコロンを代用
+noremap ; :
+noremap : ;
+
+"カーソルを表示行で移動
+"物理行移動は<C-n>,<C-p>
+nnoremap j gj
+nnoremap k gk
+nnoremap <Down> gj
+nnoremap <Up>   gk
+
+" not yank x
+nnoremap x "_x
+vnoremap x "_x
+
+" ¥ to backslash
+inoremap ¥ \
+
+" http://qiita.com/tekkoc/items/98adcadfa4bdc8b5a6ca
+nnoremap s <Nop>
+nnoremap sj <C-w>j
+nnoremap sk <C-w>k
+nnoremap sl <C-w>l
+nnoremap sh <C-w>h
+nnoremap sn gt
+nnoremap sp gT
+nnoremap st :<C-u>tabnew<CR>
+nnoremap ss :<C-u>sp<CR>
+nnoremap sv :<C-u>vs<CR>
+nnoremap sw :w<CR>
+nnoremap sq :q<CR>
+nnoremap sW :wq<CR>
+
+" arrow
+inoremap <C-h> <Left>
+inoremap <C-j> <Down>
+inoremap <C-k> <Up>
+inoremap <C-l> <Right>
+imap <ESC>OA <Up>
+imap <ESC>OB <Down>
+imap <ESC>OC <Right>
+imap <ESC>OD <Left>
+
+" insert new line
+inoremap <C-o> <esc>o
+nnoremap <silent> <CR> o<Esc>
+

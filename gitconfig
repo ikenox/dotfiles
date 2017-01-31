@@ -8,7 +8,7 @@
 	di = diff
 	br = branch
 [core]
-  excludesfile = ~/.gitignore
+    excludesfile = ~/.gitignore
 	editor = vim -c \"set fenc=utf-8\"
 [push]
 	default = simple

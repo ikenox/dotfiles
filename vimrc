@@ -1,6 +1,3 @@
-
-let mapleader = "\<Space>"
-
 "================================================================
 " Plugins
 "================================================================
@@ -13,6 +10,7 @@ Plug 'tpope/vim-surround'
 Plug 'itchyny/lightline.vim'
 "
 Plug 'Shougo/unite.vim'
+let mapleader = "\<Space>"
 let g:unite_enable_start_insert=1
 "スペースキーとaキーでカレントディレクトリを表示
 nnoremap <silent> <Leader>a :<C-u>UniteWithBufferDir -buffer-name=files file<CR>
@@ -46,7 +44,7 @@ map g/ <Plug>(incsearch-stay)
 call plug#end()
 
 "================================================================
-" Basic settings
+" basic settings
 "================================================================
 
 " 
@@ -141,63 +139,7 @@ augroup END
 " Basic keymaps
 "================================================================
 
-" 
-nnoremap <silent> L $
-vnoremap <silent> L $
-nnoremap <silent> H ^
-vnoremap <silent> H ^
-nnoremap <silent> Y v$y
-vnoremap <silent> Y $y
-
-"" insertモードを抜ける
-inoremap <silent> jf <ESC>
-
-" ノーマルモード時にセミコロンでコロンを代用
-noremap ; :
-noremap : ;
-
-"カーソルを表示行で移動
-"物理行移動は<C-n>,<C-p>
-nnoremap j gj
-nnoremap k gk
-nnoremap <Down> gj
-nnoremap <Up>   gk
-
-" not yank x
-nnoremap x "_x
-vnoremap x "_x
-
-" ¥ to backslash
-inoremap ¥ \
-
-" http://qiita.com/tekkoc/items/98adcadfa4bdc8b5a6ca
-nnoremap s <Nop>
-nnoremap sj <C-w>j
-nnoremap sk <C-w>k
-nnoremap sl <C-w>l
-nnoremap sh <C-w>h
-nnoremap sn gt
-nnoremap sp gT
-nnoremap st :<C-u>tabnew<CR>
-nnoremap ss :<C-u>sp<CR>
-nnoremap sv :<C-u>vs<CR>
-nnoremap sw :w<CR>
-nnoremap sq :q<CR>
-nnoremap sW :wq<CR>
-
-" arrow
-inoremap <C-h> <Left>
-inoremap <C-j> <Down>
-inoremap <C-k> <Up>
-inoremap <C-l> <Right>
-imap <ESC>OA <Up>
-imap <ESC>OB <Down>
-imap <ESC>OC <Right>
-imap <ESC>OD <Left>
-
-" insert new line
-inoremap <C-o> <esc>o
-nnoremap <silent> <CR> o<Esc>
+source ~/.vimrc.keymap
 
 "================================================================
 " Color settings
@@ -225,14 +167,8 @@ elseif &term =~ "xterm-color"
   set t_Sb=[4%dm
 endif
 
-
 "================================================================
 " Others
 "================================================================
 
-" ideaVim-specific settings
-try
-    set surround
-catch
-endtry
 
