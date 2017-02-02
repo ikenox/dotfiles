@@ -182,7 +182,7 @@ zplug "zplug/zplug", hook-build:'zplug --self-manage'
 
 zplug "zsh-users/zsh-syntax-highlighting"
 
-zplug "b4b4r07/zsh-gomi", as:command, of:bin, file:rm
+zplug "b4b4r07/zsh-gomi", as:command, use:bin
 
 # enhancd
 zplug "b4b4r07/enhancd", use:init.sh

@@ -11,6 +11,7 @@ tap 'jhawthorn/fzy'
 brew 'zsh'
 brew 'git'
 brew 'vim', args: ['with-lua', 'with-python3']
+brew 'zplug'
 
 # tool
 brew 'fzy'
