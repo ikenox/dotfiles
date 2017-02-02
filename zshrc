@@ -11,7 +11,7 @@ export LANG=ja_JP.UTF-8
 export LESSCHARSET=utf-8
 export GOPATH=$HOME
 
-export PATH=/usr/bin:/bin:/sbin:/usr/sbin:/usr/local/bin
+export PATH=/usr/local/bin:/usr/bin:/bin:/sbin:/usr/sbin
 
 # virtual environment
 export PYENV_ROOT="$HOME/.pyenv"
@@ -164,14 +164,14 @@ esac
 
 ########################################
 #
-function fzy-history-selection() {
-    BUFFER=`history -n 1 | tail -r  | awk '!a[$0]++' | fzy`
+function history-selection() {
+    BUFFER=`history -n 1 | tail -r  | awk '!a[$0]++' | peco`
         CURSOR=$#BUFFER
             zle reset-prompt
           }
 
-          zle -N fzy-history-selection
-          bindkey '^R' fzy-history-selection
+zle -N history-selection
+bindkey '^R' history-selection
 
 ########################################
 ## Plugins
@@ -182,9 +182,11 @@ zplug "zplug/zplug", hook-build:'zplug --self-manage'
 
 zplug "zsh-users/zsh-syntax-highlighting"
 
+zplug "b4b4r07/zsh-gomi", as:command, of:bin, file:rm
+
 # enhancd
 zplug "b4b4r07/enhancd", use:init.sh
-export ENHANCD_FILTER=fzy
+export ENHANCD_FILTER=peco
 
 zplug load
 

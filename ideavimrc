@@ -1,7 +1,6 @@
 source ~/.vimrc.keymap
 
 set surround
-set clipboard+=unnamed
 
 nnoremap s <Nop>
 nnoremap <silent> s <Nop>
