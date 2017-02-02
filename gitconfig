@@ -12,3 +12,5 @@
 	editor = vim -c \"set fenc=utf-8\"
 [push]
 	default = simple
+[ghq]
+    root = ~/src
