@@ -112,7 +112,7 @@ zstyle ':vcs_info:*' formats "%F{green}%c%u(%b)%f"
 zstyle ':vcs_info:*' actionformats '(%b|%a)'
 precmd () { vcs_info }
 
-PROMPT="%{${fg[green]}%}[%n@%m]%{${reset_color}%} %~
+PROMPT="%{${fg[white]}%}[%n@%m]%{${reset_color}%} 🗂  %~
 "
 PROMPT=$PROMPT'${vcs_info_msg_0_}%# '
 RPROMPT="%F{242}%D{%y-%m-%d %T}%f"

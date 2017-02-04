@@ -2,10 +2,7 @@ DOTFILES_ROOT:=$(shell pwd)
 
 all: install
 
-install: brew brew-packages sources vim/autoload/plug.vim zshrc.myenv symlinks
-
-sources:
-	go get -u github.com/b4b4r07/enhancd
+install: brew brew-packages vim/autoload/plug.vim zshrc.myenv symlinks
 
 vim/autoload/plug.vim:
 	curl -fLo $@ --create-dirs \
