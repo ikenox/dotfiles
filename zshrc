@@ -114,7 +114,7 @@ precmd () { vcs_info }
 
 PROMPT="%{${fg[white]}%}[%n@%m]%{${reset_color}%} 🗂  %~
 "
-PROMPT=$PROMPT'${vcs_info_msg_0_}%# '
+PROMPT=$PROMPT'${vcs_info_msg_0_}\$ '
 RPROMPT="%F{242}%D{%y-%m-%d %T}%f"
 
 ########################################

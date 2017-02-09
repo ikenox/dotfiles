@@ -13,4 +13,4 @@
 [push]
 	default = simple
 [ghq]
-    root = ~/src
+    root = ~/repos
