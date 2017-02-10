@@ -14,7 +14,8 @@ brew 'vim', args: ['with-lua', 'with-python3']
 brew 'zplug'
 
 # tool
-brew 'fzy'
+brew 'peco'
+brew 'ag'
 
 # go
 brew 'go'

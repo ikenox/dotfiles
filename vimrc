@@ -29,12 +29,29 @@ let g:unite_enable_smart_case = 1
 au FileType unite nnoremap <silent> <buffer> <ESC><ESC> :q<CR>
 au FileType unite inoremap <silent> <buffer> <ESC><ESC> <ESC>:q<CR>
 
+" grep検索
+nnoremap <silent> ,g  :<C-u>Unite grep:. -buffer-name=search-buffer<CR>
+
+" カーソル位置の単語をgrep検索
+nnoremap <silent> ,cg :<C-u>Unite grep:. -buffer-name=search-buffer<CR><C-R><C-W>
+
+" grep検索結果の再呼出
+nnoremap <silent> ,r  :<C-u>UniteResume search-buffer<CR>
+
+" unite grep に ag(The Silver Searcher) を使う
+if executable('ag')
+  let g:unite_source_grep_command = 'ag'
+  let g:unite_source_grep_default_opts = '--nogroup --nocolor --column'
+  let g:unite_source_grep_recursive_opt = ''
+endif
 "
 Plug 'Shougo/neomru.vim'
 "スペースキーとdキーで最近開いたディレクトリを表示
 nnoremap <silent> <Leader>d :<C-u>Unite<Space>directory_mru<CR>
 "スペースキーとfキーでバッファと最近開いたファイル一覧を表示
 nnoremap <silent> <Leader>f :<C-u>Unite<Space>buffer file_mru<CR>
+
+Plug 'Shougo/vimproc.vim', {'do' : 'make'}
 
 Plug 'haya14busa/incsearch.vim'
 map /  <Plug>(incsearch-forward)
