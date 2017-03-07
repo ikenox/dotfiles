@@ -1,8 +1,21 @@
 DOTFILES_ROOT:=$(shell pwd)
 
-all: install
+all: init
 
-install: homebrew brew-packages vim/autoload/plug.vim zshrc.myenv symlinks
+init: symlinks homebrew zsh vim 
+
+homebrew: install-homebrew brew-packages
+
+install-homebrew:
+	ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
+
+brew-packages:
+	brew tap Homebrew/bundle
+	brew bundle
+
+zsh: zshrc.myenv zplug zplug-packages
+
+vim: vim/autoload/plug.vim
 
 vim/autoload/plug.vim:
 	curl -fLo $@ --create-dirs \
@@ -41,11 +54,6 @@ karabiner:
 	# cp private.xml ~/Library/Application\ Support/Karabiner/private.xml
 	# echo "set karabiner settings"
 	#
-homebrew:
-
-brew-packages:
-	brew tap Homebrew/bundle
-	brew bundle
-
+	
 zshrc.myenv:
 	cp $(DOTFILES_ROOT)/zshrc.myenv.template $(DOTFILES_ROOT)/zshrc.myenv

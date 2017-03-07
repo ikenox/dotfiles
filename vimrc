@@ -8,7 +8,7 @@ Plug 'w0ng/vim-hybrid'
 Plug 'tpope/vim-surround'
 
 Plug 'itchyny/lightline.vim'
-"
+
 Plug 'Shougo/unite.vim'
 let mapleader = "\<Space>"
 let g:unite_enable_start_insert=1
@@ -28,6 +28,18 @@ let g:unite_enable_smart_case = 1
 " ESCキーを2回押すと終了する  
 au FileType unite nnoremap <silent> <buffer> <ESC><ESC> :q<CR>
 au FileType unite inoremap <silent> <buffer> <ESC><ESC> <ESC>:q<CR>
+
+" 
+Plug 'Shougo/neocomplcache'
+" Disable AutoComplPop.
+let g:acp_enableAtStartup = 0
+" Use neocomplcache.
+let g:neocomplcache_enable_at_startup = 1
+" Use smartcase.
+let g:neocomplcache_enable_smart_case = 1
+" Set minimum syntax keyword length.
+let g:neocomplcache_min_syntax_length = 3
+let g:neocomplcache_lock_buffer_name_pattern = '\*ku\*'
 
 " grep検索
 nnoremap <silent> ,g  :<C-u>Unite grep:. -buffer-name=search-buffer<CR>
