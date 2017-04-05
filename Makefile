@@ -2,7 +2,7 @@ DOTFILES_ROOT:=$(shell pwd)
 
 all: init
 
-init: symlinks homebrew zsh vim 
+init: zshrc.myenv symlinks homebrew zsh vim 
 
 homebrew: install-homebrew brew-packages
 
@@ -10,7 +10,7 @@ install-homebrew:
 	ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
 
 brew-packages:
-	brew tap Homebrew/bundle
+	brew tap homebrew/bundle
 	brew bundle
 
 zsh: zshrc.myenv zplug zplug-packages
@@ -36,8 +36,8 @@ symlinks:
 	ln -si $(DOTFILES_ROOT)/ideavimrc ~/.ideavimrc
 	ln -si $(DOTFILES_ROOT)/zshrc ~/.zshrc
 	ln -si $(DOTFILES_ROOT)/zshrc.myenv ~/.zshrc.myenv
-	ln -si $(DOTFILES_ROOT)/matplotlib/matplotlibrc ~/.matplotlib/matplotlibrc
-	ln -si $(DOTFILES_ROOT)/latexmkrc ~/.latexmkrc
+#	ln -si $(DOTFILES_ROOT)/matplotlib/matplotlibrc ~/.matplotlib/matplotlibrc
+#	ln -si $(DOTFILES_ROOT)/latexmkrc ~/.latexmkrc
 
 karabiner:
 	# if ! pgrep -q Karabiner; then
