@@ -7,7 +7,7 @@ init: zshrc.myenv symlinks homebrew zsh vim
 homebrew: install-homebrew brew-packages
 
 install-homebrew:
-	ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
+	./brew.sh
 
 brew-packages:
 	brew tap homebrew/bundle
