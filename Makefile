@@ -22,7 +22,7 @@ vim/autoload/plug.vim:
 		https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
 
 zplug:
-	curl -sL zplug.sh/installer | zsh
+	curl -sL --proto-redir -all,https https://zplug.sh/installer | zsh
 
 zplug-packages:
 	zplug install
