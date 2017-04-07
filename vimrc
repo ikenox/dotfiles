@@ -70,6 +70,15 @@ map /  <Plug>(incsearch-forward)
 map ?  <Plug>(incsearch-backward)
 map g/ <Plug>(incsearch-stay)
 
+Plug 'plasticboy/vim-markdown'
+let g:vim_markdown_folding_disabled = 1
+
+Plug 'JamshedVesuna/vim-markdown-preview'
+let vim_markdown_preview_hotkey='<C-p>'
+let vim_markdown_preview_browser='Google Chrome'
+let vim_markdown_preview_toggle=2
+let vim_markdown_preview_github=1
+
 call plug#end()
 
 "================================================================

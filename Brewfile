@@ -17,6 +17,10 @@ brew 'zplug'
 brew 'peco'
 brew 'ag'
 
+# markdown
+brew 'markdown'
+brew 'grip' # for rendering GitHub Flavored Markdown
+
 # go
 brew 'go'
 brew 'ghq'
