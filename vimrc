@@ -74,10 +74,20 @@ Plug 'plasticboy/vim-markdown'
 let g:vim_markdown_folding_disabled = 1
 
 Plug 'JamshedVesuna/vim-markdown-preview'
-let vim_markdown_preview_hotkey='<C-p>'
 let vim_markdown_preview_browser='Google Chrome'
-let vim_markdown_preview_toggle=2
+let vim_markdown_preview_toggle=0
 let vim_markdown_preview_github=1
+
+Plug 'tyru/open-browser.vim'
+Plug 'kannokanno/previm'
+augroup PrevimSettings
+    autocmd!
+    autocmd BufNewFile,BufRead *.{md,mdwn,mkd,mkdn,mark*} set filetype=markdown
+augroup END
+nnoremap [previm] <Nop>
+nmap <Space>p [previm]
+nnoremap <silent> [previm]o :<C-u>PrevimOpen<CR>
+nnoremap <silent> [previm]r :call previm#refresh()<CR>
 
 call plug#end()
 

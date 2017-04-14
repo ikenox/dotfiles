@@ -5,3 +5,5 @@
 .*.sw?
 .svn
 *.zip
+
+.vagrant
