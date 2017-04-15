@@ -21,3 +21,6 @@ repositories/*
 !.gitkeep
 
 .netrwhist
+
+# IntelliJ
+.iml

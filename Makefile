@@ -57,3 +57,8 @@ karabiner:
 	
 zshrc.myenv:
 	cp $(DOTFILES_ROOT)/zshrc.myenv.template $(DOTFILES_ROOT)/zshrc.myenv
+
+vbox-vagrant:
+	brew install virtualbox
+	brew install vagrant
+	vagrant plugin install vagrant-vbguest
