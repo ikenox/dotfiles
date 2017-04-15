@@ -163,7 +163,7 @@ case ${OSTYPE} in
 esac
 
 ########################################
-#
+# peco
 function history-selection() {
     BUFFER=`history -n 1 | tail -r  | awk '!a[$0]++' | peco`
         CURSOR=$#BUFFER
@@ -172,6 +172,17 @@ function history-selection() {
 
 zle -N history-selection
 bindkey '^R' history-selection
+
+function ghq-selection () {
+  local selected_dir=$(ghq list -p | peco --query "$LBUFFER")
+  if [ -n "$selected_dir" ]; then
+    BUFFER="cd ${selected_dir}"
+    zle accept-line
+  fi
+  zle clear-screen
+}
+zle -N ghq-selection
+bindkey '^G' ghq-selection
 
 ########################################
 ## Plugins
