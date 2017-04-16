@@ -62,5 +62,3 @@ vbox-vagrant:
 	brew cask install virtualbox
 	brew cask install vagrant
 	vagrant plugin install vagrant-vbguest
-	vagrant plugin install vagrant-omnibus
-	vagrant plugin install vagrant-berkshelf
