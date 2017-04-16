@@ -1,5 +1,6 @@
 source ~/.vimrc.keymap
 
+set clipboard=unnamed,autoselect
 set surround
 
 nnoremap s <Nop>
