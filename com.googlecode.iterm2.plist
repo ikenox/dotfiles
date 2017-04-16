@@ -246,20 +246,6 @@
 			<key>Text</key>
 			<string>f</string>
 		</dict>
-		<key>0x68-0x140000</key>
-		<dict>
-			<key>Action</key>
-			<integer>2</integer>
-			<key>Text</key>
-			<string></string>
-		</dict>
-		<key>0x6c-0x140000</key>
-		<dict>
-			<key>Action</key>
-			<integer>0</integer>
-			<key>Text</key>
-			<string></string>
-		</dict>
 		<key>0x9-0x40000</key>
 		<dict>
 			<key>Action</key>
@@ -390,7 +376,7 @@
 	<key>NSTableView Supports v2 KeyBingingTable</key>
 	<true/>
 	<key>NSWindow Frame SharedPreferences</key>
-	<string>77 266 796 473 0 0 1440 877 </string>
+	<string>77 274 796 473 0 0 1440 877 </string>
 	<key>NSWindow Frame iTerm Window 0</key>
 	<string>6 25 682 852 0 0 1440 877 </string>
 	<key>New Bookmarks</key>
