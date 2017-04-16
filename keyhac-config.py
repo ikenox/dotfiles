@@ -31,6 +31,9 @@ def configure(keymap):
     keymap_global[ "Ctrl-H" ] = "Left"
     keymap_global[ "Ctrl-L" ] = "Right"
 
+    keymap_global[ "Cmd-Ctrl-H" ] = "Cmd-Left"
+    keymap_global[ "Cmd-Ctrl-L" ] = "Cmd-Right"
+
     keymap_global[ "Ctrl-M" ] = "Back"
 
     # Google IME toggle
