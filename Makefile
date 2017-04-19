@@ -62,3 +62,11 @@ vbox-vagrant:
 	brew cask install virtualbox
 	brew cask install vagrant
 	vagrant plugin install vagrant-vbguest
+
+plenv:
+	git clone git://github.com/tokuhirom/plenv.git ~/.plenv
+	git clone git://github.com/tokuhirom/Perl-Build.git ~/.plenv/plugins/perl-build/
+	echo 'export PATH="$HOME/.plenv/bin:$PATH"' >> ~/.zshrc.myenv
+	echo 'eval "$(plenv init -)"' >> ~/.zshrc.myenv
+	source ~/.zshrc.myenv
+
