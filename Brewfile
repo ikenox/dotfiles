@@ -25,17 +25,6 @@ brew 'grip' # for rendering GitHub Flavored Markdown
 brew 'go'
 brew 'ghq'
 
-# python
-brew 'python'
-brew 'pyenv'
-brew 'pyenv-virtualenv'
-
-# ruby
-brew 'ruby'
-brew 'ruby-build'
-brew 'rbenv'
-brew 'rbenv-gemset'
-
 # ==============
 # Cask
 # ==============
