@@ -61,3 +61,10 @@ pyenv:
 	brew install ruby-build
 	brew install rbenv
 	brew install rbenv-gemset
+
+docker:
+	brew install virtualbox
+	brew install docker
+	brew install docker-machine
+	brew install docker-compose
+
