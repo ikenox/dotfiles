@@ -70,3 +70,9 @@ plenv:
 	echo 'eval "$(plenv init -)"' >> ~/.zshrc.myenv
 	source ~/.zshrc.myenv
 
+docker:
+	brew install virtualbox
+	brew install docker
+	brew install docker-machine
+	brew install docker-compose
+
