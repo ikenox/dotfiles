@@ -39,22 +39,6 @@ symlinks:
 #	ln -si $(DOTFILES_ROOT)/matplotlib/matplotlibrc ~/.matplotlib/matplotlibrc
 #	ln -si $(DOTFILES_ROOT)/latexmkrc ~/.latexmkrc
 
-karabiner:
-	# if ! pgrep -q Karabiner; then
-	#   sql="
-	# 	INSERT OR REPLACE INTO access
-	# 	VALUES('kTCCServiceAccessibility','org.pqrs.Karabiner-AXNotifier',0,1,0,NULL);
-	#   "
-	#   sudo sqlite3 /Library/Application\ Support/com.apple.TCC/TCC.db "${sql}"
-	#   open -a Karabiner.app
-	# fi
-	# # /Applications/Karabiner.app/Contents/Library/bin/karabiner export > karabiner.sh
-	# # を事前にしておく
-	# source karabiner.sh
-	# cp private.xml ~/Library/Application\ Support/Karabiner/private.xml
-	# echo "set karabiner settings"
-	#
-	
 zshrc.myenv:
 	cp $(DOTFILES_ROOT)/zshrc.myenv.template $(DOTFILES_ROOT)/zshrc.myenv
 
@@ -64,11 +48,19 @@ vbox-vagrant:
 	vagrant plugin install vagrant-vbguest
 
 plenv:
-	git clone git://github.com/tokuhirom/plenv.git ~/.plenv
-	git clone git://github.com/tokuhirom/Perl-Build.git ~/.plenv/plugins/perl-build/
-	echo 'export PATH="$HOME/.plenv/bin:$PATH"' >> ~/.zshrc.myenv
-	echo 'eval "$(plenv init -)"' >> ~/.zshrc.myenv
-	source ~/.zshrc.myenv
+	brew install plenv
+	brew install perl-build
+
+rbenv:
+	brew install python
+	brew install pyenv
+	brew install pyenv-virtualenv
+
+pyenv:
+	brew install ruby
+	brew install ruby-build
+	brew install rbenv
+	brew install rbenv-gemset
 
 docker:
 	brew install virtualbox

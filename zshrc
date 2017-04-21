@@ -16,10 +16,13 @@ export PATH=/usr/local/bin:/usr/bin:/bin:/sbin:/usr/sbin
 # virtual environment
 export PYENV_ROOT="$HOME/.pyenv"
 export PATH="$PYENV_ROOT/bin:$PATH"
-export PATH="$HOME/.rbenv/bin:$PATH"
-eval "$(rbenv init - zsh)"
 eval "$(pyenv init - zsh)"
 
+export PATH="$HOME/.rbenv/bin:$PATH"
+eval "$(rbenv init - zsh)"
+
+export PATH="$HOME/.plenv/bin:$PATH"
+eval "$(plenv init -)"
 #######################################
 # Settings
 
