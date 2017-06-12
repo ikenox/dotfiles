@@ -180,6 +180,7 @@ augroup vimrc-checktime
   autocmd WinEnter * checktime
 augroup END
 
+
 "================================================================
 " Basic keymaps
 "================================================================
