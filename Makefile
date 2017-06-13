@@ -63,7 +63,7 @@ pyenv:
 	brew install rbenv-gemset
 
 docker:
-	brew install virtualbox
+	brew cask install virtualbox
 	brew install docker
 	brew install docker-machine
 	brew install docker-compose
