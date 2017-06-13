@@ -3,9 +3,6 @@ source ~/.vimrc.keymap
 set clipboard=unnamed,autoselect
 set surround
 
-nnoremap s <Nop>
-nnoremap <silent> s <Nop>
-
 " formatting code
 nnoremap <silent> == :action ReformatCode<CR>
 
@@ -14,10 +11,12 @@ nnoremap <silent> cc :action CommentByLineComment<CR>
 vnoremap <silent> cc :action CommentByBlockComment<CR>
 
 " rename
-nnoremap <silent> sr :action RenameElement<CR>
-nnoremap <silent> so :action GotoAction<CR>
+nnoremap <silent> U :action FindUsages<CR>
+nnoremap <silent> R :action RenameElement<CR>
 
 " open file
+
+nnoremap <silent> ga :action GotoAction<CR>
 nnoremap <silent> gr :action RecentFiles<CR>
 nnoremap <silent> gc :action GotoClass<CR>
 nnoremap <silent> gf :action GotoFile<CR>
@@ -45,3 +44,6 @@ nnoremap <silent> mp :action PasteMultiple<CR>
 nnoremap <silent> mP :action PasteMultiple<CR>
 
 nnoremap <silent> <C-y> :action QuickImplementations<CR>
+
+nnoremap mf :action FindInPath<CR>
+
