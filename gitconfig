@@ -1,5 +1,5 @@
 [user]
-	name = ikeno
+	name = Naoto Ikeno
 	email = ikenox@gmail.com
 [alias]
 	co = checkout
@@ -7,6 +7,7 @@
 	ci = commit -a
 	di = diff
 	br = branch
+    graph = log --graph --date=short --decorate=short --pretty=format:'%Cgreen%h %Creset%cd %Cblue%cn %Cred%d %Creset%s'
 [core]
     excludesfile = ~/.gitignore
 	editor = vim -c \"set fenc=utf-8\"
