@@ -34,6 +34,7 @@ symlinks:
 	ln -si $(DOTFILES_ROOT)/vimrc.keymap ~/.vimrc.keymap
 	ln -si $(DOTFILES_ROOT)/vim ~/.vim
 	ln -si $(DOTFILES_ROOT)/ideavimrc ~/.ideavimrc
+	ln -si $(DOTFILES_ROOT)/xvimrc ~/.xvimrc
 	ln -si $(DOTFILES_ROOT)/zshrc ~/.zshrc
 	ln -si $(DOTFILES_ROOT)/zshrc.myenv ~/.zshrc.myenv
 #	ln -si $(DOTFILES_ROOT)/matplotlib/matplotlibrc ~/.matplotlib/matplotlibrc
