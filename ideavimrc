@@ -16,17 +16,18 @@ nnoremap <silent> R :action RenameElement<CR>
 
 " open file
 
-nnoremap <silent> ga :action GotoAction<CR>
+nnoremap <silent> <Space>a :action GotoAction<CR>
+nnoremap <silent> <Space>g :action SearchEverywhere<CR>
+
 nnoremap <silent> gr :action RecentFiles<CR>
 nnoremap <silent> gc :action GotoClass<CR>
 nnoremap <silent> gf :action GotoFile<CR>
 nnoremap <silent> gd :action GotoDeclaration<CR>
-nnoremap <silent> go :action SearchEverywhere<CR>
 nnoremap <silent> gs :action FileStructurePopup<CR>
 
 " move tab
-nnoremap <silent> sn :action NextTab<CR>
-nnoremap <silent> sp :action PreviousTab<CR>
+nnoremap <silent> <Space>n :action NextTab<CR>
+nnoremap <silent> <Space>p :action PreviousTab<CR>
 
 " back,forward
 nnoremap <silent> gh :action Back<CR>

@@ -2,7 +2,12 @@ DOTFILES_ROOT:=$(shell pwd)
 
 all: init
 
-init: zshrc.myenv symlinks homebrew zsh vim 
+unix-fundamental-tools: symlinks yum-zsh zsh vim 
+
+init: symlinks homebrew zsh vim 
+
+yum-zsh:
+	yum install -y zsh
 
 homebrew: install-homebrew brew-packages
 
