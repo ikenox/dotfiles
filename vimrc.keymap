@@ -32,6 +32,10 @@ inoremap ¥ \
 
 " http://qiita.com/tekkoc/items/98adcadfa4bdc8b5a6ca
 nnoremap s <Nop>
+vnoremap s <Nop>
+nnoremap <Space> <Nop>
+vnoremap <Space> <Nop>
+
 nnoremap sj <C-w>j
 nnoremap sk <C-w>k
 nnoremap sl <C-w>l
