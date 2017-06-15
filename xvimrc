@@ -27,6 +27,7 @@ vnoremap x "_x
 
 inoremap ¥ \
 
+nnoremap <Space> <Nop>
 nnoremap s <Nop>
 nnoremap sj <C-w>j
 nnoremap sk <C-w>k
@@ -37,12 +38,16 @@ nnoremap sp gT
 nnoremap st :<C-u>tabnew<CR>
 nnoremap ss :<C-u>sp<CR>
 nnoremap sv :<C-u>vs<CR>
-nnoremap sw :w<CR>
-nnoremap sq :q<CR>
-nnoremap sW :wq<CR>
 
 inoremap <C-o> <esc>o
 nnoremap <CR> o<Esc>
 
 " XCode specific
-nnoremap go :xccmd openQuickly<Cr>
+nnoremap <Space>g :xccmd openQuickly<Cr>
+nnoremap <Space>s :xccmd showDocumentItemsMenu<Cr>
+nnoremap gd :xccmd jumpToDefinition<Cr>
+nnoremap gh :xccmd goBackInHistoryByCommand<Cr>
+nnoremap gl :xccmd goNextInHistoryByCommand<Cr>
+nnoremap U :xccmd showRelatedItemsMenu<Cr>
+nnoremap R :xccmd refactorRename<Cr>
+nnoremap == :xccmd indentSelection<Cr>
