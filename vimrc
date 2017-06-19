@@ -12,8 +12,8 @@ Plug 'itchyny/lightline.vim'
 Plug 'Shougo/unite.vim'
 let mapleader = "\<Space>"
 let g:unite_enable_start_insert=1
-"スペースキーとaキーでカレントディレクトリを表示
-nnoremap <silent> <Leader>a :<C-u>UniteWithBufferDir -buffer-name=files file<CR>
+"スペースキーとfキーでカレントディレクトリを表示
+nnoremap <silent> <Leader>f :<C-u>UniteWithBufferDir -buffer-name=files file<CR>
 "スペースキーとbキーでバッファを表示
 nnoremap <silent> <Leader>b :<C-u>Unite<Space>buffer<CR>
 "スペースキーとrキーでレジストリを表示
@@ -28,6 +28,23 @@ let g:unite_enable_smart_case = 1
 " ESCキーを2回押すと終了する  
 au FileType unite nnoremap <silent> <buffer> <ESC><ESC> :q<CR>
 au FileType unite inoremap <silent> <buffer> <ESC><ESC> <ESC>:q<CR>
+" unite grep に ag(The Silver Searcher) を使う
+if executable('ag')
+  let g:unite_source_grep_command = 'ag'
+  let g:unite_source_grep_default_opts = '--nogroup --nocolor --column'
+  let g:unite_source_grep_recursive_opt = ''
+endif
+" grep検索
+nnoremap <silent> ,g  :<C-u>Unite grep:! -buffer-name=search-buffer<CR>
+nnoremap <silent> <Space>g  :<C-u>Unite grep:! -buffer-name=search-buffer<CR>
+" カーソル位置の単語をgrep検索
+nnoremap <silent> ,cg :<C-u>Unite grep:! -buffer-name=search-buffer<CR><C-R><C-W>
+" grep検索結果の再呼出
+nnoremap <silent> ,r  :<C-u>UniteResume search-buffer<CR>
+" .git以下のファイル検索
+nnoremap <silent> ,e  :<C-u>Unite file_rec/async:!<CR>
+nnoremap <silent> <Space>e  :<C-u>Unite file_rec/async:!<CR>
+nnoremap <silent> <Space>s :<C-u>Unite -buffer-name=search line<CR>
 
 " 
 Plug 'Shougo/neocomplcache'
