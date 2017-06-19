@@ -1,3 +1,5 @@
+let mapleader = "\<Space>"
+
 "================================================================
 " Basic keymaps
 "================================================================
@@ -40,14 +42,12 @@ nnoremap sj <C-w>j
 nnoremap sk <C-w>k
 nnoremap sl <C-w>l
 nnoremap sh <C-w>h
-nnoremap sn gt
-nnoremap sp gT
-nnoremap st :<C-u>tabnew<CR>
 nnoremap ss :<C-u>sp<CR>
 nnoremap sv :<C-u>vs<CR>
-nnoremap sw :w<CR>
-nnoremap sq :q<CR>
-nnoremap sW :wq<CR>
+
+nnoremap st :<C-u>tabnew<CR>
+nnoremap sn gt
+nnoremap sp gT
 
 " arrow
 inoremap <C-h> <Left>

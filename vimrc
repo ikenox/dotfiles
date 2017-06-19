@@ -1,16 +1,21 @@
 "================================================================
+" Basic keymaps
+"================================================================
+
+source ~/.vimrc.keymap
+
+"================================================================
 " Plugins
 "================================================================
 call plug#begin()
 
-Plug 'w0ng/vim-hybrid'
-
 Plug 'tpope/vim-surround'
-
+Plug 'w0ng/vim-hybrid'
 Plug 'itchyny/lightline.vim'
+Plug 'thinca/vim-localrc'
 
+" ========== Unite.vim ==========
 Plug 'Shougo/unite.vim'
-let mapleader = "\<Space>"
 let g:unite_enable_start_insert=1
 "スペースキーとfキーでカレントディレクトリを表示
 nnoremap <silent> <Leader>f :<C-u>UniteWithBufferDir -buffer-name=files file<CR>
@@ -26,11 +31,9 @@ let g:unite_enable_smart_case = 1
 " ESCキーを2回押すと終了する  
 au FileType unite nnoremap <silent> <buffer> <ESC><ESC> :q<CR>
 au FileType unite inoremap <silent> <buffer> <ESC><ESC> <ESC>:q<CR>
-
 " grep検索
-nnoremap <silent> <Space>g  :<C-u>Unite grep:! -buffer-name=search-buffer<CR>
-nnoremap <silent> <Space>G  :<C-u>Unite grep:! -buffer-name=search-buffer<CR>
-
+nnoremap <silent> <Leader>g  :<C-u>Unite grep:! -buffer-name=search-buffer<CR>
+nnoremap <silent> <Leader>G  :<C-u>Unite grep:! -buffer-name=search-buffer<CR>
 " カーソル位置の単語をgrep検索
 nnoremap <silent> ,cg :<C-u>Unite grep:! -buffer-name=search-buffer<CR><C-R><C-W>
 nnoremap <silent> ,cG :<C-u>Unite grep:! -buffer-name=search-buffer<CR><C-R><C-W>
@@ -38,8 +41,8 @@ nnoremap <silent> ,cG :<C-u>Unite grep:! -buffer-name=search-buffer<CR><C-R><C-W
 nnoremap <silent> ,r  :<C-u>UniteResume search-buffer<CR>
 " .git以下のファイル検索
 nnoremap <silent> ,e  :<C-u>Unite file_rec/async:!<CR>
-nnoremap <silent> <Space>e  :<C-u>Unite file_rec/async:!<CR>
-nnoremap <silent> <Space>s :<C-u>Unite -buffer-name=search line<CR>
+nnoremap <silent> <Leader>e  :<C-u>Unite file_rec/async:!<CR>
+nnoremap <silent> <Leader>s :<C-u>Unite -buffer-name=search line<CR>
 " unite grep に ag(The Silver Searcher) を使う
 if executable('ag')
   let g:unite_source_grep_command = 'ag'
@@ -47,7 +50,7 @@ if executable('ag')
   let g:unite_source_grep_recursive_opt = ''
 endif
 
-" 
+" ========== neocomplcache ==========
 Plug 'Shougo/neocomplcache'
 " Disable AutoComplPop.
 let g:acp_enableAtStartup = 0
@@ -61,25 +64,24 @@ let g:neocomplcache_lock_buffer_name_pattern = '\*ku\*'
 
 "
 Plug 'Shougo/neomru.vim'
-"スペースキーとdキーで最近開いたディレクトリを表示
-nnoremap <silent> <Leader>d :<C-u>Unite<Space>directory_mru<CR>
 "スペースキーとbキーでバッファと最近開いたファイル一覧を表示
 nnoremap <silent> <Leader>b :<C-u>Unite<Space>buffer file_mru<CR>
 
+"
 Plug 'Shougo/vimproc.vim', {'do' : 'make'}
 
+"
 Plug 'haya14busa/incsearch.vim'
 map /  <Plug>(incsearch-forward)
 map ?  <Plug>(incsearch-backward)
 map g/ <Plug>(incsearch-stay)
 
+"
 Plug 'plasticboy/vim-markdown'
 let g:vim_markdown_folding_disabled = 1
-
 Plug 'tyru/open-browser.vim'
 Plug 'kannokanno/previm'
 let g:previm_custom_css_path = '~/dotfiles/markdown_custom.css'
-
 augroup PrevimSettings
     autocmd!
     autocmd BufNewFile,BufRead *.{md,mdwn,mkd,mkdn,mark*} set filetype=markdown
@@ -89,13 +91,13 @@ nmap <Space>p [previm]
 nnoremap <silent> [previm]o :<C-u>PrevimOpen<CR>
 nnoremap <silent> [previm]r :call previm#refresh()<CR>
 
+"
 Plug 'w0rp/ale'
 set nocompatible
 filetype off
 let &runtimepath.=',~/.vim/plugged/ale'
 filetype plugin on
 
-Plug 'thinca/vim-localrc'
 
 call plug#end()
 
@@ -190,13 +192,6 @@ augroup vimrc-checktime
   autocmd!
   autocmd WinEnter * checktime
 augroup END
-
-
-"================================================================
-" Basic keymaps
-"================================================================
-
-source ~/.vimrc.keymap
 
 "================================================================
 " Color settings
