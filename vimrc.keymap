@@ -62,3 +62,6 @@ imap <ESC>OD <Left>
 " insert new line
 inoremap <C-o> <esc>o
 nnoremap <silent> <CR> o<Esc>
+
+"
+vnoremap <Cr> :<C-u>'<,'>s/ *, */,\r/g<Cr>:<C-u>noh<Cr>

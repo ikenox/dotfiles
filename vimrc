@@ -14,8 +14,6 @@ let mapleader = "\<Space>"
 let g:unite_enable_start_insert=1
 "スペースキーとfキーでカレントディレクトリを表示
 nnoremap <silent> <Leader>f :<C-u>UniteWithBufferDir -buffer-name=files file<CR>
-"スペースキーとbキーでバッファを表示
-nnoremap <silent> <Leader>b :<C-u>Unite<Space>buffer<CR>
 "スペースキーとrキーでレジストリを表示
 nnoremap <silent> <Leader>r :<C-u>Unite<Space>register<CR>
 "スペースキーとtキーでタブを表示
@@ -35,7 +33,6 @@ if executable('ag')
   let g:unite_source_grep_recursive_opt = ''
 endif
 " grep検索
-nnoremap <silent> ,g  :<C-u>Unite grep:! -buffer-name=search-buffer<CR>
 nnoremap <silent> <Space>g  :<C-u>Unite grep:! -buffer-name=search-buffer<CR>
 " カーソル位置の単語をgrep検索
 nnoremap <silent> ,cg :<C-u>Unite grep:! -buffer-name=search-buffer<CR><C-R><C-W>
@@ -77,8 +74,8 @@ endif
 Plug 'Shougo/neomru.vim'
 "スペースキーとdキーで最近開いたディレクトリを表示
 nnoremap <silent> <Leader>d :<C-u>Unite<Space>directory_mru<CR>
-"スペースキーとfキーでバッファと最近開いたファイル一覧を表示
-nnoremap <silent> <Leader>f :<C-u>Unite<Space>buffer file_mru<CR>
+"スペースキーとbキーでバッファと最近開いたファイル一覧を表示
+nnoremap <silent> <Leader>b :<C-u>Unite<Space>buffer file_mru<CR>
 
 Plug 'Shougo/vimproc.vim', {'do' : 'make'}
 
