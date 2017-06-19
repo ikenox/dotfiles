@@ -26,22 +26,26 @@ let g:unite_enable_smart_case = 1
 " ESCキーを2回押すと終了する  
 au FileType unite nnoremap <silent> <buffer> <ESC><ESC> :q<CR>
 au FileType unite inoremap <silent> <buffer> <ESC><ESC> <ESC>:q<CR>
-" unite grep に ag(The Silver Searcher) を使う
-if executable('ag')
-  let g:unite_source_grep_command = 'ag'
-  let g:unite_source_grep_default_opts = '--nogroup --nocolor --column'
-  let g:unite_source_grep_recursive_opt = ''
-endif
+
 " grep検索
 nnoremap <silent> <Space>g  :<C-u>Unite grep:! -buffer-name=search-buffer<CR>
+nnoremap <silent> <Space>G  :<C-u>Unite grep:! -buffer-name=search-buffer<CR>
+
 " カーソル位置の単語をgrep検索
 nnoremap <silent> ,cg :<C-u>Unite grep:! -buffer-name=search-buffer<CR><C-R><C-W>
+nnoremap <silent> ,cG :<C-u>Unite grep:! -buffer-name=search-buffer<CR><C-R><C-W>
 " grep検索結果の再呼出
 nnoremap <silent> ,r  :<C-u>UniteResume search-buffer<CR>
 " .git以下のファイル検索
 nnoremap <silent> ,e  :<C-u>Unite file_rec/async:!<CR>
 nnoremap <silent> <Space>e  :<C-u>Unite file_rec/async:!<CR>
 nnoremap <silent> <Space>s :<C-u>Unite -buffer-name=search line<CR>
+" unite grep に ag(The Silver Searcher) を使う
+if executable('ag')
+  let g:unite_source_grep_command = 'ag'
+  let g:unite_source_grep_default_opts = '--nogroup --nocolor --column --smart-case --hidden -U'
+  let g:unite_source_grep_recursive_opt = ''
+endif
 
 " 
 Plug 'Shougo/neocomplcache'
@@ -55,12 +59,6 @@ let g:neocomplcache_enable_smart_case = 1
 let g:neocomplcache_min_syntax_length = 3
 let g:neocomplcache_lock_buffer_name_pattern = '\*ku\*'
 
-" unite grep に ag(The Silver Searcher) を使う
-if executable('ag')
-  let g:unite_source_grep_command = 'ag'
-  let g:unite_source_grep_default_opts = '--nogroup --nocolor --column --smart-case --hidden -U'
-  let g:unite_source_grep_recursive_opt = ''
-endif
 "
 Plug 'Shougo/neomru.vim'
 "スペースキーとdキーで最近開いたディレクトリを表示
