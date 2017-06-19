@@ -91,10 +91,13 @@ nmap <Space>p [previm]
 nnoremap <silent> [previm]o :<C-u>PrevimOpen<CR>
 nnoremap <silent> [previm]r :call previm#refresh()<CR>
 
+Plug 'w0rp/ale'
+set nocompatible
+filetype off
+let &runtimepath.=',~/.vim/plugged/ale'
+filetype plugin on
 
-Plug 'scrooloose/syntastic'
-let g:syntastic_enable_signs=1
-let g:syntastic_auto_loc_list=2
+Plug 'thinca/vim-localrc'
 
 call plug#end()
 
