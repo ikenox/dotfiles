@@ -7,3 +7,4 @@
 *.zip
 
 .vagrant
+.local.vimrc
