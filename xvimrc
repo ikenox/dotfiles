@@ -43,7 +43,7 @@ inoremap <C-o> <esc>o
 nnoremap <CR> o<Esc>
 
 " XCode specific
-nnoremap <Space>g :xccmd openQuickly<Cr>
+nnoremap <Space>e :xccmd openQuickly<Cr>
 nnoremap <Space>s :xccmd showDocumentItemsMenu<Cr>
 nnoremap gd :xccmd jumpToDefinition<Cr>
 nnoremap gh :xccmd goBackInHistoryByCommand<Cr>
@@ -51,3 +51,4 @@ nnoremap gl :xccmd goNextInHistoryByCommand<Cr>
 nnoremap U :xccmd showRelatedItemsMenu<Cr>
 nnoremap R :xccmd refactorRename<Cr>
 nnoremap == :xccmd indentSelection<Cr>
+nnoremap <Space>g :xccmd findInWorkspace<Cr>
