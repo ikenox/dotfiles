@@ -16,11 +16,12 @@ nnoremap <silent> R :action RenameElement<CR>
 
 " open file
 
-nnoremap <silent> <Space>a :action GotoAction<CR>
-nnoremap <silent> <Space>e :action SearchEverywhere<CR>
+nnoremap <silent> ,a :action GotoAction<CR>
+nnoremap <silent> ,e :action SearchEverywhere<CR>
 
 nnoremap <silent> gd :action GotoDeclaration<CR>
-nnoremap <silent> <Space>s :action FileStructurePopup<CR>
+"nnoremap <Space>s :action FileStructurePopup<CR>
+nnoremap <silent> gs :action FileStructurePopup<CR>
 
 nnoremap <silent> <Space>g :action FindInPath<CR>
 
