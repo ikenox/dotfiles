@@ -34,13 +34,7 @@ au FileType unite inoremap <silent> <buffer> <ESC><ESC> <ESC>:q<CR>
 " grep検索
 nnoremap <silent> <Leader>g  :<C-u>Unite grep:! -buffer-name=search-buffer<CR>
 nnoremap <silent> <Leader>G  :<C-u>Unite grep:! -buffer-name=search-buffer<CR>
-" カーソル位置の単語をgrep検索
-nnoremap <silent> ,cg :<C-u>Unite grep:! -buffer-name=search-buffer<CR><C-R><C-W>
-nnoremap <silent> ,cG :<C-u>Unite grep:! -buffer-name=search-buffer<CR><C-R><C-W>
-" grep検索結果の再呼出
-nnoremap <silent> ,r  :<C-u>UniteResume search-buffer<CR>
 " .git以下のファイル検索
-nnoremap <silent> ,e  :<C-u>Unite file_rec/async:!<CR>
 nnoremap <silent> <Leader>e  :<C-u>Unite file_rec/git:!<CR>
 nnoremap <silent> <Leader>s :<C-u>Unite -buffer-name=search line<CR>
 " unite grep に ag(The Silver Searcher) を使う
