@@ -2,48 +2,57 @@ source ~/.vimrc.keymap
 
 set clipboard=unnamed,autoselect
 set surround
+set laststatus=2
+set foldopen=all
+set hlsearch
+set incsearch
+set ignorecase
+set smartcase
+
+" TODO: dirty
+nmap <Space> m
 
 " formatting code
-nnoremap <silent> == :action ReformatCode<CR>
+nnoremap == :action ReformatCode<CR>
 
 " commentout
-nnoremap <silent> cc :action CommentByLineComment<CR>
-vnoremap <silent> cc :action CommentByBlockComment<CR>
+nnoremap cc :action CommentByLineComment<CR>
+vnoremap cc :action CommentByBlockComment<CR>
 
 " rename
-nnoremap <silent> U :action FindUsages<CR>
-nnoremap <silent> R :action RenameElement<CR>
+nnoremap U :action FindUsages<CR>
+nnoremap R :action RenameElement<CR>
 
 " open file
 
-nnoremap <silent> ,a :action GotoAction<CR>
-nnoremap <silent> ,e :action SearchEverywhere<CR>
+nnoremap ma :action GotoAction<CR>
+nnoremap me :action SearchEverywhere<CR>
 
-nnoremap <silent> gd :action GotoDeclaration<CR>
+nnoremap gd :action GotoDeclaration<CR>
 "nnoremap <Space>s :action FileStructurePopup<CR>
-nnoremap <silent> gs :action FileStructurePopup<CR>
+nnoremap ms :action FileStructurePopup<CR>
 
-nnoremap <silent> <Space>g :action FindInPath<CR>
+nnoremap mg :action FindInPath<CR>
 
 " move tab
-nnoremap <silent> sn :action NextTab<CR>
-nnoremap <silent> sp :action PreviousTab<CR>
+nnoremap sn :action NextTab<CR>
+nnoremap sp :action PreviousTab<CR>
 
 " back,forward
-nnoremap <silent> gh :action Back<CR>
-nnoremap <silent> gl :action Forward<CR>
+nnoremap gh :action Back<CR>
+nnoremap gl :action Forward<CR>
 
 " 選択拡大、縮小
-"map <silent> K <A-Up>
-"map <silent> J <A-Down>
+"map K <A-Up>
+"map J <A-Down>
 
 " ライブテンプレ
-inoremap <silent> <C-n> <C-o>:action InsertLiveTemplate<CR>
+inoremap <C-n> <C-o>:action InsertLiveTemplate<CR>
 
 " クリップボード履歴
-nnoremap <silent> mp :action PasteMultiple<CR>
-nnoremap <silent> mP :action PasteMultiple<CR>
+nnoremap mp :action PasteMultiple<CR>
+nnoremap mP :action PasteMultiple<CR>
 
-nnoremap <silent> <C-I> :action QuickImplementations<CR>
+nnoremap <C-I> :action QuickImplementations<CR>
 
 

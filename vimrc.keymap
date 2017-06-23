@@ -4,15 +4,15 @@ let mapleader = "\<Space>"
 " Basic keymaps
 "================================================================
 " 
-nnoremap <silent> L $
-vnoremap <silent> L $
-nnoremap <silent> H ^
-vnoremap <silent> H ^
-nnoremap <silent> Y v$y
-vnoremap <silent> Y $y
+nnoremap L $
+vnoremap L $
+nnoremap H ^
+vnoremap H ^
+nnoremap Y v$y
+vnoremap Y $y
 
 "" insertモードを抜ける
-inoremap <silent> jf <ESC>
+inoremap jf <ESC>
 
 " ノーマルモード時にセミコロンでコロンを代用
 noremap ; :
@@ -61,7 +61,7 @@ imap <ESC>OD <Left>
 
 " insert new line
 inoremap <C-o> <esc>o
-nnoremap <silent> <CR> o<Esc>
+nnoremap <CR> o<Esc>
 
 "
 vnoremap <Cr> :<C-u>'<,'>s/ *, */,\r/g<Cr>:<C-u>noh<Cr>
