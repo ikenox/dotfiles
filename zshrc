@@ -168,10 +168,17 @@ esac
 ########################################
 # peco
 function history-selection() {
-    BUFFER=`history -n 1 | tail -r  | awk '!a[$0]++' | peco`
-        CURSOR=$#BUFFER
-            zle reset-prompt
-          }
+  case ${OSTYPE} in
+      darwin*)
+          BUFFER=`history -n 1 | tail -r  | awk '!a[$0]++' | peco`
+          ;;
+      linux*)
+          BUFFER=`history -n 1 | tac | awk '!a[$0]++' | peco`
+          ;;
+  esac
+  CURSOR=$#BUFFER
+  zle reset-prompt
+}
 
 zle -N history-selection
 bindkey '^R' history-selection
