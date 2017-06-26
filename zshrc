@@ -1,9 +1,3 @@
-# 少し凝った zshrc
-# License : MIT
-# http://mollifier.mit-license.org/
-
-SRCPATH=~/src
-
 ########################################
 # ENVIRONMENT
 
@@ -13,16 +7,6 @@ export GOPATH=$HOME
 
 export PATH=~/bin:/usr/local/bin:/usr/bin:/bin:/sbin:/usr/sbin
 
-# virtual environment
-export PYENV_ROOT="$HOME/.pyenv"
-export PATH="$PYENV_ROOT/bin:$PATH"
-eval "$(pyenv init - zsh)"
-
-export PATH="$HOME/.rbenv/bin:$PATH"
-eval "$(rbenv init - zsh)"
-
-export PATH="$HOME/.plenv/bin:$PATH"
-eval "$(plenv init -)"
 #######################################
 # Settings
 
@@ -151,6 +135,8 @@ alias sf='fasd -sif'     # interactive file selection
 alias z='fasd_cd -d'     # cd, same functionality as j in autojump
 alias zz='fasd_cd -d -i' # cd with interactive selection
 
+alias p='ps ax | peco'
+
 ########################################
 # OS 別の設定
 case ${OSTYPE} in
@@ -212,7 +198,8 @@ export ENHANCD_FILTER=peco
 zplug load
 
 ########################################
-# Private settings
+# Load modules
 
-source ~/.zshrc.myenv
+source ~/.zshrc.local
+source ~/.zshrc.module.*
 
