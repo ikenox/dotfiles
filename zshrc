@@ -72,9 +72,8 @@ zstyle ':vcs_info:*' actionformats '(%b|%a)'
 precmd () { vcs_info }
 
 # notice ssh
-SSH_STMT = "🌏ssh:"
+SSH_STMT="ssh:"
 if [ -n "$SSH_CLIENT" ] || [ -n "$SSH_TTY" ]; then
-    SSH_STMT=remote/ssh
     P_SSH_STMT=SSH_STMT
 else
   case $(ps -o comm= -p $PPID) in
