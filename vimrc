@@ -31,18 +31,49 @@ let g:unite_enable_smart_case = 1
 " ESCキーを2回押すと終了する  
 au FileType unite nnoremap <silent> <buffer> <ESC><ESC> :q<CR>
 au FileType unite inoremap <silent> <buffer> <ESC><ESC> <ESC>:q<CR>
-" grep検索
+
+" grep
 nnoremap <silent> <Leader>g  :<C-u>Unite grep:! -buffer-name=search-buffer<CR>
 nnoremap <silent> <Leader>G  :<C-u>Unite grep:! -buffer-name=search-buffer<CR>
-" .git以下のファイル検索
-nnoremap <silent> <Leader>e  :<C-u>Unite file_rec/git:!<CR>
-nnoremap <silent> <Leader>s :<C-u>Unite -buffer-name=search line<CR>
-" unite grep に ag(The Silver Searcher) を使う
 if executable('ag')
   let g:unite_source_grep_command = 'ag'
   let g:unite_source_grep_default_opts = '--nogroup --nocolor --column --smart-case --hidden -U'
   let g:unite_source_grep_recursive_opt = ''
 endif
+
+" file_rec
+" \(static\)/\*\)\|\(\.\(gif\|jpe\?g\|png\|webp\|pdf\|swp\|bak\|old\|pem\)$
+let s:unite_ignore_extentions = [
+            \'o',
+            \'exe',
+            \'dll',
+            \'pem',
+            \'ipa',
+            \'bak',
+            \'sw[po]',
+            \'class',
+            \'pdf',
+            \'png',
+            \'jpe\?g',
+            \'webp',
+            \'dat',
+            \]
+let s:unite_ignore_directories = [
+            \'\.hg',
+            \'\.git',
+            \'\.bzr',
+            \'static',
+            \'\.svn',
+            \'tags\%(-.*\)\?',
+            \'node_modules',
+            \]
+let s:unite_ignore_patterns= 
+            \'\%(^\|/\)\.$\|\~$\|\.\%('.join(s:unite_ignore_extentions, '\|').'\)$\|\%(^\|/\)\%(\'.join(s:unite_ignore_directories, '\|').'\)\%($\|/\)'
+            "'\%(^\|/\)\.$\|\~$\|\.\%(o\|exe\|dll\|pem\|ipa\|bak\|sw[po]\|class\|pdf\|png\|jpe\?g\|webp\)$\|\%(^\|/\)\%(\.hg\|\.git\|\.bzr\|static\|\.svn\|tags\%(-.*\)\?\)\%($\|/\)'
+nnoremap <silent> <Leader>e  :<C-u>Unite file_rec/async:!<CR>
+
+" search in file
+nnoremap <silent> <Leader>s :<C-u>Unite -buffer-name=search line<CR>
 
 " ========== neocomplcache ==========
 Plug 'Shougo/neocomplcache'
@@ -92,8 +123,9 @@ filetype off
 let &runtimepath.=',~/.vim/plugged/ale'
 filetype plugin on
 
-
 call plug#end()
+
+call unite#custom#source('file_rec/async', 'ignore_pattern', s:unite_ignore_patterns)
 
 "================================================================
 " basic settings
