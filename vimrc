@@ -117,7 +117,11 @@ set listchars=tab:▸\ ,eol:↲,extends:❯,precedes:❮    " 不可視文字の
 
 set mouse=a
 
-set clipboard=unnamed,autoselect
+if has('mac')
+    set clipboard=unnamed,autoselect
+elseif has('unix')
+    set clipboard=unnamedplus
+endif
 
 set visualbell
 

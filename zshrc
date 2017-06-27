@@ -11,7 +11,7 @@ export LANG=ja_JP.UTF-8
 export LESSCHARSET=utf-8
 export GOPATH=$HOME
 
-export PATH=/usr/local/bin:/usr/bin:/bin:/sbin:/usr/sbin
+export PATH=~/bin:/usr/local/bin:/usr/bin:/bin:/sbin:/usr/sbin
 
 # virtual environment
 export PYENV_ROOT="$HOME/.pyenv"
@@ -168,10 +168,17 @@ esac
 ########################################
 # peco
 function history-selection() {
-    BUFFER=`history -n 1 | tail -r  | awk '!a[$0]++' | peco`
-        CURSOR=$#BUFFER
-            zle reset-prompt
-          }
+  case ${OSTYPE} in
+      darwin*)
+          BUFFER=`history -n 1 | tail -r  | awk '!a[$0]++' | peco`
+          ;;
+      linux*)
+          BUFFER="$(history -nr 1 | awk '!a[$0]++' | peco --query "$LBUFFER" | sed 's/\\n/\n/')"
+          ;;
+  esac
+  CURSOR=$#BUFFER
+  zle reset-prompt
+}
 
 zle -N history-selection
 bindkey '^R' history-selection
