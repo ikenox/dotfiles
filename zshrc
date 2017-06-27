@@ -72,7 +72,7 @@ zstyle ':vcs_info:*' actionformats '(%b|%a)'
 precmd () { vcs_info }
 
 # notice ssh
-SSH_STMT="ssh:"
+SSH_STMT="🌏ssh:"
 if [ -n "$SSH_CLIENT" ] || [ -n "$SSH_TTY" ]; then
     P_SSH_STMT=$SSH_STMT
 else
