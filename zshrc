@@ -191,3 +191,5 @@ if ls ~/zshrc.module.* 1> /dev/null 2>&1; then
   source ~/.zshrc.module.*
 fi
 
+
+[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh

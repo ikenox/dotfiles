@@ -70,7 +70,6 @@ let s:unite_ignore_directories = [
 let s:unite_ignore_patterns= 
             \'\%(^\|/\)\.$\|\~$\|\.\%('.join(s:unite_ignore_extentions, '\|').'\)$\|\%(^\|/\)\%(\'.join(s:unite_ignore_directories, '\|').'\)\%($\|/\)'
             "'\%(^\|/\)\.$\|\~$\|\.\%(o\|exe\|dll\|pem\|ipa\|bak\|sw[po]\|class\|pdf\|png\|jpe\?g\|webp\)$\|\%(^\|/\)\%(\.hg\|\.git\|\.bzr\|static\|\.svn\|tags\%(-.*\)\?\)\%($\|/\)'
-nnoremap <silent> <Leader>e  :<C-u>Unite file_rec/async:!<CR>
 
 " search in file
 nnoremap <silent> <Leader>s :<C-u>Unite -buffer-name=search line<CR>
@@ -86,11 +85,6 @@ let g:neocomplcache_enable_smart_case = 1
 " Set minimum syntax keyword length.
 let g:neocomplcache_min_syntax_length = 3
 let g:neocomplcache_lock_buffer_name_pattern = '\*ku\*'
-
-"
-Plug 'Shougo/neomru.vim'
-"スペースキーとbキーでバッファと最近開いたファイル一覧を表示
-nnoremap <silent> <Leader>b :<C-u>Unite<Space>buffer file_mru<CR>
 
 "
 Plug 'Shougo/vimproc.vim', {'do' : 'make'}
@@ -122,6 +116,13 @@ set nocompatible
 filetype off
 let &runtimepath.=',~/.vim/plugged/ale'
 filetype plugin on
+
+" fzf
+Plug 'junegunn/fzf'
+Plug 'junegunn/fzf.vim'
+Plug 'tweekmonster/fzf-filemru'
+nnoremap <silent> <Leader>b :<C-u>FilesMru<CR>
+nnoremap <silent> <Leader>e  :<C-u>Files<CR>
 
 call plug#end()
 

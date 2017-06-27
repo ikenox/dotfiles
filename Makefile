@@ -24,7 +24,7 @@ brew:
 # vim
 # =========================================
 
-vim: .workspace markdown ag
+vim: .workspace markdown ag fzf
 	# install vim
 	ifeq $(OS) Darwin
 		brew install vim --with-python3 --with-lua
@@ -61,6 +61,15 @@ markdown:
 	else
 		# TODO
 	endif
+
+fzf: .workspace
+	ifeq $(OS) Darwin
+		brew install fzf
+	else
+		git clone --depth 1 https://github.com/junegunn/fzf.git ~/.fzf
+		~/.fzf/install
+	endif
+
 
 # =========================================
 # git
