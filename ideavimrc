@@ -21,7 +21,7 @@ vnoremap cc :action CommentByBlockComment<CR>
 
 " rename
 nnoremap U :action FindUsages<CR>
-nnoremap R :action RenameElement<CR>
+nnoremap R :action Refactorings.QuickListPopupAction<CR>
 
 " open file
 

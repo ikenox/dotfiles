@@ -67,6 +67,6 @@ nnoremap <CR> o<Esc>
 vnoremap <Cr> :<C-u>'<,'>s/ *, */,\r/g<Cr>:<C-u>noh<Cr>
 
 "
-nnoremap gh :<C-u>bprevious<Cr>
-nnoremap gl :<C-u>bnext<Cr>
+nnoremap gh <C-o>
+nnoremap gl <C-i>
 
