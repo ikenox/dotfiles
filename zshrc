@@ -21,7 +21,7 @@ setopt no_flow_control
 setopt ignore_eof
 setopt interactive_comments
 setopt auto_pushd
-function chpwd() { colors;ls }
+function chpwd() { ls }
 setopt pushd_ignore_dups
 setopt share_history
 setopt hist_ignore_all_dups
@@ -173,7 +173,6 @@ zplug "zsh-users/zsh-syntax-highlighting"
 
 zplug "b4b4r07/zsh-gomi", as:command, use:bin
 
-# enhancd
 zplug "b4b4r07/enhancd", use:init.sh
 export ENHANCD_FILTER=peco
 
@@ -182,6 +181,12 @@ zplug load
 ########################################
 # Load modules
 
-source ~/.zshrc.local
-source ~/.zshrc.module.*
+if ls ~/zshrc.local 1> /dev/null 2>&1; then
+  source ~/.zshrc.local
+fi
+
+setopt nonomatch
+if ls ~/zshrc.module.* 1> /dev/null 2>&1; then
+  source ~/.zshrc.module.*
+fi
 
