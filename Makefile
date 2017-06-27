@@ -5,12 +5,26 @@ all: init
 
 init: essentials tools
 
-# =========================================
-# essencials
-# =========================================
 essentials: brew git zsh vim
 
-vim: .workspace markdown
+# =========================================
+# homebrew
+# =========================================
+
+brew:
+	ifeq $(OS) Darwin
+		# install homebrew
+		./brew.sh
+		# install packages
+		brew tap homebrew/bundle
+		brew bundle
+	endif
+
+# =========================================
+# vim
+# =========================================
+
+vim: .workspace markdown ag
 	# install vim
 	ifeq $(OS) Darwin
 		brew install vim --with-python3 --with-lua
@@ -33,6 +47,13 @@ vim: .workspace markdown
 	ln -s $(DOTFILES_ROOT)/ideavimrc ~/.ideavimrc
 	ln -s $(DOTFILES_ROOT)/xvimrc ~/.xvimrc
 
+ag:
+	ifeq $(OS) Darwin
+		brew install 'ag'
+	else
+		sudo rpm -ivh http://swiftsignal.com/packages/centos/6/x86_64/the-silver-searcher-0.13.1-1.el6.x86_64.rpm
+	endif
+
 markdown:
 	ifeq $(OS) Darwin
 		brew install grip
@@ -40,6 +61,10 @@ markdown:
 	else
 		# TODO
 	endif
+
+# =========================================
+# git
+# =========================================
 
 git:
 	ifeq $(OS) Darwin
@@ -50,7 +75,11 @@ git:
 	ln -s $(DOTFILES_ROOT)/gitconfig ~/.gitconfig
 	ln -s $(DOTFILES_ROOT)/gitignore ~/.gitignore
 
-zsh: peco ag
+# =========================================
+# zsh
+# =========================================
+
+zsh: peco
 	# install zsh
 	ifeq $(OS) Darwin
 	brew install zsh
@@ -74,23 +103,6 @@ peco: .workspace
 		mv peco_linux_amd64/peco ~/bin/peco
 		rm -rf peco_linux_amd64.tar.gz peco_linux_amd64
 	endif
-
-ag:
-	ifeq $(OS) Darwin
-		brew install 'ag'
-	else
-		# TODO
-	endif
-
-
-brew:
-	ifeq $(OS) Darwin
-		# install homebrew
-		./brew.sh
-		# install packages
-		brew tap homebrew/bundle
-	brew bundle
-endif
 
 # =========================================
 # tools
