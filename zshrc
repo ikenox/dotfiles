@@ -7,8 +7,6 @@ export GOPATH=$HOME
 
 export PATH=~/bin:/usr/local/bin:/usr/bin:/bin:/sbin:/usr/sbin
 
-
-
 #######################################
 # Settings
 
@@ -73,18 +71,20 @@ zstyle ':vcs_info:*' formats "%F{green}%c%u(%b)%f"
 zstyle ':vcs_info:*' actionformats '(%b|%a)'
 precmd () { vcs_info }
 
-PROMPT="%{${fg[white]}%}[%n@%m]%{${reset_color}%} 🗂  %~
+# notice ssh
+if [ -n "$SSH_CLIENT" ] || [ -n "$SSH_TTY" ]; then
+    SSH_STMT=remote/ssh
+else
+  case $(ps -o comm= -p $PPID) in
+    sshd|*/sshd) SSH_STMT="🌏ssh:";;
+  esac
+fi
+
+PROMPT="%{${fg[white]}%}[$SSH_STMT%n@%m]%{${reset_color}%} 🗂  %~
 "
 PROMPT=$PROMPT'${vcs_info_msg_0_}\$ '
 RPROMPT="%F{242}%D{%y-%m-%d %T}%f"
 
-if [ -n "$SSH_CLIENT" ] || [ -n "$SSH_TTY" ]; then
-    SESSION_TYPE=remote/ssh
-else
-  case $(ps -o comm= -p $PPID) in
-    sshd|*/sshd) SESSION_TYPE=remote/ssh;;
-  esac
-fi
 
 ########################################
 # Keymap
