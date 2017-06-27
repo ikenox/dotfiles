@@ -72,15 +72,17 @@ zstyle ':vcs_info:*' actionformats '(%b|%a)'
 precmd () { vcs_info }
 
 # notice ssh
+SSH_STMT = "🌏ssh:"
 if [ -n "$SSH_CLIENT" ] || [ -n "$SSH_TTY" ]; then
     SSH_STMT=remote/ssh
+    P_SSH_STMT=SSH_STMT
 else
   case $(ps -o comm= -p $PPID) in
-    sshd|*/sshd) SSH_STMT="🌏ssh:";;
+    sshd|*/sshd) P_SSH_STMT=SSH_STMT;;
   esac
 fi
 
-PROMPT="%{${fg[white]}%}[$SSH_STMT%n@%m]%{${reset_color}%} 🗂  %~
+PROMPT="%{${fg[white]}%}[$P_SSH_STMT%n@%m]%{${reset_color}%} 🗂  %~
 "
 PROMPT=$PROMPT'${vcs_info_msg_0_}\$ '
 RPROMPT="%F{242}%D{%y-%m-%d %T}%f"
