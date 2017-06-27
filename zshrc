@@ -74,10 +74,10 @@ precmd () { vcs_info }
 # notice ssh
 SSH_STMT="ssh:"
 if [ -n "$SSH_CLIENT" ] || [ -n "$SSH_TTY" ]; then
-    P_SSH_STMT=SSH_STMT
+    P_SSH_STMT=$SSH_STMT
 else
   case $(ps -o comm= -p $PPID) in
-    sshd|*/sshd) P_SSH_STMT=SSH_STMT;;
+    sshd|*/sshd) P_SSH_STMT=$SSH_STMT;;
   esac
 fi
 
