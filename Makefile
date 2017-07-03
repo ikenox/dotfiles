@@ -97,10 +97,9 @@ else
 endif
 	# zplug
 	curl -sL https://raw.githubusercontent.com/zplug/installer/master/installer.zsh | zsh
-	zplug install
-	# config
 	ln -si $(DOTFILES_ROOT)/zshrc ~/.zshrc
-	cp $(DOTFILES_ROOT)/zshrc.local.template ~/zshrc.local
+	cp $(DOTFILES_ROOT)/zshrc.local.template ~/.zshrc.local
+	zsh -c -i 'zplug install'
 
 peco: .workspace
 ifeq ($(OS),Darwin)
