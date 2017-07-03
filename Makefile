@@ -41,11 +41,11 @@ endif
 	curl -fLo $@ --create-dirs \
 		https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
 	# config
-	ln -s $(DOTFILES_ROOT)/vimrc ~/.vimrc
-	ln -s $(DOTFILES_ROOT)/vimrc.keymap ~/.vimrc.keymap
-	ln -s $(DOTFILES_ROOT)/vim ~/.vim
-	ln -s $(DOTFILES_ROOT)/ideavimrc ~/.ideavimrc
-	ln -s $(DOTFILES_ROOT)/xvimrc ~/.xvimrc
+	ln -si $(DOTFILES_ROOT)/vimrc ~/.vimrc
+	ln -si $(DOTFILES_ROOT)/vimrc.keymap ~/.vimrc.keymap
+	ln -si $(DOTFILES_ROOT)/vim ~/.vim
+	ln -si $(DOTFILES_ROOT)/ideavimrc ~/.ideavimrc
+	ln -si $(DOTFILES_ROOT)/xvimrc ~/.xvimrc
 
 ag:
 ifeq ($(OS),Darwin)
@@ -81,8 +81,8 @@ ifeq ($(OS),Darwin)
 	else
 	sudo yum -y install git
 endif
-	ln -s $(DOTFILES_ROOT)/gitconfig ~/.gitconfig
-	ln -s $(DOTFILES_ROOT)/gitignore ~/.gitignore
+	ln -si $(DOTFILES_ROOT)/gitconfig ~/.gitconfig
+	ln -si $(DOTFILES_ROOT)/gitignore ~/.gitignore
 
 # =========================================
 # zsh
@@ -99,7 +99,7 @@ endif
 	curl -sL https://raw.githubusercontent.com/zplug/installer/master/installer.zsh | zsh
 	zplug install
 	# config
-	ln -s $(DOTFILES_ROOT)/zshrc ~/.zshrc
+	ln -si $(DOTFILES_ROOT)/zshrc ~/.zshrc
 	cp $(DOTFILES_ROOT)/zshrc.local.template ~/zshrc.local
 
 peco: .workspace
@@ -138,20 +138,20 @@ vbox-vagrant:
 plenv:
 	brew install plenv
 	brew install perl-build
-	ln -s $(DOTFILES_ROOT)/zshrc.module.plenv ~/.zshrc.module.plenv
+	ln -si $(DOTFILES_ROOT)/zshrc.module.plenv ~/.zshrc.module.plenv
 
 rbenv:
 	brew install python
 	brew install pyenv
 	brew install pyenv-virtualenv
-	ln -s $(DOTFILES_ROOT)/zshrc.module.rbenv ~/.zshrc.module.rbenv
+	ln -si $(DOTFILES_ROOT)/zshrc.module.rbenv ~/.zshrc.module.rbenv
 
 pyenv:
 	brew install ruby
 	brew install ruby-build
 	brew install rbenv
 	brew install rbenv-gemset
-	ln -s $(DOTFILES_ROOT)/zshrc.module.pyenv ~/.zshrc.module.pyenv
+	ln -si $(DOTFILES_ROOT)/zshrc.module.pyenv ~/.zshrc.module.pyenv
 
 docker:
 	brew cask install virtualbox
