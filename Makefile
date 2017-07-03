@@ -18,6 +18,7 @@ ifeq ($(OS),Darwin)
 	# install packages
 	brew tap homebrew/bundle
 	brew bundle
+else
 endif
 
 # =========================================
@@ -29,7 +30,7 @@ vim: .workspace markdown ag fzf
 ifeq ($(OS),Darwin)
 	brew install vim --with-python3 --with-lua
 else
-	cd .workspace
+	cd ~/.workspace
 	sudo yum install -y gtk+-devel gtk2-devel ncurses-devel
 	wget http://ftp.vim.org/pub/vim/unix/vim-7.4.tar.bz2
 	tar xvf vim-7.4.tar.bz2
@@ -38,8 +39,7 @@ else
 	rm -rf vim-7.4.tar.bz2 vim74
 endif
 	# plugin manager
-	curl -fLo $@ --create-dirs \
-		https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+	curl -fLo $@ --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
 	# config
 	ln -si $(DOTFILES_ROOT)/vimrc ~/.vimrc
 	ln -si $(DOTFILES_ROOT)/vimrc.keymap ~/.vimrc.keymap
@@ -51,7 +51,7 @@ ag:
 ifeq ($(OS),Darwin)
 	brew install 'ag'
 else
-	sudo rpm -ivh http://swiftsignal.com/packages/centos/6/x86_64/the-silver-searcher-0.13.1-1.el6.x86_64.rpm
+	sudo rpm -ivhF http://swiftsignal.com/packages/centos/6/x86_64/the-silver-searcher-0.13.1-1.el6.x86_64.rpm
 endif
 
 markdown:
@@ -163,5 +163,5 @@ docker:
 # =========================================
 
 .workspace:
-	mkdir -p .workspace
+	mkdir -p ~/.workspace
 
