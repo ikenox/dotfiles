@@ -252,6 +252,9 @@ elseif &term =~ "xterm-color"
   set t_Sb=[4%dm
 endif
 
+hi Search guibg=peru guifg=wheat
+hi Search cterm=NONE ctermfg=grey ctermbg=blue
+
 "================================================================
 " Others
 "================================================================
