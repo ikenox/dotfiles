@@ -182,12 +182,12 @@ zplug load
 ########################################
 # Load modules
 
-if ls ~/zshrc.local 1> /dev/null 2>&1; then
+if ls ~/.zshrc.local 1> /dev/null 2>&1; then
   source ~/.zshrc.local
 fi
 
 setopt nonomatch
-if ls ~/zshrc.module.* 1> /dev/null 2>&1; then
+if ls ~/.zshrc.module.* 1> /dev/null 2>&1; then
   source ~/.zshrc.module.*
 fi
 
