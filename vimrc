@@ -212,6 +212,8 @@ autocmd FileType sh   setlocal shiftwidth=2 tabstop=2 softtabstop=2
 autocmd FileType zsh  setlocal shiftwidth=2 tabstop=2 softtabstop=2
 autocmd FileType rb   setlocal shiftwidth=2 tabstop=2 softtabstop=2
 
+autocmd BufNewFile,BufRead *.tx setlocal filetype=html
+
 " use hard tab when Makefile
 let _curfile=expand("%:r")
 if _curfile == 'Makefile' || _curfile == 'makefile'
