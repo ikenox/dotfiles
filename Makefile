@@ -12,13 +12,13 @@ essentials: brew git zsh vim
 # =========================================
 
 brew:
-	ifeq $(OS) Darwin
-		# install homebrew
-		./brew.sh
-		# install packages
-		brew tap homebrew/bundle
-		brew bundle
-	endif
+ifeq ($(OS),Darwin)
+	# install homebrew
+	./brew.sh
+	# install packages
+	brew tap homebrew/bundle
+	brew bundle
+endif
 
 # =========================================
 # vim
@@ -26,17 +26,17 @@ brew:
 
 vim: .workspace markdown ag fzf
 	# install vim
-	ifeq $(OS) Darwin
-		brew install vim --with-python3 --with-lua
-	else
-		cd .workspace
-		sudo yum install -y gtk+-devel gtk2-devel ncurses-devel
-		wget http://ftp.vim.org/pub/vim/unix/vim-7.4.tar.bz2
-		tar xvf vim-7.4.tar.bz2
-		cd vim74
-		./configure --enable-gui=yes --enable-multibyte --with-features=huge --disable-selinux --prefix=/usr/local --enable-rubyinterp --enable-xim --enable-fontset|grep gui
-		rm -rf vim-7.4.tar.bz2 vim74
-	endif
+ifeq ($(OS),Darwin)
+	brew install vim --with-python3 --with-lua
+else
+	cd .workspace
+	sudo yum install -y gtk+-devel gtk2-devel ncurses-devel
+	wget http://ftp.vim.org/pub/vim/unix/vim-7.4.tar.bz2
+	tar xvf vim-7.4.tar.bz2
+	cd vim74
+	./configure --enable-gui=yes --enable-multibyte --with-features=huge --disable-selinux --prefix=/usr/local --enable-rubyinterp --enable-xim --enable-fontset|grep gui
+	rm -rf vim-7.4.tar.bz2 vim74
+endif
 	# plugin manager
 	curl -fLo $@ --create-dirs \
 		https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
@@ -48,27 +48,27 @@ vim: .workspace markdown ag fzf
 	ln -s $(DOTFILES_ROOT)/xvimrc ~/.xvimrc
 
 ag:
-	ifeq $(OS) Darwin
-		brew install 'ag'
-	else
-		sudo rpm -ivh http://swiftsignal.com/packages/centos/6/x86_64/the-silver-searcher-0.13.1-1.el6.x86_64.rpm
-	endif
+ifeq ($(OS),Darwin)
+	brew install 'ag'
+else
+	sudo rpm -ivh http://swiftsignal.com/packages/centos/6/x86_64/the-silver-searcher-0.13.1-1.el6.x86_64.rpm
+endif
 
 markdown:
-	ifeq $(OS) Darwin
-		brew install grip
-		brew install markdown
-	else
-		# TODO
-	endif
+ifeq ($(OS),Darwin)
+	brew install grip
+	brew install markdown
+else
+	# TODO
+endif
 
 fzf: .workspace
-	ifeq $(OS) Darwin
-		brew install fzf
-	else
-		git clone --depth 1 https://github.com/junegunn/fzf.git ~/.fzf
-		~/.fzf/install
-	endif
+ifeq ($(OS),Darwin)
+	brew install fzf
+else
+	git clone --depth 1 https://github.com/junegunn/fzf.git ~/.fzf
+	~/.fzf/install
+endif
 
 
 # =========================================
@@ -76,11 +76,11 @@ fzf: .workspace
 # =========================================
 
 git:
-	ifeq $(OS) Darwin
+ifeq ($(OS),Darwin)
 	brew install git
 	else
 	sudo yum -y install git
-	endif
+endif
 	ln -s $(DOTFILES_ROOT)/gitconfig ~/.gitconfig
 	ln -s $(DOTFILES_ROOT)/gitignore ~/.gitignore
 
@@ -90,11 +90,11 @@ git:
 
 zsh: peco
 	# install zsh
-	ifeq $(OS) Darwin
+ifeq ($(OS),Darwin)
 	brew install zsh
-	else
+else
 	sudo yum install -y zsh
-	endif
+endif
 	# zplug
 	curl -sL https://raw.githubusercontent.com/zplug/installer/master/installer.zsh | zsh
 	zplug install
@@ -103,28 +103,28 @@ zsh: peco
 	cp $(DOTFILES_ROOT)/zshrc.local.template ~/zshrc.local
 
 peco: .workspace
-	ifeq $(OS) Darwin
-		brew install 'peco'
-	else
-		cd .workspace	
-		wget https://github.com/peco/peco/releases/download/v0.3.3/peco_linux_amd64.tar.gz
-		tar xzvf peco_linux_amd64.tar.gz
-		mv peco_linux_amd64/peco ~/bin/peco
-		rm -rf peco_linux_amd64.tar.gz peco_linux_amd64
-	endif
+ifeq ($(OS),Darwin)
+	brew install 'peco'
+else
+	cd .workspace	
+	wget https://github.com/peco/peco/releases/download/v0.3.3/peco_linux_amd64.tar.gz
+	tar xzvf peco_linux_amd64.tar.gz
+	mv peco_linux_amd64/peco ~/bin/peco
+	rm -rf peco_linux_amd64.tar.gz peco_linux_amd64
+endif
 
 # =========================================
 # tools
 # =========================================
 
 tools:
-	ifeq $(OS) Darwin
-		# go
-		brew install go
-		brew install ghq
-	else
-		yum -y install go
-	endif
+ifeq ($(OS),Darwin)
+	# go
+	brew install go
+	brew install ghq
+else
+	sudo yum -y install go
+endif
 
 # =========================================
 # optional
