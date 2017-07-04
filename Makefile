@@ -158,6 +158,10 @@ docker:
 	brew install docker-machine
 	brew install docker-compose
 
+mysql-conf:
+	ln -s $(DOTFILES_ROOT)/editrc ~/.editrc
+
+
 # =========================================
 # helper
 # =========================================
