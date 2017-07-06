@@ -91,9 +91,11 @@
                                 "type": "basic"
                             }
                         ]
-                    }, {
+                    },
+                    {
                         "description": "Ctrl-M to Backspace",
-                        "manipulators": [ {
+                        "manipulators": [
+                            {
                                 "from": {
                                     "key_code": "m",
                                     "modifiers": {
@@ -111,8 +113,10 @@
                                     }
                                 ],
                                 "type": "basic"
-                            }]
-                    }, {
+                            }
+                        ]
+                    },
+                    {
                         "description": "コマンドキーを単体で押したときに、英数・かなキーを送信する。（左コマンドキーは英数、右コマンドキーはかな）",
                         "manipulators": [
                             {
@@ -178,7 +182,10 @@
             },
             "name": "Default profile",
             "selected": true,
-            "simple_modifications": {},
+            "simple_modifications": {
+                "caps_lock": "left_control",
+                "left_control": "caps_lock"
+            },
             "virtual_hid_keyboard": {
                 "caps_lock_delay_milliseconds": 0,
                 "keyboard_type": "ansi"

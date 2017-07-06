@@ -164,7 +164,7 @@ mysql-conf:
 karabiner-elements:
 	brew cask install karabiner-elements
 	mkdir -p ~/.config/karabiner
-	ln -si $(DOTFILES_ROOT)/karabiner.json ~/karabiner.json
+	ln -si $(DOTFILES_ROOT)/karabiner.json ~/.config/karabiner/karabiner.json
 
 
 # =========================================
