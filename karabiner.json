@@ -91,8 +91,28 @@
                                 "type": "basic"
                             }
                         ]
-                    },
-                    {
+                    }, {
+                        "description": "Ctrl-M to Backspace",
+                        "manipulators": [ {
+                                "from": {
+                                    "key_code": "m",
+                                    "modifiers": {
+                                        "mandatory": [
+                                            "left_control"
+                                        ],
+                                        "optional": [
+                                            "caps_lock"
+                                        ]
+                                    }
+                                },
+                                "to": [
+                                    {
+                                        "key_code": "delete_or_backspace"
+                                    }
+                                ],
+                                "type": "basic"
+                            }]
+                    }, {
                         "description": "コマンドキーを単体で押したときに、英数・かなキーを送信する。（左コマンドキーは英数、右コマンドキーはかな）",
                         "manipulators": [
                             {
