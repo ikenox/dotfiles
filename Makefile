@@ -161,6 +161,11 @@ docker:
 mysql-conf:
 	ln -s $(DOTFILES_ROOT)/editrc ~/.editrc
 
+karabiner-elements:
+	brew cask install karabiner-elements
+	mkdir -p ~/.config/karabiner
+	ln -s $(DOTFILES_ROOT)/karabiner.json ~/karabiner.json
+
 
 # =========================================
 # helper
