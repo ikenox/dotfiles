@@ -126,6 +126,8 @@ nnoremap <silent> <Leader>e  :<C-u>Files<CR>
 Plug 'Shougo/neomru.vim'
 nnoremap <silent> <Leader>b :<C-u>Unite buffer file_mru<CR>
 
+Plug 'tpope/vim-fugitive'
+
 call plug#end()
 
 call unite#custom#source('file_rec/async', 'ignore_pattern', s:unite_ignore_patterns)
