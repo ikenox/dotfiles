@@ -162,7 +162,29 @@
                                 "type": "basic"
                             }
                         ]
+                    },
+                    {
+                        "description": "l_ctrl + alt to Caps",
+                        "manipulators": [
+                            {
+                                "from": {
+                                    "key_code": "left_control",
+                                    "modifiers": {
+                                        "mandatory": [
+                                            "right_option"
+                                        ]
+                                    }
+                                },
+                                "to": [
+                                    {
+                                        "key_code": "caps_lock"
+                                    }
+                                ],
+                                "type": "basic"
+                            }
+                        ]
                     }
+
                 ]
             },
             "devices": [],
@@ -183,8 +205,7 @@
             "name": "Default profile",
             "selected": true,
             "simple_modifications": {
-                "caps_lock": "left_control",
-                "left_control": "caps_lock"
+                "caps_lock": "left_control"
             },
             "virtual_hid_keyboard": {
                 "caps_lock_delay_milliseconds": 0,
