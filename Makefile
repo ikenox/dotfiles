@@ -166,6 +166,15 @@ karabiner-elements:
 	mkdir -p ~/.config/karabiner
 	ln -si $(DOTFILES_ROOT)/karabiner.json ~/.config/karabiner/karabiner.json
 
+jupyter-vim-binding:
+	mkdir -p $(jupyter --data-dir)/nbextensions
+	cd $(jupyter --data-dir)/nbextensions; git clone https://github.com/lambdalisue/jupyter-vim-binding vim_binding
+	ln -si $(DOTFILES_ROOT)/custom.js ~/.jupyter/custom/custom.js
+	echo "notice: Please exec following commands in your python environment\n"
+	echo "pip install jupyter_contrib_nbextensions\n"
+	echo "jupyter contrib nbextension install --user\n"
+	echo "jupyter nbextension enable vim_binding/vim_binding\n"
+
 
 # =========================================
 # helper
