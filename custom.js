@@ -1,7 +1,12 @@
+Jupyter.notebook.config.update({
+  'load_extensions': { 'vim_binding': true },
+});
+
 // Configure CodeMirror Keymap
 require([
   'nbextensions/vim_binding/vim_binding',   // depends your installation
 ], function() {
+  console.log('>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> custom.js');
   CodeMirror.Vim.map("L", "$", "normal");
   CodeMirror.Vim.map("L", "$", "visual");
   CodeMirror.Vim.map("H", "^", "normal");
@@ -38,3 +43,4 @@ require([
     km.edit_shortcuts.events.trigger('rebuild.QuickHelp');
   });
 });
+
