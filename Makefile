@@ -139,18 +139,18 @@ plenv:
 	brew install perl-build
 	ln -si $(DOTFILES_ROOT)/zshrc.module.plenv ~/.zshrc.module.plenv
 
-rbenv:
+pyenv:
 	brew install python
 	brew install pyenv
 	brew install pyenv-virtualenv
-	ln -si $(DOTFILES_ROOT)/zshrc.module.rbenv ~/.zshrc.module.rbenv
+	ln -si $(DOTFILES_ROOT)/zshrc.module.pyenv ~/.zshrc.module.pyenv
 
-pyenv:
+rbenv:
 	brew install ruby
 	brew install ruby-build
 	brew install rbenv
 	brew install rbenv-gemset
-	ln -si $(DOTFILES_ROOT)/zshrc.module.pyenv ~/.zshrc.module.pyenv
+	ln -si $(DOTFILES_ROOT)/zshrc.module.rbenv ~/.zshrc.module.rbenv
 
 docker:
 	brew cask install virtualbox
