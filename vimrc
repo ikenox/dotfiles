@@ -121,8 +121,12 @@ filetype plugin on
 Plug 'junegunn/fzf'
 Plug 'junegunn/fzf.vim'
 Plug 'tweekmonster/fzf-filemru'
-nnoremap <silent> <Leader>b :<C-u>FilesMru<CR>
 nnoremap <silent> <Leader>e  :<C-u>Files<CR>
+
+Plug 'Shougo/neomru.vim'
+nnoremap <silent> <Leader>b :<C-u>Unite buffer file_mru<CR>
+
+Plug 'tpope/vim-fugitive'
 
 call plug#end()
 

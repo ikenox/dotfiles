@@ -70,3 +70,5 @@ vnoremap <Cr> :<C-u>'<,'>s/ *, */,\r/g<Cr>:<C-u>noh<Cr>
 nnoremap gh <C-o>
 nnoremap gl <C-i>
 
+nnoremap == gg=G
+
