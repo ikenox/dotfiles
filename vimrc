@@ -128,6 +128,12 @@ nnoremap <silent> <Leader>b :<C-u>Unite buffer file_mru<CR>
 
 Plug 'tpope/vim-fugitive'
 
+Plug 'mattn/emmet-vim'
+
+Plug 'hail2u/vim-css3-syntax'
+Plug 'taichouchou2/html5.vim'
+Plug 'pangloss/vim-javascript'
+
 call plug#end()
 
 call unite#custom#source('file_rec/async', 'ignore_pattern', s:unite_ignore_patterns)
@@ -217,6 +223,7 @@ autocmd FileType zsh  setlocal shiftwidth=2 tabstop=2 softtabstop=2
 autocmd FileType rb   setlocal shiftwidth=2 tabstop=2 softtabstop=2
 
 autocmd BufNewFile,BufRead *.tx setlocal filetype=html
+autocmd FileType html :setlocal indentexpr=""
 
 " use hard tab when Makefile
 let _curfile=expand("%:r")
