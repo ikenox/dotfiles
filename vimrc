@@ -131,7 +131,6 @@ Plug 'tpope/vim-fugitive'
 Plug 'mattn/emmet-vim'
 
 Plug 'hail2u/vim-css3-syntax'
-Plug 'taichouchou2/html5.vim'
 Plug 'pangloss/vim-javascript'
 
 call plug#end()
