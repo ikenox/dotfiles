@@ -163,6 +163,23 @@ function ghq-selection () {
 zle -N ghq-selection
 bindkey '^G' ghq-selection
 
+function peco-file() {
+    local filepath=$(ag -l | peco --prompt 'PATH >')
+    if [ -n "$filepath" ]; then
+        if [ -n "$BUFFER" ]; then
+            BUFFER="$BUFFER $(echo $filepath | tr '\n' ' ')"
+            CURSOR=$#BUFFER
+        else
+            if [ -f "$filepath" ]; then
+                BUFFER="$EDITOR $filepath"
+                zle accept-line
+            fi
+        fi
+    fi
+}
+zle -N peco-file
+bindkey '^p' peco-file
+
 ########################################
 ## Plugins
 
