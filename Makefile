@@ -5,7 +5,7 @@ all: init
 
 init: essentials tools
 
-essentials: brew git zsh vim
+essentials: brew git zsh vim tmux
 
 # =========================================
 # homebrew
@@ -78,7 +78,7 @@ endif
 git:
 ifeq ($(OS),Darwin)
 	brew install git
-	else
+else
 	sudo yum -y install git
 endif
 	ln -si $(DOTFILES_ROOT)/gitconfig ~/.gitconfig
@@ -111,6 +111,18 @@ else
 	mv peco_linux_amd64/peco ~/bin/peco
 	rm -rf peco_linux_amd64.tar.gz peco_linux_amd64
 endif
+
+# =========================================
+# tmux
+# =========================================
+
+tmux:
+ifeq ($(OS),Darwin)
+	brew install zsh
+else
+	sudo yum install -y zsh
+endif
+	ln -si $(DOTFILES_ROOT)/tmux.conf ~/.tmux.conf
 
 # =========================================
 # tools
