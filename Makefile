@@ -118,11 +118,10 @@ endif
 
 tmux:
 ifeq ($(OS),Darwin)
-	brew install zsh
-else
-	sudo yum install -y zsh
-endif
+	brew install tmux
+	brew install reattach-to-user-namespace
 	ln -si $(DOTFILES_ROOT)/tmux.conf ~/.tmux.conf
+endif
 
 # =========================================
 # tools
