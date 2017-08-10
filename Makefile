@@ -142,6 +142,11 @@ endif
 # optional
 # =========================================
 
+electron-app:
+	brew install nativefier
+	nativefier --name "Google Calendar" "calendar.google.com"
+	nativefier --name "Gmail" "mail.google.com"
+
 vbox-vagrant:
 	brew cask install virtualbox
 	brew cask install vagrant

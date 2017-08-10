@@ -133,6 +133,8 @@ Plug 'mattn/emmet-vim'
 Plug 'hail2u/vim-css3-syntax'
 Plug 'pangloss/vim-javascript'
 
+Plug 'jszakmeister/vim-togglecursor'
+
 call plug#end()
 
 call unite#custom#source('file_rec/async', 'ignore_pattern', s:unite_ignore_patterns)
@@ -204,7 +206,10 @@ set backspace=indent,eol,start
 set whichwrap=b,s,h,l,<,>,[,],~
 
 " change cursor shape when insert mode
-if &term =~ "screen"
+if exists('$TMUX')
+  autocmd InsertEnter * : silent exec "!printf '\033]50;CursorShape=2\x7'" | exec ":redraw!"
+  autocmd InsertLeave * : silent exec "!printf '\033]50;CursorShape=0\x7'" | exec ":redraw!"
+elseif &term =~ "screen"
   let &t_SI = "\eP\e]50;CursorShape=1\x7\e\\"
   let &t_EI = "\eP\e]50;CursorShape=0\x7\e\\"
 elseif &term =~ "xterm"
