@@ -5,7 +5,7 @@ all: init
 
 init: essentials tools
 
-essentials: brew git zsh vim tmux
+essentials: brew git zsh vim
 
 # =========================================
 # homebrew
