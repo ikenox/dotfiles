@@ -29,9 +29,6 @@ nnoremap <Up>   gk
 nnoremap x "_x
 vnoremap x "_x
 
-" ¥ to backslash
-inoremap ¥ \
-
 " http://qiita.com/tekkoc/items/98adcadfa4bdc8b5a6ca
 nnoremap s <Nop>
 vnoremap s <Nop>
@@ -49,7 +46,7 @@ nnoremap sL <C-w>>
 nnoremap sH <C-w><
 
 nnoremap ss :<C-u>sp<CR>
-nnoremap sv :<C-u>vs<CR>
+nnoremap s :<C-u>vs<CR>
 
 nnoremap st :<C-u>tabnew<CR>
 nnoremap sn gt
