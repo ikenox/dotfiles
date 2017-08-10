@@ -37,6 +37,8 @@ nnoremap mg :action FindInPath<CR>
 " move tab
 nnoremap sn :action NextTab<CR>
 nnoremap sp :action PreviousTab<CR>
+nnoremap <C-n> :action NextTab<CR>
+nnoremap <C-p> :action PreviousTab<CR>
 
 " back,forward
 nnoremap gh :action Back<CR>

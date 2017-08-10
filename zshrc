@@ -178,7 +178,7 @@ function peco-file() {
     fi
 }
 zle -N peco-file
-bindkey '^p' peco-file
+bindkey '^,' peco-file
 
 ########################################
 ## tmux

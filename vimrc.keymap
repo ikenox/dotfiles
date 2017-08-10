@@ -42,6 +42,12 @@ nnoremap sj <C-w>j
 nnoremap sk <C-w>k
 nnoremap sl <C-w>l
 nnoremap sh <C-w>h
+
+nnoremap sJ <C-w>-
+nnoremap sK <C-w>+
+nnoremap sL <C-w>>
+nnoremap sH <C-w><
+
 nnoremap ss :<C-u>sp<CR>
 nnoremap sv :<C-u>vs<CR>
 
