@@ -26,3 +26,7 @@ mysql/.tmp.sql
 
 # IntelliJ
 .iml
+
+.tmux/plugins/*
+
+!.gitkeep

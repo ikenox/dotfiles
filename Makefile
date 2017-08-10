@@ -121,6 +121,8 @@ ifeq ($(OS),Darwin)
 	brew install tmux
 	brew install reattach-to-user-namespace
 	ln -si $(DOTFILES_ROOT)/tmux.conf ~/.tmux.conf
+	ln -si $(DOTFILES_ROOT)/.tmux ~/.tmux
+	git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
 endif
 
 # =========================================
