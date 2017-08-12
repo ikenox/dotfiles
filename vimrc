@@ -110,13 +110,6 @@ nmap <Space>p [previm]
 nnoremap <silent> [previm]o :<C-u>PrevimOpen<CR>
 nnoremap <silent> [previm]r :call previm#refresh()<CR>
 
-"
-Plug 'w0rp/ale'
-set nocompatible
-filetype off
-let &runtimepath.=',~/.vim/plugged/ale'
-filetype plugin on
-
 " fzf
 Plug 'junegunn/fzf'
 Plug 'junegunn/fzf.vim'
@@ -134,6 +127,17 @@ Plug 'hail2u/vim-css3-syntax'
 Plug 'pangloss/vim-javascript'
 
 Plug 'jszakmeister/vim-togglecursor'
+
+Plug 'vim-syntastic/syntastic'
+set statusline+=%#warningmsg#
+set statusline+=%{SyntasticStatuslineFlag()}
+set statusline+=%*
+let g:syntastic_always_populate_loc_list = 1
+let g:syntastic_auto_loc_list = 1
+let g:syntastic_check_on_open = 1
+let g:syntastic_check_on_wq = 0
+
+Plug 'easymotion/vim-easymotion'
 
 call plug#end()
 
