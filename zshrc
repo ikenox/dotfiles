@@ -180,6 +180,30 @@ function peco-file() {
 zle -N peco-file
 bindkey '^,' peco-file
 
+
+########################################
+## Plugins
+
+source ~/.zplug/init.zsh
+
+zplug "zplug/zplug", hook-build:'zplug --self-manage'
+
+zplug "zsh-users/zsh-syntax-highlighting"
+
+zplug "b4b4r07/zsh-gomi", as:command, use:bin
+
+zplug "b4b4r07/enhancd", use:init.sh
+export ENHANCD_FILTER=peco
+
+zplug load
+
+########################################
+# Load modules
+
+setopt nonomatch
+for f (~/.zshrc.local ~/.zshrc.module.*) source $f
+
+
 ########################################
 ## tmux
 
@@ -237,32 +261,10 @@ function tmux_automatically_attach_session()
                 # to spawn a shell in the user's namespace
                 tmux_config=$(cat $HOME/.tmux.conf <(echo 'set-option -g default-command "reattach-to-user-namespace -l $SHELL"'))
                 tmux -f <(echo "$tmux_config") new-session && echo "$(tmux -V) created new session supported OS X"
-            else
+            elif is_osx; then
                 tmux new-session && echo "tmux created new session"
             fi
         fi
     fi
 }
 tmux_automatically_attach_session
-
-########################################
-## Plugins
-
-source ~/.zplug/init.zsh
-
-zplug "zplug/zplug", hook-build:'zplug --self-manage'
-
-zplug "zsh-users/zsh-syntax-highlighting"
-
-zplug "b4b4r07/zsh-gomi", as:command, use:bin
-
-zplug "b4b4r07/enhancd", use:init.sh
-export ENHANCD_FILTER=peco
-
-zplug load
-
-########################################
-# Load modules
-
-setopt nonomatch
-for f (~/.zshrc.local ~/.zshrc.module.*) source $f

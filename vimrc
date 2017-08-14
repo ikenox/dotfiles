@@ -210,7 +210,7 @@ set backspace=indent,eol,start
 set whichwrap=b,s,h,l,<,>,[,],~
 
 " change cursor shape when insert mode
-if exists('$TMUX')
+if exists("$TMUX")
   autocmd InsertEnter * : silent exec "!printf '\033]50;CursorShape=2\x7'" | exec ":redraw!"
   autocmd InsertLeave * : silent exec "!printf '\033]50;CursorShape=0\x7'" | exec ":redraw!"
 elseif &term =~ "screen"
