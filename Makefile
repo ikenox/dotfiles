@@ -123,6 +123,7 @@ ifeq ($(OS),Darwin)
 	ln -si $(DOTFILES_ROOT)/tmux.conf ~/.tmux.conf
 	ln -si $(DOTFILES_ROOT)/.tmux ~/.tmux
 	git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
+	echo "Please add your default shell to /etc/shells, and execute 'chsh -s /path/to/shell'"
 endif
 
 # =========================================
