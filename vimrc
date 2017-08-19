@@ -156,6 +156,7 @@ set wildmode=longest,full
 
 " search settings
 set hlsearch
+set ignorecase
 set smartcase
 
 set showmatch 

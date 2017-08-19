@@ -1,0 +1,1 @@
+/Users/ikenonaoto/dotfiles/.tmux
