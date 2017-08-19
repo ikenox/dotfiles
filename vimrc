@@ -138,6 +138,8 @@ let g:syntastic_check_on_open = 1
 let g:syntastic_check_on_wq = 0
 
 Plug 'easymotion/vim-easymotion'
+nmap f <Plug>(easymotion-s2)
+vmap f <Plug>(easymotion-s2)
 
 call plug#end()
 
@@ -147,7 +149,7 @@ call unite#custom#source('file_rec/async', 'ignore_pattern', s:unite_ignore_patt
 " basic settings
 "================================================================
 
-" 
+"
 syntax enable
 set cursorline
 set number
@@ -159,7 +161,7 @@ set hlsearch
 set ignorecase
 set smartcase
 
-set showmatch 
+set showmatch
 
 set list           " 不可視文字を表示
 set listchars=tab:▸\ ,eol:↲,extends:❯,precedes:❮    " 不可視文字の表示記号指定
