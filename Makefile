@@ -159,6 +159,10 @@ plenv:
 	brew install perl-build
 	ln -si $(DOTFILES_ROOT)/zshrc.module.plenv ~/.zshrc.module.plenv
 
+rust:
+	curl https://sh.rustup.rs -sSf | sh
+	ln -si $(DOTFILES_ROOT)/zshrc.module.rust ~/.zshrc.module.rust
+
 pyenv:
 	brew install python
 	brew install pyenv
