@@ -53,6 +53,7 @@ ifeq ($(OS),Darwin)
 else
 	sudo rpm -ivhF http://swiftsignal.com/packages/centos/6/x86_64/the-silver-searcher-0.13.1-1.el6.x86_64.rpm
 endif
+	ln -si $(DOTFILES_ROOT)/agignore ~/.agignore
 
 markdown:
 ifeq ($(OS),Darwin)
