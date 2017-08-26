@@ -83,7 +83,7 @@ let g:neocomplcache_enable_at_startup = 1
 " Use smartcase.
 let g:neocomplcache_enable_smart_case = 1
 " Set minimum syntax keyword length.
-let g:neocomplcache_min_syntax_length = 3
+let g:neocomplcache_min_syntax_length = 2
 let g:neocomplcache_lock_buffer_name_pattern = '\*ku\*'
 
 "
@@ -137,9 +137,28 @@ let g:syntastic_auto_loc_list = 1
 let g:syntastic_check_on_open = 1
 let g:syntastic_check_on_wq = 0
 
+let g:syntastic_enable_perl_checker = 1
+let g:syntastic_perl_checkers = ['perl', 'podchecker']
+
 Plug 'easymotion/vim-easymotion'
 nmap f <Plug>(easymotion-s2)
 vmap f <Plug>(easymotion-s2)
+
+" rust-lang
+Plug 'rust-lang/rust.vim'
+Plug 'racer-rust/vim-racer'
+let g:rustfmt_autosave = 1
+let g:rustfmt_command = '$HOME/.cargo/bin/rustfmt'
+set hidden
+let g:racer_cmd ='$HOME/.cargo/bin/racer'
+let g:syntastic_enable_rust_checker = 1
+let g:syntastic_rust_checkers = ['cargo']
+let $RUST_SRC_PATH="/Users/ikenonaoto/repos/github.com/rust-lang/rust/src"
+au FileType rust nmap gd <Plug>(rust-def)
+au FileType rust nmap gs <Plug>(rust-def-split)
+au FileType rust nmap gv <Plug>(rust-def-vertical)
+au FileType rust nmap <leader>gd <Plug>(rust-doc)
+au FileType rust nmap <leader>r :<C-u>RustRun
 
 call plug#end()
 

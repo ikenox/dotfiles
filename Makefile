@@ -162,6 +162,9 @@ plenv:
 rust:
 	curl https://sh.rustup.rs -sSf | sh
 	ln -si $(DOTFILES_ROOT)/zshrc.module.rust ~/.zshrc.module.rust
+	cargo install --git https://github.com/phildawes/racer.git
+	cargo install --git https://github.com/rust-lang-nursery/rustfmt
+	ghq get https://github.com/rust-lang/rust
 
 pyenv:
 	brew install python
