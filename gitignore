@@ -5,6 +5,7 @@
 .*.sw?
 .svn
 *.zip
+.agignore
 
 .vagrant
 .local.vimrc

@@ -46,7 +46,7 @@ nnoremap sL <C-w>>
 nnoremap sH <C-w><
 
 nnoremap ss :<C-u>sp<CR>
-nnoremap s :<C-u>vs<CR>
+nnoremap sv :<C-u>vs<CR>
 
 nnoremap st :<C-u>tabnew<CR>
 nnoremap sn gt
