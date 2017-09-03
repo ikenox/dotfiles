@@ -152,7 +152,7 @@ let g:rustfmt_command = '$HOME/.cargo/bin/rustfmt'
 set hidden
 let g:racer_cmd ='$HOME/.cargo/bin/racer'
 let g:syntastic_enable_rust_checker = 1
-let g:syntastic_rust_checkers = ['cargo']
+let g:syntastic_rust_checkers = ['cargo', 'rustc']
 let $RUST_SRC_PATH="/Users/ikenonaoto/repos/github.com/rust-lang/rust/src"
 au FileType rust nmap gd <Plug>(rust-def)
 au FileType rust nmap gs <Plug>(rust-def-split)
