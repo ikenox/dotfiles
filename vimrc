@@ -138,7 +138,6 @@ nmap f <Plug>(easymotion-s2)
 vmap f <Plug>(easymotion-s2)
 
 Plug 'scrooloose/nerdtree'
-nmap <leader>t :<C-u>NERDTreeToggle<CR>
 
 " rust-lang
 Plug 'rust-lang/rust.vim'
