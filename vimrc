@@ -17,14 +17,7 @@ Plug 'thinca/vim-localrc'
 " ========== Unite.vim ==========
 Plug 'Shougo/unite.vim'
 let g:unite_enable_start_insert=1
-"スペースキーとfキーでカレントディレクトリを表示
 nnoremap <silent> <Leader>f :<C-u>UniteWithBufferDir -buffer-name=files file<CR>
-"スペースキーとrキーでレジストリを表示
-nnoremap <silent> <Leader>r :<C-u>Unite<Space>register<CR>
-"スペースキーとtキーでタブを表示
-nnoremap <silent> <Leader>t :<C-u>Unite<Space>tab<CR>
-"スペースキーとhキーでヒストリ/ヤンクを表示
-nnoremap <silent> <Leader>h :<C-u>Unite<Space>history/yank<CR>
 " 大文字小文字を区別しない  
 let g:unite_enable_ignore_case = 1  
 let g:unite_enable_smart_case = 1
@@ -144,6 +137,9 @@ Plug 'easymotion/vim-easymotion'
 nmap f <Plug>(easymotion-s2)
 vmap f <Plug>(easymotion-s2)
 
+Plug 'scrooloose/nerdtree'
+nmap <leader>t :<C-u>NERDTreeToggle<CR>
+
 " rust-lang
 Plug 'rust-lang/rust.vim'
 Plug 'racer-rust/vim-racer'
@@ -157,8 +153,7 @@ let $RUST_SRC_PATH="/Users/ikenonaoto/repos/github.com/rust-lang/rust/src"
 au FileType rust nmap gd <Plug>(rust-def)
 au FileType rust nmap gs <Plug>(rust-def-split)
 au FileType rust nmap gv <Plug>(rust-def-vertical)
-au FileType rust nmap <leader>gd <Plug>(rust-doc)
-au FileType rust nmap <leader>r :<C-u>RustRun
+au FileType rust nmap <leader>gd <Plug>(rust-doc)<CR>
 
 call plug#end()
 
