@@ -148,11 +148,11 @@ vmap f <Plug>(easymotion-s2)
 Plug 'rust-lang/rust.vim'
 Plug 'racer-rust/vim-racer'
 let g:rustfmt_autosave = 1
-let g:rustfmt_command = '$HOME/.cargo/bin/rustfmt'
+let g:rustfmt_command = '$HOME/.cargo/bin/rustup run nightly rustfmt'
 set hidden
 let g:racer_cmd ='$HOME/.cargo/bin/racer'
 let g:syntastic_enable_rust_checker = 1
-let g:syntastic_rust_checkers = ['cargo', 'rustc']
+let g:syntastic_rust_checkers = ['cargo']
 let $RUST_SRC_PATH="/Users/ikenonaoto/repos/github.com/rust-lang/rust/src"
 au FileType rust nmap gd <Plug>(rust-def)
 au FileType rust nmap gs <Plug>(rust-def-split)

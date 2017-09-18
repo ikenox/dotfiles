@@ -268,3 +268,4 @@ function tmux_automatically_attach_session()
     fi
 }
 tmux_automatically_attach_session
+[[ -s /Users/ikenonaoto/.rsvm/rsvm.sh ]] && . /Users/ikenonaoto/.rsvm/rsvm.sh # This loads RSVM
