@@ -205,6 +205,10 @@ jupyter:
 	echo "jupyter contrib nbextension install --user\n"
 	echo "jupyter nbextension enable vim_binding/vim_binding\n"
 
+atom:
+	brew cask install atom
+	ln -si $(DOTFILES_ROOT)/.atom ~/.atom
+	apm install --packages-file $(DOTFILES_ROOT)/.atom/packages.txt
 
 # =========================================
 # helper
