@@ -1,2 +1,4 @@
+ex-mode@0.18.0
 file-icons@2.1.13
+vim-mode-plus@1.15.0
 
