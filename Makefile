@@ -206,8 +206,12 @@ jupyter:
 	echo "jupyter nbextension enable vim_binding/vim_binding\n"
 
 atom:
+	ln -si $(DOTFILES_ROOT)/.atom/keymap.cson ~/.atom/keymap.cson
+	ln -si $(DOTFILES_ROOT)/.atom/init.cofee ~/.atom/init.cofee
+	ln -si $(DOTFILES_ROOT)/.atom/styles.scss ~/.atom/styles.scss
+	ln -si $(DOTFILES_ROOT)/.atom/snippets.cson ~/.atom/snippets.cson
+	ln -si $(DOTFILES_ROOT)/.atom/config.cson ~/.atom/config.cson
 	brew cask install atom
-	ln -si $(DOTFILES_ROOT)/.atom ~/.atom
 	apm install --packages-file $(DOTFILES_ROOT)/.atom/packages.txt
 
 # =========================================

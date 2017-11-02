@@ -1,0 +1,5 @@
+"*":
+  "exception-reporting":
+    userId: "3d16b82b-27d4-4d25-97da-1c60e1a30deb"
+  "vim-mode-plus":
+    notifiedCoffeeScriptNoLongerSupportedToExtendVMP: true
