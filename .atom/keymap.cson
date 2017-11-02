@@ -1,2 +1,6 @@
 'atom-text-editor.vim-mode-plus:not(.normal-mode)':
     'j f': 'vim-mode-plus:activate-normal-mode'
+
+'atom-text-editor.vim-mode-plus:not(.insert-mode)':
+    'H': 'vim-mode-plus:move-to-beginning-of-line'
+    'L': 'vim-mode-plus:move-to-last-of-line'
