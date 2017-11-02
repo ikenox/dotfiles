@@ -14,14 +14,17 @@ nmap <Space> m
 
 " formatting code
 nnoremap == :action ReformatCode<CR>
+vnoremap = :<bs><bs><bs><bs><bs>action VimVisualSwapSelections<cr>:action ReformatCode<cr>
 
 " commentout
 nnoremap cc :action CommentByLineComment<CR>
-vnoremap cc :action CommentByBlockComment<CR>
+vnoremap cc :<bs><bs><bs><bs><bs>action VimVisualSwapSelections<cr>:action CommentByLineComment<cr>
 
 " rename
 nnoremap U :action FindUsages<CR>
 nnoremap R :action Refactorings.QuickListPopupAction<CR>
+
+nnoremap ' :action IntroduceVariable<CR>
 
 " open file
 
