@@ -1,6 +1,17 @@
 'atom-text-editor.vim-mode-plus:not(.normal-mode)':
-    'j f': 'vim-mode-plus:activate-normal-mode'
+  'j f': 'vim-mode-plus:activate-normal-mode'
 
 'atom-text-editor.vim-mode-plus:not(.insert-mode)':
-    'H': 'vim-mode-plus:move-to-beginning-of-line'
-    'L': 'vim-mode-plus:move-to-last-of-line'
+  'H': 'vim-mode-plus:move-to-first-character-of-line'
+  'L': 'vim-mode-plus:move-to-last-character-of-line'
+  ';': 'ex-mode:open'
+  's h': 'window:focus-pane-left'
+  's j': 'window:focus-pane-below'
+  's k': 'window:focus-pane-above'
+  's l': 'window:focus-pane-right'
+  's v': 'pane:split-right-and-copy-active-item'
+  's s': 'pane:split-down-and-copy-active-item'
+
+'atom-text-editor.vim-mode-plus.normal-mode':
+  'space e': 'fuzzy-finder:toggle-file-finder'
+  'space g': 'fuzzy-grep:toggle'
