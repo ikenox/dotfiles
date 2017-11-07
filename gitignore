@@ -9,3 +9,4 @@
 
 .vagrant
 .local.vimrc
+.local.*.vimrc
