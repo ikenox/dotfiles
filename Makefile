@@ -206,6 +206,7 @@ jupyter:
 	echo "jupyter nbextension enable vim_binding/vim_binding\n"
 
 atom:
+	mkdir ~/.atom
 	ln -si $(DOTFILES_ROOT)/.atom/keymap.cson ~/.atom/keymap.cson
 	ln -si $(DOTFILES_ROOT)/.atom/init.cofee ~/.atom/init.cofee
 	ln -si $(DOTFILES_ROOT)/.atom/styles.scss ~/.atom/styles.scss
