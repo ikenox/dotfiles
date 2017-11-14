@@ -11,9 +11,11 @@
   's l': 'window:focus-pane-right'
   's v': 'pane:split-right-and-copy-active-item'
   's s': 'pane:split-down-and-copy-active-item'
+  'j': 'keystroke g j'
+  'k': 'keystroke g k'
 
 'atom-text-editor.vim-mode-plus.normal-mode':
   'space e': 'fuzzy-finder:toggle-file-finder'
   'space g': 'fuzzy-grep:toggle'
-  'Y': 'keystroke v L y'
-  'D': 'keystroke v L d'
+  'Y': 'keystroke v L h y'
+  'D': 'keystroke v L h d'
