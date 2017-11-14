@@ -15,3 +15,5 @@
 'atom-text-editor.vim-mode-plus.normal-mode':
   'space e': 'fuzzy-finder:toggle-file-finder'
   'space g': 'fuzzy-grep:toggle'
+  'Y': 'keystroke v L y'
+  'D': 'keystroke v L d'

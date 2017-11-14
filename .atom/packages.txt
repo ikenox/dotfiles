@@ -2,5 +2,6 @@ atom-fuzzy-grep@0.16.0
 ex-mode@0.18.0
 file-icons@2.1.13
 fuzzy-finder@1.7.3
+keystroke@0.2.1
 vim-mode-plus@1.15.0
 
