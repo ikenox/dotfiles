@@ -1,4 +1,4 @@
-'atom-text-editor.vim-mode-plus:not(.normal-mode)':
+'atom-text-editor.vim-mode-plus.insert-mode':
   'j f': 'vim-mode-plus:activate-normal-mode'
 
 'atom-text-editor.vim-mode-plus:not(.insert-mode)':
