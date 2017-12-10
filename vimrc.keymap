@@ -1,9 +1,5 @@
 let mapleader = "\<Space>"
 
-"================================================================
-" Basic keymaps
-"================================================================
-" 
 nnoremap L $
 vnoremap L $
 nnoremap H ^
@@ -11,25 +7,19 @@ vnoremap H ^
 nnoremap Y v$y
 vnoremap Y $y
 
-"" insertモードを抜ける
 inoremap jf <ESC>
 
-" ノーマルモード時にセミコロンでコロンを代用
 noremap ; :
 noremap : ;
 
-"カーソルを表示行で移動
-"物理行移動は<C-n>,<C-p>
 nnoremap j gj
 nnoremap k gk
 nnoremap <Down> gj
 nnoremap <Up>   gk
 
-" not yank x
 nnoremap x "_x
 vnoremap x "_x
 
-" http://qiita.com/tekkoc/items/98adcadfa4bdc8b5a6ca
 nnoremap s <Nop>
 vnoremap s <Nop>
 nnoremap <Space> <Nop>
@@ -52,7 +42,6 @@ nnoremap st :<C-u>tabnew<CR>
 nnoremap sn gt
 nnoremap sp gT
 
-" arrow
 inoremap <C-h> <Left>
 inoremap <C-j> <Down>
 inoremap <C-k> <Up>
@@ -62,14 +51,11 @@ imap <ESC>OB <Down>
 imap <ESC>OC <Right>
 imap <ESC>OD <Left>
 
-" insert new line
 inoremap <C-o> <esc>o
 nnoremap <CR> o<Esc>
 
-"
 vnoremap <Cr> :<C-u>'<,'>s/ *, */,\r/g<Cr>:<C-u>noh<Cr>
 
-"
 nnoremap gh <C-o>
 nnoremap gl <C-i>
 

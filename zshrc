@@ -119,6 +119,7 @@ alias z='fasd_cd -d'     # cd, same functionality as j in autojump
 alias zz='fasd_cd -d -i' # cd with interactive selection
 
 alias p='ps ax | peco'
+alias gco='git checkout `git branch | peco | sed -e "s/\* //g" | awk "{print \$1}"`'
 
 ########################################
 # OS 別の設定
