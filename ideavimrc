@@ -4,6 +4,7 @@ set clipboard=unnamed,autoselect
 set surround
 set hlsearch
 set incsearch
+set ignorecase
 set smartcase
 
 nnoremap <Space>a :action GotoAction<CR>
