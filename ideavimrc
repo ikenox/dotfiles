@@ -9,7 +9,7 @@ set smartcase
 
 nnoremap <Space>a :action GotoAction<CR>
 nnoremap <Space>e :action SearchEverywhere<CR>
-nnoremap <Space>s :action FileStructurePopup<CR>
+"nnoremap <Space>s :action FileStructurePopup<CR>
 nnoremap <Space>g :action FindInPath<CR>
 
 nnoremap gd :action GotoDeclaration<CR>
