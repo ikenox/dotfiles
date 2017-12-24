@@ -8,6 +8,8 @@ set ignorecase
 set smartcase
 
 nnoremap <Space>a :action GotoAction<CR>
+vnoremap <Space>a :action GotoAction<CR>
+
 nnoremap <Space>e :action SearchEverywhere<CR>
 "nnoremap <Space>s :action FileStructurePopup<CR>
 nnoremap <Space>g :action FindInPath<CR>
