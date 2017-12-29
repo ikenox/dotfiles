@@ -36,3 +36,5 @@ vnoremap = :<bs><bs><bs><bs><bs>action VimVisualSwapSelections<cr>:action Reform
 
 nnoremap cc :action CommentByLineComment<CR>
 vnoremap cc :<bs><bs><bs><bs><bs>action VimVisualSwapSelections<cr>:action CommentByLineComment<cr>
+
+nnoremap <C-CR> :action ShowIntentionActions<CR>
