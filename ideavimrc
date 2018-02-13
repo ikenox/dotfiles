@@ -11,7 +11,7 @@ nnoremap <Space>a :action GotoAction<CR>
 vnoremap <Space>a :action GotoAction<CR>
 
 nnoremap <Space>e :action SearchEverywhere<CR>
-"nnoremap <Space>s :action FileStructurePopup<CR>
+nnoremap <Space>s :action FileStructurePopup<CR>
 nnoremap <Space>g :action FindInPath<CR>
 
 nnoremap gd :action GotoDeclaration<CR>
@@ -32,9 +32,9 @@ nnoremap <Space>P :action PasteMultiple<CR>
 nnoremap f :action AceAction<CR>
 
 nnoremap == :action ReformatCode<CR>
-vnoremap = :<bs><bs><bs><bs><bs>action VimVisualSwapSelections<cr>:action ReformatCode<cr>
+vnoremap == :action ReformatCode<CR>
 
 nnoremap cc :action CommentByLineComment<CR>
-vnoremap cc :<bs><bs><bs><bs><bs>action VimVisualSwapSelections<cr>:action CommentByLineComment<cr>
+vnoremap cc :action CommentByLineComment<CR>
 
 nnoremap <C-CR> :action ShowIntentionActions<CR>

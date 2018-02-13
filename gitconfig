@@ -1,6 +1,7 @@
 [user]
 	name = Naoto Ikeno
-	email = naoto.ikeno@dena.com
+	email = ikenox@gmail.com
+	useConfigOnly = true
 [alias]
 	co = checkout
 	st = status
