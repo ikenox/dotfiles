@@ -1,0 +1,5 @@
+{
+  "Keymap": {
+    "C-t": "peco.ToggleSelection"
+  }
+}

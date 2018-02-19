@@ -120,6 +120,7 @@ alias zz='fasd_cd -d -i' # cd with interactive selection
 
 alias p='ps ax | peco'
 alias gco='git checkout `git branch | peco | sed -e "s/\* //g" | awk "{print \$1}"`'
+alias gadd='peco-select-gitadd'
 
 ########################################
 # OS 別の設定
@@ -181,6 +182,18 @@ function peco-file() {
 zle -N peco-file
 bindkey '^,' peco-file
 
+function peco-select-gitadd() {
+    local SELECTED_FILE_TO_ADD="$(git status --porcelain | \
+                                  peco --query "$LBUFFER" | \
+                                  awk -F ' ' '{print $NF}')"
+    if [ -n "$SELECTED_FILE_TO_ADD" ]; then
+      BUFFER="git add $(echo "$SELECTED_FILE_TO_ADD" | tr '\n' ' ')"
+      CURSOR=$#BUFFER
+    fi
+    zle accept-line
+    # zle clear-screen
+}
+zle -N peco-select-gitadd
 
 ########################################
 ## Plugins

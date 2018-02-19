@@ -112,6 +112,7 @@ else
 	mv peco_linux_amd64/peco ~/bin/peco
 	rm -rf peco_linux_amd64.tar.gz peco_linux_amd64
 endif
+	ln -si $(DOTFILES_ROOT)/.peco ~/.peco
 
 # =========================================
 # tmux
