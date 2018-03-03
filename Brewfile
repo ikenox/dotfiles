@@ -1,9 +1,8 @@
 tap 'homebrew/brewdler'
 tap 'homebrew/bundle'
-tap 'homebrew/dupes'
+tap 'caskroom/cask'
 
 cask 'alfred'
-cask 'skim'
 cask 'iterm2'
 cask 'caffeine'
 cask 'slack'
