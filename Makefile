@@ -15,6 +15,11 @@ brew:
 ifeq ($(OS),Darwin)
 	# install homebrew
 	./brew.sh
+else
+endif
+
+brew-packages:
+ifeq ($(OS),Darwin)
 	# install packages
 	brew tap homebrew/bundle
 	brew bundle
