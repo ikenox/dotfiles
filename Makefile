@@ -44,7 +44,7 @@ else
 	rm -rf vim-7.4.tar.bz2 vim74
 endif
 	# plugin manager
-	curl -fLo $@ --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+	curl -fLo ~/.vim/autoload/plug.vim --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
 	# config
 	ln -si $(DOTFILES_ROOT)/vimrc ~/.vimrc
 	ln -si $(DOTFILES_ROOT)/vimrc.keymap ~/.vimrc.keymap
@@ -94,7 +94,7 @@ endif
 # zsh
 # =========================================
 
-zsh: peco
+zsh: peco tmux
 	# install zsh
 ifeq ($(OS),Darwin)
 	brew install zsh
