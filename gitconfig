@@ -15,4 +15,5 @@
 [push]
 	default = simple
 [ghq]
+    vcs = git
     root = ~/repos
