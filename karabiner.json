@@ -8,8 +8,10 @@
         {
             "complex_modifications": {
                 "parameters": {
+                    "basic.simultaneous_threshold_milliseconds": 50,
                     "basic.to_delayed_action_delay_milliseconds": 500,
-                    "basic.to_if_alone_timeout_milliseconds": 1000
+                    "basic.to_if_alone_timeout_milliseconds": 1000,
+                    "basic.to_if_held_down_threshold_milliseconds": 500
                 },
                 "rules": [
                     {
@@ -148,14 +150,21 @@
                         ]
                     },
                     {
-                        "description": "Change Control+h/j/k/l to Arrows",
+                        "description": "Vi Mode [left_control + hjkl]",
                         "manipulators": [
                             {
                                 "from": {
                                     "key_code": "h",
                                     "modifiers": {
                                         "mandatory": [
-                                            "left_control"
+                                            "control"
+                                        ],
+                                        "optional": [
+                                            "caps_lock",
+                                            "command",
+                                            "option",
+                                            "shift",
+                                            "fn"
                                         ]
                                     }
                                 },
@@ -171,7 +180,14 @@
                                     "key_code": "j",
                                     "modifiers": {
                                         "mandatory": [
-                                            "left_control"
+                                            "control"
+                                        ],
+                                        "optional": [
+                                            "caps_lock",
+                                            "command",
+                                            "option",
+                                            "shift",
+                                            "fn"
                                         ]
                                     }
                                 },
@@ -187,7 +203,14 @@
                                     "key_code": "k",
                                     "modifiers": {
                                         "mandatory": [
-                                            "left_control"
+                                            "control"
+                                        ],
+                                        "optional": [
+                                            "caps_lock",
+                                            "command",
+                                            "option",
+                                            "shift",
+                                            "fn"
                                         ]
                                     }
                                 },
@@ -203,7 +226,14 @@
                                     "key_code": "l",
                                     "modifiers": {
                                         "mandatory": [
-                                            "left_control"
+                                            "control"
+                                        ],
+                                        "optional": [
+                                            "caps_lock",
+                                            "command",
+                                            "option",
+                                            "shift",
+                                            "fn"
                                         ]
                                     }
                                 },

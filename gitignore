@@ -6,6 +6,7 @@
 .svn
 *.zip
 .agignore
+*.iml
 
 .vagrant
 .local.vimrc
