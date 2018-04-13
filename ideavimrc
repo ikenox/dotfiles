@@ -29,8 +29,6 @@ nnoremap <C-I> :action QuickImplementations<CR>
 nnoremap <Space>p :action PasteMultiple<CR>
 nnoremap <Space>P :action PasteMultiple<CR>
 
-nnoremap f :action AceAction<CR>
-
 nnoremap == :action ReformatCode<CR>
 vnoremap == :action ReformatCode<CR>
 

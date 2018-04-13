@@ -3,9 +3,7 @@ OS := $(shell uname)
 
 all: init
 
-init: essentials tools
-
-essentials: brew git zsh vim
+essentials: brew brew-packages git zsh vim tools
 
 # =========================================
 # homebrew
