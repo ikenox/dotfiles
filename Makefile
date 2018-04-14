@@ -172,7 +172,6 @@ rust:
 	ghq get https://github.com/rust-lang/rust
 
 pyenv:
-	brew install python
 	brew install pyenv
 	brew install pyenv-virtualenv
 	ln -si $(DOTFILES_ROOT)/zshrc.module.pyenv ~/.zshrc.module.pyenv
