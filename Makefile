@@ -222,7 +222,7 @@ atom:
 gcp:
 	brew cask install google-cloud-sdk
 	gcloud components install app-engine-go
-	echo "export PATH=/usr/local/Caskroom/google-cloud-sdk/latest/google-cloud-sdk/platform/google_appengine:$PATH" > ~/
+	echo "export PATH=/usr/local/Caskroom/google-cloud-sdk/latest/google-cloud-sdk/platform/google_appengine:$PATH" > ~/.zshrc.local
 	echo "notice: please rewrite exported PATH to your environment suitable."
 
 # =========================================
