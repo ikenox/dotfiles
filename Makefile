@@ -218,6 +218,11 @@ atom:
 	brew cask install atom
 	apm install --packages-file $(DOTFILES_ROOT)/.atom/packages.txt
 
+goenv:
+	export GOENVTARGET=~/bin
+	curl -L https://bitbucket.org/ymotongpoo/goenv/raw/master/shellscripts/fast-install.sh | zsh
+	ln -si $(DOTFILES_ROOT)/zshrc.module.goenv ~/.zshrc.module.goenv
+
 # =========================================
 # helper
 # =========================================
