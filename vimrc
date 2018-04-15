@@ -154,6 +154,9 @@ au FileType rust nmap gs <Plug>(rust-def-split)
 au FileType rust nmap gv <Plug>(rust-def-vertical)
 au FileType rust nmap <leader>gd <Plug>(rust-doc)<CR>
 
+" go
+Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries' }
+
 call plug#end()
 
 call unite#custom#source('file_rec/async', 'ignore_pattern', s:unite_ignore_patterns)
