@@ -78,6 +78,8 @@ let g:neocomplcache_enable_smart_case = 1
 " Set minimum syntax keyword length.
 let g:neocomplcache_min_syntax_length = 2
 let g:neocomplcache_lock_buffer_name_pattern = '\*ku\*'
+let g:neocomplcache_enable_auto_select = 1
+inoremap <expr><CR>  pumvisible() ? neocomplcache#close_popup() : "<CR>"
 
 "
 Plug 'Shougo/vimproc.vim', {'do' : 'make'}
@@ -152,10 +154,15 @@ let $RUST_SRC_PATH="/Users/ikenonaoto/repos/github.com/rust-lang/rust/src"
 au FileType rust nmap gd <Plug>(rust-def)
 au FileType rust nmap gs <Plug>(rust-def-split)
 au FileType rust nmap gv <Plug>(rust-def-vertical)
-au FileType rust nmap <leader>gd <Plug>(rust-doc)<CR>
+au filetype rust nmap <leader>gd <plug>(rust-doc)<cr>
 
 " go
 Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries' }
+let g:go_metalinter_autosave = 1
+let g:go_fmt_command = "goimports"
+au FileType go nnoremap <leader>s :<C-u>GoDecls<CR>
+
+Plug 'cohama/lexima.vim'
 
 call plug#end()
 
