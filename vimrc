@@ -67,6 +67,12 @@ let s:unite_ignore_patterns=
 " search in file
 nnoremap <silent> <Leader>s :<C-u>Unite -buffer-name=search line<CR>
 
+" lexima
+Plug 'cohama/lexima.vim'
+let g:lexima_no_default_rules = 1
+autocmd BufReadPost * call lexima#set_default_rules()
+autocmd BufReadPost * call lexima#insmode#map_hook('before', '<CR>', '')
+
 " ========== neocomplcache ==========
 Plug 'Shougo/neocomplcache'
 " Disable AutoComplPop.
@@ -161,8 +167,6 @@ Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries' }
 let g:go_metalinter_autosave = 1
 let g:go_fmt_command = "goimports"
 au FileType go nnoremap <leader>s :<C-u>GoDecls<CR>
-
-Plug 'cohama/lexima.vim'
 
 call plug#end()
 
