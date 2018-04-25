@@ -172,7 +172,6 @@ rust:
 	ghq get https://github.com/rust-lang/rust
 
 pyenv:
-	brew install python
 	brew install pyenv
 	brew install pyenv-virtualenv
 	ln -si $(DOTFILES_ROOT)/zshrc.module.pyenv ~/.zshrc.module.pyenv
@@ -218,6 +217,11 @@ atom:
 	ln -si $(DOTFILES_ROOT)/.atom/config.cson ~/.atom/config.cson
 	brew cask install atom
 	apm install --packages-file $(DOTFILES_ROOT)/.atom/packages.txt
+
+goenv:
+	export GOENVTARGET=~/bin
+	curl -L https://bitbucket.org/ymotongpoo/goenv/raw/master/shellscripts/fast-install.sh | zsh
+	ln -si $(DOTFILES_ROOT)/zshrc.module.goenv ~/.zshrc.module.goenv
 
 # =========================================
 # helper

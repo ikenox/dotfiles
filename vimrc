@@ -67,6 +67,12 @@ let s:unite_ignore_patterns=
 " search in file
 nnoremap <silent> <Leader>s :<C-u>Unite -buffer-name=search line<CR>
 
+" lexima
+Plug 'cohama/lexima.vim'
+let g:lexima_no_default_rules = 1
+autocmd BufReadPost * call lexima#set_default_rules()
+autocmd BufReadPost * call lexima#insmode#map_hook('before', '<CR>', '')
+
 " ========== neocomplcache ==========
 Plug 'Shougo/neocomplcache'
 " Disable AutoComplPop.
@@ -78,6 +84,8 @@ let g:neocomplcache_enable_smart_case = 1
 " Set minimum syntax keyword length.
 let g:neocomplcache_min_syntax_length = 2
 let g:neocomplcache_lock_buffer_name_pattern = '\*ku\*'
+let g:neocomplcache_enable_auto_select = 1
+inoremap <expr><CR>  pumvisible() ? neocomplcache#close_popup() : "<CR>"
 
 "
 Plug 'Shougo/vimproc.vim', {'do' : 'make'}
@@ -152,7 +160,13 @@ let $RUST_SRC_PATH="/Users/ikenonaoto/repos/github.com/rust-lang/rust/src"
 au FileType rust nmap gd <Plug>(rust-def)
 au FileType rust nmap gs <Plug>(rust-def-split)
 au FileType rust nmap gv <Plug>(rust-def-vertical)
-au FileType rust nmap <leader>gd <Plug>(rust-doc)<CR>
+au filetype rust nmap <leader>gd <plug>(rust-doc)<cr>
+
+" go
+Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries' }
+let g:go_metalinter_autosave = 1
+let g:go_fmt_command = "goimports"
+au FileType go nnoremap <leader>s :<C-u>GoDecls<CR>
 
 call plug#end()
 
