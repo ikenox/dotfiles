@@ -167,6 +167,7 @@ Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries' }
 let g:go_metalinter_autosave = 1
 let g:go_fmt_command = "goimports"
 au FileType go nnoremap <leader>s :<C-u>GoDecls<CR>
+let g:syntastic_go_checkers = "gofmt"
 
 call plug#end()
 
