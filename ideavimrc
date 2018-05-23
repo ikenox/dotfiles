@@ -21,6 +21,8 @@ nnoremap mg :action FindInPath<CR>
 nnoremap gd :action GotoDeclaration<CR>
 nnoremap gs :action GotoSuperMethod<CR>
 
+nnoremap gb :action JumpToLastChange<CR>
+
 nnoremap U :action FindUsages<CR>
 nnoremap R :action Refactorings.QuickListPopupAction<CR>
 
