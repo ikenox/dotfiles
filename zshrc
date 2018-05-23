@@ -7,6 +7,8 @@ export GOPATH=$HOME/go
 
 export PATH=~/bin:~/go/bin:/usr/local/bin:/usr/bin:/bin:/sbin:/usr/sbin
 
+eval "$(direnv hook zsh)"
+
 #######################################
 # Settings
 

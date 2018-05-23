@@ -11,3 +11,5 @@
 .vagrant
 .local.vimrc
 .local.*.vimrc
+
+.pause
