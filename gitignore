@@ -13,3 +13,5 @@
 .local.*.vimrc
 
 .pause
+
+.envrc
