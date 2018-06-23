@@ -20,7 +20,7 @@ nnoremap mg :action FindInPath<CR>
 
 nnoremap gd :action GotoDeclaration<CR>
 nnoremap gs :action GotoSuperMethod<CR>
-nnoremap gi :action QuickImplementations<CR>
+nnoremap gi :action GotoImplementation<CR>
 
 nnoremap gb :action JumpToLastChange<CR>
 
@@ -31,7 +31,7 @@ nnoremap gh :action Back<CR>
 nnoremap gl :action Forward<CR>
 
 inoremap <C-n> <C-o>:action InsertLiveTemplate<CR>
-nnoremap <C-I> :action QuickImplementations<CR>
+nnoremap <C-I> :action QuickJavaDoc<CR>
 
 nnoremap mp :action PasteMultiple<CR>
 nnoremap mP :action PasteMultiple<CR>
@@ -43,5 +43,3 @@ nnoremap cc :action CommentByLineComment<CR>
 vnoremap cc :action CommentByLineComment<CR>
 
 nnoremap <C-CR> :action ShowIntentionActions<CR>
-
-nnoremap <C-p> :action QuickJavaDoc<CR>
