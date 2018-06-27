@@ -197,6 +197,12 @@ karabiner-elements:
 	mkdir -p ~/.config/karabiner
 	ln -si $(DOTFILES_ROOT)/karabiner.json ~/.config/karabiner/karabiner.json
 
+to-karabiner-json:
+	cp $(DOTFILES_ROOT)/karabiner.json ~/.config/karabiner/karabiner.json
+
+from-karabiner-json:
+	cp ~/.config/karabiner/karabiner.json $(DOTFILES_ROOT)/karabiner.json
+
 jupyter:
 	ln -si $(DOTFILES_ROOT)/jupyter_notebook_config.py ~/.jupyter/jupyter_notebook_config.py
 	# vim
