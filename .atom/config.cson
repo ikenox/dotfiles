@@ -7,6 +7,7 @@
     userId: "3d16b82b-27d4-4d25-97da-1c60e1a30deb"
   "markdown-preview":
     useGitHubStyle: true
-  "vim-mode-plus": {}
+  "vim-mode-plus":
+    notifiedCoffeeScriptNoLongerSupportedToExtendVMP: true
   welcome:
     showOnStartup: false
