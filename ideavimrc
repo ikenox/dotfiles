@@ -7,7 +7,7 @@ set incsearch
 set ignorecase
 set smartcase
 
-" <Space>を使ったキーマップがうまく動かないバグがあるため、
+" <Space>をleaderに使ったのキーマップの挙動がおかしいバグがあるため、
 " <Space>をmにマップするという応急処置で間接的に<Space>を使っている。これだと何故か動く
 nmap <Space> m
 
@@ -20,6 +20,7 @@ nnoremap mg :action FindInPath<CR>
 
 nnoremap gd :action GotoDeclaration<CR>
 nnoremap gs :action GotoSuperMethod<CR>
+nnoremap gi :action GotoImplementation<CR>
 
 nnoremap gb :action JumpToLastChange<CR>
 
@@ -30,7 +31,7 @@ nnoremap gh :action Back<CR>
 nnoremap gl :action Forward<CR>
 
 inoremap <C-n> <C-o>:action InsertLiveTemplate<CR>
-nnoremap <C-I> :action QuickImplementations<CR>
+nnoremap <C-I> :action QuickJavaDoc<CR>
 
 nnoremap mp :action PasteMultiple<CR>
 nnoremap mP :action PasteMultiple<CR>
