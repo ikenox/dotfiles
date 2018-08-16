@@ -100,7 +100,7 @@ map g/ <Plug>(incsearch-stay)
 Plug 'plasticboy/vim-markdown'
 let g:vim_markdown_folding_disabled = 1
 Plug 'tyru/open-browser.vim'
-Plug 'kannokanno/previm'
+Plug 'kazuph/previm', 'feature/add-plantuml-plugin'
 let g:previm_custom_css_path = '~/dotfiles/markdown_custom.css'
 augroup PrevimSettings
     autocmd!
