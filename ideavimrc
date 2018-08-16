@@ -25,7 +25,7 @@ nnoremap gi :action GotoImplementation<CR>
 nnoremap gb :action JumpToLastChange<CR>
 
 nnoremap U :action FindUsages<CR>
-nnoremap R :action Refactorings.QuickListPopupAction<CR>
+nnoremap R :action RenameElement<CR>
 
 nnoremap gh :action Back<CR>
 nnoremap gl :action Forward<CR>
