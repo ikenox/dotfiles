@@ -203,10 +203,7 @@ from-karabiner-json:
 	cp ~/.config/karabiner/karabiner.json $(DOTFILES_ROOT)/karabiner.json
 
 jupyter:
-	ln -si $(DOTFILES_ROOT)/jupyter_notebook_config.py ~/.jupyter/jupyter_notebook_config.py
-	# vim
-	mkdir -p $(jupyter --data-dir)/nbextensions
-	cd $(jupyter --data-dir)/nbextensions; git clone https://github.com/lambdalisue/jupyter-vim-binding vim_binding
+	mkdir -p ~/.jupyter/custom
 	ln -si $(DOTFILES_ROOT)/custom.js ~/.jupyter/custom/custom.js
 	echo "notice: Please exec following commands in your python environment\n"
 	echo "pip install jupyter_contrib_nbextensions\n"
