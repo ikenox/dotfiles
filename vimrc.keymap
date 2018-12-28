@@ -1,4 +1,4 @@
-let mapleader = "\<Space>"
+let mapleader = ","
 
 nnoremap L $
 vnoremap L $
@@ -22,8 +22,6 @@ vnoremap x "_x
 
 nnoremap s <Nop>
 vnoremap s <Nop>
-nnoremap <Space> <Nop>
-vnoremap <Space> <Nop>
 
 nnoremap sj <C-w>j
 nnoremap sk <C-w>k

@@ -7,16 +7,12 @@ set incsearch
 set ignorecase
 set smartcase
 
-" <Space>をleaderに使ったのキーマップの挙動がおかしいバグがあるため、
-" <Space>をmにマップするという応急処置で間接的に<Space>を使っている。これだと何故か動く
-nmap <Space> m
+nnoremap ,a :action GotoAction<CR>
+vnoremap ,a :action GotoAction<CR>
 
-nnoremap ma :action GotoAction<CR>
-vnoremap ma :action GotoAction<CR>
-
-nnoremap me :action SearchEverywhere<CR>
-nnoremap ms :action FileStructurePopup<CR>
-nnoremap mg :action FindInPath<CR>
+nnoremap ,e :action SearchEverywhere<CR>
+nnoremap ,s :action FileStructurePopup<CR>
+nnoremap ,g :action FindInPath<CR>
 
 nnoremap gd :action GotoDeclaration<CR>
 nnoremap gs :action GotoSuperMethod<CR>
@@ -34,8 +30,8 @@ nnoremap gl :action Forward<CR>
 inoremap <C-n> <C-o>:action InsertLiveTemplate<CR>
 nnoremap <C-I> :action QuickJavaDoc<CR>
 
-nnoremap mp :action PasteMultiple<CR>
-nnoremap mP :action PasteMultiple<CR>
+nnoremap ,p :action PasteMultiple<CR>
+nnoremap ,P :action PasteMultiple<CR>
 
 nnoremap == :action ReformatCode<CR>
 vnoremap == :action ReformatCode<CR>
@@ -43,4 +39,4 @@ vnoremap == :action ReformatCode<CR>
 nnoremap cc :action CommentByLineComment<CR>
 vnoremap cc :action CommentByLineComment<CR>
 
-nnoremap <C-CR> :action ShowIntentionActions<CR>
+nnoremap <C-Q> :action ShowIntentionActions<CR>
