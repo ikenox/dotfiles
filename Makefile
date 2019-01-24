@@ -84,7 +84,7 @@ ifeq ($(OS),Darwin)
 else
 	sudo yum -y install git
 endif
-	ln -si $(DOTFILES_ROOT)/gitconfig ~/.gitconfig
+	cp $(DOTFILES_ROOT)/gitconfig ~/.gitconfig
 	ln -si $(DOTFILES_ROOT)/gitignore ~/.gitignore
 
 # =========================================
