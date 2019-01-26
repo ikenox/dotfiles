@@ -78,12 +78,14 @@ endif
 # git
 # =========================================
 
-git:
+git: gitconfig
 ifeq ($(OS),Darwin)
 	brew install git
 else
 	sudo yum -y install git
 endif
+
+gitconfig:
 	cp $(DOTFILES_ROOT)/gitconfig.template ~/.gitconfig
 	ln -si $(DOTFILES_ROOT)/gitignore ~/.gitignore
 
