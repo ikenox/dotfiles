@@ -39,4 +39,4 @@ vnoremap == :action ReformatCode<CR>
 nnoremap cc :action CommentByLineComment<CR>
 vnoremap cc :action CommentByLineComment<CR>
 
-nnoremap <C-Q> :action ShowIntentionActions<CR>
+nnoremap Q :action ShowIntentionActions<CR>
