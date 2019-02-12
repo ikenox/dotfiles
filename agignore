@@ -19,3 +19,7 @@ node_modules
 *.pdf
 *.jpg
 *.gz
+
+*.lst
+*.d
+*.map

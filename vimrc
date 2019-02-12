@@ -12,7 +12,6 @@ call plug#begin()
 Plug 'tpope/vim-surround'
 Plug 'w0ng/vim-hybrid'
 Plug 'itchyny/lightline.vim'
-Plug 'thinca/vim-localrc'
 
 " ========== Unite.vim ==========
 Plug 'Shougo/unite.vim'
@@ -98,18 +97,14 @@ map g/ <Plug>(incsearch-stay)
 
 "
 Plug 'plasticboy/vim-markdown'
+Plug 'previm/previm'
 let g:vim_markdown_folding_disabled = 1
 Plug 'tyru/open-browser.vim'
-Plug 'kazuph/previm', 'feature/add-plantuml-plugin'
 let g:previm_custom_css_path = '~/dotfiles/markdown_custom.css'
 augroup PrevimSettings
     autocmd!
     autocmd BufNewFile,BufRead *.{md,mdwn,mkd,mkdn,mark*} set filetype=markdown
 augroup END
-nnoremap [previm] <Nop>
-nmap <Space>p [previm]
-nnoremap <silent> [previm]o :<C-u>PrevimOpen<CR>
-nnoremap <silent> [previm]r :call previm#refresh()<CR>
 
 " fzf
 Plug 'junegunn/fzf'
@@ -119,13 +114,6 @@ nnoremap <silent> <Leader>e  :<C-u>Files<CR>
 
 Plug 'Shougo/neomru.vim'
 nnoremap <silent> <Leader>b :<C-u>Unite buffer file_mru<CR>
-
-Plug 'tpope/vim-fugitive'
-
-Plug 'mattn/emmet-vim'
-
-Plug 'hail2u/vim-css3-syntax'
-Plug 'pangloss/vim-javascript'
 
 Plug 'jszakmeister/vim-togglecursor'
 
@@ -138,36 +126,11 @@ let g:syntastic_auto_loc_list = 1
 let g:syntastic_check_on_open = 1
 let g:syntastic_check_on_wq = 0
 
-let g:syntastic_enable_perl_checker = 1
-let g:syntastic_perl_checkers = ['perl', 'podchecker']
-
 Plug 'easymotion/vim-easymotion'
 nmap f <Plug>(easymotion-s2)
 vmap f <Plug>(easymotion-s2)
 
 Plug 'scrooloose/nerdtree'
-
-" rust-lang
-Plug 'rust-lang/rust.vim'
-Plug 'racer-rust/vim-racer'
-let g:rustfmt_autosave = 1
-let g:rustfmt_command = '$HOME/.cargo/bin/rustup run nightly rustfmt'
-set hidden
-let g:racer_cmd ='$HOME/.cargo/bin/racer'
-let g:syntastic_enable_rust_checker = 1
-let g:syntastic_rust_checkers = ['cargo']
-let $RUST_SRC_PATH="/Users/ikenonaoto/repos/github.com/rust-lang/rust/src"
-au FileType rust nmap gd <Plug>(rust-def)
-au FileType rust nmap gs <Plug>(rust-def-split)
-au FileType rust nmap gv <Plug>(rust-def-vertical)
-au filetype rust nmap <leader>gd <plug>(rust-doc)<cr>
-
-" go
-Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries' }
-let g:go_metalinter_autosave = 1
-let g:go_fmt_command = "goimports"
-au FileType go nnoremap <leader>s :<C-u>GoDecls<CR>
-let g:syntastic_go_checkers = "gofmt"
 
 call plug#end()
 
