@@ -560,7 +560,7 @@
                         ]
                     },
                     {
-                        "description": "ctrl + w -> delete one word",
+                        "description": "Bash style Emacs key bindings (rev 2)",
                         "manipulators": [
                             {
                                 "conditions": [
