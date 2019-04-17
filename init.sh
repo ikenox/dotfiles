@@ -30,7 +30,7 @@ then
   brew install ghq
 fi
 
-which ~/.dotfiles >/dev/null 2>&1
+ls ~/.dotfiles >/dev/null 2>&1
 if [ $? -ne 0 ];
 then
   # clone repo to temporary directory
