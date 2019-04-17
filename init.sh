@@ -47,6 +47,3 @@ then
   # update symlink
   ln -sf $DOTFILES_DIR ~/.dotfiles
 fi
-
-cd ~/.dotfiles
-make provision
