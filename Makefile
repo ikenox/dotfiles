@@ -233,6 +233,3 @@ goenv:
 
 .workspace:
 	mkdir -p ~/.workspace
-
-provision:
-	echo "hello"
