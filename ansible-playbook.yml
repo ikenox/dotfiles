@@ -28,17 +28,15 @@
         - google-japanese-ime
     - name: Install Homebrew Packages
       homebrew:
-        name: "{{ item }}"
+        name:
+          - peco
+          - fzf
+          - ag
+          - mas
         state: "present"
-      with_items:
-        - peco
-        - fzf
-        - ag
-        - mas
     - name:
-      command: "mas install {{ item }}"
-      args:
-        creates: /usr/local/Cellar/
+      shell: "mas install {{ item }}"
+      when: "mas list | grep '^{{ item }} ' | list | length == 0"
       with_items:
         - 409183694,  # keynote
         - 409203825,  # Numbers
