@@ -184,6 +184,10 @@ rbenv:
 	brew install rbenv-gemset
 	ln -si $(DOTFILES_ROOT)/zshrc.module.rbenv ~/.zshrc.module.rbenv
 
+jenv:
+	brew install jenv
+	ln -si $(DOTFILES_ROOT)/zshrc.module.env ~/.zshrc.module.jenv
+
 docker:
 	brew cask install virtualbox
 	brew install docker
