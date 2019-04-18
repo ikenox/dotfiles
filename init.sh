@@ -50,7 +50,7 @@ then
   GHQ_ROOT_DIR="$(ghq root)"
   DOTFILES_DIR=$GHQ_ROOT_DIR/$DOTFILES_REPO
   mkdir -p $DOTFILES_DIR
-  mv /tmp/dotfiles $DOTFILES_DIR
+  mv -T /tmp/dotfiles $DOTFILES_DIR
   # update symlink
   ln -sf $DOTFILES_DIR ~/.dotfiles
 fi
