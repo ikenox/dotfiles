@@ -1,0 +1,50 @@
+---
+- name: Setup
+  # https://docs.ansible.com/ansible/latest/user_guide/playbooks_delegation.html#local-playbooks
+  hosts: 127.0.0.1
+  connection: local
+  tasks:
+    - name: Update Homebrew
+      homebrew:
+        update_homebrew: yes
+    - name: Homebrew tap
+      homebrew_tap:
+        name: "{{ item }}"
+        state: "present"
+      with_items:
+        - caskroom/cask
+    - name: Install Homebrew Cask Packages
+      homebrew_cask:
+        name: "{{ item }}"
+        state: "present"
+        install_options: "appdir=~/Applications"
+        accept_external_apps: yes
+      with_items:
+        - slack
+        - karabiner-elements
+        - alfred
+        - iterm2
+        - caffeine
+        - google-japanese-ime
+    - name: Install Homebrew Packages
+      homebrew:
+        name: "{{ item }}"
+        state: "present"
+      with_items:
+        - peco
+        - fzf
+        - ag
+        - mas
+    - name:
+      command: "mas install {{ item }}"
+      args:
+        creates: /usr/local/Cellar/
+      with_items:
+        - 409183694,  # keynote
+        - 409203825,  # Numbers
+        - 409201541,  # Pages
+        - 539883307,  # LINE
+        - 409183694,  # Keynote
+        - 485812721,  # TweetDeck
+        - 668208984,  # GIPHY CAPTURE
+        - 405399194,  # Kindle
