@@ -157,53 +157,6 @@
                         ]
                     },
                     {
-                        "description": "shiftキーを単体で押したときに、英数・かなキーを送信する。（左は英数、右はかな）",
-                        "manipulators": [
-                            {
-                                "from": {
-                                    "key_code": "left_shift",
-                                    "modifiers": {
-                                        "optional": [
-                                            "any"
-                                        ]
-                                    }
-                                },
-                                "to": [
-                                    {
-                                        "key_code": "left_shift"
-                                    }
-                                ],
-                                "to_if_alone": [
-                                    {
-                                        "key_code": "japanese_eisuu"
-                                    }
-                                ],
-                                "type": "basic"
-                            },
-                            {
-                                "from": {
-                                    "key_code": "right_shift",
-                                    "modifiers": {
-                                        "optional": [
-                                            "any"
-                                        ]
-                                    }
-                                },
-                                "to": [
-                                    {
-                                        "key_code": "right_shift"
-                                    }
-                                ],
-                                "to_if_alone": [
-                                    {
-                                        "key_code": "japanese_kana"
-                                    }
-                                ],
-                                "type": "basic"
-                            }
-                        ]
-                    },
-                    {
                         "description": "control+minus -> escape",
                         "manipulators": [
                             {
@@ -607,7 +560,7 @@
                         ]
                     },
                     {
-                        "description": "ctrl + ⌫ | Delete one word",
+                        "description": "Bash style Emacs key bindings (rev 2)",
                         "manipulators": [
                             {
                                 "conditions": [
@@ -619,6 +572,7 @@
                                             "^org\\.pqrs\\.unknownapp.conkeror$",
                                             "^com\\.microsoft\\.rdc$",
                                             "^com\\.microsoft\\.rdc\\.mac$",
+                                            "^com\\.microsoft\\.rdc\\.macos$",
                                             "^com\\.microsoft\\.rdc\\.osx\\.beta$",
                                             "^net\\.sf\\.cord$",
                                             "^com\\.thinomenon\\.RemoteDesktopConnection$",
@@ -626,13 +580,17 @@
                                             "^com\\.nulana\\.remotixmac$",
                                             "^com\\.p5sys\\.jump\\.mac\\.viewer$",
                                             "^com\\.p5sys\\.jump\\.mac\\.viewer\\.web$",
+                                            "^com\\.teamviewer\\.TeamViewer$",
                                             "^com\\.vmware\\.horizon$",
                                             "^com\\.2X\\.Client\\.Mac$",
                                             "^com\\.apple\\.Terminal$",
                                             "^com\\.googlecode\\.iterm2$",
                                             "^co\\.zeit\\.hyperterm$",
                                             "^co\\.zeit\\.hyper$",
+                                            "^io\\.alacritty$",
+                                            "^net\\.kovidgoyal\\.kitty$",
                                             "^org\\.vim\\.",
+                                            "^com\\.qvacua\\.VimR$",
                                             "^com\\.vmware\\.fusion$",
                                             "^com\\.vmware\\.horizon$",
                                             "^com\\.vmware\\.view$",
@@ -640,12 +598,15 @@
                                             "^com\\.parallels\\.vm$",
                                             "^com\\.parallels\\.desktop\\.console$",
                                             "^org\\.virtualbox\\.app\\.VirtualBoxVM$",
+                                            "^com\\.citrix\\.XenAppViewer$",
                                             "^com\\.vmware\\.proxyApp\\.",
                                             "^com\\.parallels\\.winapp\\.",
                                             "^org\\.x\\.X11$",
                                             "^com\\.apple\\.x11$",
                                             "^org\\.macosforge\\.xquartz\\.X11$",
-                                            "^org\\.macports\\.X11$"
+                                            "^org\\.macports\\.X11$",
+                                            "^com\\.sublimetext\\.",
+                                            "^com\\.microsoft\\.VSCode$"
                                         ],
                                         "type": "frontmost_application_unless"
                                     }
@@ -654,7 +615,10 @@
                                     "key_code": "w",
                                     "modifiers": {
                                         "mandatory": [
-                                            "left_control"
+                                            "control"
+                                        ],
+                                        "optional": [
+                                            "caps_lock"
                                         ]
                                     }
                                 },
