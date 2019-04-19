@@ -9,20 +9,6 @@ then
   /usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
 fi
 
-which python3 >/dev/null 2>&1
-if [ $? -ne 0 ];
-then
-  echo "install python3"
-  brew install python3
-fi
-
-which ansible >/dev/null 2>&1
-if [ $? -ne 0 ];
-then
-  echo "install ansible"
-  brew install ansible
-fi
-
 which git >/dev/null 2>&1
 if [ $? -ne 0 ];
 then
