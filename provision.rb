@@ -1,31 +1,43 @@
 #!/usr/bin/env ruby
 
-DOTFILES_REPO = "github.com/ikenox/dotfiles"
 # todo debug mode
+# todo dry-run mode
 
 def run
   task :install_homebrew, do_if: has_err("which brew") do
     sh '/usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"'
   end
-
-  task :git, do_if: has_err("which git") do sh "brew install git" end
-  task :ghq, do_if: has_err("which ghq") do sh "brew install ghq" end
-
-  task :put_dotfiles_repo, do_if: not_exist("~/.dotfiles") do
-    task :tmp_dotfiles_dir, do_if: not_exist("/tmp/dotfiles") do
-      sh "git clone https://#{DOTFILES_REPO} /tmp/dotfiles"
-    end
-    task :create_tmp_symlink, do_if: not_exist("~/.dotfiles") do
-      sh 'ln -si /tmp/dotfiles ~/.dotfiles'
-    end
-
+  task :install_git, do_if: has_err("which git") do
+    sh "brew install git"
+  end
+  task :install_ghq, do_if: has_err("which ghq") do
+    sh "brew install ghq"
   end
 
-    # task :git, do_if: -> {
-    #   has_err("which git")
-    # } do
-    #   puts "helloooo"
-    # end
+  task :put_dotfiles_repo, do_if: not_exist("~/.dotfiles") do
+    # todo read ghq root dir from gitconfig
+    task :git_clone_dotfiles, do_if: not_exist("~/repo/github.com/ikenox/dotfiles") do
+      sh "git clone git@github.com:ikenox/dotfiles.git ~/repo/github.com/ikenox/dotfiles"
+    end
+    task :symlink_dotfiles_dir do
+      sh "ln -s ~/.dotfiles"
+    end
+  end
+
+  task :hoge do
+    task :fuga do
+
+    end
+    task :foo do
+
+    end
+  end
+
+  # task :git, do_if: -> {
+  #   has_err("which git")
+  # } do
+  #   puts "helloooo"
+  # end
 
   # task :install_homebrew, do_if:has_err("which brew") {
   # }
@@ -61,7 +73,12 @@ def run
 
 end
 
-def task(name, do_if:, &block)
+$level = -1
+
+def task(name, do_if:true, &block)
+  $level += 1
+
+  print "    " * $level
   print "TASK: ", name, " "
 
   need_exec = do_if.respond_to?(:call) ? do_if.call : do_if
@@ -71,6 +88,8 @@ def task(name, do_if:, &block)
     block.call
   elsif puts "-> already provisioned"
   end
+
+  $level -= 1
 end
 
 def has_err(cmd)
