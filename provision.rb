@@ -10,8 +10,8 @@ def run
   task_brew_cask 'hyper'
   task_symlink '~/.dotfiles/hyper/hyper.js', '~/.hyper.js'
   sh 'hyper i hyper-search'
-
-  return
+  sh 'hyper i hyperterm-hybrid'
+  sh 'hyper i hyperterm-summon'
 
 
   task :init do
@@ -31,7 +31,7 @@ def run
     end
     task_symlink dotfiles_origin_dir, '~/.dotfiles'
     task :gitconfig do
-      sh 'cat ~/.dotfiles/git/gitconfig.template > ~/.gitconfig'
+      sh 'cat ~/.dotfiles/git/gitconfig > ~/.gitconfig'
       sh "git config --global ghq.root #{ghq_root}"
     end
 
@@ -42,12 +42,12 @@ def run
     task :set_username, do_if: has_err("git config user.name") do
       print "please type your git user.name: "
       name = gets.chomp
-      sh "git config --global user.name '#{name}'"
+      sh "git config -f ~/.gitconfig.local user.name '#{name}'"
     end
-    task :set_username, do_if: has_err("git config user.email") do
+    task :set_email, do_if: has_err("git config user.email") do
       print "please type your git user.email: "
       email = gets.chomp
-      sh "git config --global user.email '#{email}'"
+      sh "git config -f ~/.gitconfig.local user.email '#{email}'"
     end
     task_brew 'ghq'
   end
@@ -82,12 +82,6 @@ def run
       end
       task :install_plugins, do_if: has_err("zsh -c -i 'zplug check'") do
         sh "zsh -c -i 'zplug install'"
-      end
-
-      task :pyenv do
-        task_brew 'pyenv'
-        task_brew 'pyenv-virtualenv'
-        task_symlink '~/.dotfiles/zsh/zshrc.module.pyenv', '~/.zshrc.module.pyenv'
       end
 
       task :jenv do
@@ -147,6 +141,15 @@ def run
 
   task :jupyter do
     task_symlink '~/.dotfiles/jupyter/custom.js', '~/.jupyter/custom/custom.js'
+  end
+
+  task :python do
+    task_symlink '~/.dotfiles/matplotlib/matplotlibrc', '~/.matplotlibrc'
+    task :pyenv do
+      task_brew 'pyenv'
+      task_brew 'pyenv-virtualenv'
+      task_symlink '~/.dotfiles/zsh/zshrc.module.pyenv', '~/.zshrc.module.pyenv'
+    end
   end
 
   task :tap_brew_cask, do_if: has_err('brew tap | grep caskroom/cask') do
