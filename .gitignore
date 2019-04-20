@@ -1,32 +1,10 @@
-!settings.jar
-
-vim/autoload
-vim/plugged
-
 # Atom
-packages/
-compile-cache
-dev
-projects.cson
-.apm
-.npm
-.node-gyp
-blob-store
 .DS_Store
-
-zshrc.myenv
-
-repositories/*
-
-!.gitkeep
-
-.netrwhist
-
-mysql/.tmp.sql
-
-# IntelliJ
-.iml
 
 .tmux/plugins/*
 
+karabiner/*
+!karabiner/karabiner.json
+
 !.gitkeep
+

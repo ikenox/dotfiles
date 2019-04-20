@@ -1,6 +1,4 @@
 [user]
-	name = Naoto Ikeno
-	email = naoto.ikeno@dena.com
 	useConfigOnly = true
 [alias]
 	co = checkout
@@ -16,4 +14,3 @@
 	default = simple
 [ghq]
     vcs = git
-    root = ~/repos
