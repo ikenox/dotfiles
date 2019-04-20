@@ -51,6 +51,7 @@ def run
     end
     task_symlink '~/.dotfiles/vim/vimrc', '~/.vimrc'
     task_symlink '~/.dotfiles/vim/vimrc.keymap', '~/.vimrc.keymap'
+    task_symlink '~/.dotfiles/vim/hybrid.vim', '~/.vim/colors/hybrid.vim'
   end
 
   task :terminal do
