@@ -8,8 +8,6 @@ export GOPATH=$HOME/go
 export PATH=~/bin:~/go/bin:/usr/local/bin:/usr/bin:/bin:/sbin:/usr/sbin
 export PATH="$PATH:`yarn global bin`"
 
-eval "$(direnv hook zsh)"
-
 #######################################
 # Settings
 
@@ -73,16 +71,6 @@ zstyle ':vcs_info:git:*' unstagedstr "%F{red}+"
 zstyle ':vcs_info:*' formats "%F{green}%c%u(%b)%f"
 zstyle ':vcs_info:*' actionformats '(%b|%a)'
 precmd () { vcs_info }
-
-# notice ssh
-SSH_STMT="%{${fg[blue]}%}ssh:%{${reset_color}%}"
-if [ -n "$SSH_CLIENT" ] || [ -n "$SSH_TTY" ]; then
-    P_SSH_STMT=$SSH_STMT
-else
-  case $(ps -o comm= -p $PPID) in
-    sshd|*/sshd) P_SSH_STMT=$SSH_STMT;;
-  esac
-fi
 
 PROMPT="%{${fg[white]}%}[$P_SSH_STMT%n@%m]%{${reset_color}%} 🗂  %~
 "

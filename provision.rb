@@ -73,8 +73,8 @@ def run
       task :install_zplug, do_if: not_exist("~/.zplug") do
         sh "curl -sL https://raw.githubusercontent.com/zplug/installer/master/installer.zsh | zsh"
       end
-      task :install_plugins do
-        sh "zsh -c -i 'zplug install'", ignore_err_like: "no packages to install"
+      task :install_plugins, do_if: has_err("zsh -c -i 'zplug check'") do
+        sh "zsh -c -i 'zplug install'"
       end
 
       task :pyenv do
@@ -220,21 +220,16 @@ end
 
 def has_err(cmd)
   puts "> #{cmd}"
-  stdout, stderr, status = Open3.capture3(cmd)
-  status != 0
+  system(cmd) === false
 end
 
 def not_exist(path)
   has_err "ls #{path}"
 end
 
-def sh(cmd, ignore_err_like: [])
+def sh(cmd)
   puts "> #{cmd}"
-
-  stdout, stderr, status = Open3.capture3(cmd)
-  if status != 0 && (ignore_err_like.empty? || !stderr.include?(ignore_err_like))
-    raise "command execution failed: #{stderr}"
-  end
+  system(cmd) or raise "command execution failed."
 end
 
 run
