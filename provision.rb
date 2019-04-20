@@ -120,16 +120,16 @@ def run
     end
   end
 
-  # task :vm do
-  #   task_brew_cask 'virtualbox'
-  #   task_brew_cask 'vagrant'
-  #   task :vbguest, do_if: has_err('vagrant plugin list | grep vagrant-vbguest') do
-  #     sh 'vagrant plugin install vagrant-vbguest'
-  #   end
-  #   task_brew 'docker'
-  #   task_brew 'docker-machine'
-  #   task_brew 'docker-compose'
-  # end
+  task :vm do
+    task_brew_cask 'virtualbox'
+    task_brew_cask 'vagrant'
+    task :vbguest, do_if: has_err('vagrant plugin list | grep vagrant-vbguest') do
+      sh 'vagrant plugin install vagrant-vbguest'
+    end
+    task_brew 'docker'
+    task_brew 'docker-machine'
+    task_brew 'docker-compose'
+  end
 
   task :intellij do
     task_brew_cask "jetbrains-toolbox"
@@ -220,7 +220,8 @@ end
 
 def has_err(cmd)
   puts "> #{cmd}"
-  system(cmd) === false
+  o, e, s = Open3.capture3(cmd)
+  !s.success?
 end
 
 def not_exist(path)
