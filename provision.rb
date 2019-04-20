@@ -5,6 +5,15 @@
 # todo cannot interrupt brew cask install
 
 def run
+
+
+  task_brew_cask 'hyper'
+  task_symlink '~/.dotfiles/hyper/hyper.js', '~/.hyper.js'
+  sh 'hyper i hyper-search'
+
+  return
+
+
   task :init do
     task :install_homebrew, do_if: has_err('which brew') do
       sh '/usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"'
