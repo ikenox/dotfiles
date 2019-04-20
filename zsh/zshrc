@@ -11,6 +11,8 @@ export PATH="$PATH:`yarn global bin`"
 #######################################
 # Settings
 
+alias tmux="TERM=screen-256color-bce tmux"
+
 autoload -Uz colors
 colors
 

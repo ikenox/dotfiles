@@ -50,7 +50,6 @@ def run
     end
     task_symlink '~/.dotfiles/vim/vimrc', '~/.vimrc'
     task_symlink '~/.dotfiles/vim/vimrc.keymap', '~/.vimrc.keymap'
-    task_symlink '~/.dotfiles/vim/hybrid.vim', '~/.vim/colors/hybrid.vim'
   end
 
   task :terminal do
@@ -91,7 +90,7 @@ def run
     task :tmux do
       task_brew 'tmux'
       task_brew 'reattach-to-user-namespace'
-      task_symlink '~/.dotfiles/zsh/tmux.conf', '~/.tmux.conf'
+      task_symlink '~/.dotfiles/tmux/tmux.conf', '~/.tmux.conf'
 
       task :install_tmux_plugins, do_if: not_exist("~/.tmux/plugins/tpm") do
         sh 'mkdir -p ~/.tmux/plugins'
