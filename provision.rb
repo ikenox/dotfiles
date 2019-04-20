@@ -1,5 +1,4 @@
 #!/usr/bin/env ruby
-require 'open3'
 
 # todo debug mode
 # todo dry-run mode
@@ -220,8 +219,7 @@ end
 
 def has_err(cmd)
   puts "> #{cmd}"
-  o, e, s = Open3.capture3(cmd)
-  !s.success?
+  system(cmd) === false
 end
 
 def not_exist(path)
