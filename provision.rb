@@ -98,6 +98,23 @@ def run
     task_symlink '~/.dotfiles/hyper/hyper.js', '~/.hyper.js'
   end
 
+  task :osx_defaults do
+    sh 'defaults write com.apple.dock autohide -bool true'
+    sh 'defaults write com.apple.dock persistent-apps -array'
+    sh 'defaults write com.apple.dock tilesize -int 55'
+    sh 'defaults write com.apple.dock wvous-tl-corner -int 10'
+    sh 'defaults write com.apple.dock wvous-tl-modifier -int 0'
+    sh 'killall Dock'
+
+    sh 'defaults write com.apple.finder AppleShowAllFiles YES'
+    sh 'defaults write com.apple.finder NewWindowTarget -string "PfDe"'
+    sh 'defaults write com.apple.finder NewWindowTargetPath -string "file://${HOME}/"'
+    sh 'killall Finder'
+
+    sh 'defaults write com.apple.Safari IncludeInternalDebugMenu -bool true'
+    sh 'defaults write -g com.apple.trackpad.scaling 3'
+  end
+
   task :vm do
     task_brew_cask 'virtualbox'
     task_brew_cask 'vagrant'
