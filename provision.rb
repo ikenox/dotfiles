@@ -6,31 +6,6 @@
 
 def run
 
-  task_brew_cask 'hyper'
-  task_symlink '~/.dotfiles/hyper/hyper.js', '~/.hyper.js'
-
-  task :fish do
-    task_brew 'fish'
-    task_symlink '~/.dotfiles/fish','~/.config/fish'
-    task :fisherman, do_if: not_exist('~/.config/fish/functions/fisher.fish') do
-      sh 'curl -Lo ~/.config/fish/functions/fisher.fish --create-dirs git.io/fisher'
-    end
-    task :set_default_shell do
-      task :add_shell, do_if: has_err("cat /etc/shells | grep $(which fish)") do
-        sh "sudo bash -c 'echo $(which fish) >> /etc/shells'"
-      end
-      # task :add_shell, do_if: has_err("echo $SHELL | grep fish") do
-      #   sh "sudo chsh -s $(which fish)"
-      # end
-    end
-    sh 'fish -c "fisher"'
-
-    task :jenv do
-      task_brew 'jenv'
-      task_symlink '~/.dotfiles/zsh/zshrc.module.jenv', '~/.zshrc.module.jenv'
-    end
-  end
-
   task :init do
     task :install_homebrew, do_if: has_err('which brew') do
       sh '/usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"'
@@ -94,6 +69,33 @@ def run
       task_symlink '~/.dotfiles/karabiner', '~/.config/karabiner'
       sh 'launchctl kickstart -k gui/`id -u`/org.pqrs.karabiner.karabiner_console_user_server'
     end
+  end
+
+  task :fish do
+    task_brew 'fish'
+    task_symlink '~/.dotfiles/fish','~/.config/fish'
+    task :fisherman, do_if: not_exist('~/.config/fish/functions/fisher.fish') do
+      sh 'curl -Lo ~/.config/fish/functions/fisher.fish --create-dirs git.io/fisher'
+    end
+    task :set_default_shell do
+      task :add_shell, do_if: has_err("cat /etc/shells | grep $(which fish)") do
+        sh "sudo bash -c 'echo $(which fish) >> /etc/shells'"
+      end
+      # task :add_shell, do_if: has_err("echo $SHELL | grep fish") do
+      #   sh "sudo chsh -s $(which fish)"
+      # end
+    end
+    sh 'fish -c "fisher"'
+
+    task :jenv do
+      task_brew 'jenv'
+      task_symlink '~/.dotfiles/zsh/zshrc.module.jenv', '~/.zshrc.module.jenv'
+    end
+  end
+
+  task :hyper do
+    task_brew_cask 'hyper'
+    task_symlink '~/.dotfiles/hyper/hyper.js', '~/.hyper.js'
   end
 
   task :vm do
