@@ -1,6 +1,8 @@
 set PATH ~/bin ~/go/bin /usr/local/bin /usr/bin /bin /sbin /usr/sbin $PATH
 
 alias c=clear
+alias gs "git status"
+alias gl "git log"
 
 fish_vi_key_bindings
 
