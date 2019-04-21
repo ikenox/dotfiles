@@ -13,6 +13,7 @@ def run
     task_brew 'fish'
     task_symlink '~/.dotfiles/fish/config.fish','~/.config/fish/config.fish'
     task_symlink '~/.dotfiles/fish/fishfile','~/.config/fish/fishfile'
+    task_symlink '~/.dotfiles/fish/fish_variables','~/.config/fish/fish_variables'
     task :fisherman, do_if: not_exist('~/.config/fish/functions/fisher.fish') do
       sh 'curl -Lo ~/.config/fish/functions/fisher.fish --create-dirs git.io/fisher'
     end
@@ -20,9 +21,9 @@ def run
       task :add_shell, do_if: has_err("cat /etc/shells | grep $(which fish)") do
         sh "sudo bash -c 'echo $(which fish) >> /etc/shells'"
       end
-      task :add_shell, do_if: has_err("echo $SHELL | grep fish") do
-        sh "sudo chsh -s $(which fish)"
-      end
+      # task :add_shell, do_if: has_err("echo $SHELL | grep fish") do
+      #   sh "sudo chsh -s $(which fish)"
+      # end
     end
     sh 'fish -c "fisher"'
 
@@ -133,7 +134,6 @@ def run
   end
   task_brew_cask 'slack'
   task_brew_cask 'alfred'
-  task_brew_cask 'iterm2'
   task_brew_cask 'caffeine'
   task_brew_cask 'google-japanese-ime'
   task_brew_cask 'discord'
