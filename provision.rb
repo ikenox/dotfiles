@@ -6,13 +6,31 @@
 
 def run
 
-
   task_brew_cask 'hyper'
   task_symlink '~/.dotfiles/hyper/hyper.js', '~/.hyper.js'
-  sh 'hyper i hyper-search'
-  sh 'hyper i hyperterm-hybrid'
-  sh 'hyper i hyperterm-summon'
 
+  task :fish do
+    task_brew 'fish'
+    task_symlink '~/.dotfiles/fish/config.fish','~/.config/fish/config.fish'
+    task_symlink '~/.dotfiles/fish/fishfile','~/.config/fish/fishfile'
+    task :fisherman, do_if: not_exist('~/.config/fish/functions/fisher.fish') do
+      sh 'curl -Lo ~/.config/fish/functions/fisher.fish --create-dirs git.io/fisher'
+    end
+    task :set_default_shell do
+      task :add_shell, do_if: has_err("cat /etc/shells | grep $(which fish)") do
+        sh "sudo bash -c 'echo $(which fish) >> /etc/shells'"
+      end
+      task :add_shell, do_if: has_err("echo $SHELL | grep fish") do
+        sh "sudo chsh -s $(which fish)"
+      end
+    end
+    sh 'fish -c "fisher"'
+
+    task :jenv do
+      task_brew 'jenv'
+      task_symlink '~/.dotfiles/zsh/zshrc.module.jenv', '~/.zshrc.module.jenv'
+    end
+  end
 
   task :init do
     task :install_homebrew, do_if: has_err('which brew') do
@@ -59,48 +77,6 @@ def run
     end
     task_symlink '~/.dotfiles/vim/vimrc', '~/.vimrc'
     task_symlink '~/.dotfiles/vim/vimrc.keymap', '~/.vimrc.keymap'
-  end
-
-  task :terminal do
-    task :zsh do
-      task_brew 'zsh'
-      task :set_default_shell do
-        task :add_shell, do_if: has_err("cat /etc/shells | grep $(which zsh)") do
-          sh "sudo bash -c 'echo $(which zsh) >> /etc/shells'"
-        end
-        task :add_shell, do_if: has_err("echo $SHELL | grep zsh") do
-          sh "chsh -s $(which zsh)"
-        end
-      end
-
-      task_symlink '~/.dotfiles/zsh/zshrc', '~/.zshrc'
-      task :create_local_zshrc, do_if: not_exist('~/.zshrc.local') do
-        sh "cp ~/.dotfiles/zsh/zshrc.local ~/.zshrc.local"
-      end
-      task :install_zplug, do_if: not_exist("~/.zplug") do
-        sh "curl -sL https://raw.githubusercontent.com/zplug/installer/master/installer.zsh | zsh"
-      end
-      task :install_plugins, do_if: has_err("zsh -c -i 'zplug check'") do
-        sh "zsh -c -i 'zplug install'"
-      end
-
-      task :jenv do
-        task_brew 'jenv'
-        task_symlink '~/.dotfiles/zsh/zshrc.module.jenv', '~/.zshrc.module.jenv'
-      end
-    end
-
-    task :tmux do
-      task_brew 'tmux'
-      task_brew 'reattach-to-user-namespace'
-      task_symlink '~/.dotfiles/tmux/tmux.conf', '~/.tmux.conf'
-
-      task :install_tmux_plugins, do_if: not_exist("~/.tmux/plugins/tpm") do
-        sh 'mkdir -p ~/.tmux/plugins'
-        sh 'git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm'
-      end
-    end
-
   end
 
   task_brew 'peco'
