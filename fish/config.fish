@@ -18,18 +18,26 @@ function fish_user_key_bindings
   bind \cf forward-word
   bind \cb backward-word
 
-  # bind yy fish_clipboard_copy
-  # bind Y fish_clipboard_copy
-  # bind p fish_clipboard_paste
-  # bind -M visual y "fish_clipboard_copy; set fish_bind_mode default"
+  bind yy fish_clipboard_copy
+  bind Y fish_clipboard_copy
+  bind p fish_clipboard_paste
+  # bind -M visual y fish_clipboard_copy end-selection
 
   bind -M visual H beginning-of-line
   bind H beginning-of-line
   bind -M visual L end-of-line
   bind L end-of-line
 
+  bind -M insert zz peco_z
+
   # plugin-peco
   bind -M insert \cr peco_select_history
+end
+
+function peco_z
+        z -l | peco | awk '{ print $2 }' | read recentd
+        cd $recentd
+        commandline -f repaint
 end
 
 # fish-ghq

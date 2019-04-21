@@ -6,5 +6,9 @@
 karabiner/*
 !karabiner/karabiner.json
 
+fish/functions
+fish/completions
+fish/conf.d
+
 !.gitkeep
 

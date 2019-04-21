@@ -1,5 +1,10 @@
 # This file contains fish universal variable definitions.
 # VERSION: 3.0
+SETUVAR ZO_CMD:zo
+SETUVAR Z_CMD:z
+SETUVAR Z_DATA:/Users/naoto\x2eikeno/\x2elocal/share/z/data
+SETUVAR Z_DATA_DIR:/Users/naoto\x2eikeno/\x2elocal/share/z
+SETUVAR Z_EXCLUDE:/Users/naoto\x2eikeno
 SETUVAR __fish_init_2_39_8:\x1d
 SETUVAR __fish_init_2_3_0:\x1d
 SETUVAR __fish_init_3_x:\x1d
@@ -25,6 +30,10 @@ SETUVAR fish_color_selection:white\x1e\x2d\x2dbold\x1e\x2d\x2dbackground\x3dbrbl
 SETUVAR fish_color_status:red
 SETUVAR fish_color_user:brgreen
 SETUVAR fish_color_valid_path:\x2d\x2dunderline
+SETUVAR fish_cursor_default:block\x1eblink
+SETUVAR fish_cursor_insert:line\x1eblink
+SETUVAR fish_cursor_replace_one:underscore\x1eblink
+SETUVAR fish_cursor_visual:block
 SETUVAR fish_greeting:Welcome\x20to\x20fish\x2c\x20the\x20friendly\x20interactive\x20shell
 SETUVAR fish_key_bindings:fish_vi_key_bindings
 SETUVAR fish_pager_color_completion:normal

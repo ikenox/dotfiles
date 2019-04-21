@@ -11,9 +11,7 @@ def run
 
   task :fish do
     task_brew 'fish'
-    task_symlink '~/.dotfiles/fish/config.fish','~/.config/fish/config.fish'
-    task_symlink '~/.dotfiles/fish/fishfile','~/.config/fish/fishfile'
-    task_symlink '~/.dotfiles/fish/fish_variables','~/.config/fish/fish_variables'
+    task_symlink '~/.dotfiles/fish','~/.config/fish'
     task :fisherman, do_if: not_exist('~/.config/fish/functions/fisher.fish') do
       sh 'curl -Lo ~/.config/fish/functions/fisher.fish --create-dirs git.io/fisher'
     end
