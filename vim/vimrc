@@ -100,7 +100,7 @@ Plug 'plasticboy/vim-markdown'
 Plug 'previm/previm'
 let g:vim_markdown_folding_disabled = 1
 Plug 'tyru/open-browser.vim'
-let g:previm_custom_css_path = '~/dotfiles/markdown_custom.css'
+let g:previm_custom_css_path = '~/.dotfiles/vim/markdown_custom.css'
 augroup PrevimSettings
     autocmd!
     autocmd BufNewFile,BufRead *.{md,mdwn,mkd,mkdn,mark*} set filetype=markdown
