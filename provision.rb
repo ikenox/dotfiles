@@ -45,7 +45,7 @@ def run
   end
 
   task :setup_vim do
-    task_brew 'vim', opt: "--with-lua"
+    task_brew 'vim'
     task :install_vim_plug, do_if: not_exist("~/.vim/autoload/plug.vim") do
       sh "curl -fLo ~/.vim/autoload/plug.vim --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim"
     end
