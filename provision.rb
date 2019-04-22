@@ -10,6 +10,9 @@ def run
     task :install_homebrew, do_if: has_err('which brew') do
       sh '/usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"'
     end
+    task :tap_brew_cask, do_if: has_err('brew tap | grep caskroom/cask') do
+      sh 'brew tap caskroom/cask'
+    end
 
     task_brew 'git'
     task_symlink '~/.dotfiles/git/gitignore', '~/.gitignore'
@@ -98,21 +101,30 @@ def run
     task_symlink '~/.dotfiles/hyper/hyper.js', '~/.hyper.js'
   end
 
+  task_brew_cask 'google-japanese-ime'
+
   task :osx_defaults do
     sh 'defaults write com.apple.dock autohide -bool true'
     sh 'defaults write com.apple.dock persistent-apps -array'
     sh 'defaults write com.apple.dock tilesize -int 55'
     sh 'defaults write com.apple.dock wvous-tl-corner -int 10'
     sh 'defaults write com.apple.dock wvous-tl-modifier -int 0'
-    sh 'killall Dock'
+    # todo killall if updated
+    #sh 'killall Dock'
 
     sh 'defaults write com.apple.finder AppleShowAllFiles YES'
     sh 'defaults write com.apple.finder NewWindowTarget -string "PfDe"'
     sh 'defaults write com.apple.finder NewWindowTargetPath -string "file://${HOME}/"'
-    sh 'killall Finder'
+    # todo killall if updated
+    #sh 'killall Finder'
 
     sh 'defaults write com.apple.Safari IncludeInternalDebugMenu -bool true'
-    sh 'defaults write -g com.apple.trackpad.scaling 3'
+
+    # todo needs restart
+    sh 'defaults write -g com.apple.trackpad.scaling -int 3'
+    sh 'defaults write -g InitialKeyRepeat -int 15'
+    sh 'defaults write -g KeyRepeat -int 2'
+    sh 'defaults -currentHost write -globalDomain com.apple.mouse.tapBehavior -int 1'
   end
 
   task :vm do
@@ -146,15 +158,13 @@ def run
     end
   end
 
-  task :tap_brew_cask, do_if: has_err('brew tap | grep caskroom/cask') do
-    sh 'brew tap caskroom/cask'
-  end
-  task_brew_cask 'slack'
-  task_brew_cask 'alfred'
+  #task_brew_cask 'slack'
+  task_brew_cask 'alfred' # todo change hotkey from gui
+
   task_brew_cask 'caffeine'
-  task_brew_cask 'google-japanese-ime'
   task_brew_cask 'discord'
 
+  # tood need login app store
   task_mas 409183694 # keynote
   task_mas 409203825 # Numbers
   task_mas 409201541 # Pages
