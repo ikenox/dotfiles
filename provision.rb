@@ -47,8 +47,16 @@ def run
     task_brew 'ghq'
   end
 
+  task :karabiner_elements do
+    task_brew_cask 'karabiner-elements'
+    # FIXME a little redundant
+    task :karabiner_config, do_if: not_symlinked('~/.dotfiles/karabiner', '~/.config/karabiner') do
+      task_symlink '~/.dotfiles/karabiner', '~/.config/karabiner'
+    end
+  end
+
   task :setup_vim do
-    task_brew 'vim', opt: "--with-python3 --with-lua"
+    task_brew 'vim'
     task :install_vim_plug, do_if: not_exist("~/.vim/autoload/plug.vim") do
       sh "curl -fLo ~/.vim/autoload/plug.vim --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim"
     end
@@ -63,15 +71,6 @@ def run
   task :ag do
     task_brew 'the_silver_searcher'
     task_symlink '~/.dotfiles/ag/agignore', '~/.agignore'
-  end
-
-  task :karabiner_elements do
-    task_brew_cask 'karabiner-elements'
-    # FIXME a little redundant
-    task :karabiner_config, do_if: not_symlinked('~/.dotfiles/karabiner', '~/.config/karabiner') do
-      task_symlink '~/.dotfiles/karabiner', '~/.config/karabiner'
-      sh 'launchctl kickstart -k gui/`id -u`/org.pqrs.karabiner.karabiner_console_user_server'
-    end
   end
 
   task :fish do
