@@ -140,7 +140,6 @@ def run
 
   task :intellij do
     task_brew_cask "jetbrains-toolbox"
-    # task_brew_cask "intellij-idea"
     task_symlink '~/.dotfiles/intellij/ideavimrc', '~/.ideavimrc'
     # TODO apply settings.jar
   end

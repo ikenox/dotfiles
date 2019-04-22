@@ -9,10 +9,10 @@ module.exports = {
     updateChannel: 'stable',
 
     // default font size in pixels for all tabs
-    fontSize: 12,
+    fontSize: 14,
 
     // font family with optional fallbacks
-    fontFamily: 'Menlo, "DejaVu Sans Mono", Consolas, "Lucida Console", monospace',
+    fontFamily: 'Monaco, Menlo, "DejaVu Sans Mono", Consolas, "Lucida Console", monospace',
 
     // default font weight: 'normal' or 'bold'
     fontWeight: 'normal',
@@ -143,7 +143,12 @@ module.exports = {
   //   `hyperpower`
   //   `@company/project`
   //   `project#1.0.1`
-  plugins: ["hyper-search", "hyperterm-hybrid", "hyperterm-summon"],
+  plugins: [
+    "hyper-search",
+    "hyperterm-hybrid",
+    "hyperterm-summon",
+    "hyper-tabs-enhanced"
+  ],
 
   // in development, you can create a directory under
   // `~/.hyper_plugins/local/` and include it here
@@ -158,5 +163,7 @@ module.exports = {
       'pane:splitVertical': 'option+v',
       'pane:splitHorizontal': 'option+s',
       'pane:next': 'command+o',
+      //"editor:movePreviousWord": "Ctrl+b",
+      //"editor:moveNextWord": "Ctrl+f
   },
 };
