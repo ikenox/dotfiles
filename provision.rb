@@ -100,14 +100,15 @@ def run
     task_symlink '~/.dotfiles/hyper/hyper.js', '~/.hyper.js'
   end
 
+  # todo: set keyboard -> 入力ソース -> ひらがな(google)
   task_brew_cask 'google-japanese-ime'
 
   task :osx_defaults do
     sh 'defaults write com.apple.dock autohide -bool true'
     sh 'defaults write com.apple.dock persistent-apps -array'
     sh 'defaults write com.apple.dock tilesize -int 55'
-    sh 'defaults write com.apple.dock wvous-tl-corner -int 10'
-    sh 'defaults write com.apple.dock wvous-tl-modifier -int 0'
+    sh 'defaults write com.apple.dock wvous-bl-corner -int 10'
+    sh 'defaults write com.apple.dock wvous-bl-modifier -int 0'
     # todo killall if updated
     #sh 'killall Dock'
 
@@ -168,9 +169,10 @@ def run
   task_mas 409203825 # Numbers
   task_mas 409201541 # Pages
   task_mas 539883307 # LINE
-  task_mas 409183694 # Keynote
   task_mas 485812721 # TweetDeck
   task_mas 405399194 # Kindle
+
+  # todo hotkey
 
   puts ""
   puts "[FINISHED]"
