@@ -155,8 +155,8 @@ module.exports = {
     // 'window:devtools': 'cmd+alt+o',
       'tab:prev': 'command+p',
       'tab:next': 'command+n',
-      // 'pane:splitVertical': 'command+',
-      // 'pane:splitHorizontal': 'command+',
+      'pane:splitVertical': 'option+v',
+      'pane:splitHorizontal': 'option+s',
       'pane:next': 'command+o',
   },
 };
