@@ -88,11 +88,6 @@ def run
       # end
     end
     sh 'fish -c "fisher"'
-
-    task :jenv do
-      task_brew 'jenv'
-      task_symlink '~/.dotfiles/zsh/zshrc.module.jenv', '~/.zshrc.module.jenv'
-    end
   end
 
   task :hyper do
@@ -155,6 +150,15 @@ def run
       task_brew 'pyenv-virtualenv'
       task_symlink '~/.dotfiles/zsh/zshrc.module.pyenv', '~/.zshrc.module.pyenv'
     end
+  end
+
+  task :java do
+    task_brew 'jenv'
+    task_brew_cask 'java8'
+    sh 'echo "set PATH $HOME/.jenv/bin $PATH" > ~/.dotfiles/fish/conf.d/jenv.fish'
+    sh 'curl https://raw.githubusercontent.com/gcuisinier/jenv/master/fish/jenv.fish > ~/.config/fish/jenv.fish'
+    sh 'curl https://raw.githubusercontent.com/gcuisinier/jenv/master/fish/export.fish > ~/.config/fish/export.fish'
+ 
   end
 
   #task_brew_cask 'slack'
