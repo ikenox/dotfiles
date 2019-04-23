@@ -1,40 +1,28 @@
-class TaskParser
+class TaskBuilder
   def self.root(&block)
-    t = TaskParser.new
+    t = TaskBuilder.new(name: :root, do_if: Condition.new {false}, cmd: nil)
     t.instance_eval &block
     t
   end
 
-  def initialize(name: "")
+  def initialize(name:, do_if:, cmd:)
     @_name = name
-    @_do_if
-    @_cmd
+    @_do_if = do_if
+    @_cmd = cmd
     @child_tasks = []
   end
 
   def task(*args, &block)
-    t = TaskParser.new name: args[0]
+    if block
+      args.push(TaskArgParser::Block.new(block))
+    end
+    result = TaskArgParser.parse args
+    t = TaskBuilder.new(name: result[:name], do_if: result[:do_if], cmd: result[:cmd])
 
     if block
       t.instance_eval &block
     end
 
-    case args[0]
-    when Symbol then
-      @_name = args[0]
-    when Condition then
-      @_do_if = args[0]
-    when TaskAlias then
-      @_do_if = args[0].do_if
-      @_cmd = Command.new args[0].cmd
-    when String then
-      @_cmd = Command.new ->{args[0]}
-    when Proc then
-      @_cmd = Command.new args[0]
-    else
-      raise "unexpected #{args[0]}"
-    end
-    # puts "#{t.inspect} is child of #{ self.inspect }"
     @child_tasks.push(t)
   end
 
@@ -48,8 +36,67 @@ class TaskParser
   end
 end
 
+class TaskArgParser
+
+  class Block
+    def initialize(block)
+      @block = block
+    end
+
+    def block
+      @block
+    end
+  end
+
+  def self.parse(args)
+    dfa = {
+        start: [Symbol, Condition, Block, String, Proc, TaskAlias],
+        Symbol => [Condition, Block, String, Proc, TaskAlias],
+        Condition => [Block, String, Proc],
+        Block => [],
+        String => [],
+        Proc => [],
+    }
+
+    current = :start
+
+    result = {
+        name: "",
+        do_if: Condition.new {true},
+        cmd: nil,
+        block: nil,
+    }
+
+    args.each do |arg|
+      raise "syntax err" unless dfa[current].include? arg.class
+
+      case arg
+      when Symbol then
+        result[:name] = arg
+      when Condition then
+        result[:do_if] = arg
+      when Block then
+        result[:block] = arg.block
+      when String then
+        result[:cmd] = -> {arg}
+      when Proc then
+        result[:cmd] = arg
+      when TaskAlias then
+        result[:cmd] = arg.cmd
+        result[:do_if] = arg.do_if
+      else
+        raise "error"
+      end
+
+      current = arg.class
+    end
+
+    result
+  end
+end
+
 def tasks(&block)
-  builder = TaskParser.root &block
+  builder = TaskBuilder.root &block
   puts builder.parse.inspect
 end
 

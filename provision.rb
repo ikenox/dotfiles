@@ -14,8 +14,6 @@ tasks do
   end
 end
 
-raise "a"
-
 tasks do
 
   task :default do
