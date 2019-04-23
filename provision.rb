@@ -77,11 +77,6 @@ def run
       # end
     end
     sh 'fish -c "fisher"'
-
-    task :jenv do
-      task brew 'jenv'
-      task symlink '~/.dotfiles/zsh/zshrc.module.jenv', '~/.zshrc.module.jenv'
-    end
   end
 
   task :hyper do
@@ -144,9 +139,16 @@ def run
     end
   end
 
-  #task brew_cask 'slack'
-  task brew_cask 'alfred' # todo change hotkey from gui
+  task :java do
+    task brew 'jenv'
+    task brew_cask 'java8'
+    task 'echo "set PATH $HOME/.jenv/bin $PATH" > ~/.dotfiles/fish/conf.d/jenv.fish'
+    task 'curl https://raw.githubusercontent.com/gcuisinier/jenv/master/fish/jenv.fish > ~/.config/fish/jenv.fish'
+    task 'curl https://raw.githubusercontent.com/gcuisinier/jenv/master/fish/export.fish > ~/.config/fish/export.fish'
+  end
 
+  #task_brew_cask 'slack'
+  task_brew_cask 'alfred' # todo change hotkey from gui
   task brew_cask 'caffeine'
   task brew_cask 'discord'
 
