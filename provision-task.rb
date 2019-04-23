@@ -1,6 +1,9 @@
+require 'optparse'
+
+
 class TaskBuilder
   def self.root(&block)
-    t = TaskBuilder.new(name: :root, do_if: Condition.new {false}, cmd: nil)
+    t = TaskBuilder.new(name: :root, do_if: Condition.new {nil}, cmd: nil)
     t.instance_eval &block
     t
   end
@@ -62,7 +65,7 @@ class TaskArgParser
 
     result = {
         name: nil,
-        do_if: Condition.new {true},
+        do_if: Condition.new {nil},
         cmd: nil,
         block: nil,
     }
@@ -96,24 +99,43 @@ class TaskArgParser
 end
 
 def tasks(&block)
+  params = ARGV.getopts("foo","dry")
   builder = TaskBuilder.root &block
-  TaskVisitor.new.visit builder.parse.get_child(:default)
+  TaskVisitor.new(dry:params["dry"]).visit builder.parse.get_child(:default)
 end
 
 class TaskVisitor
+  def initialize(dry: false)
+    @level = 0
+    @dry = dry
+  end
+
   def visit(task)
     todo = task.cond.todo?
-    print "#{task.name || "(anonymous task)"} -> "
-    puts todo ? 'EXEC' : 'SKIP'
-    return unless todo
+    print "    " * @level
+    print "TASK: #{task.name || "(anonymous task)"}"
+
+    case todo
+    when nil then
+      puts " -> EXECUTE"
+    when false then
+      puts " -> \e[34mSKIP\e[0m"
+    when true then
+      puts " -> \e[31mEXECUTE\e[0m"
+    end
+    return if todo == false
 
     c = task.cmd_or_children
     case c
     when Proc then
-      cmd = c.call
-      exec! cmd
+      if !@dry
+        cmd = c.call
+        exec!(cmd)
+      end
     when Array then
+      @level += 1
       c.each {|t| visit(t)}
+      @level -= 1
     else
       raise "unknown"
     end
@@ -156,7 +178,7 @@ end
 
 #@return Condition
 def if_err(command)
-  Condition.new {!exec? command}
+  Condition.new {!exec? command, silent:true}
 end
 
 #@return Condition
@@ -174,14 +196,14 @@ def if_not_symlinked(origin, link)
   end
 end
 
-def exec?(cmd)
-  puts "> #{cmd}"
+def exec?(cmd, silent: false)
+  puts "> #{cmd}" unless silent
   `#{cmd}`
   $? == 0
 end
 
-def exec!(cmd)
-  puts "> #{cmd}"
+def exec!(cmd, silent: false)
+  puts "> #{cmd}" unless silent
   res = `#{cmd}`
   if $? != 0
     raise 'execution error'
