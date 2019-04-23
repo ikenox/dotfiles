@@ -7,242 +7,265 @@
 def run
 
   task :init do
-    task :install_homebrew, do_if: has_err('which brew') do
-      sh '/usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"'
-    end
-    task :tap_brew_cask, do_if: has_err('brew tap | grep caskroom/cask') do
-      sh 'brew tap caskroom/cask'
-    end
+    task :install_homebrew, if_err('which brew'), '/usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"'
+    task :tap_brew_cask, if_err('brew tap | grep caskroom/cask'), 'brew tap caskroom/cask'
 
-    task_brew 'git'
-    task_symlink '~/.dotfiles/git/gitignore', '~/.gitignore'
+    task brew 'git'
+    task symlink '~/.dotfiles/git/gitignore', '~/.gitignore'
 
     ghq_root = '~/repos'
     host = 'github.com'
     repo = 'ikenox/dotfiles'
     dotfiles_origin_dir = "#{ghq_root}/#{host}/#{repo}"
-    task :clone_dotfiles, do_if: not_exist(dotfiles_origin_dir) do
-      sh "git clone git@#{host}:#{repo}.git #{dotfiles_origin_dir}"
-    end
-    task_symlink dotfiles_origin_dir, '~/.dotfiles'
-    task :gitconfig do
-      sh 'cat ~/.dotfiles/git/gitconfig > ~/.gitconfig'
-      sh "git config --global ghq.root #{ghq_root}"
-    end
+    task :clone_dotfiles, if_not_exist(dotfiles_origin_dir), "git clone git@#{host}:#{repo}.git #{dotfiles_origin_dir}"
+    task symlink dotfiles_origin_dir, '~/.dotfiles'
 
-    task_brew 'ghq'
+    task :gitconfig do
+      task symlink '~/.dotfiles/git/gitconfig', '~/.gitconfig'
+      task "git config -f ~/.gitconfig.local ghq.root #{ghq_root}"
+    end
   end
 
   task :setup_git do
-    task :set_username, do_if: has_err("git config user.name") do
+    task :set_username, if_err("git config user.name"), -> {
       print "please type your git user.name: "
       name = gets.chomp
-      sh "git config -f ~/.gitconfig.local user.name '#{name}'"
-    end
-    task :set_email, do_if: has_err("git config user.email") do
+      "git config -f ~/.gitconfig.local user.name '#{name}'"
+    }
+    task :set_email, if_err("git config user.email"), -> {
       print "please type your git user.email: "
       email = gets.chomp
-      sh "git config -f ~/.gitconfig.local user.email '#{email}'"
-    end
-    task_brew 'ghq'
+      "git config -f ~/.gitconfig.local user.email '#{email}'"
+    }
+    task brew 'ghq'
   end
 
   task :karabiner_elements do
-    task_brew_cask 'karabiner-elements'
-    # FIXME a little redundant
-    task :karabiner_config, do_if: not_symlinked('~/.dotfiles/karabiner', '~/.config/karabiner') do
-      task_symlink '~/.dotfiles/karabiner', '~/.config/karabiner'
-    end
+    task brew_cask 'karabiner-elements'
+    task symlink '~/.dotfiles/karabiner', '~/.config/karabiner'
   end
 
   task :setup_vim do
-    task_brew 'vim'
-    task :install_vim_plug, do_if: not_exist("~/.vim/autoload/plug.vim") do
-      sh "curl -fLo ~/.vim/autoload/plug.vim --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim"
-    end
-    task_symlink '~/.dotfiles/vim/vimrc', '~/.vimrc'
-    task_symlink '~/.dotfiles/vim/vimrc.keymap', '~/.vimrc.keymap'
+    task brew 'vim'
+    task :install_vim_plug, if_not_exist("~/.vim/autoload/plug.vim"),
+         "curl -fLo ~/.vim/autoload/plug.vim --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim"
+    task symlink '~/.dotfiles/vim/vimrc', '~/.vimrc'
+    task symlink '~/.dotfiles/vim/vimrc.keymap', '~/.vimrc.keymap'
   end
 
-  task_brew 'peco'
-  task_brew 'fzf'
-  task_brew 'jq'
-  task_brew 'mas'
+  task brew 'peco'
+  task brew 'fzf'
+  task brew 'jq'
+  task brew 'mas'
   task :ag do
-    task_brew 'the_silver_searcher'
-    task_symlink '~/.dotfiles/ag/agignore', '~/.agignore'
+    task brew 'the_silver_searcher'
+    task symlink '~/.dotfiles/ag/agignore', '~/.agignore'
   end
 
   task :fish do
-    task_brew 'fish'
-    task_symlink '~/.dotfiles/fish', '~/.config/fish'
-    task :fisherman, do_if: not_exist('~/.config/fish/functions/fisher.fish') do
+    task brew 'fish'
+    task symlink '~/.dotfiles/fish', '~/.config/fish'
+    task :fisherman, if_not_exist('~/.config/fish/functions/fisher.fish') do
       sh 'curl -Lo ~/.config/fish/functions/fisher.fish --create-dirs git.io/fisher'
     end
     task :set_default_shell do
-      task :add_shell, do_if: has_err("cat /etc/shells | grep $(which fish)") do
+      task :add_shell, if_err("cat /etc/shells | grep $(which fish)") do
         sh "sudo bash -c 'echo $(which fish) >> /etc/shells'"
       end
-      # task :add_shell, do_if: has_err("echo $SHELL | grep fish") do
+      # task :add_shell, if_err("echo $SHELL | grep fish") do
       #   sh "sudo chsh -s $(which fish)"
       # end
     end
     sh 'fish -c "fisher"'
 
     task :jenv do
-      task_brew 'jenv'
-      task_symlink '~/.dotfiles/zsh/zshrc.module.jenv', '~/.zshrc.module.jenv'
+      task brew 'jenv'
+      task symlink '~/.dotfiles/zsh/zshrc.module.jenv', '~/.zshrc.module.jenv'
     end
   end
 
   task :hyper do
-    task_brew_cask 'hyper'
-    task_symlink '~/.dotfiles/hyper/hyper.js', '~/.hyper.js'
+    task brew_cask 'hyper'
+    task symlink '~/.dotfiles/hyper/hyper.js', '~/.hyper.js'
   end
 
   # todo: set keyboard -> 入力ソース -> ひらがな(google)
-  task_brew_cask 'google-japanese-ime'
+  task brew_cask 'google-japanese-ime'
 
   task :osx_defaults do
-    sh 'defaults write com.apple.dock autohide -bool true'
-    sh 'defaults write com.apple.dock persistent-apps -array'
-    sh 'defaults write com.apple.dock tilesize -int 55'
-    sh 'defaults write com.apple.dock wvous-bl-corner -int 10'
-    sh 'defaults write com.apple.dock wvous-bl-modifier -int 0'
+    task 'defaults write com.apple.dock autohide -bool true'
+    task 'defaults write com.apple.dock persistent-apps -array'
+    task 'defaults write com.apple.dock tilesize -int 55'
+    task 'defaults write com.apple.dock wvous-bl-corner -int 10'
+    task 'defaults write com.apple.dock wvous-bl-modifier -int 0'
     # todo killall if updated
-    #sh 'killall Dock'
+    # killall Dock'
 
-    sh 'defaults write com.apple.finder AppleShowAllFiles YES'
-    sh 'defaults write com.apple.finder NewWindowTarget -string "PfDe"'
-    sh 'defaults write com.apple.finder NewWindowTargetPath -string "file://${HOME}/"'
+    task 'defaults write com.apple.finder AppleShowAllFiles YES'
+    task 'defaults write com.apple.finder NewWindowTarget -string "PfDe"'
+    task 'defaults write com.apple.finder NewWindowTargetPath -string "file://${HOME}/"'
     # todo killall if updated
-    #sh 'killall Finder'
+    # killall Finder'
 
-    sh 'defaults write com.apple.Safari IncludeInternalDebugMenu -bool true'
+    task 'defaults write com.apple.Safari IncludeInternalDebugMenu -bool true'
 
     # todo needs restart
-    sh 'defaults write -g com.apple.trackpad.scaling -int 3'
-    sh 'defaults write -g InitialKeyRepeat -int 15'
-    sh 'defaults write -g KeyRepeat -int 2'
-    sh 'defaults -currentHost write -globalDomain com.apple.mouse.tapBehavior -int 1'
+    task 'defaults write -g com.apple.trackpad.scaling -int 3'
+    task 'defaults write -g InitialKeyRepeat -int 15'
+    task 'defaults write -g KeyRepeat -int 2'
+    task 'defaults -currentHost write -globalDomain com.apple.mouse.tapBehavior -int 1'
   end
 
-  task :vm do
-    task_brew_cask 'virtualbox'
-    task_brew_cask 'vagrant'
-    task :vbguest, do_if: has_err('vagrant plugin list | grep vagrant-vbguest') do
-      sh 'vagrant plugin install vagrant-vbguest'
-    end
-    task_brew 'docker'
-    task_brew 'docker-machine'
-    task_brew 'docker-compose'
+  task :container_tools do
+    task brew_cask 'virtualbox'
+    task brew_cask 'vagrant'
+    task if_err('vagrant plugin list | grep vagrant-vbguest'), 'vagrant plugin install vagrant-vbguest'
+    task brew 'docker'
+    task brew 'docker-machine'
+    task brew 'docker-compose'
   end
 
   task :intellij do
-    task_brew_cask "jetbrains-toolbox"
-    task_symlink '~/.dotfiles/intellij/ideavimrc', '~/.ideavimrc'
+    task brew_cask "jetbrains-toolbox"
+    task symlink '~/.dotfiles/intellij/ideavimrc', '~/.ideavimrc'
     # TODO apply settings.jar
   end
 
   task :jupyter do
-    task_symlink '~/.dotfiles/jupyter/custom.js', '~/.jupyter/custom/custom.js'
+    task symlink '~/.dotfiles/jupyter/custom.js', '~/.jupyter/custom/custom.js'
   end
 
   task :python do
-    task_symlink '~/.dotfiles/matplotlib/matplotlibrc', '~/.matplotlibrc'
+    task symlink '~/.dotfiles/matplotlib/matplotlibrc', '~/.matplotlibrc'
     task :pyenv do
-      task_brew 'pyenv'
-      task_brew 'pyenv-virtualenv'
-      task_symlink '~/.dotfiles/zsh/zshrc.module.pyenv', '~/.zshrc.module.pyenv'
+      task brew 'pyenv'
+      task brew 'pyenv-virtualenv'
+      task symlink '~/.dotfiles/zsh/zshrc.module.pyenv', '~/.zshrc.module.pyenv'
     end
   end
 
-  #task_brew_cask 'slack'
-  task_brew_cask 'alfred' # todo change hotkey from gui
+  #task brew_cask 'slack'
+  task brew_cask 'alfred' # todo change hotkey from gui
 
-  task_brew_cask 'caffeine'
-  task_brew_cask 'discord'
+  task brew_cask 'caffeine'
+  task brew_cask 'discord'
 
   # tood need login app store
-  task_mas 409183694 # keynote
-  task_mas 409203825 # Numbers
-  task_mas 409201541 # Pages
-  task_mas 539883307 # LINE
-  task_mas 485812721 # TweetDeck
-  task_mas 405399194 # Kindle
+  task mas 409183694 # keynote
+  task mas 409203825 # Numbers
+  task mas 409201541 # Pages
+  task mas 539883307 # LINE
+  task mas 485812721 # TweetDeck
+  task mas 405399194 # Kindle
 
-  # todo hotkey
-
-  puts ""
-  puts "[FINISHED]"
+  # todo macos
+  # disable spotlight
+  # かな入力
+  # enable key repeat
 end
 
-$level = -1
+def exec
 
-def task(name, do_if: true, &block)
-  $level += 1
+  task :init do
+    task :install_homebrew, if_err('which brew'),
+         '/usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"',
+         'brew install hoge'
+    task do
+      task brew 'git'
+    end
 
-  print "    " * $level
-  print "[TASK]: ", name, " "
+    task 'rm -rf foo/bar'
+    task :hoge, 'rm -rf foo/bar'
+    task :tap_brew_cask, if_not_exist('~/.foo'), 'brew tap caskroom/cask'
 
-  need_exec = do_if.respond_to?(:call) ? do_if.call : do_if
+    task brew 'git'
+    task :install_git, brew 'git'
 
-  if need_exec
-    # TODO dont display when do_if is not specified
-    puts "-> not provisioned"
-    block.call
-  elsif puts "-> already provisioned"
+    task symlink '~/.dotfiles/git/gitignore', '~/.gitignore'
+    task :create_symlink, symlink '~/.dotfiles/git/gitignore', '~/.gitignore'
   end
 
-  $level -= 1
+
+  task :foo, if_err('ls foo') do
+    task brew 'git'
+  end
+
 end
 
+# ================================
+# Task
+# ================================
+
+def task(*args)
+  args.each do |arg|
+    arg
+  end
+end
+
+class Task
+  def initialize()
+  end
+
+# ================================
+# conditions
+# ================================
+
+#@return Condition
+  def if_err(command)
+    Condition.new {system(command) === false}
+  end
+
+#@return Condition
+  def if_not_exist(path)
+    if_err "which #{path}"
+  end
+
+#@return Condition
+  def if_not_symlinked(origin, link)
+    Condition.new do
+      current_link = `readlink #{link}`.chomp
+      (origin.start_with? "~", "/") ?
+          File.expand_path(origin) != current_link # absolute symlink
+          : origin != current_link # relative symlink
+    end
+  end
+
+  class Condition
+    def initialize(&block)
+      @_checker = block
+    end
+
+    def check
+      @_checker.call
+    end
+  end
+
+# ================================
 # task aliases
-def task_symlink(origin, link)
-  task "put_symlink[#{link} -> #{origin}]", do_if: not_symlinked(origin, link) do
-    sh "mkdir -p #{link.gsub(/[^\/]+\/?$/, '')}"
-    sh "ln -s #{origin} #{link}"
+# ================================
+
+  def brew(package)
+    TaskAlias.new if_not_exist("which #{package}"), "brew install #{package}"
   end
-end
 
-def task_brew(p, opt: "")
-  # FIXME cannot detect the difference of option
-  task "install_#{p}", do_if: not_exist("/usr/local/Cellar/#{p}") do
-    sh "brew install #{p} #{opt}"
+  def brew_cask(package)
+    TaskAlias.new if_not_exist("/usr/local/Caskroom/#{package}"), "brew cask install #{package}"
   end
-end
 
-def task_brew_cask(p)
-  task "install_#{p}", do_if: not_exist("/usr/local/Caskroom/#{p}") do
-    sh "brew cask install #{p}"
+  def mas(app_id)
+    TaskAlias.new if_err("mas list | grep '^#{app_id} '"), "mas install #{app_id}"
   end
-end
 
-def task_mas(app_id)
-  task "install_app_#{app_id}", do_if: has_err("mas list | grep '^#{app_id} '") do
-    sh "mas install #{app_id}"
+  def symlink(origin, link)
+    TaskAlias.new if_not_symlinked(origin, link),
+                  "mkdir -p #{link.gsub(/[^\/]+\/?$/, '')}",
+                  "ln -si #{origin} #{link}"
   end
-end
 
-def not_symlinked(origin, link)
-  current_link = `readlink #{link}`.chomp
-  (origin.start_with? "~", "/") ?
-      File.expand_path(origin) != current_link # absolute symlink
-      : origin != current_link # relative symlink
-end
+  class TaskAlias
+    def initialize(*args)
 
-def has_err(cmd)
-  puts "> #{cmd}"
-  system(cmd) === false
-end
+    end
+  end
 
-def not_exist(path)
-  has_err "ls #{path}"
-end
-
-def sh(cmd)
-  puts "> #{cmd}"
-  system(cmd) or raise "command execution failed."
-end
-
-run
+  run
