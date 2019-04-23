@@ -6,15 +6,6 @@
 require './provision-task'
 
 tasks do
-  task :foge do
-    task :fuga do
-      task :foo, "echo 'foo'"
-      task :bar, "echo 'bar'"
-    end
-  end
-end
-
-tasks do
 
   task :default do
     task :init do
@@ -72,7 +63,7 @@ tasks do
     task brew 'jq'
     task brew 'mas'
     task :ag do
-      task brew 'the_silver_searcher'
+      task brew 'ag'
       task symlink '~/.dotfiles/ag/agignore', '~/.agignore'
     end
 
@@ -80,10 +71,10 @@ tasks do
       task brew 'fish'
       task symlink '~/.dotfiles/fish', '~/.config/fish'
       task :fisherman, if_not_exist('~/.config/fish/functions/fisher.fish'),
-        'curl -Lo ~/.config/fish/functions/fisher.fish --create-dirs git.io/fisher'
+           'curl -Lo ~/.config/fish/functions/fisher.fish --create-dirs git.io/fisher'
       task :set_default_shell do
         task :add_shell, if_err("cat /etc/shells | grep $(which fish)"),
-          "sudo bash -c 'echo $(which fish) >> /etc/shells'"
+             "sudo bash -c 'echo $(which fish) >> /etc/shells'"
         # task :add_shell, if_err("echo $SHELL | grep fish") do
         #   sh "sudo chsh -s $(which fish)"
         # end

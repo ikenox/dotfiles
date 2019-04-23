@@ -61,7 +61,7 @@ class TaskArgParser
     current = :start
 
     result = {
-        name: "",
+        name: nil,
         do_if: Condition.new {true},
         cmd: nil,
         block: nil,
@@ -97,18 +97,32 @@ end
 
 def tasks(&block)
   builder = TaskBuilder.root &block
-  puts builder.parse.inspect
+  TaskVisitor.new.visit builder.parse.get_child(:default)
+end
+
+class TaskVisitor
+  def visit(task)
+    todo = task.cond.todo?
+    print "#{task.name || "(anonymous task)"} -> "
+    puts todo ? 'EXEC' : 'SKIP'
+    return unless todo
+
+    c = task.cmd_or_children
+    case c
+    when Proc then
+      cmd = c.call
+      exec! cmd
+    when Array then
+      c.each {|t| visit(t)}
+    else
+      raise "unknown"
+    end
+  end
 end
 
 # ================================
 # Task
 # ================================
-
-def task(*args, parent: nil)
-  args.each do |arg|
-    arg
-  end
-end
 
 class Task
   def initialize(name:, do_if:, cmd:, childs:)
@@ -118,7 +132,21 @@ class Task
     @_child_tasks = childs
   end
 
-  def child_tasks()
+  def cond
+    @_do_if
+  end
+
+  def name
+    @_name
+  end
+
+  def get_child(name)
+    arr = (@_child_tasks || []).select {|t| t.name == name}
+    arr.length == 0 ? nil : arr[0]
+  end
+
+  def cmd_or_children
+    @_cmd || @_child_tasks || raise("empty task")
   end
 end
 
@@ -128,12 +156,12 @@ end
 
 #@return Condition
 def if_err(command)
-  Condition.new {system(command) === false}
+  Condition.new {!exec? command}
 end
 
 #@return Condition
 def if_not_exist(path)
-  if_err "which #{path}"
+  if_err "ls #{path}"
 end
 
 #@return Condition
@@ -146,12 +174,27 @@ def if_not_symlinked(origin, link)
   end
 end
 
+def exec?(cmd)
+  puts "> #{cmd}"
+  `#{cmd}`
+  $? == 0
+end
+
+def exec!(cmd)
+  puts "> #{cmd}"
+  res = `#{cmd}`
+  if $? != 0
+    raise 'execution error'
+  end
+  res
+end
+
 class Condition
   def initialize(&block)
     @_checker = block
   end
 
-  def check
+  def todo?
     @_checker.call
   end
 end
@@ -167,7 +210,7 @@ end
 # ================================
 
 def brew(package)
-  TaskAlias.new if_not_exist("which #{package}"), "brew install #{package}"
+  TaskAlias.new if_err("which #{package} || /usr/local/Cellar/#{package}"), "brew install #{package}"
 end
 
 def brew_cask(package)
@@ -179,22 +222,31 @@ def mas(app_id)
 end
 
 def symlink(origin, link)
-  TaskAlias.new if_not_symlinked(origin, link),
-                "mkdir -p #{link.gsub(/[^\/]+\/?$/, '')}",
-                "ln -si #{origin} #{link}"
+  # todo multicommand
+  TaskAlias.new if_not_symlinked(origin, link), %(
+                mkdir -p #{link.gsub(/[^\/]+\/?$/, '')}
+                ln -si #{origin} #{link}
+  )
 end
 
 class TaskAlias
   def initialize(*args)
-
+    if args.length == 2
+      @do_if = args[0]
+      @cmd = args[1].class == Proc ? args[1] : -> {args[1]}
+    elsif args.length == 1
+      @cmd = args[0].class == Proc ? args[0] : -> {args[0]}
+    else
+      raise 'invalid arg'
+    end
   end
 
   def do_if
-
+    @do_if
   end
 
   def cmd
-
+    @cmd
   end
 end
 
