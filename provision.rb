@@ -17,7 +17,6 @@ tasks do
       task symlink '~/.dotfiles/git/gitignore', '~/.gitignore'
 
       ghq_root = '~/repos'
-
       task :dotfiles_repo do
         host = 'github.com'
         repo = 'ikenox/dotfiles'
@@ -62,6 +61,7 @@ tasks do
     task brew 'fzf'
     task brew 'jq'
     task brew 'mas'
+    task brew 'gnu-sed'
     task :ag do
       task brew 'ag'
       task symlink '~/.dotfiles/ag/agignore', '~/.agignore'
@@ -79,7 +79,7 @@ tasks do
         #   sh "sudo chsh -s $(which fish)"
         # end
       end
-      task 'fish -c "fisher"'
+      task :fish_package, if_err('fish -c "fisher ls | xargs -I% grep % -a ~/.dotfiles/fish/fishfile"'), 'fish -c "fisher"'
     end
 
     task :hyper do
@@ -133,6 +133,11 @@ tasks do
       task symlink '~/.dotfiles/jupyter/custom.js', '~/.jupyter/custom/custom.js'
     end
 
+    task :gcloud do
+      task brew 'gcloud'
+      task 'gcloud components install app-engine-java'
+    end
+
     task :python do
       task symlink '~/.dotfiles/matplotlib/matplotlibrc', '~/.matplotlibrc'
       task :pyenv do
@@ -144,10 +149,12 @@ tasks do
 
     task :java do
       task brew 'jenv'
-      task brew_cask 'java8'
+      task brew_cask 'java'
       task 'echo "set PATH $HOME/.jenv/bin $PATH" > ~/.dotfiles/fish/conf.d/jenv.fish'
-      task 'curl https://raw.githubusercontent.com/gcuisinier/jenv/master/fish/jenv.fish > ~/.config/fish/jenv.fish'
-      task 'curl https://raw.githubusercontent.com/gcuisinier/jenv/master/fish/export.fish > ~/.config/fish/export.fish'
+      task if_not_exist('~/.config/fish/jenv.fish'),
+           'curl https://raw.githubusercontent.com/gcuisinier/jenv/master/fish/jenv.fish > ~/.config/fish/jenv.fish'
+      task if_not_exist('~/.config/fish/export.fish'),
+           'curl https://raw.githubusercontent.com/gcuisinier/jenv/master/fish/export.fish > ~/.config/fish/export.fish'
     end
 
     #task_brew_cask 'slack'
