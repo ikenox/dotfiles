@@ -45,3 +45,4 @@ end
 # fish-ghq
 set GHQ_SELECTOR peco
 
+which pyenv >/dev/null && source (pyenv init - | psub)
