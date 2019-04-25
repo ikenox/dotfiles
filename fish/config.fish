@@ -30,6 +30,8 @@ function fish_user_key_bindings
   bind -M visual L end-of-line
   bind L end-of-line
 
+  bind -M insert \cd ""
+
   bind -M insert zz peco_z
 
   # plugin-peco

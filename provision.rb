@@ -135,7 +135,7 @@ tasks do
 
     task :gcloud do
       task brew 'gcloud'
-      task 'gcloud components install app-engine-java'
+      task 'CLOUDSDK_PYTHON=/usr/bin/python gcloud components install app-engine-java'
     end
 
     task :python do

@@ -232,7 +232,7 @@ end
 # ================================
 
 def brew(package)
-  TaskAlias.new if_err("which #{package} || /usr/local/Cellar/#{package}"), "brew install #{package}"
+  TaskAlias.new if_err("which #{package} || ls /usr/local/Cellar/#{package}"), "brew install #{package}"
 end
 
 def brew_cask(package)
