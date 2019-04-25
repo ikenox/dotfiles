@@ -134,6 +134,11 @@ module.exports = {
       hideDock: true,
       hideOnBlur: false,
       hotkey: 'Ctrl+;'
+    },
+
+    hyperlinks: {
+      clickAction: 'copy',
+      defaultBrowser: false
     }
   },
 

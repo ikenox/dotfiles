@@ -6,7 +6,6 @@
 require './provision-task'
 
 tasks do
-
   task :default do
     task :init do
       task :install_homebrew, if_err('which brew'),
@@ -26,7 +25,7 @@ tasks do
       end
       task :gitconfig do
         task symlink '~/.dotfiles/git/gitconfig', '~/.gitconfig'
-        task "git config -f ~/.gitconfig.local ghq.root #{ghq_root}"
+        task if_err('git config ghq.root'), "git config -f ~/.gitconfig.local ghq.root #{ghq_root}"
       end
     end
 
@@ -135,7 +134,8 @@ tasks do
 
     task :gcloud do
       task brew 'gcloud'
-      task 'CLOUDSDK_PYTHON=/usr/bin/python gcloud components install app-engine-java'
+      task if_err('CLOUDSDK_PYTHON=/usr/bin/python gcloud components list 2>/dev/null | grep app-engine-java'),
+           'CLOUDSDK_PYTHON=/usr/bin/python gcloud components install app-engine-java'
     end
 
     task :python do
@@ -150,7 +150,8 @@ tasks do
     task :java do
       task brew 'jenv'
       task brew_cask 'java'
-      task 'echo "set PATH $HOME/.jenv/bin $PATH" > ~/.dotfiles/fish/conf.d/jenv.fish'
+      task if_not_exist('~/.dotfiles/fish/conf.d/jenv.fish'),
+           'echo "set PATH $HOME/.jenv/bin $PATH" > ~/.dotfiles/fish/conf.d/jenv.fish'
       task if_not_exist('~/.config/fish/jenv.fish'),
            'curl https://raw.githubusercontent.com/gcuisinier/jenv/master/fish/jenv.fish > ~/.config/fish/jenv.fish'
       task if_not_exist('~/.config/fish/export.fish'),
@@ -203,3 +204,4 @@ tasks do
     end
   end
 end
+
