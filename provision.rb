@@ -1,8 +1,5 @@
 #!/usr/bin/env ruby
 
-# todo debug mode
-# todo dry-run mode
-# todo cannot interrupt brew cask install
 require './provision-task'
 
 def brew(package)

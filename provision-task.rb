@@ -107,15 +107,15 @@ class TaskExecutor
   def execute(task)
     todo = task.cond.todo?
     print "    " * @level
-    print "TASK: #{task.name || "(anonymous task)"}"
+    print "\e[48;5m[TASK]#{task.name || "anonymous_task"}"
 
     case todo
     when nil then
-      puts " -> EXECUTE"
+      puts " -> \e[1mEXECUTE\e[0m"
     when false then
-      puts " -> \e[34mSKIP\e[0m"
+      puts " -> \e[1;34mSKIP\e[0m"
     when true then
-      puts " -> \e[31mEXECUTE\e[0m"
+      puts " -> \e[1;31mEXECUTE\e[0m"
     end
     return if todo == false
 
