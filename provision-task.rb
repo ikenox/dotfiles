@@ -156,9 +156,13 @@ class Task
     @_name
   end
 
-  def get_child(name)
-    arr = (@_child_tasks || []).select {|t| t.name == name}
-    arr.length == 0 ? nil : arr[0]
+  def get_child(names)
+    arr = (@_child_tasks || []).select {|t| t.name.to_s == names[0].to_s}
+    if arr.length == 0
+      return nil
+    end
+    child = arr[0]
+    names.length == 1 ? child : child.get_child(names[1..-1])
   end
 
   def cmd_or_children
@@ -251,7 +255,11 @@ end
 # ================================
 
 def equil(&block)
-  params = ARGV.getopts("foo", "dry")
+  params = ARGV.getopts("dry", "task:")
   builder = TaskBuilder.create_root &block
-  TaskExecutor.new(dry: params["dry"]).execute builder.parse.get_child(:default)
+
+  executed_task = params["task"] ? params["task"].split('.').each{|t| t.to_sym} : [:default]
+  puts executed_task.inspect
+
+  TaskExecutor.new(dry: params["dry"]).execute builder.parse.get_child(executed_task)
 end
