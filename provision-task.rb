@@ -1,8 +1,7 @@
 require 'optparse'
 
-
 class TaskBuilder
-  def self.root(&block)
+  def self.create_root(&block)
     t = TaskBuilder.new(name: :root, do_if: Condition.new {nil}, cmd: nil)
     t.instance_eval &block
     t
@@ -99,19 +98,13 @@ class TaskArgParser
   end
 end
 
-def tasks(&block)
-  params = ARGV.getopts("foo", "dry")
-  builder = TaskBuilder.root &block
-  TaskVisitor.new(dry: params["dry"]).visit builder.parse.get_child(:default)
-end
-
-class TaskVisitor
+class TaskExecutor
   def initialize(dry: false)
     @level = 0
     @dry = dry
   end
 
-  def visit(task)
+  def execute(task)
     todo = task.cond.todo?
     print "    " * @level
     print "TASK: #{task.name || "(anonymous task)"}"
@@ -135,7 +128,7 @@ class TaskVisitor
       end
     when Array then
       @level += 1
-      c.each {|t| visit(t)}
+      c.each {|t| execute(t)}
       @level -= 1
     else
       raise "unknown"
@@ -232,26 +225,6 @@ end
 # task aliases
 # ================================
 
-def brew(package)
-  TaskAlias.new "install_#{package}_by_brew".to_sym, if_err("which #{package} || ls /usr/local/Cellar/#{package}"), "brew install #{package}"
-end
-
-def brew_cask(package)
-  TaskAlias.new "install_#{package}_by_cask".to_sym, if_not_exist("/usr/local/Caskroom/#{package}"), "brew cask install #{package}"
-end
-
-def mas(app_id)
-  TaskAlias.new "mas_#{app_id}_by_mas".to_sym, if_err("mas list | grep '^#{app_id} '"), "mas install #{app_id}"
-end
-
-def symlink(origin, link)
-  # todo multicommand
-  TaskAlias.new "symlink #{link} to #{origin}".to_sym, if_not_symlinked(origin, link), %(
-                mkdir -p #{link.gsub(/[^\/]+\/?$/, '')}
-                ln -si #{origin} #{link}
-  )
-end
-
 class TaskAlias
   def initialize(*args)
     result = TaskArgParser.parse args
@@ -273,3 +246,12 @@ class TaskAlias
   end
 end
 
+# ================================
+# entry point
+# ================================
+
+def equil(&block)
+  params = ARGV.getopts("foo", "dry")
+  builder = TaskBuilder.create_root &block
+  TaskExecutor.new(dry: params["dry"]).execute builder.parse.get_child(:default)
+end
