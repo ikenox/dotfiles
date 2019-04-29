@@ -85,6 +85,7 @@ class TaskArgParser
       when Proc then
         result[:cmd] = arg
       when TaskAlias then
+        result[:name] = arg.default_name unless result[:name]
         result[:cmd] = arg.cmd
         result[:do_if] = arg.do_if
       else
@@ -99,9 +100,9 @@ class TaskArgParser
 end
 
 def tasks(&block)
-  params = ARGV.getopts("foo","dry")
+  params = ARGV.getopts("foo", "dry")
   builder = TaskBuilder.root &block
-  TaskVisitor.new(dry:params["dry"]).visit builder.parse.get_child(:default)
+  TaskVisitor.new(dry: params["dry"]).visit builder.parse.get_child(:default)
 end
 
 class TaskVisitor
@@ -128,7 +129,7 @@ class TaskVisitor
     c = task.cmd_or_children
     case c
     when Proc then
-      if !@dry
+      unless @dry
         cmd = c.call
         exec!(cmd)
       end
@@ -178,7 +179,7 @@ end
 
 #@return Condition
 def if_err(command)
-  Condition.new {!exec? command, silent:true}
+  Condition.new {!exec? command, silent: true}
 end
 
 #@return Condition
@@ -232,20 +233,20 @@ end
 # ================================
 
 def brew(package)
-  TaskAlias.new if_err("which #{package} || ls /usr/local/Cellar/#{package}"), "brew install #{package}"
+  TaskAlias.new "install_#{package}_by_brew".to_sym, if_err("which #{package} || ls /usr/local/Cellar/#{package}"), "brew install #{package}"
 end
 
 def brew_cask(package)
-  TaskAlias.new if_not_exist("/usr/local/Caskroom/#{package}"), "brew cask install #{package}"
+  TaskAlias.new "install_#{package}_by_cask".to_sym, if_not_exist("/usr/local/Caskroom/#{package}"), "brew cask install #{package}"
 end
 
 def mas(app_id)
-  TaskAlias.new if_err("mas list | grep '^#{app_id} '"), "mas install #{app_id}"
+  TaskAlias.new "mas_#{app_id}_by_mas".to_sym, if_err("mas list | grep '^#{app_id} '"), "mas install #{app_id}"
 end
 
 def symlink(origin, link)
   # todo multicommand
-  TaskAlias.new if_not_symlinked(origin, link), %(
+  TaskAlias.new "symlink #{link} to #{origin}".to_sym, if_not_symlinked(origin, link), %(
                 mkdir -p #{link.gsub(/[^\/]+\/?$/, '')}
                 ln -si #{origin} #{link}
   )
@@ -253,14 +254,14 @@ end
 
 class TaskAlias
   def initialize(*args)
-    if args.length == 2
-      @do_if = args[0]
-      @cmd = args[1].class == Proc ? args[1] : -> {args[1]}
-    elsif args.length == 1
-      @cmd = args[0].class == Proc ? args[0] : -> {args[0]}
-    else
-      raise 'invalid arg'
-    end
+    result = TaskArgParser.parse args
+    @default_name = result[:name]
+    @do_if = result[:do_if]
+    @cmd = result[:cmd]
+  end
+
+  def default_name
+    @default_name
   end
 
   def do_if

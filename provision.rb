@@ -158,10 +158,13 @@ tasks do
            'curl https://raw.githubusercontent.com/gcuisinier/jenv/master/fish/export.fish > ~/.config/fish/export.fish'
     end
 
+    task brew 'sshfs'
+
     #task_brew_cask 'slack'
     task brew_cask 'alfred' # todo change hotkey from gui
     task brew_cask 'caffeine'
     task brew_cask 'discord'
+    task brew_cask 'osxfuse'
 
     # tood need login app store
     task mas 409183694 # keynote
