@@ -1,27 +1,4 @@
-#!/usr/bin/env ruby
-
-require './equil'
-
-def brew(package)
-  TaskAlias.new "install_#{package}_by_brew".to_sym, if_err("which #{package} || ls /usr/local/Cellar/#{package}"), "brew install #{package}"
-end
-
-def brew_cask(package)
-  TaskAlias.new "install_#{package}_by_cask".to_sym, if_not_exist("/usr/local/Caskroom/#{package}"), "brew cask install #{package}"
-end
-
-def mas(app_id)
-  TaskAlias.new "install_#{app_id}_by_mas".to_sym, if_err("mas list | grep '^#{app_id} '"), "mas install #{app_id}"
-end
-
-def symlink(origin, link)
-  TaskAlias.new "symlink #{link} to #{origin}".to_sym, if_not_symlinked(origin, link), %(
-                mkdir -p #{link.gsub(/[^\/]+\/?$/, '')}
-                ln -si #{origin} #{link}
-  )
-end
-
-equil do
+def equil
   task :default do
     task :init do
       task :install_homebrew, if_err('which brew'),
@@ -224,11 +201,30 @@ equil do
       task :tap_brew_cask, if_not_exist('~/.foo'), 'brew tap caskroom/cask'
 
       task brew 'git'
-      task brew 'git'
 
-      task symlink '~/.dotfiles/git/gitignore', '~/.gitignore'
       task symlink '~/.dotfiles/git/gitignore', '~/.gitignore'
     end
   end
 end
 
+def brew(package)
+  task_alias "install_#{package}_by_brew".to_sym, if_err("which #{package} || ls /usr/local/Cellar/#{package}"), "brew install #{package}"
+end
+
+def brew_cask(package)
+  task_alias "install_#{package}_by_cask".to_sym, if_not_exist("/usr/local/Caskroom/#{package}"), "brew cask install #{package}"
+end
+
+def mas(app_id)
+  task_alias "install_#{app_id}_by_mas".to_sym, if_err("mas list | grep '^#{app_id} '"), "mas install #{app_id}"
+end
+
+def symlink(origin, link)
+  task_alias "symlink #{link} to #{origin}".to_sym, if_not_symlinked(origin, link), %(
+                mkdir -p #{link.gsub(/[^\/]+\/?$/, '')}
+                ln -si #{origin} #{link}
+  )
+end
+
+
+require './equil'

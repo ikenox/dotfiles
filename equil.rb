@@ -8,17 +8,19 @@ class TaskBuilder
   end
 
   def initialize(name:, do_if:, cmd:)
-    @_name = name
-    @_do_if = do_if
-    @_cmd = cmd
+    @name = name
+    @do_if = do_if
+    @cmd = cmd
     @child_tasks = []
   end
 
   def task(*args, &block)
+    taskargs = args.dup
+
     if block
-      args.push(TaskArgParser::Block.new(block))
+      taskargs.push(TaskArgParser::Wrapper.new(block))
     end
-    result = TaskArgParser.parse args
+    result = TaskArgParser.parse taskargs
     t = TaskBuilder.new(name: result[:name], do_if: result[:do_if], cmd: result[:cmd])
 
     if block
@@ -30,32 +32,30 @@ class TaskBuilder
 
   def parse
     Task.new(
-        name: @_name,
-        do_if: @_do_if,
+        name: @name,
+        do_if: @do_if,
         childs: @child_tasks.map {|t| t.parse},
-        cmd: @_cmd,
+        cmd: @cmd,
     )
   end
 end
 
 class TaskArgParser
 
-  class Block
+  class Wrapper
+    attr_accessor :block
+
     def initialize(block)
       @block = block
-    end
-
-    def block
-      @block
     end
   end
 
   def self.parse(args)
     dfa = {
-        start: [Symbol, Condition, Block, String, Proc, TaskAlias],
-        Symbol => [Condition, Block, String, Proc, TaskAlias],
-        Condition => [Block, String, Proc],
-        Block => [],
+        start: [Symbol, Condition, Wrapper, String, Proc, TaskAlias],
+        Symbol => [Condition, Wrapper, String, Proc, TaskAlias],
+        Condition => [Wrapper, String, Proc],
+        Wrapper => [],
         String => [],
         Proc => [],
     }
@@ -77,7 +77,7 @@ class TaskArgParser
         result[:name] = arg
       when Condition then
         result[:do_if] = arg
-      when Block then
+      when Wrapper then
         result[:block] = arg.block
       when String then
         result[:cmd] = -> {arg}
@@ -99,15 +99,16 @@ class TaskArgParser
 end
 
 class TaskExecutor
-  def initialize(dry: false)
-    @level = 0
+  def initialize(task, dry: false, level:0)
+    @task = task
+    @level = level
     @dry = dry
   end
 
-  def execute(task)
-    todo = task.cond.todo?
+  def execute()
+    todo = @task.do_if.todo?
     print "    " * @level
-    print "\e[48;5m[TASK]#{task.name || "anonymous_task"}"
+    print "\e[48;5m[TASK]#{@task.name || "anonymous_task"}"
 
     case todo
     when nil then
@@ -119,7 +120,7 @@ class TaskExecutor
     end
     return if todo == false
 
-    c = task.cmd_or_children
+    c = @task.cmd_or_children
     case c
     when Proc then
       unless @dry
@@ -127,9 +128,7 @@ class TaskExecutor
         exec!(cmd)
       end
     when Array then
-      @level += 1
-      c.each {|t| execute(t)}
-      @level -= 1
+      c.each {|t| TaskExecutor.new(t, dry: @dry, level:@level+1).execute}
     else
       raise "unknown"
     end
@@ -141,23 +140,17 @@ end
 # ================================
 
 class Task
+  attr_accessor :name, :do_if, :cmd, :child_tasks
+
   def initialize(name:, do_if:, cmd:, childs:)
-    @_name = name
-    @_do_if = do_if
-    @_cmd = cmd
-    @_child_tasks = childs
-  end
-
-  def cond
-    @_do_if
-  end
-
-  def name
-    @_name
+    @name = name
+    @do_if = do_if
+    @cmd = cmd
+    @child_tasks = childs
   end
 
   def get_child(names)
-    arr = (@_child_tasks || []).select {|t| t.name.to_s == names[0].to_s}
+    arr = (@child_tasks || []).select {|t| t.name.to_s == names[0].to_s}
     if arr.length == 0
       return nil
     end
@@ -166,7 +159,7 @@ class Task
   end
 
   def cmd_or_children
-    @_cmd || @_child_tasks || raise("empty task")
+    @cmd || @child_tasks || raise("empty task")
   end
 end
 
@@ -195,13 +188,13 @@ def if_not_symlinked(origin, link)
 end
 
 def exec?(cmd, silent: false)
-  puts "> #{cmd}" unless silent
+  puts "#{cmd}" unless silent
   `#{cmd}`
   $? == 0
 end
 
 def exec!(cmd, silent: false)
-  puts "> #{cmd}" unless silent
+  puts "#{cmd}" unless silent
   res = `#{cmd}`
   if $? != 0
     raise 'execution error'
@@ -230,36 +223,37 @@ end
 # ================================
 
 class TaskAlias
+  attr_accessor :default_name, :do_if, :cmd
+
   def initialize(*args)
     result = TaskArgParser.parse args
     @default_name = result[:name]
     @do_if = result[:do_if]
     @cmd = result[:cmd]
   end
+end
 
-  def default_name
-    @default_name
-  end
-
-  def do_if
-    @do_if
-  end
-
-  def cmd
-    @cmd
-  end
+def task_alias(*args)
+  TaskAlias.new *args
 end
 
 # ================================
 # entry point
 # ================================
 
-def equil(&block)
+def main
   params = ARGV.getopts("dry", "task:")
-  builder = TaskBuilder.create_root &block
+  # builder = TaskBuilder.create_root &method(:equil)
 
-  executed_task = params["task"] ? params["task"].split('.').each{|t| t.to_sym} : [:default]
-  puts executed_task.inspect
+  builder = TaskBuilder.new(name: :root, do_if: Condition.new {nil}, cmd: nil)
+  builder.instance_eval do
+    method(:equil).call
+  end
 
-  TaskExecutor.new(dry: params["dry"]).execute builder.parse.get_child(executed_task)
+  executed_task = params["task"] ? params["task"].split('.').each {|t| t.to_sym} : [:default]
+
+  executor = TaskExecutor.new(builder.parse.get_child(executed_task), dry: params["dry"])
+  executor.execute
 end
+
+main
