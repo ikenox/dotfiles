@@ -1,6 +1,6 @@
 #!/usr/bin/env ruby
 
-require './provision-task'
+require './equil'
 
 def brew(package)
   TaskAlias.new "install_#{package}_by_brew".to_sym, if_err("which #{package} || ls /usr/local/Cellar/#{package}"), "brew install #{package}"
@@ -15,7 +15,6 @@ def mas(app_id)
 end
 
 def symlink(origin, link)
-  # todo multicommand
   TaskAlias.new "symlink #{link} to #{origin}".to_sym, if_not_symlinked(origin, link), %(
                 mkdir -p #{link.gsub(/[^\/]+\/?$/, '')}
                 ln -si #{origin} #{link}
@@ -123,11 +122,19 @@ equil do
 
       task 'defaults write com.apple.Safari IncludeInternalDebugMenu -bool true'
 
+      task 'defaults write com.apple.screencapture "disable-shadow" -bool yes'
+      task 'defaults write com.apple.screencapture name screenshot'
+      task 'defaults write com.apple.screencapture location ~/screenshots/'
+
       # todo needs restart
       task 'defaults write -g com.apple.trackpad.scaling -int 3'
       task 'defaults write -g InitialKeyRepeat -int 15'
       task 'defaults write -g KeyRepeat -int 2'
       task 'defaults -currentHost write -globalDomain com.apple.mouse.tapBehavior -int 1'
+
+      task 'defaults write -g AppleShowAllExtensions -bool true'
+      task 'defaults write com.apple.desktopservices DSDontWriteNetworkStores -bool true'
+      # task 'killall SystemUIServer'
     end
 
     task :container_tools do
