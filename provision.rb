@@ -227,4 +227,3 @@ def symlink(origin, link)
 end
 
 
-require './equil'

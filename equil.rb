@@ -188,13 +188,13 @@ def if_not_symlinked(origin, link)
 end
 
 def exec?(cmd, silent: false)
-  puts "#{cmd}" unless silent
+  puts "> #{cmd}" unless silent
   `#{cmd}`
   $? == 0
 end
 
 def exec!(cmd, silent: false)
-  puts "#{cmd}" unless silent
+  puts "> #{cmd}" unless silent
   res = `#{cmd}`
   if $? != 0
     raise 'execution error'
@@ -242,7 +242,7 @@ end
 # ================================
 
 def main
-  params = ARGV.getopts("dry", "task:")
+  params = ARGV.getopts(nil, 'dry', "task:")
   # builder = TaskBuilder.create_root &method(:equil)
 
   builder = TaskBuilder.new(name: :root, do_if: Condition.new {nil}, cmd: nil)
@@ -254,6 +254,9 @@ def main
 
   executor = TaskExecutor.new(builder.parse.get_child(executed_task), dry: params["dry"])
   executor.execute
+
+  puts ""
+  puts "\e[2m[FINISHED]\e[0m"
 end
 
 main
