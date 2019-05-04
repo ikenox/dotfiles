@@ -1,3 +1,3 @@
 ```sh
-/usr/bin/ruby -e "$(curl -fsSL https://raw.github.com/ikenox/dotfiles/master/provision.rb)"
+bash -c "{ curl -fsSL https://raw.github.com/ikenox/dotfiles/master/provision.rb; curl -fsSL https://raw.githubusercontent.com/ikenox/equil/0.1.0/equil.rb; }" | ruby
 ```
