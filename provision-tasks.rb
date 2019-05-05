@@ -185,7 +185,7 @@ def equil
     # sudo installer -pkg /Library/Developer/CommandLineTools/Packages/macOS_SDK_headers_for_macOS_10.14.pkg -target /
   end
 
-  task :test do
+  task :rust do
     task :init do
       task :install_homebrew, if_err('which brew'), 'brew install hoge'
       task :install_homebrew, if_err('which brew'),
