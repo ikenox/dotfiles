@@ -1,5 +1,5 @@
 def equil
-  task :default do
+  task :essentials do
     task :init do
       task :install_homebrew, if_err('which brew'),
            '/usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"'
@@ -114,15 +114,6 @@ def equil
       # task 'killall SystemUIServer'
     end
 
-    task :container_tools do
-      task brew_cask 'virtualbox'
-      task brew_cask 'vagrant'
-      task if_err('vagrant plugin list | grep vagrant-vbguest'), 'vagrant plugin install vagrant-vbguest'
-      task brew 'docker'
-      task brew 'docker-machine'
-      task brew 'docker-compose'
-    end
-
     task :intellij do
       task brew_cask "jetbrains-toolbox"
       task symlink '~/.dotfiles/intellij/ideavimrc', '~/.ideavimrc'
@@ -185,25 +176,13 @@ def equil
     # sudo installer -pkg /Library/Developer/CommandLineTools/Packages/macOS_SDK_headers_for_macOS_10.14.pkg -target /
   end
 
-  task :rust do
-    task :init do
-      task :install_homebrew, if_err('which brew'), 'brew install hoge'
-      task :install_homebrew, if_err('which brew'),
-           '/usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"'
-      task :install_homebrew, if_err('which brew'),
-           '/usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"'
-      task do
-        task brew 'git'
-      end
-
-      task 'rm -rf foo/bar'
-      task :hoge, 'rm -rf foo/bar'
-      task :tap_brew_cask, if_not_exist('~/.foo'), 'brew tap caskroom/cask'
-
-      task brew 'git'
-
-      task symlink '~/.dotfiles/git/gitignore', '~/.gitignore'
-    end
+  task :container_tools do
+    task brew_cask 'virtualbox'
+    task brew_cask 'vagrant'
+    task if_err('vagrant plugin list | grep vagrant-vbguest'), 'vagrant plugin install vagrant-vbguest'
+    task brew 'docker'
+    task brew 'docker-machine'
+    task brew 'docker-compose'
   end
 end
 
@@ -225,5 +204,6 @@ def symlink(origin, link)
                 ln -si #{origin} #{link}
   )
 end
+
 
 
