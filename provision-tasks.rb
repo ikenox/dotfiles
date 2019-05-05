@@ -25,12 +25,12 @@ def equil
     task :setup_git do
       task :set_username, if_err("git config user.name"), -> {
         print "please type your git user.name: "
-        name = gets.chomp
+        name = STDIN.gets.chomp
         "git config -f ~/.gitconfig.local user.name '#{name}'"
       }
       task :set_email, if_err("git config user.email"), -> {
         print "please type your git user.email: "
-        email = gets.chomp
+        email = STDIN.gets.chomp
         "git config -f ~/.gitconfig.local user.email '#{email}'"
       }
       task brew 'ghq'
