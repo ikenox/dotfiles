@@ -12,7 +12,7 @@ module.exports = {
     fontSize: 14,
 
     // font family with optional fallbacks
-    fontFamily: 'Monaco, Menlo, "DejaVu Sans Mono", Consolas, "Lucida Console", monospace',
+    fontFamily: 'Menlo, "DejaVu Sans Mono", Consolas, "Lucida Console", monospace',
 
     // default font weight: 'normal' or 'bold'
     fontWeight: 'normal',
@@ -21,7 +21,7 @@ module.exports = {
     fontWeightBold: 'bold',
 
     // line height as a relative unit
-    lineHeight: 1,
+    lineHeight: 1.2,
 
     // letter spacing as a relative unit
     letterSpacing: 0,
@@ -131,7 +131,7 @@ module.exports = {
     // for advanced config flags please refer to https://hyper.is/#cfg
 
     summon: {
-      hideDock: true,
+      hideDock: false,
       hideOnBlur: false,
       hotkey: 'Ctrl+;'
     },
