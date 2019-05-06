@@ -111,6 +111,9 @@ def equil
 
       task 'defaults write -g AppleShowAllExtensions -bool true'
       task 'defaults write com.apple.desktopservices DSDontWriteNetworkStores -bool true'
+
+      # ctrl + / -> next window in the same app
+      task 'defaults write com.apple.symbolichotkeys AppleSymbolicHotKeys -dict-add 27 "{ enabled = 1; value =                 { parameters = ( 121, 16, 262144); type = standard; }; }""'
       # task 'killall SystemUIServer'
     end
 
@@ -174,6 +177,13 @@ def equil
     # todo python
     # https://qiita.com/zreactor/items/c3fd04417e0d61af0afe
     # sudo installer -pkg /Library/Developer/CommandLineTools/Packages/macOS_SDK_headers_for_macOS_10.14.pkg -target /
+  end
+
+  task :jupyter do
+    task if_err('which jupyter'), 'pip install jupyter'
+    task if_err('pip freeze | grep jupyter_contrib_nbextensions'), 'pip install jupyter_contrib_nbextensions'
+    task 'mkdir -p $(jupyter --data-dir)/nbextensions'
+    task if_err('ls $(jupyter --data-dir)/nbextensions/vim_binding'), 'cd $(jupyter --data-dir)/nbextensions && git clone https://github.com/lambdalisue/jupyter-vim-binding vim_binding'
   end
 
   task :container_tools do
