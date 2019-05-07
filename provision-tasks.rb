@@ -113,7 +113,7 @@ def equil
       task 'defaults write com.apple.desktopservices DSDontWriteNetworkStores -bool true'
 
       # ctrl + / -> next window in the same app
-      task 'defaults write com.apple.symbolichotkeys AppleSymbolicHotKeys -dict-add 27 "{ enabled = 1; value =                 { parameters = ( 121, 16, 262144); type = standard; }; }""'
+      task 'defaults write com.apple.symbolichotkeys AppleSymbolicHotKeys -dict-add 27 "{ enabled = 1; value =                 { parameters = ( 121, 16, 262144); type = standard; }; }"'
       # TouchBar layout
       task 'defaults write com.apple.controlstrip MiniCustomized \'( "com.apple.system.brightness", "com.apple.system.volume", "com.apple.system.mute", "com.apple.system.sleep")\''
       # task 'killall SystemUIServer'
