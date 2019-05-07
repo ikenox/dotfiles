@@ -14,8 +14,12 @@ noremap : ;
 
 nnoremap j gj
 nnoremap k gk
+vnoremap j gj
+vnoremap k gk
 nnoremap <Down> gj
 nnoremap <Up>   gk
+vnoremap <Down> gj
+vnoremap <Up>   gk
 
 nnoremap x "_x
 vnoremap x "_x

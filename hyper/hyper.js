@@ -132,7 +132,7 @@ module.exports = {
 
     summon: {
       hideDock: false,
-      hideOnBlur: false,
+      hideOnBlur: true,
       hotkey: 'Ctrl+;'
     },
 
