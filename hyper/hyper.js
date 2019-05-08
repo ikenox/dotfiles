@@ -132,12 +132,12 @@ module.exports = {
 
     summon: {
       hideDock: false,
-      hideOnBlur: true,
+      hideOnBlur: false,
       hotkey: 'Ctrl+;'
     },
 
     hyperlinks: {
-      clickAction: 'copy',
+      clickAction: 'ignore',
       defaultBrowser: false
     }
   },
