@@ -86,8 +86,8 @@ def equil
       task 'defaults write com.apple.dock autohide -bool true'
       task 'defaults write com.apple.dock persistent-apps -array'
       task 'defaults write com.apple.dock tilesize -int 55'
-      task 'defaults write com.apple.dock wvous-bl-corner -int 10'
-      task 'defaults write com.apple.dock wvous-bl-modifier -int 0'
+      # task 'defaults write com.apple.dock wvous-bl-corner -int 10'
+      # task 'defaults write com.apple.dock wvous-bl-modifier -int 0'
       # todo killall if updated
       # killall Dock'
 
@@ -113,7 +113,7 @@ def equil
       task 'defaults write com.apple.desktopservices DSDontWriteNetworkStores -bool true'
 
       # ctrl + / -> next window in the same app
-      task 'defaults write com.apple.symbolichotkeys AppleSymbolicHotKeys -dict-add 27 "{ enabled = 1; value =                 { parameters = ( 121, 16, 262144); type = standard; }; }""'
+      # task 'defaults write com.apple.symbolichotkeys AppleSymbolicHotKeys -dict-add 27 "{ enabled = 1; value =                 { parameters = ( 121, 16, 262144); type = standard; }; }""'
       # TouchBar layout
       task 'defaults write com.apple.controlstrip MiniCustomized \'( "com.apple.system.brightness", "com.apple.system.volume", "com.apple.system.mute", "com.apple.system.sleep")\''
       # task 'killall SystemUIServer'
@@ -153,6 +153,15 @@ def equil
            'curl https://raw.githubusercontent.com/gcuisinier/jenv/master/fish/jenv.fish > ~/.config/fish/jenv.fish'
       task if_not_exist('~/.config/fish/export.fish'),
            'curl https://raw.githubusercontent.com/gcuisinier/jenv/master/fish/export.fish > ~/.config/fish/export.fish'
+    end
+
+    task :vscode do
+      task brew_cask 'visual-studio-code'
+      task symlink '~/.dotfiles/vscode/settings.json', '~/Library/Application\ Support/Code/User/settings.json'
+      task 'cat ~/.dotfiles/vscode/extensions.txt | while read line; do code --install-extension $line; done'
+      task 'defaults write com.microsoft.VSCode ApplePressAndHoldEnabled -bool false'
+      task 'defaults write com.microsoft.VSCodeInsiders ApplePressAndHoldEnabled -bool false'
+      task 'defaults write -g ApplePressAndHoldEnabled -bool false'
     end
 
     task brew 'sshfs'
