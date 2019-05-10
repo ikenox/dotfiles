@@ -137,7 +137,7 @@ module.exports = {
     },
 
     hyperlinks: {
-      clickAction: 'copy',
+      clickAction: 'ignore',
       defaultBrowser: false
     }
   },

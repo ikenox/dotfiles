@@ -333,13 +333,13 @@
 	<key>Hotkey</key>
 	<true/>
 	<key>HotkeyChar</key>
-	<integer>105</integer>
+	<integer>59</integer>
 	<key>HotkeyCode</key>
-	<integer>34</integer>
+	<integer>41</integer>
 	<key>HotkeyMigratedFromSingleToMulti</key>
 	<true/>
 	<key>HotkeyModifiers</key>
-	<integer>262401</integer>
+	<integer>262144</integer>
 	<key>LoadPrefsFromCustomFolder</key>
 	<true/>
 	<key>NSNavLastRootDirectory</key>
@@ -387,11 +387,11 @@
 	<key>NSWindow Frame SessionsPreferences</key>
 	<string>269 126 606 469 0 0 1440 877 </string>
 	<key>NSWindow Frame SharedPreferences</key>
-	<string>167 1221 796 473 -570 900 2560 1417 </string>
+	<string>-263 1222 796 486 -570 900 2560 1417 </string>
 	<key>NSWindow Frame UKCrashReporter</key>
 	<string>99 293 592 584 0 0 1440 877 </string>
 	<key>NSWindow Frame iTerm Window 0</key>
-	<string>0 0 1440 877 0 0 1440 877 </string>
+	<string>498 361 570 377 0 0 1440 877 </string>
 	<key>NSWindow Frame iTerm Window 1</key>
 	<string>197 47 570 377 0 0 1440 877 </string>
 	<key>NSWindow Frame iTerm Window 2</key>
@@ -1282,8 +1282,34 @@
 			</dict>
 			<key>Guid</key>
 			<string>3201AC58-5753-49FA-8D0E-386AC017ACD4</string>
+			<key>Has Hotkey</key>
+			<false/>
 			<key>Horizontal Spacing</key>
 			<real>1</real>
+			<key>HotKey Activated By Modifier</key>
+			<false/>
+			<key>HotKey Alternate Shortcuts</key>
+			<array/>
+			<key>HotKey Characters</key>
+			<string>;</string>
+			<key>HotKey Characters Ignoring Modifiers</key>
+			<string>;</string>
+			<key>HotKey Key Code</key>
+			<integer>41</integer>
+			<key>HotKey Modifier Activation</key>
+			<integer>0</integer>
+			<key>HotKey Modifier Flags</key>
+			<integer>262144</integer>
+			<key>HotKey Window Animates</key>
+			<true/>
+			<key>HotKey Window AutoHides</key>
+			<true/>
+			<key>HotKey Window Dock Click Action</key>
+			<integer>0</integer>
+			<key>HotKey Window Floats</key>
+			<true/>
+			<key>HotKey Window Reopens On Activation</key>
+			<false/>
 			<key>Idle Code</key>
 			<integer>0</integer>
 			<key>Jobs to Ignore</key>
@@ -1720,6 +1746,8 @@
 	<string>/Users/naoto.ikeno/.dotfiles/iterm2</string>
 	<key>Print In Black And White</key>
 	<true/>
+	<key>PromptOnQuit</key>
+	<false/>
 	<key>SUEnableAutomaticChecks</key>
 	<true/>
 	<key>SUFeedAlternateAppNameKey</key>
@@ -1729,7 +1757,7 @@
 	<key>SUHasLaunchedBefore</key>
 	<true/>
 	<key>SULastCheckTime</key>
-	<date>2019-04-20T04:56:26Z</date>
+	<date>2019-05-08T15:41:44Z</date>
 	<key>SUSendProfileInfo</key>
 	<false/>
 	<key>WordCharacters</key>
@@ -1739,6 +1767,6 @@
 	<key>findRegex_iTerm</key>
 	<false/>
 	<key>iTerm Version</key>
-	<string>3.1.5</string>
+	<string>3.2.9</string>
 </dict>
 </plist>
