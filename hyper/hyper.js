@@ -130,12 +130,6 @@ module.exports = {
 
     // for advanced config flags please refer to https://hyper.is/#cfg
 
-    summon: {
-      hideDock: false,
-      hideOnBlur: false,
-      hotkey: 'Ctrl+;'
-    },
-
     hyperlinks: {
       clickAction: 'ignore',
       defaultBrowser: false
