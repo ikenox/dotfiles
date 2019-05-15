@@ -7,11 +7,6 @@ alias gl "git log"
 # fish_vi_key_bindings
 fish_default_key_bindings
 
-set -U fish_cursor_default     block      blink
-set -U fish_cursor_insert      line       blink
-set -U fish_cursor_replace_one underscore blink
-set -U fish_cursor_visual      block
-
 function fish_user_key_bindings
   bind -M insert jf "if commandline -P; commandline -f cancel; else; set fish_bind_mode default; commandline -f backward-char force-repaint; end"
 
