@@ -77,6 +77,7 @@ def equil
     task :iterm do
         task brew_cask 'iterm2'
         task symlink '~/.dotfiles/iterm2/com.googlecode.iterm2.plist', '~/Library/Preferences/com.googlecode.iterm2.plist'
+        task 'killall cfprefsd'
     end
 
     # task :hyper do
@@ -139,7 +140,7 @@ def equil
       task brew 'gcloud'
       task if_err('CLOUDSDK_PYTHON=/usr/bin/python gcloud components list 2>/dev/null | grep app-engine-java'),
            'CLOUDSDK_PYTHON=/usr/bin/python gcloud components install app-engine-java'
-    terend
+    end
 
     task :python do
       task symlink '~/.dotfiles/matplotlib/matplotlibrc', '~/.matplotlibrc'
