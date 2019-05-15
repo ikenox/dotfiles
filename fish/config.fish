@@ -4,7 +4,7 @@ alias c=clear
 alias gs "git status"
 alias gl "git log"
 
-fish_vi_key_bindings
+# fish_vi_key_bindings
 
 set -U fish_cursor_default     block      blink
 set -U fish_cursor_insert      line       blink
@@ -14,12 +14,11 @@ set -U fish_cursor_visual      block
 function fish_user_key_bindings
   bind -M insert jf "if commandline -P; commandline -f cancel; else; set fish_bind_mode default; commandline -f backward-char force-repaint; end"
 
-  bind -M insert \cf forward-word
-  bind -M insert \cb backward-word
-
   bind -M insert \ca beginning-of-line
   bind -M insert \ce end-of-line
 
+  bind -M insert \cf forward-word
+  bind -M insert \cb backward-word
   bind \cf forward-word
   bind \cb backward-word
 
@@ -32,6 +31,7 @@ function fish_user_key_bindings
   bind H beginning-of-line
   bind -M visual L end-of-line
   bind L end-of-line
+  #bind -M insert \e ""
 
   bind -M insert \cd ""
 
@@ -39,6 +39,22 @@ function fish_user_key_bindings
 
   # plugin-peco
   bind -M insert \cr peco_select_history
+end
+
+function peco_select_history
+  if test (count $argv) = 0
+    set peco_flags --layout=bottom-up
+  else
+    set peco_flags --layout=bottom-up --query "$argv"
+  end
+
+  history|peco $peco_flags|read foo
+
+  if [ $foo ]
+    commandline $foo
+  else
+    commandline ''
+  end
 end
 
 function peco_z

@@ -49,7 +49,10 @@ def equil
       task symlink '~/.dotfiles/vim/vimrc.keymap', '~/.vimrc.keymap'
     end
 
-    task brew 'peco'
+    task :peco do
+        task brew 'peco'
+        task symlink '~/.dotfiles/peco/config.json', '~/.config/peco/config.json'
+    end
     task brew 'fzf'
     task brew 'jq'
     task brew 'mas'
