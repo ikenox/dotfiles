@@ -74,10 +74,15 @@ def equil
       task :fish_package, if_err('fish -c "fisher ls | xargs -I% grep % -a ~/.dotfiles/fish/fishfile"'), 'fish -c "fisher"'
     end
 
-    task :hyper do
-      task brew_cask 'hyper'
-      task symlink '~/.dotfiles/hyper/hyper.js', '~/.hyper.js'
+    task :iterm do
+        task brew_cask 'iterm2'
+        task symlink '~/.dotfiles/iterm2/com.googlecode.iterm2.plist', '~/Library/Preferences/com.googlecode.iterm2.plist'
     end
+
+    # task :hyper do
+    #   task brew_cask 'hyper'
+    #   task symlink '~/.dotfiles/hyper/hyper.js', '~/.hyper.js'
+    # end
 
     # todo: set keyboard -> 入力ソース -> ひらがな(google)
     task brew_cask 'google-japanese-ime'
@@ -134,7 +139,7 @@ def equil
       task brew 'gcloud'
       task if_err('CLOUDSDK_PYTHON=/usr/bin/python gcloud components list 2>/dev/null | grep app-engine-java'),
            'CLOUDSDK_PYTHON=/usr/bin/python gcloud components install app-engine-java'
-    end
+    terend
 
     task :python do
       task symlink '~/.dotfiles/matplotlib/matplotlibrc', '~/.matplotlibrc'
