@@ -142,6 +142,7 @@ call unite#custom#source('file_rec/async', 'ignore_pattern', s:unite_ignore_patt
 
 "
 syntax enable
+filetype plugin indent on
 set cursorline
 set number
 

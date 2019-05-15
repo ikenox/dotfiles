@@ -5,6 +5,7 @@ alias gs "git status"
 alias gl "git log"
 
 # fish_vi_key_bindings
+fish_default_key_bindings
 
 set -U fish_cursor_default     block      blink
 set -U fish_cursor_insert      line       blink
