@@ -8,7 +8,7 @@ alias gl "git log"
 fish_default_key_bindings
 
 function fish_user_key_bindings
-  bind -M insert jf "if commandline -P; commandline -f cancel; else; set fish_bind_mode default; commandline -f backward-char force-repaint; end"
+  # bind -M insert jf "if commandline -P; commandline -f cancel; else; set fish_bind_mode default; commandline -f backward-char force-repaint; end"
 
   bind \ca beginning-of-line
   bind \ce end-of-line

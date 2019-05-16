@@ -50,8 +50,8 @@ def equil
     end
 
     task :peco do
-        task brew 'peco'
-        task symlink '~/.dotfiles/peco/config.json', '~/.config/peco/config.json'
+      task brew 'peco'
+      task symlink '~/.dotfiles/peco/config.json', '~/.config/peco/config.json'
     end
     task brew 'fzf'
     task brew 'jq'
@@ -78,15 +78,15 @@ def equil
     end
 
     task :iterm do
-        task brew_cask 'iterm2'
-        task symlink '~/.dotfiles/iterm2/com.googlecode.iterm2.plist', '~/Library/Preferences/com.googlecode.iterm2.plist'
-        task 'killall cfprefsd'
+      task brew_cask 'iterm2'
+      task symlink '~/.dotfiles/iterm2/com.googlecode.iterm2.plist', '~/Library/Preferences/com.googlecode.iterm2.plist'
+      task 'killall cfprefsd'
     end
 
-    # task :hyper do
-    #   task brew_cask 'hyper'
-    #   task symlink '~/.dotfiles/hyper/hyper.js', '~/.hyper.js'
-    # end
+    task :tmux do
+      task brew 'tmux'
+      task symlink '~/.dotfiles/tmux/tmux.conf', '~/.tmux.conf'
+    end
 
     # todo: set keyboard -> 入力ソース -> ひらがな(google)
     task brew_cask 'google-japanese-ime'
@@ -214,6 +214,11 @@ def equil
     task brew 'docker'
     task brew 'docker-machine'
     task brew 'docker-compose'
+  end
+
+  task :hyper do
+    task brew_cask 'hyper'
+    task symlink '~/.dotfiles/hyper/hyper.js', '~/.hyper.js'
   end
 end
 
