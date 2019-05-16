@@ -86,6 +86,7 @@ def equil
     task :tmux do
       task brew 'tmux'
       task symlink '~/.dotfiles/tmux/tmux.conf', '~/.tmux.conf'
+      task if_not_exist('~/.tmux/plugins/tpm'), 'git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm'
     end
 
     # todo: set keyboard -> 入力ソース -> ひらがな(google)
