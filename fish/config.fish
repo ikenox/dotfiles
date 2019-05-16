@@ -10,31 +10,31 @@ fish_default_key_bindings
 function fish_user_key_bindings
   bind -M insert jf "if commandline -P; commandline -f cancel; else; set fish_bind_mode default; commandline -f backward-char force-repaint; end"
 
-  bind -M insert \ca beginning-of-line
-  bind -M insert \ce end-of-line
+  bind \ca beginning-of-line
+  bind \ce end-of-line
 
-  bind -M insert \cf forward-word
-  bind -M insert \cb backward-word
+  # bind -M insert \cf forward-word
+  # bind -M insert \cb backward-word
   bind \cf forward-word
   bind \cb backward-word
 
-  bind yy fish_clipboard_copy
-  bind Y fish_clipboard_copy
-  bind p fish_clipboard_paste
+  # bind yy fish_clipboard_copy
+  # bind Y fish_clipboard_copy
+  # bind p fish_clipboard_paste
   # bind -M visual y fish_clipboard_copy end-selection
 
-  bind -M visual H beginning-of-line
-  bind H beginning-of-line
-  bind -M visual L end-of-line
-  bind L end-of-line
+  #bind -M visual H beginning-of-line
+  #bind H beginning-of-line
+  #bind -M visual L end-of-line
+  #bind L end-of-line
   #bind -M insert \e ""
 
-  bind -M insert \cd ""
+  bind \cd ""
 
-  bind -M insert zz peco_z
+  bind zz peco_z
 
   # plugin-peco
-  bind -M insert \cr peco_select_history
+  bind \cr peco_select_history
 end
 
 function peco_select_history
