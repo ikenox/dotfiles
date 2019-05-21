@@ -1,31 +1,59 @@
 {
-    "workbench.colorTheme": "Solarized Dark",
-
-    "vim.easymotion": true,
+  "vim.easymotion": true,
   "vim.sneak": true,
-  "vim.incsearch": true,
+        "vim.incsearch": true,
   "vim.useSystemClipboard": true,
   "vim.useCtrlKeys": true,
   "vim.hlsearch": true,
   "vim.insertModeKeyBindings": [
     {
-      "before": ["j", "j"],
+      "before": ["j", "f"],
       "after": ["<Esc>"]
     }
   ],
   "vim.normalModeKeyBindingsNonRecursive": [
-    {
-      "before": ["<leader>", "d"],
-      "after": ["d", "d"]
+    { "before": [ ";" ], "after": [ ":" ] },
+    {"before":[":"],"after":[";"]},
+    { "before": [ "L" ], "after": [ "$" ] },
+    {"before":["H"],"after":["^"]},
+    { "before": [ "=", "=" ],
+      "commands": [
+        "editor.action.selectAll",
+        "editor.action.formatDocument",
+      ]
     },
-    {
-      "before": ["<C-n>"],
-      "commands": [":nohl"]
-    }
+    {"before":["<leader>","s"], "commands":["workbench.action.gotoSymbol"]},
+    {"before":["g","d"], "commands":["editor.action.goToDeclaration"]},
+    {"before":["c","c"], "commands":["editor.action.commentLine"]},
+    {"before":["<leader>","e"], "commands":["workbench.action.quickOpen"]},
+    {"before":["s","v"], "commands":["workbench.action.splitEditorRight"]},
+    {"before":["s","s"], "commands":["workbench.action.splitEditorDown"]},
+    {"before":["Ctrl+o"], "commands":["workbench.action.navigateEditorGroups"]},
+    {"before":["Q"],"commands":["editor.action.quickFix"]},
+    {"before":["g","h"],"commands":["workbench.action.navigateBack"]},
+    {"before":["g","l"],"commands":["workbench.action.navigateForward"]},
+    {"before":[",","g"],"after":["cmd+shift+f"]},
   ],
-  "vim.leader": "<space>",
+  "vim.visualModeKeyBindingsNonRecursive": [
+    { "before": [ ";" ], "after": [ ":" ] },
+    {"before":[":"],"after":[";"]},
+    {"before":["L"],"after":["$"]},
+    {"before":["H"],"after":["^"]},
+    { "before": [ "=" ],
+      "commands": [
+        "editor.action.formatDocument",
+      ]
+    },
+    {"before":["c","c"], "commands":["editor.action.commentLine"]}
+  ],
+  "vim.leader": ",",
   "vim.handleKeys": {
     "<C-a>": false,
     "<C-f>": false
-  }
+  },
+  "files.associations": {
+    "*.tx": "html"
+  },
+  "editor.minimap.enabled": false,
+"search.useIgnoreFiles":true
 }
