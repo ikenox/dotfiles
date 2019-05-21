@@ -16,11 +16,9 @@
     {"before":[":"],"after":[";"]},
     { "before": [ "L" ], "after": [ "$" ] },
     {"before":["H"],"after":["^"]},
-    { "before": [ "=", "=" ],
-      "commands": [
-        "editor.action.selectAll",
-        "editor.action.formatDocument",
-      ]
+    {
+      "before": [ "=" ],
+      "after": ["<C-a>"]
     },
     {"before":["<leader>","s"], "commands":["workbench.action.gotoSymbol"]},
     {"before":["g","d"], "commands":["editor.action.goToDeclaration"]},
@@ -32,7 +30,18 @@
     {"before":["Q"],"commands":["editor.action.quickFix"]},
     {"before":["g","h"],"commands":["workbench.action.navigateBack"]},
     {"before":["g","l"],"commands":["workbench.action.navigateForward"]},
-    {"before":[",","g"],"after":["cmd+shift+f"]},
+    {
+        "before": [",", "g"],
+        "commands": ["workbench.action.findInFiles"],
+    },
+ {
+            "before": ["<C-u>"],
+            "after": ["2", "0", "k"]
+        },
+        {
+            "before": ["<C-d>"],
+            "after": ["2", "0", "j"]
+        },
   ],
   "vim.visualModeKeyBindingsNonRecursive": [
     { "before": [ ";" ], "after": [ ":" ] },
@@ -42,9 +51,18 @@
     { "before": [ "=" ],
       "commands": [
         "editor.action.formatDocument",
-      ]
+      ],
+      "after": ["<Esc>"]
     },
-    {"before":["c","c"], "commands":["editor.action.commentLine"]}
+    {"before":["c","c"], "commands":["editor.action.commentLine"]},
+ {
+            "before": ["<C-u>"],
+            "after": ["2", "0", "k"]
+        },
+        {
+            "before": ["<C-d>"],
+            "after": ["2", "0", "j"]
+        },
   ],
   "vim.leader": ",",
   "vim.handleKeys": {
@@ -54,6 +72,14 @@
   "files.associations": {
     "*.tx": "html"
   },
-  "editor.minimap.enabled": false,
-"search.useIgnoreFiles":true
+"search.useIgnoreFiles":true,
+    // カーソル上にあるワードを"*"で検索
+    "vim.visualstar": true,
+    //wrap
+    "editor.wordWrap": "on",
+    "files.trimTrailingWhitespace": true,
+    //ミニマップをfalse
+    "editor.minimap.enabled": false,
+    //twigとvueでも有効にします
+    "emmet.includeLanguages": {"twig": "html", "vue-html": "html"},
 }
