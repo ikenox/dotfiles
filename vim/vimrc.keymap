@@ -1,5 +1,7 @@
 let mapleader = ","
 
+vmap s S
+
 nnoremap L $
 vnoremap L $
 nnoremap H ^
