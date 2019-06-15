@@ -1,85 +1,162 @@
 {
   "vim.easymotion": true,
   "vim.sneak": true,
-        "vim.incsearch": true,
+  "vim.incsearch": true,
   "vim.useSystemClipboard": true,
   "vim.useCtrlKeys": true,
   "vim.hlsearch": true,
-  "vim.insertModeKeyBindings": [
+  "editor.tabSize": 4,
+  "vim.insertModeKeyBindings": [{
+    "before": ["j", "f"],
+    "after": ["<Esc>"]
+  }],
+  "vim.normalModeKeyBindingsNonRecursive": [{
+      "before": ["v"],
+      "after": ["v", "l", "h"]
+    },
     {
-      "before": ["j", "f"],
-      "after": ["<Esc>"]
+      "before": ["="],
+      "commands": ["HookyQR.beautify"]
+    },
+    {
+      "before": ["k"],
+      "after": ["g","k"]
+    },
+    {
+      "before": ["j"],
+      "after": ["g","j"]
+    },
+    {
+      "before": [";"],
+      "after": [":"]
+    },
+    {
+      "before": [":"],
+      "after": [";"]
+    },
+    {
+      "before": ["L"],
+      "after": ["$"]
+    },
+    {
+      "before": ["H"],
+      "after": ["^"]
+    },
+    {
+      "before": ["<leader>", "s"],
+      "commands": ["workbench.action.gotoSymbol"]
+    },
+    {
+      "before": ["g", "d"],
+      "commands": ["editor.action.goToDeclaration"]
+    },
+    {
+      "before": ["c", "&"],
+      "commands": ["editor.action.commentLine"]
+    },
+    {
+      "before": ["<leader>", "e"],
+      "commands": ["workbench.action.quickOpen"]
+    },
+    {
+      "before": ["s", "v"],
+      "commands": ["workbench.action.splitEditorRight"]
+    },
+    {
+      "before": ["s", "s"],
+      "commands": ["workbench.action.splitEditorDown"]
+    },
+    {
+      "before": ["Ctrl+o"],
+      "commands": ["workbench.action.navigateEditorGroups"]
+    },
+    {
+      "before": ["Q"],
+      "commands": ["editor.action.quickFix"]
+    },
+    {
+      "before": ["g", "h"],
+      "commands": ["workbench.action.navigateBack"]
+    },
+    {
+      "before": ["g", "l"],
+      "commands": ["workbench.action.navigateForward"]
+    },
+    {
+      "before": [",", "g"],
+      "commands": ["workbench.action.findInFiles"]
+    },
+    {
+      "before": [",", "a"],
+      "commands": ["workbench.action.showCommands"]
+    },
+    {
+      "before": ["<C-u>"],
+      "after": ["2", "0", "k"]
+    },
+    {
+      "before": ["<C-d>"],
+      "after": ["2", "0", "j"]
     }
   ],
-  "vim.normalModeKeyBindingsNonRecursive": [
-    { "before": [ ";" ], "after": [ ":" ] },
-    {"before":[":"],"after":[";"]},
-    { "before": [ "L" ], "after": [ "$" ] },
-    {"before":["H"],"after":["^"]},
-    {
-      "before": [ "=" ],
-      "after": ["<C-a>"]
+  "vim.visualModeKeyBindings": [{
+      "before": ["L"],
+      "after": ["$"]
     },
-    {"before":["<leader>","s"], "commands":["workbench.action.gotoSymbol"]},
-    {"before":["g","d"], "commands":["editor.action.goToDeclaration"]},
-    {"before":["c","c"], "commands":["editor.action.commentLine"]},
-    {"before":["<leader>","e"], "commands":["workbench.action.quickOpen"]},
-    {"before":["s","v"], "commands":["workbench.action.splitEditorRight"]},
-    {"before":["s","s"], "commands":["workbench.action.splitEditorDown"]},
-    {"before":["Ctrl+o"], "commands":["workbench.action.navigateEditorGroups"]},
-    {"before":["Q"],"commands":["editor.action.quickFix"]},
-    {"before":["g","h"],"commands":["workbench.action.navigateBack"]},
-    {"before":["g","l"],"commands":["workbench.action.navigateForward"]},
     {
-        "before": [",", "g"],
-        "commands": ["workbench.action.findInFiles"],
-    },
- {
-            "before": ["<C-u>"],
-            "after": ["2", "0", "k"]
-        },
-        {
-            "before": ["<C-d>"],
-            "after": ["2", "0", "j"]
-        },
+      "before": ["H"],
+      "after": ["^"]
+    }
   ],
-  "vim.visualModeKeyBindingsNonRecursive": [
-    { "before": [ ";" ], "after": [ ":" ] },
-    {"before":[":"],"after":[";"]},
-    {"before":["L"],"after":["$"]},
-    {"before":["H"],"after":["^"]},
-    { "before": [ "=" ],
-      "commands": [
-        "editor.action.formatDocument",
-      ],
-      "after": ["<Esc>"]
+  "vim.visualModeKeyBindingsNonRecursive": [{
+      "before": ["=", "="],
+      "after": ["a"]
     },
-    {"before":["c","c"], "commands":["editor.action.commentLine"]},
- {
-            "before": ["<C-u>"],
-            "after": ["2", "0", "k"]
-        },
-        {
-            "before": ["<C-d>"],
-            "after": ["2", "0", "j"]
-        },
+    {
+      "before": [";"],
+      "after": [":"]
+    },
+    {
+      "before": [":"],
+      "after": [";"]
+    },
+    {
+      "before": ["<C-u>"],
+      "after": ["2", "0", "k"]
+    },
+    {
+      "before": ["<C-d>"],
+      "after": ["2", "0", "j"]
+    },
+    {
+      "before": ["k"],
+      "after": ["g","k"]
+    },
+    {
+      "before": ["j"],
+      "after": ["g","j"]
+    }
   ],
   "vim.leader": ",",
-  "vim.handleKeys": {
-    "<C-a>": false,
-    "<C-f>": false
-  },
+  "vim.handleKeys": {},
   "files.associations": {
     "*.tx": "html"
   },
-"search.useIgnoreFiles":true,
-    // カーソル上にあるワードを"*"で検索
-    "vim.visualstar": true,
-    //wrap
-    "editor.wordWrap": "on",
-    "files.trimTrailingWhitespace": true,
-    //ミニマップをfalse
-    "editor.minimap.enabled": false,
-    //twigとvueでも有効にします
-    "emmet.includeLanguages": {"twig": "html", "vue-html": "html"},
+  "search.useIgnoreFiles": true,
+  // カーソル上にあるワードを"*"で検索
+  "vim.visualstar": true,
+  "files.trimTrailingWhitespace": true,
+  //ミニマップをfalse
+  "editor.minimap.enabled": false,
+  //twigとvueでも有効にします
+  "emmet.includeLanguages": {
+    "twig": "html",
+    "vue-html": "html"
+  },
+  "[jsonc]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  "[html]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  }
 }
