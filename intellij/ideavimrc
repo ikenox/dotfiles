@@ -7,41 +7,41 @@ set incsearch
 set ignorecase
 set smartcase
 
-nnoremap ,a :action GotoAction<CR>
-vnoremap ,a :action GotoAction<CR>
+nnoremap ,a :<C-u>action GotoAction<CR>
+vnoremap ,a :<C-u>action GotoAction<CR>
 
-nnoremap ,e :action SearchEverywhere<CR>
-nnoremap ,s :action FileStructurePopup<CR>
-nnoremap ,g :action FindInPath<CR>
+nnoremap ,e :<C-u>action SearchEverywhere<CR>
+nnoremap ,s :<C-u>action FileStructurePopup<CR>
+nnoremap ,g :<C-u>action FindInPath<CR>
 
-nnoremap gd :action GotoDeclaration<CR>
-nnoremap gs :action GotoSuperMethod<CR>
-nnoremap gi :action GotoImplementation<CR>
-nnoremap gf :action GotoFile<CR>
+nnoremap gd :<C-u>action GotoDeclaration<CR>
+nnoremap gs :<C-u>action GotoSuperMethod<CR>
+nnoremap gi :<C-u>action GotoImplementation<CR>
+nnoremap gf :<C-u>action GotoFile<CR>
 
-nnoremap gb :action JumpToLastChange<CR>
+nnoremap gb :<C-u>action JumpToLastChange<CR>
 
-nnoremap U :action FindUsages<CR>
-nnoremap R :action RenameElement<CR>
+nnoremap U :<C-u>action FindUsages<CR>
+nnoremap R :<C-u>action RenameElement<CR>
 
-nnoremap gh :action Back<CR>
-nnoremap gl :action Forward<CR>
+nnoremap gh :<C-u>action Back<CR>
+nnoremap gl :<C-u>action Forward<CR>
 
-inoremap <C-n> <C-o>:action InsertLiveTemplate<CR>
-nnoremap <C-I> :action QuickJavaDoc<CR>
+inoremap <C-n> <C-o>:<C-u>action InsertLiveTemplate<CR>
+nnoremap <C-I> :<C-u>action QuickJavaDoc<CR>
 
-nnoremap ,p :action PasteMultiple<CR>
-nnoremap ,P :action PasteMultiple<CR>
+nnoremap ,p :<C-u>action PasteMultiple<CR>
+nnoremap ,P :<C-u>action PasteMultiple<CR>
 
-nnoremap == :action ReformatCode<CR>
-vnoremap == :action ReformatCode<CR>
+nnoremap == :<C-u>action ReformatCode<CR>
+vnoremap == :<C-u>action ReformatCode<CR>
 
-nnoremap cc :action CommentByLineComment<CR>
-vnoremap cc :action CommentByLineComment<CR>
+nnoremap cc :<C-u>action CommentByLineComment<CR>
+vnoremap cc :<C-u>action CommentByLineComment<CR>
 
-nnoremap Q :action ShowIntentionActions<CR>
+nnoremap Q :<C-u>action ShowIntentionActions<CR>
 
-nnoremap f :action AceAction<CR>
-vnoremap f :action AceAction<CR>
+nnoremap f :<C-u>action AceAction<CR>
+vnoremap f :<C-u>action AceAction<CR>
 
-nnoremap ,r :action RecentFiles<CR>
+nnoremap ,r :<C-u>action RecentFiles<CR>
