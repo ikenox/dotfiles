@@ -40,8 +40,11 @@ nnoremap cc :<C-u>action CommentByLineComment<CR>
 vnoremap cc :<C-u>action CommentByLineComment<CR>
 
 nnoremap Q :<C-u>action ShowIntentionActions<CR>
+nnoremap q :<C-u>action ShowIntentionActions<CR>
 
 nnoremap f :<C-u>action AceAction<CR>
 vnoremap f :<C-u>action AceAction<CR>
 
 nnoremap ,r :<C-u>action RecentFiles<CR>
+nnoremap gt :<C-u>action GotoTest<CR>
+

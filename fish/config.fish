@@ -1,4 +1,5 @@
 set PATH ~/bin ~/go/bin /usr/local/bin /usr/bin /bin /sbin /usr/sbin $PATH
+set JAVA_HOME (/usr/libexec/java_home -v 11.0.1)
 
 alias c=clear
 alias gs "git status"
@@ -63,8 +64,5 @@ end
 set GHQ_SELECTOR peco
 
 function pyenv_init
-    which pyenv >/dev/null && source (pyenv init - | psub)
-end
-function jenv_init
     which pyenv >/dev/null && source (pyenv init - | psub)
 end
