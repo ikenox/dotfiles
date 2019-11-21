@@ -92,6 +92,8 @@ def equil
     # todo: set keyboard -> 入力ソース -> ひらがな(google)
     task brew_cask 'google-japanese-ime'
 
+    task brew_cask 'hyperswitch'
+
     task :osx_defaults do
       task 'defaults write com.apple.dock autohide -bool true'
       task 'defaults write com.apple.dock persistent-apps -array'
