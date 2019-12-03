@@ -7,44 +7,47 @@ set incsearch
 set ignorecase
 set smartcase
 
+" general
 nnoremap ,a :<C-u>action GotoAction<CR>
 vnoremap ,a :<C-u>action GotoAction<CR>
-
 nnoremap ,e :<C-u>action SearchEverywhere<CR>
 nnoremap ,s :<C-u>action FileStructurePopup<CR>
 nnoremap ,g :<C-u>action FindInPath<CR>
+nnoremap ,r :<C-u>action RecentFiles<CR>
 
+" jump on code
 nnoremap gd :<C-u>action GotoDeclaration<CR>
 nnoremap gs :<C-u>action GotoSuperMethod<CR>
 nnoremap gi :<C-u>action GotoImplementation<CR>
 nnoremap gf :<C-u>action GotoFile<CR>
-
 nnoremap gb :<C-u>action JumpToLastChange<CR>
-
-nnoremap U :<C-u>action FindUsages<CR>
-nnoremap R :<C-u>action RenameElement<CR>
-
+nnoremap gu :<C-u>action ShowUsages<CR>
+nnoremap gt :<C-u>action GotoTest<CR>
 nnoremap gh :<C-u>action Back<CR>
 nnoremap gl :<C-u>action Forward<CR>
 
-inoremap <C-n> <C-o>:<C-u>action InsertLiveTemplate<CR>
+" code editing
+nnoremap r :<C-u>action RenameElement<CR>
+nnoremap q :<C-u>action ShowIntentionActions<CR>
+nnoremap == :<C-u>action ReformatCode<CR>
+vnoremap == :<C-u>action ReformatCode<CR>
+nnoremap cc :<C-u>action CommentByLineComment<CR>
+vnoremap cc :<C-u>action CommentByLineComment<CR>
+
+" show information
 nnoremap <C-I> :<C-u>action QuickJavaDoc<CR>
 
 nnoremap ,p :<C-u>action PasteMultiple<CR>
 nnoremap ,P :<C-u>action PasteMultiple<CR>
 
-nnoremap == :<C-u>action ReformatCode<CR>
-vnoremap == :<C-u>action ReformatCode<CR>
-
-nnoremap cc :<C-u>action CommentByLineComment<CR>
-vnoremap cc :<C-u>action CommentByLineComment<CR>
-
-nnoremap Q :<C-u>action ShowIntentionActions<CR>
-nnoremap q :<C-u>action ShowIntentionActions<CR>
-
 nnoremap f :<C-u>action AceAction<CR>
 vnoremap f :<C-u>action AceAction<CR>
 
-nnoremap ,r :<C-u>action RecentFiles<CR>
-nnoremap gt :<C-u>action GotoTest<CR>
+" kick intellij commands
+nnoremap R :<C-u>action Run<CR>
+nnoremap D :<C-u>action Debug<CR>
+
+" window
+nnoremap s; :<C-u>action CloseActiveTab<CR>
+nnoremap so :<C-u>action MoveEditorToOppositeTabGroup<CR>
 
