@@ -160,6 +160,8 @@ set listchars=tab:▸\ ,eol:↲,extends:❯,precedes:❮    " 不可視文字の
 
 set mouse=a
 
+set display+=lastline
+
 if has('mac')
     set clipboard=unnamed,autoselect
 elseif has('unix')
