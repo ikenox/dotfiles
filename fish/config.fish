@@ -66,3 +66,7 @@ set GHQ_SELECTOR peco
 function pyenv_init
     which pyenv >/dev/null && source (pyenv init - | psub)
 end
+
+function parsejwt
+    cat | grep -oE '\..*\.' | grep -oE '[^.]+' | base64 -D | jq
+end
