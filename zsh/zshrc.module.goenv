@@ -1,3 +1,0 @@
-export GOENVGOROOT=$HOME/.goenvs
-export GOENVTARGET=$HOME/bin
-export GOENVHOME=$HOME/.workspace
