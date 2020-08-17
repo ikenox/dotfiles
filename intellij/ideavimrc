@@ -45,6 +45,7 @@ vnoremap f :<C-u>action AceAction<CR>
 
 " kick intellij commands
 nnoremap R :<C-u>action ChooseRunConfiguration<CR>
+nnoremap - :<C-u>action Resume<CR>
 
 " window
 nnoremap s; :<C-u>action CloseActiveTab<CR>
