@@ -1,7 +1,11 @@
 def equil
+  task :test do
+    task mas_upgrade 405399194
+  end
+
   task :essentials do
     task :init do
-      task :xcode, 'xcode-select --install'
+      #task :xcode, 'xcode-select --install'
 
       task :install_homebrew, if_err('which brew'),
            '/usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"'
@@ -223,25 +227,27 @@ def equil
 end
 
 def brew(package)
-  task_alias "install_#{package}_by_brew".to_sym do 
-      task :install, if_err("which #{package} || ls /usr/local/Cellar/#{package}"), "brew install #{package}"
-      task :update, "brew upgrade #{package}"
-    end
+  task_alias "install_#{package}_by_brew".to_sym, if_err("which #{package} || ls /usr/local/Cellar/#{package}"), "brew install #{package}"
+end
+
+def brew_upgrade(package)
+  task_alias "upgrade_#{package}_by_brew".to_sym, "brew upgrade #{package}"
 end
 
 def brew_cask(package)
-  task_alias "install_#{package}_by_cask".to_sym do
-    print "foo"
-    task :install, if_not_exist("/usr/local/Caskroom/#{package}"), "brew cask install #{package}"
-    task :upgrade, "brew cask upgrade #{package}"
-  end
+  task_alias "install_#{package}_by_cask".to_sym, if_not_exist("/usr/local/Caskroom/#{package}"), "brew cask install #{package}"
+end
+
+def brew_cask_upgrade(package)
+  task_alias "update_#{package}_by_cask".to_sym, "brew upgrade --cask #{package}"
 end
 
 def mas(app_id)
-  task_alias "install_#{app_id}_by_mas".to_sym do
-    task :install, if_err("mas list | grep '^#{app_id} '"), "mas install #{app_id}"
-    task :upgrade, "mas upgrade #{app_id}"
-  end
+  task_alias "install_#{app_id}_by_mas".to_sym, if_err("mas list | grep '^#{app_id} '"), "mas install #{app_id}"
+end
+
+def mas_upgrade(app_id)
+  task_alias "upgrade_#{app_id}_by_mas".to_sym, "mas upgrade #{app_id}"
 end
 
 def symlink(origin, link)
