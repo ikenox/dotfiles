@@ -1,6 +1,8 @@
 def equil
   task :essentials do
     task :init do
+      task :xcode, 'xcode-select --install'
+
       task :install_homebrew, if_err('which brew'),
            '/usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"'
       task :tap_brew_cask, if_err('brew tap | grep caskroom/cask'), 'brew tap caskroom/cask'
@@ -143,9 +145,10 @@ def equil
     end
 
     task :gcloud do
-      task brew 'gcloud'
-      task if_err('CLOUDSDK_PYTHON=/usr/bin/python gcloud components list 2>/dev/null | grep app-engine-java'),
-           'CLOUDSDK_PYTHON=/usr/bin/python gcloud components install app-engine-java'
+      task brew_cask 'google-cloud-sdk'
+      task 'gcloud components update'
+      #task if_err('CLOUDSDK_PYTHON=/usr/bin/python gcloud components list 2>/dev/null | grep app-engine-java'),
+      #     'CLOUDSDK_PYTHON=/usr/bin/python gcloud components install app-engine-java'
     end
 
     task :python do
@@ -153,34 +156,33 @@ def equil
       task :pyenv do
         task brew 'pyenv'
         task brew 'pyenv-virtualenv'
-        task symlink '~/.dotfiles/zsh/zshrc.module.pyenv', '~/.zshrc.module.pyenv'
       end
     end
 
-    task :java do
-      task brew 'jenv'
-      task brew_cask 'java'
-      task if_not_exist('~/.dotfiles/fish/conf.d/jenv.fish'),
-           'echo "set PATH $HOME/.jenv/bin $PATH" > ~/.dotfiles/fish/conf.d/jenv.fish'
-      task if_not_exist('~/.config/fish/jenv.fish'),
-           'curl https://raw.githubusercontent.com/gcuisinier/jenv/master/fish/jenv.fish > ~/.config/fish/jenv.fish'
-      task if_not_exist('~/.config/fish/export.fish'),
-           'curl https://raw.githubusercontent.com/gcuisinier/jenv/master/fish/export.fish > ~/.config/fish/export.fish'
-    end
+    #task :java do
+    #  task brew 'jenv'
+    #  task brew_cask 'java'
+    #  task if_not_exist('~/.dotfiles/fish/conf.d/jenv.fish'),
+    #       'echo "set PATH $HOME/.jenv/bin $PATH" > ~/.dotfiles/fish/conf.d/jenv.fish'
+    #  task if_not_exist('~/.config/fish/jenv.fish'),
+    #       'curl https://raw.githubusercontent.com/gcuisinier/jenv/master/fish/jenv.fish > ~/.config/fish/jenv.fish'
+    #  task if_not_exist('~/.config/fish/export.fish'),
+    #       'curl https://raw.githubusercontent.com/gcuisinier/jenv/master/fish/export.fish > ~/.config/fish/export.fish'
+    #end
 
-    task :vscode do
-      task brew_cask 'visual-studio-code'
-      task symlink '~/.dotfiles/vscode/settings.json', '~/Library/Application\ Support/Code/User/settings.json'
-      task symlink '~/.dotfiles/vscode/keybindings.json', '~/Library/Application\ Support/Code/User/keybindings.json'
-      task 'cat ~/.dotfiles/vscode/extensions.txt | while read line; do code --install-extension $line; done'
-      task 'defaults write com.microsoft.VSCode ApplePressAndHoldEnabled -bool false'
-      task 'defaults write com.microsoft.VSCodeInsiders ApplePressAndHoldEnabled -bool false'
-      task 'defaults write -g ApplePressAndHoldEnabled -bool false'
-    end
+    #task :vscode do
+    #  task brew_cask 'visual-studio-code'
+    #  task symlink '~/.dotfiles/vscode/settings.json', '~/Library/Application\ Support/Code/User/settings.json'
+    #  task symlink '~/.dotfiles/vscode/keybindings.json', '~/Library/Application\ Support/Code/User/keybindings.json'
+    #  task 'cat ~/.dotfiles/vscode/extensions.txt | while read line; do code --install-extension $line; done'
+    #  task 'defaults write com.microsoft.VSCode ApplePressAndHoldEnabled -bool false'
+    #  task 'defaults write com.microsoft.VSCodeInsiders ApplePressAndHoldEnabled -bool false'
+    #  task 'defaults write -g ApplePressAndHoldEnabled -bool false'
+    #end
 
     task brew 'sshfs'
 
-    #task_brew_cask 'slack'
+    task brew_cask 'slack'
     task brew_cask 'alfred' # todo change hotkey from gui
     task brew_cask 'caffeine'
     task brew_cask 'discord'
@@ -216,26 +218,30 @@ def equil
     task brew_cask 'vagrant'
     task if_err('vagrant plugin list | grep vagrant-vbguest'), 'vagrant plugin install vagrant-vbguest'
     task brew 'docker'
-    task brew 'docker-machine'
-    task brew 'docker-compose'
   end
 
-  task :hyper do
-    task brew_cask 'hyper'
-    task symlink '~/.dotfiles/hyper/hyper.js', '~/.hyper.js'
-  end
 end
 
 def brew(package)
-  task_alias "install_#{package}_by_brew".to_sym, if_err("which #{package} || ls /usr/local/Cellar/#{package}"), "brew install #{package}"
+  task_alias "install_#{package}_by_brew".to_sym do 
+      task :install, if_err("which #{package} || ls /usr/local/Cellar/#{package}"), "brew install #{package}"
+      task :update, "brew upgrade #{package}"
+    end
 end
 
 def brew_cask(package)
-  task_alias "install_#{package}_by_cask".to_sym, if_not_exist("/usr/local/Caskroom/#{package}"), "brew cask install #{package}"
+  task_alias "install_#{package}_by_cask".to_sym do
+    print "foo"
+    task :install, if_not_exist("/usr/local/Caskroom/#{package}"), "brew cask install #{package}"
+    task :upgrade, "brew cask upgrade #{package}"
+  end
 end
 
 def mas(app_id)
-  task_alias "install_#{app_id}_by_mas".to_sym, if_err("mas list | grep '^#{app_id} '"), "mas install #{app_id}"
+  task_alias "install_#{app_id}_by_mas".to_sym do
+    task :install, if_err("mas list | grep '^#{app_id} '"), "mas install #{app_id}"
+    task :upgrade, "mas upgrade #{app_id}"
+  end
 end
 
 def symlink(origin, link)
