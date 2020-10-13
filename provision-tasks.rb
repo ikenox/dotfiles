@@ -1,8 +1,4 @@
 def equil
-  task :test do
-    task mas_upgrade 405399194
-  end
-
   task :essentials do
     task :init do
       #task :xcode, 'xcode-select --install'
@@ -12,6 +8,7 @@ def equil
       task :tap_brew_cask, if_err('brew tap | grep caskroom/cask'), 'brew tap caskroom/cask'
 
       task brew 'git'
+      task brew_upgrade 'git'
       task symlink '~/.dotfiles/git/gitignore', '~/.gitignore'
 
       ghq_root = '~/repos'
@@ -40,15 +37,18 @@ def equil
         "git config -f ~/.gitconfig.local user.email '#{email}'"
       }
       task brew 'ghq'
+      task brew_upgrade 'ghq'
     end
 
     task :karabiner_elements do
       task brew_cask 'karabiner-elements'
+      task brew_cask_upgrade 'karabiner-elements'
       task symlink '~/.dotfiles/karabiner', '~/.config/karabiner'
     end
 
     task :setup_vim do
       task brew 'vim'
+      task brew_cask_upgrade 'vim'
       task :install_vim_plug, if_not_exist("~/.vim/autoload/plug.vim"),
            "curl -fLo ~/.vim/autoload/plug.vim --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim"
       task symlink '~/.dotfiles/vim/vimrc', '~/.vimrc'
@@ -57,19 +57,26 @@ def equil
 
     task :peco do
       task brew 'peco'
+      task brew_cask_upgrade 'peco'
       task symlink '~/.dotfiles/peco/config.json', '~/.config/peco/config.json'
     end
     task brew 'fzf'
     task brew 'jq'
     task brew 'mas'
     task brew 'gnu-sed'
+    task brew_cask_upgrade 'fzf'
+    task brew_cask_upgrade 'jq'
+    task brew_cask_upgrade 'mas'
+    task brew_cask_upgrade 'gnu-sed'
     task :ag do
       task brew 'ag'
+      task brew_cask_upgrade 'ag'
       task symlink '~/.dotfiles/ag/agignore', '~/.agignore'
     end
 
     task :fish do
       task brew 'fish'
+      task brew_cask_upgrade 'fish'
       task symlink '~/.dotfiles/fish', '~/.config/fish'
       task :fisherman, if_not_exist('~/.config/fish/functions/fisher.fish'),
            'curl -Lo ~/.config/fish/functions/fisher.fish --create-dirs git.io/fisher'
@@ -85,20 +92,24 @@ def equil
 
     task :iterm do
       task brew_cask 'iterm2'
+      task brew_cask_upgrade 'iterm2'
       task symlink '~/.dotfiles/iterm2/com.googlecode.iterm2.plist', '~/Library/Preferences/com.googlecode.iterm2.plist'
       task 'killall cfprefsd'
     end
 
     task :tmux do
       task brew 'tmux'
+      task brew_cask_upgrade 'tmux'
       task symlink '~/.dotfiles/tmux/tmux.conf', '~/.tmux.conf'
       task if_not_exist('~/.tmux/plugins/tpm'), 'git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm'
     end
 
     # todo: set keyboard -> 入力ソース -> ひらがな(google)
     task brew_cask 'google-japanese-ime'
+    task brew_cask_upgrade 'google-japanese-ime'
 
     task brew_cask 'hyperswitch'
+    task brew_cask_upgrade 'hyperswitch'
 
     task :osx_defaults do
       task 'defaults write com.apple.dock autohide -bool true'
@@ -140,6 +151,7 @@ def equil
 
     task :intellij do
       task brew_cask "jetbrains-toolbox"
+      task brew_cask_upgrade "jetbrains-toolbox"
       task symlink '~/.dotfiles/intellij/ideavimrc', '~/.ideavimrc'
       # TODO apply settings.jar
     end
@@ -150,6 +162,7 @@ def equil
 
     task :gcloud do
       task brew_cask 'google-cloud-sdk'
+      task brew_cask_upgrade 'google-cloud-sdk'
       task 'gcloud components update'
       #task if_err('CLOUDSDK_PYTHON=/usr/bin/python gcloud components list 2>/dev/null | grep app-engine-java'),
       #     'CLOUDSDK_PYTHON=/usr/bin/python gcloud components install app-engine-java'
@@ -160,6 +173,8 @@ def equil
       task :pyenv do
         task brew 'pyenv'
         task brew 'pyenv-virtualenv'
+        task brew_upgrade 'pyenv'
+        task brew_upgrade 'pyenv-virtualenv'
       end
     end
 
@@ -184,13 +199,16 @@ def equil
     #  task 'defaults write -g ApplePressAndHoldEnabled -bool false'
     #end
 
-    task brew 'sshfs'
-
     task brew_cask 'slack'
     task brew_cask 'alfred' # todo change hotkey from gui
     task brew_cask 'caffeine'
     task brew_cask 'discord'
     task brew_cask 'osxfuse'
+    task brew_cask_upgrade 'slack'
+    task brew_cask_upgrade 'alfred' # todo change hotkey from gui
+    task brew_cask_upgrade 'caffeine'
+    task brew_cask_upgrade 'discord'
+    task brew_cask_upgrade 'osxfuse'
 
     # tood need login app store
     task mas 409183694 # keynote
@@ -199,6 +217,12 @@ def equil
     task mas 539883307 # LINE
     task mas 485812721 # TweetDeck
     task mas 405399194 # Kindle
+    task mas_upgrade 409183694 # keynote
+    task mas_upgrade 409203825 # Numbers
+    task mas_upgrade 409201541 # Pages
+    task mas_upgrade 539883307 # LINE
+    task mas_upgrade 485812721 # TweetDeck
+    task mas_upgrade 405399194 # Kindle
 
     # todo macos
     # disable spotlight
@@ -220,8 +244,14 @@ def equil
   task :container_tools do
     task brew_cask 'virtualbox'
     task brew_cask 'vagrant'
-    task if_err('vagrant plugin list | grep vagrant-vbguest'), 'vagrant plugin install vagrant-vbguest'
+    task brew_cask 'docker'
     task brew 'docker'
+    task brew_cask_upgrade 'virtualbox'
+    task brew_cask_upgrade 'vagrant'
+    task brew_cask_upgrade 'docker'
+    task brew_upgrade 'docker'
+
+    task if_err('vagrant plugin list | grep vagrant-vbguest'), 'vagrant plugin install vagrant-vbguest'
   end
 
 end
