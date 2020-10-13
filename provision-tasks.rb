@@ -56,6 +56,21 @@ def equil
       task symlink '~/.dotfiles/vim/vimrc.keymap', '~/.vimrc.keymap'
     end
 
+    task :iterm do
+      task brew_cask 'iterm2'
+      task brew_cask_upgrade 'iterm2'
+      task symlink '~/.dotfiles/iterm2/com.googlecode.iterm2.plist', '~/Library/Preferences/com.googlecode.iterm2.plist'
+      task 'killall cfprefsd'
+    end
+
+    task :tmux do
+      task brew 'tmux'
+      task brew_upgrade 'tmux'
+      task symlink '~/.dotfiles/tmux/tmux.conf', '~/.tmux.conf'
+      task if_not_exist('~/.tmux/plugins/tpm'), 'git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm'
+    end
+
+
     task :peco do
       task brew 'peco'
       task brew_upgrade 'peco'
@@ -91,23 +106,11 @@ def equil
       task :fish_package, if_err('fish -c "fisher ls | xargs -I% grep % -a ~/.dotfiles/fish/fishfile"'), 'fish -c "fisher"'
     end
 
-    task :iterm do
-      task brew_cask 'iterm2'
-      task brew_cask_upgrade 'iterm2'
-      task symlink '~/.dotfiles/iterm2/com.googlecode.iterm2.plist', '~/Library/Preferences/com.googlecode.iterm2.plist'
-      task 'killall cfprefsd'
-    end
-
-    task :tmux do
-      task brew 'tmux'
-      task brew_upgrade 'tmux'
-      task symlink '~/.dotfiles/tmux/tmux.conf', '~/.tmux.conf'
-      task if_not_exist('~/.tmux/plugins/tpm'), 'git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm'
-    end
-
     # todo: set keyboard -> 入力ソース -> ひらがな(google)
-    task brew_cask 'google-japanese-ime'
-    task brew_cask_upgrade 'google-japanese-ime'
+    task :ime do
+      task brew_cask 'google-japanese-ime'
+      task brew_cask_upgrade 'google-japanese-ime'
+    end
 
     task brew_cask 'hyperswitch'
     task brew_cask_upgrade 'hyperswitch'

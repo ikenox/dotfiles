@@ -13,5 +13,7 @@ bash -c 'ruby -e "$({ cat ~/.dotfiles/provision-tasks.rb; curl -fsSL https://raw
 ## TODO list which has to be configured manually
 
 - install & setup chrome extensions
+    - bitwarden
 - install xcode
-- install intelli
+- install xcode command line tools
+- install intellij
