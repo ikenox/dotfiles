@@ -17,3 +17,6 @@ bash -c 'ruby -e "$({ cat ~/.dotfiles/provision-tasks.rb; curl -fsSL https://raw
 - install xcode
 - install xcode command line tools
 - install intellij
+- disable spotlight
+- settings for かな入力 https://qiita.com/normalsalt/items/017031713f6577e488aa
+- enable key repeat

@@ -109,7 +109,6 @@ def equil
     # todo: set keyboard -> 入力ソース -> ひらがな(google)
     task :ime do
       task brew_cask 'google-japanese-ime'
-      task brew_cask_upgrade 'google-japanese-ime'
     end
 
     task brew_cask 'hyperswitch'
@@ -155,7 +154,6 @@ def equil
 
     task :intellij do
       task brew_cask "jetbrains-toolbox"
-      task brew_cask_upgrade "jetbrains-toolbox"
       task symlink '~/.dotfiles/intellij/ideavimrc', '~/.ideavimrc'
       # TODO apply settings.jar
     end
@@ -203,39 +201,37 @@ def equil
     #  task 'defaults write -g ApplePressAndHoldEnabled -bool false'
     #end
 
-    task brew_cask 'slack'
-    task brew_cask 'alfred' # todo change hotkey from gui
-    task brew_cask 'caffeine'
-    task brew_cask 'discord'
-    task brew_cask 'osxfuse'
-    task brew_cask_upgrade 'slack'
-    task brew_cask_upgrade 'alfred' # todo change hotkey from gui
-    task brew_cask_upgrade 'caffeine'
-    task brew_cask_upgrade 'discord'
-    task brew_cask_upgrade 'osxfuse'
+    task :applications do
+      task brew_cask 'slack'
+      task brew_cask 'alfred' # todo change hotkey from gui
+      task brew_cask 'caffeine'
+      task brew_cask 'discord'
+      task brew_cask 'osxfuse'
+      task brew_cask_upgrade 'slack'
+      task brew_cask_upgrade 'alfred' # todo change hotkey from gui
+      task brew_cask_upgrade 'caffeine'
+      task brew_cask_upgrade 'discord'
+      task brew_cask_upgrade 'osxfuse'
 
-    # tood need login app store
-    task mas 409183694 # keynote
-    task mas 409203825 # Numbers
-    task mas 409201541 # Pages
-    task mas 539883307 # LINE
-    task mas 485812721 # TweetDeck
-    task mas 405399194 # Kindle
-    task mas_upgrade 409183694 # keynote
-    task mas_upgrade 409203825 # Numbers
-    task mas_upgrade 409201541 # Pages
-    task mas_upgrade 539883307 # LINE
-    task mas_upgrade 485812721 # TweetDeck
-    task mas_upgrade 405399194 # Kindle
+      # tood need login app store
+      task mas 409183694 # keynote
+      task mas 409203825 # Numbers
+      task mas 409201541 # Pages
+      task mas 539883307 # LINE
+      task mas 485812721 # TweetDeck
+      task mas 405399194 # Kindle
+      task mas_upgrade 409183694 # keynote
+      task mas_upgrade 409203825 # Numbers
+      task mas_upgrade 409201541 # Pages
+      task mas_upgrade 539883307 # LINE
+      task mas_upgrade 485812721 # TweetDeck
+      task mas_upgrade 405399194 # Kindle
+    end
 
     # todo macos
-    # disable spotlight
-    # かな入力
-    # enable key repeat
-    #
-    # todo python
-    # https://qiita.com/zreactor/items/c3fd04417e0d61af0afe
-    # sudo installer -pkg /Library/Developer/CommandLineTools/Packages/macOS_SDK_headers_for_macOS_10.14.pkg -target /
+    # - disable spotlight
+    # - かな入力
+    # - enable key repeat
   end
 
   task :jupyter do
