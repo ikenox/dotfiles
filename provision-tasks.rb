@@ -155,7 +155,6 @@ def equil
     task :intellij do
       task brew_cask "jetbrains-toolbox"
       task symlink '~/.dotfiles/intellij/ideavimrc', '~/.ideavimrc'
-      # TODO apply settings.jar
     end
 
     task :jupyter do
