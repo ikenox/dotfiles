@@ -27,4 +27,5 @@ bash -c 'ruby -e "$({ cat ~/.dotfiles/provision-tasks.rb; curl -fsSL https://raw
     - check: include windows from other screens
     - check: use shift to cycle backwards
 - exec vim `:PlugInstall`
+- Settings > Keyboard > Shortcut > uncheck "select next input source by ^ + space".
 
