@@ -29,4 +29,6 @@ bash -c 'ruby -e "$({ cat ~/.dotfiles/provision-tasks.rb; curl -fsSL https://raw
 - exec vim `:PlugInstall`
 - Settings > Keyboard > Shortcut > uncheck "select next input source by ^ + space".
 - sync IntelliJ settings https://www.jetbrains.com/help/idea/sharing-your-ide-settings.html#IDE_settings_sync
-    - exec "Sync Settings to JetBrains Account" on IntelliJ
+    - login on JetBrains Toolbox
+    - IntelliJ: login & "Sync Settings to JetBrains Account" > "Get Settings from Account"
+- "fish -c fisher" ?
