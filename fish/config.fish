@@ -1,5 +1,4 @@
 set PATH ~/.cargo/bin ~/bin ~/go/bin /usr/local/bin /usr/bin /bin /sbin /usr/sbin $PATH
-set JAVA_HOME (/usr/libexec/java_home -v 11.0.1)
 export CLOUDSDK_PYTHON=(which python3)
 
 alias c=clear
