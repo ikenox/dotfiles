@@ -41,14 +41,15 @@ def equil
     end
 
     task :karabiner_elements do
-      task brew_cask 'karabiner-elements'
-      task brew_cask_upgrade 'karabiner-elements'
+      # karabiner-elements 13 doesn't work on catalina 10.15.7
+      #task brew_cask 'karabiner-elements'
+      #task brew_cask_upgrade 'karabiner-elements'
       task symlink '~/.dotfiles/karabiner', '~/.config/karabiner'
     end
 
     task :setup_vim do
       task brew 'vim'
-      task brew_cask_upgrade 'vim'
+      #task brew_upgrade 'vim'
       task :install_vim_plug, if_not_exist("~/.vim/autoload/plug.vim"),
            "curl -fLo ~/.vim/autoload/plug.vim --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim"
       task symlink '~/.dotfiles/vim/vimrc', '~/.vimrc'
@@ -57,26 +58,26 @@ def equil
 
     task :peco do
       task brew 'peco'
-      task brew_cask_upgrade 'peco'
+      task brew_upgrade 'peco'
       task symlink '~/.dotfiles/peco/config.json', '~/.config/peco/config.json'
     end
     task brew 'fzf'
     task brew 'jq'
     task brew 'mas'
     task brew 'gnu-sed'
-    task brew_cask_upgrade 'fzf'
-    task brew_cask_upgrade 'jq'
-    task brew_cask_upgrade 'mas'
-    task brew_cask_upgrade 'gnu-sed'
+    task brew_upgrade 'fzf'
+    task brew_upgrade 'jq'
+    task brew_upgrade 'mas'
+    task brew_upgrade 'gnu-sed'
     task :ag do
       task brew 'ag'
-      task brew_cask_upgrade 'ag'
+      task brew_upgrade 'ag'
       task symlink '~/.dotfiles/ag/agignore', '~/.agignore'
     end
 
     task :fish do
       task brew 'fish'
-      task brew_cask_upgrade 'fish'
+      task brew_upgrade 'fish'
       task symlink '~/.dotfiles/fish', '~/.config/fish'
       task :fisherman, if_not_exist('~/.config/fish/functions/fisher.fish'),
            'curl -Lo ~/.config/fish/functions/fisher.fish --create-dirs git.io/fisher'
@@ -99,7 +100,7 @@ def equil
 
     task :tmux do
       task brew 'tmux'
-      task brew_cask_upgrade 'tmux'
+      task brew_upgrade 'tmux'
       task symlink '~/.dotfiles/tmux/tmux.conf', '~/.tmux.conf'
       task if_not_exist('~/.tmux/plugins/tpm'), 'git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm'
     end
@@ -163,7 +164,7 @@ def equil
     task :gcloud do
       task brew_cask 'google-cloud-sdk'
       task brew_cask_upgrade 'google-cloud-sdk'
-      task 'gcloud components update'
+      task 'CLOUDSDK_PYTHON=/usr/bin/python gcloud components update'
       #task if_err('CLOUDSDK_PYTHON=/usr/bin/python gcloud components list 2>/dev/null | grep app-engine-java'),
       #     'CLOUDSDK_PYTHON=/usr/bin/python gcloud components install app-engine-java'
     end
