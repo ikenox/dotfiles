@@ -36,6 +36,9 @@ vnoremap == :<C-u>action ReformatCode<CR>
 nnoremap cc :<C-u>action CommentByLineComment<CR>
 vnoremap cc :<C-u>action CommentByLineComment<CR>
 
+vnoremap p :<C-u>action EditorSelectWord<CR>
+vnoremap n :<C-u>action EditorUnSelectWord<CR>
+
 " show information
 nnoremap <C-I> :<C-u>action QuickJavaDoc<CR>
 
