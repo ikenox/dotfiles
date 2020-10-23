@@ -32,3 +32,4 @@ bash -c 'ruby -e "$({ cat ~/.dotfiles/provision-tasks.rb; curl -fsSL https://raw
     - login on JetBrains Toolbox
     - IntelliJ: login & "Sync Settings to JetBrains Account" > "Get Settings from Account"
 - "fish -c fisher" ?
+- change settings for ことえり "￥キーを入力する文字: \"
