@@ -231,11 +231,11 @@ def equil
 
   task :jupyterlab do
     task if_err('which node'), 'brew install node'
-    task 'pip install jupyterlab==2.2.9'
-    task 'jupyter labextension install @axlair/jupyterlab_vim'
-    task 'jupyter labextension install jupyterlab-vimrc@0.3.0'
-    task 'jupyter labextension install jupyterlab_vim-system-clipboard-support'
-    task symlink '~/.dotfiles/jupyter/user-settings', '~/.jupyter/'
+    task if_err('jupyter lab --version'), 'pip install jupyterlab==2.2.9'
+    task if_err('jupyter labextension list 2>&1 | grep @axlair/jupyterlab_vim'), 'jupyter labextension install @axlair/jupyterlab_vim'
+    task if_err('jupyter labextension list 2>&1 | grep jupyterlab-vimrc'), 'jupyter labextension install jupyterlab-vimrc@0.3.0'
+    task if_err('jupyter labextension list 2>&1 | grep jupyterlab_vim-system-clipboard-support'), 'jupyter labextension install jupyterlab_vim-system-clipboard-support'
+    task symlink '~/.dotfiles/jupyter/user-settings', '~/.jupyter/lab/'
   end
 
   task :container_tools do
