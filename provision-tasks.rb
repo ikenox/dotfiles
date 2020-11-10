@@ -158,10 +158,6 @@ def equil
       # TODO apply settings.jar
     end
 
-    task :jupyter do
-      task symlink '~/.dotfiles/jupyter/custom.js', '~/.jupyter/custom/custom.js'
-    end
-
     task :gcloud do
       task brew_cask 'google-cloud-sdk'
       task brew_cask_upgrade 'google-cloud-sdk'
@@ -234,11 +230,13 @@ def equil
     # - enable key repeat
   end
 
-  task :jupyter do
-    task if_err('which jupyter'), 'pip install jupyter'
-    task if_err('pip freeze | grep jupyter_contrib_nbextensions'), 'pip install jupyter_contrib_nbextensions'
-    task 'mkdir -p $(jupyter --data-dir)/nbextensions'
-    task if_err('ls $(jupyter --data-dir)/nbextensions/vim_binding'), 'cd $(jupyter --data-dir)/nbextensions && git clone https://github.com/lambdalisue/jupyter-vim-binding vim_binding'
+  task :jupyterlab do
+    task if_err('which node'), 'brew install node'
+    task 'pip install jupyterlab==2.2.9'
+    task 'jupyter labextension install @axlair/jupyterlab_vim'
+    task 'jupyter labextension install jupyterlab-vimrc@0.3.0'
+    task 'jupyter labextension install jupyterlab_vim-system-clipboard-support'
+    task symlink '~/.dotfiles/jupyter/user-settings', '~/.jupyter/'
   end
 
   task :container_tools do

@@ -1,0 +1,10 @@
+{
+    // vim-system-clipboard
+    // jupyterlab_vim-system-clipboard-support:clipboard
+    // Settings for yanking in vim
+    // *************************************************
+
+    // set unnamedplus
+    // If true yanking without specifying a register will also yank to the system clipboard.
+    "unnamedplus": true
+}

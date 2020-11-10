@@ -1,0 +1,40 @@
+{
+    // vimrc
+    // jupyterlab-vimrc:vimrc
+    // Settings to be applied to codemirror vim mode
+    // *********************************************
+
+    // imap commands
+    // [lhs, rhs] - e.g. "imap": [["ii", "<Esc>"]]
+    "imap": [],
+
+    // inoremap commands
+    // [lhs, rhs]
+    "inoremap": [
+        []
+    ],
+
+    // nmap commands
+    // [lhs, rhs]
+    "nmap": [
+        []
+    ],
+
+    // nnoremap commands
+    // [lhs, rhs]
+    "nnoremap": [
+        [["L", "$"]]
+    ],
+
+    // vmap commands
+    // [lhs, rhs]
+    "vmap": [
+        []
+    ],
+
+    // vnoremap commands
+    // [lhs, rhs]
+    "vnoremap": [
+        []
+    ]
+}
