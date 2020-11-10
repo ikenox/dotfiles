@@ -6,7 +6,7 @@
 
     // imap commands
     // [lhs, rhs] - e.g. "imap": [["ii", "<Esc>"]]
-    "imap": [],
+    "imap": [["jf", "<Esc>"]],
 
     // inoremap commands
     // [lhs, rhs]
@@ -23,7 +23,7 @@
     // nnoremap commands
     // [lhs, rhs]
     "nnoremap": [
-        [["L", "$"]]
+        [["L", "$"],["H","^"],["j","gj"],["k","gk"],[";",":"],[":",";"]]
     ],
 
     // vmap commands
@@ -35,6 +35,6 @@
     // vnoremap commands
     // [lhs, rhs]
     "vnoremap": [
-        []
+        [["L", "$"],["H","^"],["j","gj"],["k","gk"]]
     ]
 }
