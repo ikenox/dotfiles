@@ -17,21 +17,21 @@
     // nmap commands
     // [lhs, rhs]
     "nmap": [
-        []
+        [["j","gj"],["k","gk"]]
     ],
 
     // nnoremap commands
     // [lhs, rhs]
-    "nnoremap": [["L", "$"],["H","^"],["j","gj"],["k","gk"],[";",":"],[":",";"]],
+    "nnoremap": [["L", "$"],["H","^"],[";",":"],[":",";"]],
 
     // vmap commands
     // [lhs, rhs]
     "vmap": [
-        []
+        [["j","gj"],["k","gk"]]
     ],
 
     // vnoremap commands
     // [lhs, rhs]
-    "vnoremap":[["L", "$"],["H","^"],["j","gj"],["k","gk"]]
+    "vnoremap":[["L", "$"],["H","^"]]
     
 }

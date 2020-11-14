@@ -236,6 +236,7 @@ def equil
     task if_err('jupyter labextension list 2>&1 | grep jupyterlab-vimrc'), 'jupyter labextension install jupyterlab-vimrc@0.3.0'
     task if_err('jupyter labextension list 2>&1 | grep jupyterlab_vim-system-clipboard-support'), 'jupyter labextension install jupyterlab_vim-system-clipboard-support'
     task if_err('jupyter labextension list 2>&1 | grep jupyterlab-plotly'), 'jupyter labextension install jupyterlab-plotly'
+    task if_err('jupyter labextension list 2>&1 | grep variableinspector'), 'jupyter labextension install @lckr/jupyterlab_variableinspector'
     task symlink '~/.dotfiles/jupyter/user-settings', '~/.jupyter/lab/'
   end
 

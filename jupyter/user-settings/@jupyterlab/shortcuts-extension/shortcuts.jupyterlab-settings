@@ -1,0 +1,18 @@
+{
+     "shortcuts": [
+        {
+            "command": "application:activate-next-tab",
+            "keys": [
+                "Accel Ctrl L"
+            ],
+            "selector": "body"
+        },
+                 {
+            "command": "application:activate-previous-tab",
+            "keys": [
+                "Accel Ctrl H"
+            ],
+            "selector": "body"
+        }
+     ]
+}
