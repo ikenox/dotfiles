@@ -11,6 +11,7 @@ call plug#begin()
 
 Plug 'tpope/vim-surround'
 Plug 'w0ng/vim-hybrid'
+Plug 'whatyouhide/vim-gotham'
 Plug 'itchyny/lightline.vim'
 
 " ========== Unite.vim ==========
