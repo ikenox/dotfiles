@@ -67,6 +67,22 @@
       "commands": ["workbench.action.splitEditorDown"]
     },
     {
+      "before": ["s", "l"],
+      "commands": ["workbench.action.focusRightGroup"]
+    },
+    {
+      "before": ["s", "h"],
+      "commands": ["workbench.action.focusLeftGroup"]
+    },
+    {
+      "before": ["s", "j"],
+      "commands": ["workbench.action.focusBelowGroup"]
+    },
+    {
+      "before": ["s", "k"],
+      "commands": ["workbench.action.focusAboveGroup"]
+    },
+    {
       "before": ["Ctrl+o"],
       "commands": ["workbench.action.navigateEditorGroups"]
     },

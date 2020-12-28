@@ -186,15 +186,15 @@ def equil
     #       'curl https://raw.githubusercontent.com/gcuisinier/jenv/master/fish/export.fish > ~/.config/fish/export.fish'
     #end
 
-    #task :vscode do
-    #  task brew_cask 'visual-studio-code'
-    #  task symlink '~/.dotfiles/vscode/settings.json', '~/Library/Application\ Support/Code/User/settings.json'
-    #  task symlink '~/.dotfiles/vscode/keybindings.json', '~/Library/Application\ Support/Code/User/keybindings.json'
-    #  task 'cat ~/.dotfiles/vscode/extensions.txt | while read line; do code --install-extension $line; done'
-    #  task 'defaults write com.microsoft.VSCode ApplePressAndHoldEnabled -bool false'
-    #  task 'defaults write com.microsoft.VSCodeInsiders ApplePressAndHoldEnabled -bool false'
-    #  task 'defaults write -g ApplePressAndHoldEnabled -bool false'
-    #end
+    task :vscode do
+      task brew_cask 'visual-studio-code'
+      task symlink '~/.dotfiles/vscode/settings.json', '~/Library/Application\ Support/Code/User/settings.json'
+      task symlink '~/.dotfiles/vscode/keybindings.json', '~/Library/Application\ Support/Code/User/keybindings.json'
+      task 'cat ~/.dotfiles/vscode/extensions.txt | while read line; do code --install-extension $line; done'
+      task 'defaults write com.microsoft.VSCode ApplePressAndHoldEnabled -bool false'
+      task 'defaults write com.microsoft.VSCodeInsiders ApplePressAndHoldEnabled -bool false'
+      task 'defaults write -g ApplePressAndHoldEnabled -bool false'
+    end
 
     task :applications do
       task brew_cask 'slack'
