@@ -193,5 +193,34 @@
   "[html]": {
     "editor.defaultFormatter": "esbenp.prettier-vscode"
   },
-  "editor.scrollBeyondLastLine": false
+  "editor.scrollBeyondLastLine": false,
+  "workbench.colorTheme": "Darcula",
+  "editor.tokenColorCustomizations": {
+      "textMateRules": [
+          {
+              "scope": "keyword",
+              "settings": {
+                  "fontStyle": "bold"
+              }
+          },
+          {
+              "scope": "storage",
+              "settings": {
+                  "fontStyle": "bold"
+              }
+          },
+          {
+              "scope": "constant.language",
+              "settings": {
+                  "fontStyle": "bold"
+              }
+          },
+          {
+              "scope": "support.class.builtin",
+              "settings": {
+                  "fontStyle": "bold"
+              }
+          }
+      ]
+  }
 }
