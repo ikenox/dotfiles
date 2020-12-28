@@ -1,3 +1,4 @@
+// https://code.visualstudio.com/docs/getstarted/keybindings
 {
   "vim.easymotion": true,
   "vim.sneak": true,
@@ -51,12 +52,16 @@
       "commands": ["editor.action.goToDeclaration"]
     },
     {
-      "before": ["c", "&"],
+      "before": ["g", "i"],
+      "commands": ["editor.action.goToImplementation"]
+    },
+    {
+      "before": ["c", "c"],
       "commands": ["editor.action.commentLine"]
     },
     {
       "before": ["<leader>", "e"],
-      "commands": ["workbench.action.quickOpen"]
+      "commands": ["workbench.action.showAllSymbols"]
     },
     {
       "before": ["s", "v"],
@@ -113,7 +118,16 @@
     {
       "before": ["<C-d>"],
       "after": ["2", "0", "j"]
+    },
+    {
+      "before": ["q"],
+      "commands": ["editor.action.quickFix"]
+    },
+    {
+      "before": ["r"],
+      "commands": ["editor.action.rename"]
     }
+
   ],
   "vim.visualModeKeyBindings": [{
       "before": ["L"],
@@ -151,6 +165,10 @@
     {
       "before": ["j"],
       "after": ["g","j"]
+    },
+    {
+      "before": ["c", "c"],
+      "commands": ["editor.action.commentLine"]
     }
   ],
   "vim.leader": ",",
@@ -174,5 +192,6 @@
   },
   "[html]": {
     "editor.defaultFormatter": "esbenp.prettier-vscode"
-  }
+  },
+  "editor.scrollBeyondLastLine": false
 }
