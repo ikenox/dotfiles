@@ -1,6 +1,7 @@
 // https://code.visualstudio.com/docs/getstarted/keybindings
 {
   "editor.cursorSurroundingLines": 10,
+  // "rust-analyzer.checkOnSave.command": "clippy",
   "[rust]": {
     "editor.formatOnSave": true,
   },

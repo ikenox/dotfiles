@@ -7,5 +7,9 @@
   {
     "key": "cmd+ctrl+h",
     "command": "workbench.action.previousEditor"
-  }
+  },
+  {
+    "key": "ctrl+w",
+    "command": "-workbench.action.switchWindow"
+  },
 ]
