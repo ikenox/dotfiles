@@ -1,8 +1,11 @@
 // https://code.visualstudio.com/docs/getstarted/keybindings
 {
+  "editor.cursorSurroundingLines": 10,
   "[rust]": {
     "editor.formatOnSave": true,
   },
+  "rust-analyzer.cargo.loadOutDirsFromCheck": true,
+  "rust-analyzer.procMacro.enable": true,
   "vim.easymotion": true,
   "vim.sneak": true,
   "vim.incsearch": true,
@@ -10,169 +13,393 @@
   "vim.useCtrlKeys": true,
   "vim.hlsearch": true,
   "editor.tabSize": 4,
-  "vim.insertModeKeyBindings": [{
-    "before": ["j", "f"],
-    "after": ["<Esc>"]
-  }],
-  "vim.normalModeKeyBindingsNonRecursive": [{
-    "before": ["v"],
-    "after": ["v", "l", "h"]
-  },
-  {
-    "before": ["="],
-    "commands": ["HookyQR.beautify"]
-  },
-  {
-    "before": ["k"],
-    "after": ["g","k"]
-  },
-  {
-    "before": ["j"],
-    "after": ["g","j"]
-  },
-  {
-    "before": [";"],
-    "after": [":"]
-  },
-  {
-    "before": [":"],
-    "after": [";"]
-  },
-  {
-    "before": ["L"],
-    "after": ["$"]
-  },
-  {
-    "before": ["H"],
-    "after": ["^"]
-  },
-  {
-    "before": ["<leader>", "s"],
-    "commands": ["workbench.action.gotoSymbol"]
-  },
-  {
-    "before": ["g", "d"],
-    "commands": ["editor.action.goToDeclaration"]
-  },
-  {
-    "before": ["g", "i"],
-    "commands": ["editor.action.goToImplementation"]
-  },
-  {
-    "before": ["c", "c"],
-    "commands": ["editor.action.commentLine"]
-  },
-  {
-    "before": ["<leader>", "e"],
-    "commands": ["workbench.action.showAllSymbols"]
-  },
-  {
-    "before": ["s", "v"],
-    "commands": ["workbench.action.splitEditorRight"]
-  },
-  {
-    "before": ["s", "s"],
-    "commands": ["workbench.action.splitEditorDown"]
-  },
-  {
-    "before": ["s", "l"],
-    "commands": ["workbench.action.focusRightGroup"]
-  },
-  {
-    "before": ["s", "h"],
-    "commands": ["workbench.action.focusLeftGroup"]
-  },
-  {
-    "before": ["s", "j"],
-    "commands": ["workbench.action.focusBelowGroup"]
-  },
-  {
-    "before": ["s", "k"],
-    "commands": ["workbench.action.focusAboveGroup"]
-  },
-  {
-    "before": ["Ctrl+o"],
-    "commands": ["workbench.action.navigateEditorGroups"]
-  },
-  {
-    "before": ["Q"],
-    "commands": ["editor.action.quickFix"]
-  },
-  {
-    "before": ["g", "h"],
-    "commands": ["workbench.action.navigateBack"]
-  },
-  {
-    "before": ["g", "l"],
-    "commands": ["workbench.action.navigateForward"]
-  },
-  {
-    "before": [",", "g"],
-    "commands": ["workbench.action.findInFiles"]
-  },
-  {
-    "before": [",", "a"],
-    "commands": ["workbench.action.showCommands"]
-  },
-  {
-    "before": ["<C-u>"],
-    "after": ["2", "0", "k"]
-  },
-  {
-    "before": ["<C-d>"],
-    "after": ["2", "0", "j"]
-  },
-  {
-    "before": ["q"],
-    "commands": ["editor.action.quickFix"]
-  },
-  {
-    "before": ["r"],
-    "commands": ["editor.action.rename"]
-  }
-
+  "vim.insertModeKeyBindings": [
+    {
+      "before": [
+        "j",
+        "f"
+      ],
+      "after": [
+        "<Esc>"
+      ]
+    }
   ],
-  "vim.visualModeKeyBindings": [{
-    "before": ["L"],
-    "after": ["$"]
-  },
-  {
-    "before": ["H"],
-    "after": ["^"]
-  }
+  "vim.normalModeKeyBindingsNonRecursive": [
+    {
+      "before": [
+        "v"
+      ],
+      "after": [
+        "v",
+        "l",
+        "h"
+      ]
+    },
+    {
+      "before": [
+        "="
+      ],
+      "commands": [
+        "editor.action.formatDocument"
+      ]
+    },
+    {
+      "before": [
+        "k"
+      ],
+      "after": [
+        "g",
+        "k"
+      ]
+    },
+    {
+      "before": [
+        "j"
+      ],
+      "after": [
+        "g",
+        "j"
+      ]
+    },
+    {
+      "before": [
+        ";"
+      ],
+      "after": [
+        ":"
+      ]
+    },
+    {
+      "before": [
+        ":"
+      ],
+      "after": [
+        ";"
+      ]
+    },
+    {
+      "before": [
+        "L"
+      ],
+      "after": [
+        "$"
+      ]
+    },
+    {
+      "before": [
+        "H"
+      ],
+      "after": [
+        "^"
+      ]
+    },
+    {
+      "before": [
+        "<leader>",
+        "s"
+      ],
+      "commands": [
+        "workbench.action.gotoSymbol"
+      ]
+    },
+    {
+      "before": [
+        "g",
+        "d"
+      ],
+      "commands": [
+        "editor.action.goToDeclaration"
+      ]
+    },
+    {
+      "before": [
+        "g",
+        "u"
+      ],
+      "commands": [
+        "editor.action.goToDeclaration"
+      ]
+      // "commands": ["references-view.findReferences"]
+    },
+    {
+      "before": [
+        "g",
+        "i"
+      ],
+      "commands": [
+        "editor.action.goToImplementation"
+      ]
+    },
+    {
+      "before": [
+        "c",
+        "c"
+      ],
+      "commands": [
+        "editor.action.commentLine"
+      ]
+    },
+    {
+      "before": [
+        "<leader>",
+        "e"
+      ],
+      "commands": [
+        "workbench.action.showAllSymbols"
+      ]
+    },
+    {
+      "before": [
+        "s",
+        "v"
+      ],
+      "commands": [
+        "workbench.action.splitEditorRight"
+      ]
+    },
+    {
+      "before": [
+        "s",
+        "s"
+      ],
+      "commands": [
+        "workbench.action.splitEditorDown"
+      ]
+    },
+    {
+      "before": [
+        "s",
+        "l"
+      ],
+      "commands": [
+        "workbench.action.focusRightGroup"
+      ]
+    },
+    {
+      "before": [
+        "s",
+        "h"
+      ],
+      "commands": [
+        "workbench.action.focusLeftGroup"
+      ]
+    },
+    {
+      "before": [
+        "s",
+        "j"
+      ],
+      "commands": [
+        "workbench.action.focusBelowGroup"
+      ]
+    },
+    {
+      "before": [
+        "s",
+        "k"
+      ],
+      "commands": [
+        "workbench.action.focusAboveGroup"
+      ]
+    },
+    {
+      "before": [
+        "Ctrl+o"
+      ],
+      "commands": [
+        "workbench.action.navigateEditorGroups"
+      ]
+    },
+    {
+      "before": [
+        "Q"
+      ],
+      "commands": [
+        "editor.action.quickFix"
+      ]
+    },
+    {
+      "before": [
+        "g",
+        "h"
+      ],
+      "commands": [
+        "workbench.action.navigateBack"
+      ]
+    },
+    {
+      "before": [
+        "g",
+        "l"
+      ],
+      "commands": [
+        "workbench.action.navigateForward"
+      ]
+    },
+    {
+      "before": [
+        "g",
+        "b"
+      ],
+      "commands": [
+        "workbench.action.editor.previousChange"
+      ]
+    },
+    {
+      "before": [
+        ",",
+        "g"
+      ],
+      "commands": [
+        "workbench.action.findInFiles"
+      ]
+    },
+    {
+      "before": [
+        ",",
+        "a"
+      ],
+      "commands": [
+        "workbench.action.showCommands"
+      ]
+    },
+    {
+      "before": [
+        ",",
+        "f"
+      ],
+      "commands": [
+        "workbench.action.quickOpen"
+      ]
+    },
+    {
+      "before": [
+        "<C-u>"
+      ],
+      "after": [
+        "2",
+        "0",
+        "k"
+      ]
+    },
+    {
+      "before": [
+        "<C-d>"
+      ],
+      "after": [
+        "2",
+        "0",
+        "j"
+      ]
+    },
+    {
+      "before": [
+        "q"
+      ],
+      "commands": [
+        "editor.action.quickFix"
+      ]
+    },
+    {
+      "before": [
+        "r"
+      ],
+      "commands": [
+        "editor.action.rename"
+      ]
+    }
   ],
-  "vim.visualModeKeyBindingsNonRecursive": [{
-    "before": ["=", "="],
-    "after": ["a"]
-  },
-  {
-    "before": [";"],
-    "after": [":"]
-  },
-  {
-    "before": [":"],
-    "after": [";"]
-  },
-  {
-    "before": ["<C-u>"],
-    "after": ["2", "0", "k"]
-  },
-  {
-    "before": ["<C-d>"],
-    "after": ["2", "0", "j"]
-  },
-  {
-    "before": ["k"],
-    "after": ["g","k"]
-  },
-  {
-    "before": ["j"],
-    "after": ["g","j"]
-  },
-  {
-    "before": ["c", "c"],
-    "commands": ["editor.action.commentLine"]
-  }
+  "vim.visualModeKeyBindings": [
+    {
+      "before": [
+        "L"
+      ],
+      "after": [
+        "$"
+      ]
+    },
+    {
+      "before": [
+        "H"
+      ],
+      "after": [
+        "^"
+      ]
+    }
+  ],
+  "vim.visualModeKeyBindingsNonRecursive": [
+    {
+      "before": [
+        "=",
+        "="
+      ],
+      "after": [
+        "a"
+      ]
+    },
+    {
+      "before": [
+        ";"
+      ],
+      "after": [
+        ":"
+      ]
+    },
+    {
+      "before": [
+        ":"
+      ],
+      "after": [
+        ";"
+      ]
+    },
+    {
+      "before": [
+        "<C-u>"
+      ],
+      "after": [
+        "2",
+        "0",
+        "k"
+      ]
+    },
+    {
+      "before": [
+        "<C-d>"
+      ],
+      "after": [
+        "2",
+        "0",
+        "j"
+      ]
+    },
+    {
+      "before": [
+        "k"
+      ],
+      "after": [
+        "g",
+        "k"
+      ]
+    },
+    {
+      "before": [
+        "j"
+      ],
+      "after": [
+        "g",
+        "j"
+      ]
+    },
+    {
+      "before": [
+        "c",
+        "c"
+      ],
+      "commands": [
+        "editor.action.commentLine"
+      ]
+    }
   ],
   "vim.leader": ",",
   "vim.handleKeys": {},
@@ -190,16 +417,10 @@
     "twig": "html",
     "vue-html": "html"
   },
-  "[jsonc]": {
-    "editor.defaultFormatter": "esbenp.prettier-vscode"
-  },
-  "[html]": {
-    "editor.defaultFormatter": "esbenp.prettier-vscode"
-  },
   "editor.scrollBeyondLastLine": false,
   "workbench.colorTheme": "Darcula",
   "editor.tokenColorCustomizations": {
-    "[Darcula]":{
+    "[Darcula]": {
       "textMateRules": [
         {
           "scope": "keyword",
@@ -232,13 +453,39 @@
           }
         },
         {
-          "scope":"entity.name.type.primitive.rust",
+          "scope": "entity.name.type.primitive.rust",
           "settings": {
             "fontStyle": "bold",
             "foreground": "#CC7832"
           }
+        },
+        {
+          "scope": "entity.name.function.macro.rust",
+          "settings": {
+            "foreground": "#74b9ff",
+          }
+        },
+        {
+          "scope": "keyword.operator.question.rust",
+          "settings": {
+            "fontStyle": "bold",
+            "foreground": "#CC7832"
+          }
+        },
+        {
+          "scope": "keyword.operator.borrow.and.rust",
+          "settings": {
+            "fontStyle": ""
+          }
+        },
+        {
+          "scope": "meta.attribute.rust",
+          "settings": {
+            "foreground": "#74b9ff",
+          }
         }
       ]
     }
-  }
+  },
+  "files.autoSave": "afterDelay"
 }
