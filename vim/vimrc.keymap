@@ -6,8 +6,6 @@ nnoremap L $
 vnoremap L $
 nnoremap H ^
 vnoremap H ^
-nnoremap Y v$y
-vnoremap Y $y
 
 inoremap jf <ESC>
 

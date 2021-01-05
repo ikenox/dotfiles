@@ -157,10 +157,6 @@ def equil
       task symlink '~/.dotfiles/intellij/ideavimrc', '~/.ideavimrc'
     end
 
-    task :jupyter do
-      task symlink '~/.dotfiles/jupyter/custom.js', '~/.jupyter/custom/custom.js'
-    end
-
     task :gcloud do
       task brew_cask 'google-cloud-sdk'
       task brew_cask_upgrade 'google-cloud-sdk'
@@ -190,15 +186,15 @@ def equil
     #       'curl https://raw.githubusercontent.com/gcuisinier/jenv/master/fish/export.fish > ~/.config/fish/export.fish'
     #end
 
-    #task :vscode do
-    #  task brew_cask 'visual-studio-code'
-    #  task symlink '~/.dotfiles/vscode/settings.json', '~/Library/Application\ Support/Code/User/settings.json'
-    #  task symlink '~/.dotfiles/vscode/keybindings.json', '~/Library/Application\ Support/Code/User/keybindings.json'
-    #  task 'cat ~/.dotfiles/vscode/extensions.txt | while read line; do code --install-extension $line; done'
-    #  task 'defaults write com.microsoft.VSCode ApplePressAndHoldEnabled -bool false'
-    #  task 'defaults write com.microsoft.VSCodeInsiders ApplePressAndHoldEnabled -bool false'
-    #  task 'defaults write -g ApplePressAndHoldEnabled -bool false'
-    #end
+    task :vscode do
+      task brew_cask 'visual-studio-code'
+      task symlink '~/.dotfiles/vscode/settings.json', '~/Library/Application\ Support/Code/User/settings.json'
+      task symlink '~/.dotfiles/vscode/keybindings.json', '~/Library/Application\ Support/Code/User/keybindings.json'
+      task 'cat ~/.dotfiles/vscode/extensions.txt | while read line; do code --install-extension $line; done'
+      task 'defaults write com.microsoft.VSCode ApplePressAndHoldEnabled -bool false'
+      task 'defaults write com.microsoft.VSCodeInsiders ApplePressAndHoldEnabled -bool false'
+      task 'defaults write -g ApplePressAndHoldEnabled -bool false'
+    end
 
     task :applications do
       task brew_cask 'slack'
@@ -233,11 +229,15 @@ def equil
     # - enable key repeat
   end
 
-  task :jupyter do
-    task if_err('which jupyter'), 'pip install jupyter'
-    task if_err('pip freeze | grep jupyter_contrib_nbextensions'), 'pip install jupyter_contrib_nbextensions'
-    task 'mkdir -p $(jupyter --data-dir)/nbextensions'
-    task if_err('ls $(jupyter --data-dir)/nbextensions/vim_binding'), 'cd $(jupyter --data-dir)/nbextensions && git clone https://github.com/lambdalisue/jupyter-vim-binding vim_binding'
+  task :jupyterlab do
+    task if_err('which node'), 'brew install node'
+    task if_err('jupyter lab --version'), 'pip install jupyterlab==2.2.9'
+    task if_err('jupyter labextension list 2>&1 | grep @axlair/jupyterlab_vim'), 'jupyter labextension install @axlair/jupyterlab_vim'
+    task if_err('jupyter labextension list 2>&1 | grep jupyterlab-vimrc'), 'jupyter labextension install jupyterlab-vimrc@0.3.0'
+    task if_err('jupyter labextension list 2>&1 | grep jupyterlab_vim-system-clipboard-support'), 'jupyter labextension install jupyterlab_vim-system-clipboard-support'
+    task if_err('jupyter labextension list 2>&1 | grep jupyterlab-plotly'), 'jupyter labextension install jupyterlab-plotly'
+    task if_err('jupyter labextension list 2>&1 | grep variableinspector'), 'jupyter labextension install @lckr/jupyterlab_variableinspector'
+    task symlink '~/.dotfiles/jupyter/user-settings', '~/.jupyter/lab/'
   end
 
   task :container_tools do

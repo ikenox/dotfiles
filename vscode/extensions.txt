@@ -1,1 +1,6 @@
 vscodevim.vim
+matklad.rust-analyzer
+rokoroku.vscode-theme-darcula
+Gruntfuggly.activitusbar
+be5invis.toml
+yzhang.markdown-all-in-one
