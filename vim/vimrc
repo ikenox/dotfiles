@@ -258,7 +258,7 @@ augroup END
 "================================================================
 
 set background=dark
-colorscheme gotham
+colorscheme hybrid
 "
 " highlights
 hi MatchParen term=standout ctermbg=blue ctermfg=white
