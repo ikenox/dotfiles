@@ -12,6 +12,11 @@ bash -c 'ruby -e "$({ cat ~/.dotfiles/provision-tasks.rb; curl -fsSL https://raw
 
 ## TODO list which should be automated
 
+- add ssh public key to github
+- mac dark mode
+- launch
+    - karabiner-elements
+    - hyperswitch
 - install & setup chrome extensions
     - bitwarden
 - install xcode

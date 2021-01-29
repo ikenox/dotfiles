@@ -44,8 +44,8 @@ def equil
 
     task :karabiner_elements do
       # karabiner-elements 13 doesn't work on catalina 10.15.7
-      #task brew_cask 'karabiner-elements'
-      #task brew_cask_upgrade 'karabiner-elements'
+      task brew_cask 'karabiner-elements'
+      task brew_cask_upgrade 'karabiner-elements'
       task symlink '~/.dotfiles/karabiner', '~/.config/karabiner'
     end
 
@@ -105,7 +105,8 @@ def equil
         #   sh "sudo chsh -s $(which fish)"
         # end
       end
-      task :fish_package, if_err('fish -c "fisher ls | xargs -I% grep % -a ~/.dotfiles/fish/fishfile"'), 'fish -c "fisher"'
+      # fisher >= 4.0 is required
+      task :fish_package, 'cat ~/.config/fish/fishfile | xargs -I% fish -c 'fisher install %''
     end
 
     # todo: set keyboard -> 入力ソース -> ひらがな(google)
@@ -181,12 +182,14 @@ def equil
     end
 
     task :applications do
-      task brew_cask 'slack'
+      task if_err("ls /Applications/Slack.app") do
+        task brew_cask 'slack'
+        task brew_cask_upgrade 'slack'
+      end
       task brew_cask 'alfred' # todo change hotkey from gui
       task brew_cask 'caffeine'
       task brew_cask 'discord'
       task brew_cask 'osxfuse'
-      task brew_cask_upgrade 'slack'
       task brew_cask_upgrade 'alfred' # todo change hotkey from gui
       task brew_cask_upgrade 'caffeine'
       task brew_cask_upgrade 'discord'
@@ -266,7 +269,7 @@ def brew_upgrade(package)
 end
 
 def brew_cask(package)
-  task_alias "install_#{package}_by_cask".to_sym, if_not_exist("/usr/local/Caskroom/#{package}"), "brew install --cask #{package}"
+  task_alias "install_#{package}_by_cask".to_sym, if_err("brew list --cask | grep #{package}"), "brew install --cask #{package}"
 end
 
 def brew_cask_upgrade(package)
