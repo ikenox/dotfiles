@@ -159,24 +159,6 @@ def equil
       task symlink '~/.dotfiles/intellij/ideavimrc', '~/.ideavimrc'
     end
 
-    task :gcloud do
-      task brew_cask 'google-cloud-sdk'
-      task brew_cask_upgrade 'google-cloud-sdk'
-      task 'gcloud components update'
-      #task if_err('CLOUDSDK_PYTHON=/usr/bin/python gcloud components list 2>/dev/null | grep app-engine-java'),
-      #     'CLOUDSDK_PYTHON=/usr/bin/python gcloud components install app-engine-java'
-    end
-
-    task :python do
-      task symlink '~/.dotfiles/matplotlib/matplotlibrc', '~/.matplotlibrc'
-      task :pyenv do
-        task brew 'pyenv'
-        task brew 'pyenv-virtualenv'
-        task brew_upgrade 'pyenv'
-        task brew_upgrade 'pyenv-virtualenv'
-      end
-    end
-
     #task :java do
     #  task brew 'jenv'
     #  task brew_cask 'java'
@@ -253,6 +235,24 @@ def equil
     task brew_upgrade 'docker'
 
     task if_err('vagrant plugin list | grep vagrant-vbguest'), 'vagrant plugin install vagrant-vbguest'
+  end
+
+  task :gcloud do
+    task brew_cask 'google-cloud-sdk'
+    task brew_cask_upgrade 'google-cloud-sdk'
+    task '/usr/local/Caskroom/google-cloud-sdk/latest/google-cloud-sdk/bin/gcloud components update'
+    #task if_err('CLOUDSDK_PYTHON=/usr/bin/python gcloud components list 2>/dev/null | grep app-engine-java'),
+    #     'CLOUDSDK_PYTHON=/usr/bin/python gcloud components install app-engine-java'
+  end
+
+  task :python do
+    task symlink '~/.dotfiles/matplotlib/matplotlibrc', '~/.matplotlibrc'
+    task :pyenv do
+      task brew 'pyenv'
+      task brew 'pyenv-virtualenv'
+      task brew_upgrade 'pyenv'
+      task brew_upgrade 'pyenv-virtualenv'
+    end
   end
 
 end
