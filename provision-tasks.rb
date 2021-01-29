@@ -5,7 +5,7 @@ def equil
 
       task :install_homebrew, if_err('which brew'),
            '/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"'
-      task :tap_brew_cask, if_err('brew tap | grep caskroom/cask'), 'brew tap caskroom/cask'
+      task :tap_brew_cask, if_err('brew tap | grep homebrew/cask'), 'brew tap homebrew/cask'
 
       task brew 'git'
       task brew_upgrade 'git'
