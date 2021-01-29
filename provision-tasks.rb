@@ -18,7 +18,7 @@ def equil
         host = 'github.com'
         repo = 'ikenox/dotfiles'
         dotfiles_origin_dir = "#{ghq_root}/#{host}/#{repo}"
-        task :clone_dotfiles, if_not_exist(dotfiles_origin_dir), "git clone git@#{host}:#{repo}.git #{dotfiles_origin_dir}"
+        task :clone_dotfiles, if_not_exist(dotfiles_origin_dir), "git clone https://#{host}/#{repo}.git #{dotfiles_origin_dir}"
         task symlink dotfiles_origin_dir, '~/.dotfiles'
       end
       task :gitconfig do
