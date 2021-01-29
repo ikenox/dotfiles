@@ -4,7 +4,7 @@ def equil
       #task :xcode, 'xcode-select --install'
 
       task :install_homebrew, if_err('which brew'),
-           '/usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"'
+           '/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"'
       task :tap_brew_cask, if_err('brew tap | grep caskroom/cask'), 'brew tap caskroom/cask'
 
       task brew 'git'
