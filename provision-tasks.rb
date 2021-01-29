@@ -5,9 +5,9 @@ def equil
 
       task :install_homebrew, if_err('which brew'),
            '/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"'
-      task :tap_brew_cask, if_err('brew tap | grep homebrew/cask'), 'brew tap homebrew/cask'
+      task :tap_brew_cask, if_err('brew tap | grep homebrew/cask'), 'brew tap caskroom/cask'
 
-      task brew 'git'
+      task :install_git, if_err("ls /usr/local/Cellar/#{package}"), 'brew install git'
       task brew_upgrade 'git'
       task symlink '~/.dotfiles/git/gitignore', '~/.gitignore'
 
