@@ -266,7 +266,7 @@ def brew_upgrade(package)
 end
 
 def brew_cask(package)
-  task_alias "install_#{package}_by_cask".to_sym, if_not_exist("/usr/local/Caskroom/#{package}"), "brew cask install #{package}"
+  task_alias "install_#{package}_by_cask".to_sym, if_not_exist("/usr/local/Caskroom/#{package}"), "brew install --cask #{package}"
 end
 
 def brew_cask_upgrade(package)
