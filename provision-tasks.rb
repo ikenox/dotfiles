@@ -11,6 +11,8 @@ def equil
       task brew_upgrade 'git'
       task symlink '~/.dotfiles/git/gitignore', '~/.gitignore'
 
+      task :ssh_keygen, if_err("ls ~/.ssh/id_rsa"), 'ssh-keygen -t rsa -b 4096'
+
       ghq_root = '~/repos'
       task :dotfiles_repo do
         host = 'github.com'
