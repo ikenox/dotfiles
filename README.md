@@ -12,21 +12,22 @@ bash -c 'ruby -e "$({ cat ~/.dotfiles/provision-tasks.rb; curl -fsSL https://raw
 
 ## TODO list which should be automated
 
+- sign-in to app store
+- migrate fish history file from old machine
 - add ssh public key to github
 - mac dark mode
 - launch
+    - alfred
     - karabiner-elements
     - hyperswitch
-- install & setup chrome extensions
-    - bitwarden
+- chrome: login & sync settings
 - install xcode
 - install xcode command line tools
 - install intellij
 - disable spotlight
 - settings for google japanese input https://qiita.com/normalsalt/items/017031713f6577e488aa
-- enable key repeat?
 - change a time until display auto-off -> 5min
-- configure alfred 
+- configure alfred
     - change hotkey -> ctrl + space
     - change appearance to "Alfred Dark"
 - configure hyperswitch

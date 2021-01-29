@@ -44,8 +44,8 @@ def equil
 
     task :karabiner_elements do
       # karabiner-elements 13 doesn't work on catalina 10.15.7
-      task brew_cask 'karabiner-elements'
-      task brew_cask_upgrade 'karabiner-elements'
+      #task brew_cask 'karabiner-elements'
+      #task brew_cask_upgrade 'karabiner-elements'
       task symlink '~/.dotfiles/karabiner', '~/.config/karabiner'
     end
 
@@ -108,7 +108,7 @@ def equil
         # end
       end
       # fisher >= 4.0 is required
-      task :fish_package, 'cat ~/.config/fish/fishfile | xargs -I% fish -c 'fisher install %''
+      task :fish_package, "cat ~/.config/fish/fishfile | xargs -I% fish -c 'fisher install %'"
     end
 
     # todo: set keyboard -> 入力ソース -> ひらがな(google)
@@ -192,6 +192,7 @@ def equil
       task brew_cask 'caffeine'
       task brew_cask 'discord'
       task brew_cask 'osxfuse'
+      task brew_cask 'zoom'
       task brew_cask_upgrade 'alfred' # todo change hotkey from gui
       task brew_cask_upgrade 'caffeine'
       task brew_cask_upgrade 'discord'
