@@ -26,11 +26,14 @@ bash -c 'ruby -e "$({ cat ~/.dotfiles/provision-tasks.rb; curl -fsSL https://raw
 - settings for google japanese input https://qiita.com/normalsalt/items/017031713f6577e488aa
 - enable key repeat?
 - change a time until display auto-off -> 5min
-- configure alfred hotkey -> ctrl + space
+- configure alfred 
+    - change hotkey -> ctrl + space
+    - change appearance to "Alfred Dark"
 - configure hyperswitch
     - check: run hyperswitch in the background
     - check: include windows from other screens
     - check: use shift to cycle backwards
+    - check: show hyperswitch in the menu bar
 - exec vim `:PlugInstall`
 - Settings > Keyboard > Shortcut > uncheck "select next input source by ^ + space".
 - sync IntelliJ settings https://www.jetbrains.com/help/idea/sharing-your-ide-settings.html#IDE_settings_sync

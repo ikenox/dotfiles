@@ -68,6 +68,8 @@ def equil
     task :tmux do
       task brew 'tmux'
       task brew_upgrade 'tmux'
+      task brew 'reattach-to-user-namespace'
+      task brew_upgrade 'reattach-to-user-namespace'
       task symlink '~/.dotfiles/tmux/tmux.conf', '~/.tmux.conf'
       task if_not_exist('~/.tmux/plugins/tpm'), 'git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm'
     end
