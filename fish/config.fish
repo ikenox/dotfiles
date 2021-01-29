@@ -1,4 +1,4 @@
-set PATH ~/.cargo/bin ~/bin ~/go/bin /usr/local/bin /usr/bin /bin /sbin /usr/sbin $PATH
+set PATH ~/.cargo/bin ~/bin ~/go/bin /usr/local/bin /usr/bin /bin /sbin /usr/sbin /usr/local/Caskroom/google-cloud-sdk/latest/google-cloud-sdk/bin $PATH
 export CLOUDSDK_PYTHON=(which python3)
 
 alias c=clear

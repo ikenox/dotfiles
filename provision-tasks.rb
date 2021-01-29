@@ -162,7 +162,7 @@ def equil
     task :gcloud do
       task brew_cask 'google-cloud-sdk'
       task brew_cask_upgrade 'google-cloud-sdk'
-      task 'CLOUDSDK_PYTHON=/usr/bin/python gcloud components update'
+      task 'gcloud components update'
       #task if_err('CLOUDSDK_PYTHON=/usr/bin/python gcloud components list 2>/dev/null | grep app-engine-java'),
       #     'CLOUDSDK_PYTHON=/usr/bin/python gcloud components install app-engine-java'
     end
