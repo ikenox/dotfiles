@@ -4,19 +4,21 @@ def equil
       #task :xcode, 'xcode-select --install'
 
       task :install_homebrew, if_err('which brew'),
-           '/usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"'
-      task :tap_brew_cask, if_err('brew tap | grep caskroom/cask'), 'brew tap caskroom/cask'
+           '/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"'
+      task :tap_brew_cask, if_err('brew tap | grep homebrew/cask'), 'brew tap caskroom/cask'
 
-      task brew 'git'
+      task :install_git, if_err("ls /usr/local/Cellar/git"), 'brew install git'
       task brew_upgrade 'git'
       task symlink '~/.dotfiles/git/gitignore', '~/.gitignore'
+
+      task :ssh_keygen, if_err("ls ~/.ssh/id_rsa"), 'ssh-keygen -t rsa -b 4096'
 
       ghq_root = '~/repos'
       task :dotfiles_repo do
         host = 'github.com'
         repo = 'ikenox/dotfiles'
         dotfiles_origin_dir = "#{ghq_root}/#{host}/#{repo}"
-        task :clone_dotfiles, if_not_exist(dotfiles_origin_dir), "git clone git@#{host}:#{repo}.git #{dotfiles_origin_dir}"
+        task :clone_dotfiles, if_not_exist(dotfiles_origin_dir), "git clone https://#{host}/#{repo}.git #{dotfiles_origin_dir}"
         task symlink dotfiles_origin_dir, '~/.dotfiles'
       end
       task :gitconfig do
@@ -66,6 +68,8 @@ def equil
     task :tmux do
       task brew 'tmux'
       task brew_upgrade 'tmux'
+      task brew 'reattach-to-user-namespace'
+      task brew_upgrade 'reattach-to-user-namespace'
       task symlink '~/.dotfiles/tmux/tmux.conf', '~/.tmux.conf'
       task if_not_exist('~/.tmux/plugins/tpm'), 'git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm'
     end
@@ -103,7 +107,8 @@ def equil
         #   sh "sudo chsh -s $(which fish)"
         # end
       end
-      task :fish_package, if_err('fish -c "fisher ls | xargs -I% grep % -a ~/.dotfiles/fish/fishfile"'), 'fish -c "fisher"'
+      # fisher >= 4.0 is required
+      task :fish_package, "cat ~/.config/fish/fishfile | xargs -I% fish -c 'fisher install %'"
     end
 
     # todo: set keyboard -> 入力ソース -> ひらがな(google)
@@ -157,24 +162,6 @@ def equil
       task symlink '~/.dotfiles/intellij/ideavimrc', '~/.ideavimrc'
     end
 
-    task :gcloud do
-      task brew_cask 'google-cloud-sdk'
-      task brew_cask_upgrade 'google-cloud-sdk'
-      task 'CLOUDSDK_PYTHON=/usr/bin/python gcloud components update'
-      #task if_err('CLOUDSDK_PYTHON=/usr/bin/python gcloud components list 2>/dev/null | grep app-engine-java'),
-      #     'CLOUDSDK_PYTHON=/usr/bin/python gcloud components install app-engine-java'
-    end
-
-    task :python do
-      task symlink '~/.dotfiles/matplotlib/matplotlibrc', '~/.matplotlibrc'
-      task :pyenv do
-        task brew 'pyenv'
-        task brew 'pyenv-virtualenv'
-        task brew_upgrade 'pyenv'
-        task brew_upgrade 'pyenv-virtualenv'
-      end
-    end
-
     #task :java do
     #  task brew 'jenv'
     #  task brew_cask 'java'
@@ -197,12 +184,15 @@ def equil
     end
 
     task :applications do
-      task brew_cask 'slack'
+      task if_err("ls /Applications/Slack.app") do
+        task brew_cask 'slack'
+        task brew_cask_upgrade 'slack'
+      end
       task brew_cask 'alfred' # todo change hotkey from gui
       task brew_cask 'caffeine'
       task brew_cask 'discord'
       task brew_cask 'osxfuse'
-      task brew_cask_upgrade 'slack'
+      task brew_cask 'zoom'
       task brew_cask_upgrade 'alfred' # todo change hotkey from gui
       task brew_cask_upgrade 'caffeine'
       task brew_cask_upgrade 'discord'
@@ -253,6 +243,24 @@ def equil
     task if_err('vagrant plugin list | grep vagrant-vbguest'), 'vagrant plugin install vagrant-vbguest'
   end
 
+  task :gcloud do
+    task brew_cask 'google-cloud-sdk'
+    task brew_cask_upgrade 'google-cloud-sdk'
+    task '/usr/local/Caskroom/google-cloud-sdk/latest/google-cloud-sdk/bin/gcloud components update'
+    #task if_err('CLOUDSDK_PYTHON=/usr/bin/python gcloud components list 2>/dev/null | grep app-engine-java'),
+    #     'CLOUDSDK_PYTHON=/usr/bin/python gcloud components install app-engine-java'
+  end
+
+  task :python do
+    task symlink '~/.dotfiles/matplotlib/matplotlibrc', '~/.matplotlibrc'
+    task :pyenv do
+      task brew 'pyenv'
+      task brew 'pyenv-virtualenv'
+      task brew_upgrade 'pyenv'
+      task brew_upgrade 'pyenv-virtualenv'
+    end
+  end
+
 end
 
 def brew(package)
@@ -264,7 +272,7 @@ def brew_upgrade(package)
 end
 
 def brew_cask(package)
-  task_alias "install_#{package}_by_cask".to_sym, if_not_exist("/usr/local/Caskroom/#{package}"), "brew cask install #{package}"
+  task_alias "install_#{package}_by_cask".to_sym, if_err("brew list --cask | grep #{package}"), "brew install --cask #{package}"
 end
 
 def brew_cask_upgrade(package)

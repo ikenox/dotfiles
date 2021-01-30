@@ -5,3 +5,4 @@ be5invis.toml
 yzhang.markdown-all-in-one
 matklad.rust-analyzer
 74th.scrollkey
+jebbs.plantuml
