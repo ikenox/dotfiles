@@ -41,3 +41,4 @@ bash -c 'ruby -e "$({ cat ~/.dotfiles/provision-tasks.rb; curl -fsSL https://raw
     - login on JetBrains Toolbox
     - IntelliJ: login & "Sync Settings to JetBrains Account" > "Get Settings from Account"
 - change settings for ことえり "￥キーを入力する文字: \"
+- add "ひらがな(Google)" to "キーボード > 入力ソース"
