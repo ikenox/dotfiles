@@ -21,8 +21,8 @@ bash -c 'ruby -e "$({ cat ~/.dotfiles/provision-tasks.rb; curl -fsSL https://raw
     - karabiner-elements
     - hyperswitch
 - chrome: login & sync settings
-- install xcode
-- install xcode command line tools
+- install xcode & xcode command line tools
+    - xcode-select --install
 - install intellij
 - disable spotlight
 - settings for google japanese input https://qiita.com/normalsalt/items/017031713f6577e488aa
@@ -41,3 +41,4 @@ bash -c 'ruby -e "$({ cat ~/.dotfiles/provision-tasks.rb; curl -fsSL https://raw
     - login on JetBrains Toolbox
     - IntelliJ: login & "Sync Settings to JetBrains Account" > "Get Settings from Account"
 - change settings for ことえり "￥キーを入力する文字: \"
+- "環境設定 > Bluetooth > Bluettoshをメニューバーに表示"
