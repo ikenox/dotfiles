@@ -5,6 +5,10 @@ alias c=clear
 alias gs "git status"
 alias gl "git log"
 
+function bb
+  git branch -a --sort=-authordate | grep -v -e '->' -e '*' | perl -pe 's/^\h+//g' | perl -pe 's#^remotes/origin/###' | perl -nle 'print if !$c{$_}++' | peco | xargs git checkout
+end
+
 # fish_vi_key_bindings
 fish_default_key_bindings
 

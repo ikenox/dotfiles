@@ -56,4 +56,3 @@ nnoremap _ :<C-u>action Resume<CR>
 " window
 nnoremap s; :<C-u>action CloseActiveTab<CR>
 nnoremap so :<C-u>action MoveEditorToOppositeTabGroup<CR>
-
