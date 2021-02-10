@@ -1,5 +1,6 @@
 // https://code.visualstudio.com/docs/getstarted/keybindings
 {
+  "window.openFoldersInNewWindow": "on",
   "editor.cursorSurroundingLines": 10,
   // "rust-analyzer.checkOnSave.command": "clippy",
   "[rust]": {
@@ -267,6 +268,15 @@
     {
       "before": [
         ",",
+        "z"
+      ],
+      "commands": [
+        "workbench.action.openRecent"
+      ]
+    },
+    {
+      "before": [
+        ",",
         "f"
       ],
       "commands": [
@@ -488,5 +498,8 @@
       ]
     }
   },
-  "files.autoSave": "afterDelay"
+  "files.autoSave": "afterDelay",
+  "scrollkey.line1": 1,
+  "scrollkey.line2": 15,
+  "scrollkey.line3": 30,
 }

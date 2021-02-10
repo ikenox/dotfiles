@@ -12,4 +12,24 @@
     "key": "ctrl+w",
     "command": "-workbench.action.switchWindow"
   },
+  // {
+  //   "key": "ctrl+d",
+  //   "command": "-extension.vim_ctrl+d",
+  //   "when": "editorTextFocus && vim.active && !inDebugRepl"
+  // },
+  // {
+  //   "key": "ctrl+u",
+  //   "command": "-extension.vim_ctrl+u",
+  //   "when": "editorTextFocus && vim.active && !inDebugRepl"
+  // },
+  // {
+  //   "key": "ctrl+d",
+  //   "command": "scrollkey.down2",
+  //   "when": "editorTextFocus && vim.active && !inDebugRepl"
+  // },
+  // {
+  //   "key": "ctrl+u",
+  //   "command": "scrollkey.up2",
+  //   "when": "editorTextFocus && vim.active && !inDebugRepl"
+  // },
 ]
