@@ -12,6 +12,14 @@
     "key": "ctrl+w",
     "command": "-workbench.action.switchWindow"
   },
+  {
+    "key": "ctrl+,",
+    "command": "workbench.action.toggleSidebarVisibility"
+  },
+  {
+    "key": "cmd+b",
+    "command": "-workbench.action.toggleSidebarVisibility"
+  }
   // {
   //   "key": "ctrl+d",
   //   "command": "-extension.vim_ctrl+d",
