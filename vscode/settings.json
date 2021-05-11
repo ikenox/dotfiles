@@ -1,19 +1,26 @@
 // https://code.visualstudio.com/docs/getstarted/keybindings
 {
-  "editor.quickSuggestionsDelay": 500,
+  "editor.quickSuggestions": true,
+  "editor.quickSuggestionsDelay": 0,
   "[javascript]": {
-    "editor.defaultFormatter": "esbenp.prettier-vscode" // フォーマッタをprettierに指定
+    "editor.defaultFormatter": "esbenp.prettier-vscode", // フォーマッタをprettierに指定
+    "editor.formatOnSave": true, // ファイル保存時にPrettierでフォーマット
+    "editor.codeActionsOnSave": {
+      "source.fixAll.eslint": true // ファイル保存時にESLintでフォーマット
+    }
   },
   "[typescript]": {
-    "editor.defaultFormatter": "esbenp.prettier-vscode" // フォーマッタをprettierに指定
-  },
-  "editor.formatOnSave": true, // ファイル保存時にPrettierでフォーマット
-  "editor.codeActionsOnSave": {
-    "source.fixAll.eslint": true // ファイル保存時にESLintでフォーマット
+    "editor.defaultFormatter": "esbenp.prettier-vscode", // フォーマッタをprettierに指定
+    "editor.formatOnSave": true, // ファイル保存時にPrettierでフォーマット
+    "editor.codeActionsOnSave": {
+      "source.fixAll.eslint": true // ファイル保存時にESLintでフォーマット
+    }
   },
   "window.openFoldersInNewWindow": "on",
   "editor.cursorSurroundingLines": 10,
-  "rust-analyzer.checkOnSave.command": "clippy",
+  "rust-analyzer.checkOnSave.enable": false,
+  "rust-analyzer.checkOnSave.command": "check",
+  "rust-analyzer.checkOnSave.allFeatures": false,
   "[rust]": {
     "editor.formatOnSave": true
   },
@@ -33,6 +40,10 @@
     }
   ],
   "vim.normalModeKeyBindingsNonRecursive": [
+    {
+      "before": ["<leader>", "c"],
+      "commands": ["rust-analyzer.check"]
+    },
     {
       "before": ["v"],
       "after": ["v", "l", "h"]
@@ -312,5 +323,6 @@
   },
   "[json]": {
     "editor.defaultFormatter": "esbenp.prettier-vscode"
-  }
+  },
+  "editor.formatOnSave": true
 }

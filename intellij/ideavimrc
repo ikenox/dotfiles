@@ -6,6 +6,8 @@ set hlsearch
 set incsearch
 set ignorecase
 set smartcase
+set visualbell
+set noerrorbells
 
 " general
 nnoremap ,a :<C-u>action GotoAction<CR>
