@@ -18,7 +18,7 @@
   },
   "window.openFoldersInNewWindow": "on",
   "editor.cursorSurroundingLines": 10,
-  "rust-analyzer.checkOnSave.enable": false,
+  "rust-analyzer.checkOnSave.enable": true,
   "rust-analyzer.checkOnSave.command": "check",
   "rust-analyzer.checkOnSave.allFeatures": false,
   "[rust]": {
