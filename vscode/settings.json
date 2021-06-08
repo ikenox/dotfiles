@@ -314,7 +314,7 @@
       ]
     }
   },
-  "files.autoSave": "afterDelay",
+  "files.autoSave": "off",
   "scrollkey.line1": 1,
   "scrollkey.line2": 15,
   "scrollkey.line3": 30,
