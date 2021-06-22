@@ -17,14 +17,13 @@
     }
   },
   "window.openFoldersInNewWindow": "on",
-  "editor.cursorSurroundingLines": 10,
-  "rust-analyzer.checkOnSave.enable": false,
+  "editor.cursorSurroundingLines": 20,
+  "rust-analyzer.checkOnSave.enable": true,
   "rust-analyzer.checkOnSave.command": "check",
   "rust-analyzer.checkOnSave.allFeatures": false,
   "[rust]": {
     "editor.formatOnSave": true
   },
-  "rust-analyzer.cargo.loadOutDirsFromCheck": true,
   "rust-analyzer.procMacro.enable": true,
   "vim.easymotion": true,
   "vim.sneak": true,
@@ -32,7 +31,7 @@
   "vim.useSystemClipboard": true,
   "vim.useCtrlKeys": true,
   "vim.hlsearch": true,
-  "editor.tabSize": 4,
+  "editor.tabSize": 8,
   "vim.insertModeKeyBindings": [
     {
       "before": ["j", "f"],
@@ -40,6 +39,12 @@
     }
   ],
   "vim.normalModeKeyBindingsNonRecursive": [
+    {
+        "before": [":", "w"],
+        "commands": [
+            "workbench.action.files.save",
+        ]
+    },
     {
       "before": ["<leader>", "c"],
       "commands": ["rust-analyzer.check"]
@@ -75,6 +80,15 @@
     {
       "before": ["H"],
       "after": ["^"]
+    },
+    {
+      "before": ["C"],
+      "commands": [
+        {
+          "command": "workbench.action.tasks.runTask",
+          "args": "rust: cargo check"
+        }
+      ]
     },
     {
       "before": ["<leader>", "s"],
@@ -314,7 +328,7 @@
       ]
     }
   },
-  "files.autoSave": "afterDelay",
+  // "files.autoSave": "afterDelay",
   "scrollkey.line1": 1,
   "scrollkey.line2": 15,
   "scrollkey.line3": 30,
@@ -324,5 +338,10 @@
   "[json]": {
     "editor.defaultFormatter": "esbenp.prettier-vscode"
   },
-  "editor.formatOnSave": true
+  "editor.formatOnSave": true,
+  "editor.cursorStyle": "line",
+  "editor.insertSpaces": false,
+  "editor.lineNumbers": "on",
+  "editor.wordSeparators": "/\\()\"':,.;<>~!@#$%^&*|+=[]{}`?-",
+  "editor.wordWrap": "off"
 }

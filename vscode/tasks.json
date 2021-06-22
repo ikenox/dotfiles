@@ -1,0 +1,22 @@
+{
+  "version": "2.0.0",
+  "tasks": [
+    {
+      "label": "cargo check",
+      "group": "build",
+      "type": "shell",
+      "isBackground": true,
+      "command": "cargo check",
+      "problemMatcher": ["$rustc"],
+      "runOptions": {
+        "instanceLimit": 1
+      },
+      "presentation": {
+        "revealProblems": "never",
+        "reveal": "never",
+        "panel": "new",
+        "echo": false
+      }
+    }
+  ]
+}
