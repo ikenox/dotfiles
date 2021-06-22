@@ -16,6 +16,7 @@ nnoremap ,e :<C-u>action SearchEverywhere<CR>
 nnoremap ,s :<C-u>action FileStructurePopup<CR>
 nnoremap ,g :<C-u>action FindInPath<CR>
 nnoremap ,r :<C-u>action RecentFiles<CR>
+nnoremap ,c :<C-u>action CallHierarchy<CR>
 
 nnoremap ,z :<C-u>action RecentProjectListGroup<CR>
 
@@ -58,3 +59,4 @@ nnoremap _ :<C-u>action Resume<CR>
 " window
 nnoremap s; :<C-u>action CloseActiveTab<CR>
 nnoremap so :<C-u>action MoveEditorToOppositeTabGroup<CR>
+
