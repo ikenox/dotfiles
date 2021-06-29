@@ -16,11 +16,13 @@
       "source.fixAll.eslint": true // ファイル保存時にESLintでフォーマット
     }
   },
+  "editor.suggest.showWords": false,
   "window.openFoldersInNewWindow": "on",
   "editor.cursorSurroundingLines": 20,
   "rust-analyzer.checkOnSave.enable": true,
   "rust-analyzer.checkOnSave.command": "check",
   "rust-analyzer.checkOnSave.allFeatures": false,
+  "rust-analyzer.checkOnSave.extraArgs": ["--bins", "--examples"],
   "[rust]": {
     "editor.formatOnSave": true
   },
@@ -40,10 +42,8 @@
   ],
   "vim.normalModeKeyBindingsNonRecursive": [
     {
-        "before": [":", "w"],
-        "commands": [
-            "workbench.action.files.save",
-        ]
+      "before": [":", "w"],
+      "commands": ["editor.action.files.save"]
     },
     {
       "before": ["<leader>", "c"],
