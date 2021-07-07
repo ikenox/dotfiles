@@ -1,6 +1,6 @@
 {
   "Style": {
-    "Selected": ["on_blue","white"],
-    "Matched": ["yellow"]
+    "Selected": ["white","on_black"],
+    "Matched": ["red"]
   }
 }
