@@ -11,6 +11,12 @@ fish/functions/*
 fish/completions
 fish/conf.d
 
+vim/.netrwhist
+vim/autoload/
+vim/plugged/
+
+zshrc.myenv
+
 .idea/*
 
 !.gitkeep
