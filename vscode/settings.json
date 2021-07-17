@@ -1,7 +1,11 @@
 // https://code.visualstudio.com/docs/getstarted/keybindings
 {
   "editor.quickSuggestions": true,
-  "editor.quickSuggestionsDelay": 0,
+  "editor.quickSuggestionsDelay": 10,
+  "editor.suggestOnTriggerCharacters": true,
+  "editor.suggestSelection": "recentlyUsed",
+  "editor.suggest.showWords": false,
+  "editor.parameterHints.enabled": true,
   "[javascript]": {
     "editor.defaultFormatter": "esbenp.prettier-vscode", // フォーマッタをprettierに指定
     "editor.formatOnSave": true, // ファイル保存時にPrettierでフォーマット
@@ -16,7 +20,6 @@
       "source.fixAll.eslint": true // ファイル保存時にESLintでフォーマット
     }
   },
-  "editor.suggest.showWords": false,
   "window.openFoldersInNewWindow": "on",
   "editor.cursorSurroundingLines": 20,
   "rust-analyzer.checkOnSave.enable": true,
