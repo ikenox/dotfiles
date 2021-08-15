@@ -21,7 +21,7 @@
     }
   },
   "window.openFoldersInNewWindow": "on",
-  "editor.cursorSurroundingLines": 20,
+  "editor.cursorSurroundingLines": 10,
   "rust-analyzer.checkOnSave.enable": true,
   "rust-analyzer.checkOnSave.command": "check",
   "rust-analyzer.checkOnSave.allFeatures": false,
