@@ -50,5 +50,8 @@ bash -c 'ruby -e "$({ cat ~/.dotfiles/provision-tasks.rb; curl -fsSL https://raw
     - use version 12.10.0
         - case A: can't allow karabiner-elements in Security & Policy window -> https://spring-mt.hatenablog.com/entry/2020/10/01/125713
         - case B: karabiner_grabber is not found -> https://github.com/pqrs-org/Karabiner-Elements/issues/1867#issue-451740679
-    - 
 - sign-in to slack with magic link
+- iterm2
+    - If color theme is not applied well: change "Profiles -> Colors -> Color Presets" will solve the problem
+- restart MacOS
+    - some setting changes by `defaults` command will be applied after restarting
