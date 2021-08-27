@@ -48,5 +48,7 @@ bash -c 'ruby -e "$({ cat ~/.dotfiles/provision-tasks.rb; curl -fsSL https://raw
 - add "ひらがな(Google)" to "キーボード > 入力ソース"
 - karabiner-elements
     - use version 12.10.0
-    - https://spring-mt.hatenablog.com/entry/2020/10/01/125713
+        - case A: can't allow karabiner-elements in Security & Policy window -> https://spring-mt.hatenablog.com/entry/2020/10/01/125713
+        - case B: karabiner_grabber is not found -> https://github.com/pqrs-org/Karabiner-Elements/issues/1867#issue-451740679
+    - 
 - sign-in to slack with magic link
