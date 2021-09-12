@@ -44,7 +44,8 @@ bash -c 'ruby -e "$({ cat ~/.dotfiles/provision-tasks.rb; curl -fsSL https://raw
     - login on JetBrains Toolbox
     - IntelliJ: login & "Sync Settings to JetBrains Account" > "Get Settings from Account"
 - change settings for ことえり "￥キーを入力する文字: \"
-- "環境設定 > Bluetooth > Bluettoshをメニューバーに表示"
+- 環境設定 > Bluetooth > Bluetoothをメニューバーに表示
+- 環境設定 > キーボード > ユーザ辞書 > uncheck "英字入力中にスペルを自動変換"
 - add "ひらがな(Google)" to "キーボード > 入力ソース"
 - karabiner-elements
     - use version 12.10.0
