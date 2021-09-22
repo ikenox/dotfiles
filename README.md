@@ -44,11 +44,15 @@ bash -c 'ruby -e "$({ cat ~/.dotfiles/provision-tasks.rb; curl -fsSL https://raw
     - login on JetBrains Toolbox
     - IntelliJ: login & "Sync Settings to JetBrains Account" > "Get Settings from Account"
 - change settings for ことえり "￥キーを入力する文字: \"
-- "環境設定 > Bluetooth > Bluettoshをメニューバーに表示"
+- 環境設定 > Bluetooth > Bluetoothをメニューバーに表示
+- 環境設定 > キーボード > ユーザ辞書 > uncheck "英字入力中にスペルを自動変換"
 - add "ひらがな(Google)" to "キーボード > 入力ソース"
 - karabiner-elements
     - use version 12.10.0
         - case A: can't allow karabiner-elements in Security & Policy window -> https://spring-mt.hatenablog.com/entry/2020/10/01/125713
         - case B: karabiner_grabber is not found -> https://github.com/pqrs-org/Karabiner-Elements/issues/1867#issue-451740679
-    - 
 - sign-in to slack with magic link
+- iterm2
+    - If color theme is not applied well: change "Profiles -> Colors -> Color Presets" will solve the problem
+- restart MacOS
+    - some setting changes by `defaults` command will be applied after restarting
