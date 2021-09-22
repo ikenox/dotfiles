@@ -9,9 +9,8 @@ SETUVAR __fish_init_2_39_8:\x1d
 SETUVAR __fish_init_2_3_0:\x1d
 SETUVAR __fish_init_3_x:\x1d
 SETUVAR __fish_initialized:3100
-SETUVAR _fisher_daenney_2F_pyenv_files:/Users/naoto\x2eikeno/\x2econfig/fish/functions/pyenv\x2efish\x1e/Users/naoto\x2eikeno/\x2econfig/fish/conf\x2ed/pyenv\x2efish\x1e/Users/naoto\x2eikeno/\x2econfig/fish/completions/pyenv\x2efish
 SETUVAR _fisher_decors_2F_fish_2D_ghq_files:/Users/naoto\x2eikeno/\x2econfig/fish/functions/__ghq_repository_search\x2efish\x1e/Users/naoto\x2eikeno/\x2econfig/fish/conf\x2ed/ghq_key_bindings\x2efish\x1e/Users/naoto\x2eikeno/\x2econfig/fish/completions/ghq\x2efish
-SETUVAR _fisher_plugins:decors/fish\x2dghq\x1edaenney/pyenv
+SETUVAR _fisher_plugins:decors/fish\x2dghq
 SETUVAR fish_color_autosuggestion:006363
 SETUVAR fish_color_cancel:\x2dr
 SETUVAR fish_color_command:009999
