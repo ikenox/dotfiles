@@ -25,7 +25,6 @@ bash -c 'ruby -e "$({ cat ~/.dotfiles/provision-tasks.rb; curl -fsSL https://raw
 - install xcode
     - xcode command line tools will be installed when installing homebrew
     - xcode-select --install
-- install jetbrains toolbox
 - install intellij via toolbox
 - Settings > Keyboard > Shortcut
     - uncheck "select next input source by ^ + space".
