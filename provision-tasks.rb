@@ -113,6 +113,7 @@ def equil
 
     # todo: set keyboard -> 入力ソース -> ひらがな(google)
     task :ime do
+      task 'sudo softwareupdate --install-rosetta'
       task brew_cask 'google-japanese-ime'
     end
 
@@ -192,12 +193,10 @@ def equil
       task brew_cask 'alfred' # todo change hotkey from gui
       task brew_cask 'caffeine'
       task brew_cask 'discord'
-      task brew_cask 'osxfuse'
       task brew_cask 'zoom'
       task brew_cask_upgrade 'alfred' # todo change hotkey from gui
       task brew_cask_upgrade 'caffeine'
       task brew_cask_upgrade 'discord'
-      task brew_cask_upgrade 'osxfuse'
 
       # tood need login app store
       task mas 409183694 # keynote
