@@ -222,12 +222,12 @@ def equil
 
   task :jupyterlab do
     task if_err('which node'), 'brew install node'
-    task if_err('jupyter lab --version'), 'pip install jupyterlab==2.2.9'
+    task if_err('jupyter lab --version'), 'pip3 install jupyterlab==2.2.9'
     task if_err('jupyter labextension list 2>&1 | grep @axlair/jupyterlab_vim'), 'jupyter labextension install @axlair/jupyterlab_vim'
-    task if_err('jupyter labextension list 2>&1 | grep jupyterlab-vimrc'), 'jupyter labextension install jupyterlab-vimrc@0.3.0'
-    task if_err('jupyter labextension list 2>&1 | grep jupyterlab_vim-system-clipboard-support'), 'jupyter labextension install jupyterlab_vim-system-clipboard-support'
+    task if_err('jupyter labextension list 2>&1 | grep jupyterlab-vimrc'), 'jupyter labextension install jupyterlab-vimrc'
+    #task if_err('jupyter labextension list 2>&1 | grep jupyterlab_vim-system-clipboard-support'), 'jupyter labextension install jupyterlab_vim-system-clipboard-support'
     task if_err('jupyter labextension list 2>&1 | grep jupyterlab-plotly'), 'jupyter labextension install jupyterlab-plotly'
-    task if_err('jupyter labextension list 2>&1 | grep variableinspector'), 'jupyter labextension install @lckr/jupyterlab_variableinspector'
+    #task if_err('jupyter labextension list 2>&1 | grep variableinspector'), 'jupyter labextension install @lckr/jupyterlab_variableinspector'
     task symlink '~/.dotfiles/jupyter/user-settings', '~/.jupyter/lab/'
   end
 
