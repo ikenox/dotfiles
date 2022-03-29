@@ -17,6 +17,7 @@ nnoremap ,s :<C-u>action FileStructurePopup<CR>
 nnoremap ,g :<C-u>action FindInPath<CR>
 nnoremap ,r :<C-u>action RecentFiles<CR>
 nnoremap ,c :<C-u>action CallHierarchy<CR>
+nnoremap ,b :<C-u>action ShowBookmarks<CR>
 
 nnoremap ,z :<C-u>action RecentProjectListGroup<CR>
 
@@ -31,6 +32,10 @@ nnoremap gt :<C-u>action GotoTest<CR>
 nnoremap gh :<C-u>action Back<CR>
 nnoremap gl :<C-u>action Forward<CR>
 
+nnoremap B :<C-u>action ToggleBookmark<CR>
+nnoremap nb :<C-u>action GotoNextBookmark<CR>
+nnoremap pb :<C-u>action GotoPreviousBookmark<CR>
+
 " code editing
 nnoremap r :<C-u>action RenameElement<CR>
 nnoremap q :<C-u>action ShowIntentionActions<CR>
@@ -41,6 +46,7 @@ vnoremap cc :<C-u>action CommentByLineComment<CR>
 
 vnoremap p :<C-u>action EditorSelectWord<CR>
 vnoremap n :<C-u>action EditorUnSelectWord<CR>
+
 
 " show information
 nnoremap <C-I> :<C-u>action QuickJavaDoc<CR>
