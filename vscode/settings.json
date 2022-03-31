@@ -1,5 +1,10 @@
 // https://code.visualstudio.com/docs/getstarted/keybindings
 {
+  "vim.autoSwitchInputMethod.enable": true,
+  "vim.autoSwitchInputMethod.defaultIM": "com.apple.inputmethod.Kotoeri.RomajiTyping.Roman",
+  "vim.autoSwitchInputMethod.obtainIMCmd": "/usr/bin/true",
+  "vim.autoSwitchInputMethod.switchIMCmd": "/usr/local/bin/im-select {im}",
+
   "editor.quickSuggestions": true,
   "editor.quickSuggestionsDelay": 10,
   "editor.suggestOnTriggerCharacters": true,
@@ -349,5 +354,6 @@
   "editor.wordWrap": "off",
   "[html]": {
     "editor.defaultFormatter": "vscode.html-language-features"
-  }
+  },
+  "editor.unicodeHighlight.nonBasicASCII": false
 }
