@@ -113,7 +113,7 @@ def equil
 
     # todo: set keyboard -> 入力ソース -> ひらがな(google)
     task :ime do
-      task 'sudo softwareupdate --install-rosetta'
+      #task 'sudo softwareupdate --install-rosetta'
       task brew_cask 'google-japanese-ime'
     end
 
