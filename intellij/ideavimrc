@@ -34,7 +34,10 @@ nnoremap gl :<C-u>action Forward<CR>
 
 nnoremap B :<C-u>action ToggleBookmark<CR>
 nnoremap nb :<C-u>action GotoNextBookmark<CR>
-nnoremap pb :<C-u>action GotoPreviousBookmark<CR>
+nnoremap Nb :<C-u>action GotoPreviousBookmark<CR>
+nnoremap no :<C-u>action NextOccurence<CR>
+nnoremap No :<C-u>action PreviousOccurence<CR>
+
 
 " code editing
 nnoremap r :<C-u>action RenameElement<CR>
