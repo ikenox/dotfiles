@@ -9,6 +9,9 @@ set smartcase
 set visualbell
 set noerrorbells
 
+# IdeaVimExtension
+set set keep-english-in-normal
+
 " general
 nnoremap ,a :<C-u>action GotoAction<CR>
 vnoremap ,a :<C-u>action GotoAction<CR>
