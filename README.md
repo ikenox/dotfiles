@@ -48,7 +48,7 @@ bash -c 'ruby -e "$({ cat ~/.dotfiles/provision-tasks.rb; curl -fsSL https://raw
 - sync IntelliJ settings https://www.jetbrains.com/help/idea/sharing-your-ide-settings.html#IDE_settings_sync
     - login on JetBrains Toolbox
     - IntelliJ: login & "Sync Settings to JetBrains Account" > "Get Settings from Account"
-- change settings for ことえり "￥キーで入力する文字: \"
+- change settings for ことえり "￥キーで入力する文字: \\"
 - 環境設定 > Bluetooth > Bluetoothをメニューバーに表示
 - 環境設定 > キーボード > ユーザ辞書 > uncheck "英字入力中にスペルを自動変換"
 - add "ひらがな(Google)" to "キーボード > 入力ソース"
