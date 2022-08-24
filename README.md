@@ -14,6 +14,7 @@ bash -c 'ruby -e "$({ cat ~/.dotfiles/provision-tasks.rb; curl -fsSL https://raw
 
 ## TODO list which should be automated
 
+- Set default browser to Chrome
 - Setup Touch ID
 - `sudo ln -si /opt/homebrew/bin /usr/local/bin`
     - iTerm config and tmux config uses `/usr/local/bin/fish`
