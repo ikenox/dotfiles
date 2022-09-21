@@ -1,5 +1,7 @@
 ## First time
 
+For M1 Mac, we should open a terminal with Rosetta
+
 ```sh
 bash -c 'ruby -e "$({ curl -fsSL https://raw.github.com/ikenox/dotfiles/master/provision-tasks.rb; curl -fsSL https://raw.githubusercontent.com/ikenox/equil/0.2.0/equil.rb; })" essentials'
 ```
@@ -12,6 +14,8 @@ bash -c 'ruby -e "$({ cat ~/.dotfiles/provision-tasks.rb; curl -fsSL https://raw
 
 ## TODO list which should be automated
 
+- Set default browser to Chrome
+- Setup Touch ID
 - `sudo ln -si /opt/homebrew/bin /usr/local/bin`
     - iTerm config and tmux config uses `/usr/local/bin/fish`
     - older homebrew uses `/usr/local/bin`
@@ -45,7 +49,7 @@ bash -c 'ruby -e "$({ cat ~/.dotfiles/provision-tasks.rb; curl -fsSL https://raw
 - sync IntelliJ settings https://www.jetbrains.com/help/idea/sharing-your-ide-settings.html#IDE_settings_sync
     - login on JetBrains Toolbox
     - IntelliJ: login & "Sync Settings to JetBrains Account" > "Get Settings from Account"
-- change settings for ことえり "￥キーで入力する文字: \"
+- change settings for ことえり "￥キーで入力する文字: \\"
 - 環境設定 > Bluetooth > Bluetoothをメニューバーに表示
 - 環境設定 > キーボード > ユーザ辞書 > uncheck "英字入力中にスペルを自動変換"
 - add "ひらがな(Google)" to "キーボード > 入力ソース"
