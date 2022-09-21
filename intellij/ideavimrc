@@ -13,60 +13,60 @@ set noerrorbells
 set keep-english-in-normal
 
 " general
-nnoremap ,a :<C-u>action GotoAction<CR>
-vnoremap ,a :<C-u>action GotoAction<CR>
-nnoremap ,e :<C-u>action SearchEverywhere<CR>
-nnoremap ,s :<C-u>action FileStructurePopup<CR>
-nnoremap ,g :<C-u>action FindInPath<CR>
-nnoremap ,r :<C-u>action RecentFiles<CR>
-nnoremap ,c :<C-u>action CallHierarchy<CR>
-nnoremap ,b :<C-u>action ShowBookmarks<CR>
+nnoremap ,a :action GotoAction<CR>
+vnoremap ,a :action GotoAction<CR>
+nnoremap ,e :action SearchEverywhere<CR>
+nnoremap ,s :action FileStructurePopup<CR>
+nnoremap ,g :action FindInPath<CR>
+nnoremap ,r :action RecentFiles<CR>
+nnoremap ,c :action CallHierarchy<CR>
+nnoremap ,b :action ShowBookmarks<CR>
 
-nnoremap ,z :<C-u>action RecentProjectListGroup<CR>
+nnoremap ,z :action RecentProjectListGroup<CR>
 
 " jump on code
-nnoremap gd :<C-u>action GotoDeclaration<CR>
-nnoremap gs :<C-u>action GotoSuperMethod<CR>
-nnoremap gi :<C-u>action GotoImplementation<CR>
-nnoremap gf :<C-u>action GotoFile<CR>
-nnoremap gb :<C-u>action JumpToLastChange<CR>
-nnoremap gu :<C-u>action ShowUsages<CR>
-nnoremap gt :<C-u>action GotoTest<CR>
-nnoremap gh :<C-u>action Back<CR>
-nnoremap gl :<C-u>action Forward<CR>
+nnoremap gd :action GotoDeclaration<CR>
+nnoremap gs :action GotoSuperMethod<CR>
+nnoremap gi :action GotoImplementation<CR>
+nnoremap gf :action GotoFile<CR>
+nnoremap gb :action JumpToLastChange<CR>
+nnoremap gu :action ShowUsages<CR>
+nnoremap gt :action GotoTest<CR>
+nnoremap gh :action Back<CR>
+nnoremap gl :action Forward<CR>
 
-nnoremap B :<C-u>action ToggleBookmark<CR>
-nnoremap go :<C-u>action NextOccurence<CR>
-nnoremap gO :<C-u>action PreviousOccurence<CR>
+nnoremap B :action ToggleBookmark<CR>
+nnoremap go :action NextOccurence<CR>
+nnoremap gO :action PreviousOccurence<CR>
 
 
 " code editing
-nnoremap r :<C-u>action RenameElement<CR>
-nnoremap q :<C-u>action ShowIntentionActions<CR>
-nnoremap == :<C-u>action ReformatCode<CR>
-vnoremap == :<C-u>action ReformatCode<CR>
-nnoremap cc :<C-u>action CommentByLineComment<CR>
-vnoremap cc :<C-u>action CommentByLineComment<CR>
+nnoremap r :action RenameElement<CR>
+nnoremap q :action ShowIntentionActions<CR>
+nnoremap == :action ReformatCode<CR>
+vnoremap == :action ReformatCode<CR>
+nnoremap cc :action CommentByLineComment<CR>
+vnoremap cc :action CommentByLineComment<CR>
 
-vnoremap p :<C-u>action EditorSelectWord<CR>
-vnoremap n :<C-u>action EditorUnSelectWord<CR>
+vnoremap p :action EditorSelectWord<CR>
+vnoremap n :action EditorUnSelectWord<CR>
 
 
 " show information
-nnoremap <C-I> :<C-u>action QuickJavaDoc<CR>
+nnoremap <C-I> :action QuickJavaDoc<CR>
 
-nnoremap ,p :<C-u>action PasteMultiple<CR>
-nnoremap ,P :<C-u>action PasteMultiple<CR>
+nnoremap ,p :action PasteMultiple<CR>
+nnoremap ,P :action PasteMultiple<CR>
 
-nnoremap f :<C-u>action AceAction<CR>
-vnoremap f :<C-u>action AceAction<CR>
+nnoremap f :action AceAction<CR>
+vnoremap f :action AceAction<CR>
 
 " kick intellij commands
-nnoremap R :<C-u>action ChooseRunConfiguration<CR>
-nnoremap - :<C-u>action StepOver<CR>
-nnoremap _ :<C-u>action Resume<CR>
+nnoremap R :action ChooseRunConfiguration<CR>
+nnoremap - :action StepOver<CR>
+nnoremap _ :action Resume<CR>
 
 " window
-nnoremap s; :<C-u>action CloseActiveTab<CR>
-nnoremap so :<C-u>action MoveEditorToOppositeTabGroup<CR>
+nnoremap s; :action CloseActiveTab<CR>
+nnoremap so :action MoveEditorToOppositeTabGroup<CR>
 
