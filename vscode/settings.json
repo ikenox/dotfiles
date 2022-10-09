@@ -5,7 +5,11 @@
   "vim.autoSwitchInputMethod.obtainIMCmd": "/usr/bin/true",
   "vim.autoSwitchInputMethod.switchIMCmd": "/usr/local/bin/im-select {im}",
 
-  "editor.quickSuggestions": true,
+  "editor.quickSuggestions": {
+    "comments": "on",
+    "strings": "on",
+    "other": "on"
+  },
   "editor.quickSuggestionsDelay": 10,
   "editor.suggestOnTriggerCharacters": true,
   "editor.suggestSelection": "recentlyUsed",
