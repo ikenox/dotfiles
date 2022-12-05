@@ -16,3 +16,5 @@
 	default = simple
 [ghq]
     vcs = git
+[diff]
+	algorithm = patience

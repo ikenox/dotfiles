@@ -359,5 +359,6 @@
   "[html]": {
     "editor.defaultFormatter": "vscode.html-language-features"
   },
-  "editor.unicodeHighlight.nonBasicASCII": false
+  "editor.unicodeHighlight.nonBasicASCII": false,
+  "window.zoomLevel": 1
 }

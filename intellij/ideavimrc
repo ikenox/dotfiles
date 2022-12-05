@@ -36,8 +36,8 @@ nnoremap gh :action Back<CR>
 nnoremap gl :action Forward<CR>
 
 nnoremap B :action ToggleBookmark<CR>
-nnoremap go :action NextOccurence<CR>
-nnoremap gO :action PreviousOccurence<CR>
+nnoremap gn :action NextOccurence<CR>
+nnoremap gp :action PreviousOccurence<CR>
 
 
 " code editing
