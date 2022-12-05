@@ -31,6 +31,7 @@ nnoremap gi :action GotoImplementation<CR>
 nnoremap gf :action GotoFile<CR>
 nnoremap gb :action JumpToLastChange<CR>
 nnoremap gu :action ShowUsages<CR>
+nnoremap gU :action FindUsages<CR>
 nnoremap gt :action GotoTest<CR>
 nnoremap gh :action Back<CR>
 nnoremap gl :action Forward<CR>
@@ -67,5 +68,5 @@ nnoremap - :action StepOver<CR>
 nnoremap _ :action Resume<CR>
 
 " window
-nnoremap <Esc> :action CloseActiveTab<CR>
+nnoremap s; :action CloseActiveTab<CR>
 nnoremap so :action MoveEditorToOppositeTabGroup<CR>
