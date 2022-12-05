@@ -67,6 +67,5 @@ nnoremap - :action StepOver<CR>
 nnoremap _ :action Resume<CR>
 
 " window
-nnoremap s; :action CloseActiveTab<CR>
+nnoremap <Esc> :action CloseActiveTab<CR>
 nnoremap so :action MoveEditorToOppositeTabGroup<CR>
-
