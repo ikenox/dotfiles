@@ -74,6 +74,14 @@ def equil
       task if_not_exist('~/.tmux/plugins/tpm'), 'git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm'
     end
 
+    task :shell do
+      task :rust, if_err('which cargo'), "curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh"
+      task :zellij, 'cargo install --locked zellij'
+      task symlink '~/.dotfiles/zellij/config.kdl', '~/.config/zellij/config.kdl'
+      task brew_cask 'alacritty'
+      task symlink '~/.dotfiles/alacritty/alacritty.yml', '~/.config/alacritty/alacritty.yml'
+      task :starship, if_err('which starship'), 'curl -sS https://starship.rs/install.sh | sh'
+    end
 
     task :peco do
       task brew 'peco'
