@@ -135,6 +135,7 @@ keybinds {
         bind "Ctrl g" { SwitchToMode "Locked"; }
         unbind "Ctrl g"
         bind "Ctrl q" { Quit; }
+        unbind "Ctrl q"
         bind "Alt n" { NewPane; }
         bind "Alt h" "Alt Left" { MoveFocusOrTab "Left"; }
         bind "Alt l" "Alt Right" { MoveFocusOrTab "Right"; }
@@ -151,7 +152,6 @@ keybinds {
     }
     shared_except "resize" "locked" {
         bind "Ctrl n" { SwitchToMode "Resize"; }
-        bind "Ctrl m" { SwitchToMode "Resize"; }
     }
     shared_except "scroll" "locked" {
         bind "Ctrl s" { SwitchToMode "Scroll"; }
