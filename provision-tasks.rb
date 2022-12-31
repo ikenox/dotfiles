@@ -6,6 +6,7 @@ def equil
       task :install_homebrew, if_err('which brew'),
            '/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"'
       task :tap_brew_cask, if_err('brew tap | grep homebrew/cask'), 'brew tap homebrew/cask'
+      task :tap_brew_cask, if_err('brew tap | grep homebrew/cask-fonts'), 'brew tap homebrew/cask-fonts'
 
       task :install_git, if_err("ls /usr/local/Cellar/git"), 'brew install git'
       task brew_upgrade 'git'
@@ -81,6 +82,7 @@ def equil
       task brew_cask 'alacritty'
       task symlink '~/.dotfiles/alacritty/alacritty.yml', '~/.config/alacritty/alacritty.yml'
       task :starship, if_err('which starship'), 'curl -sS https://starship.rs/install.sh | sh'
+      task brew_cask 'font-hack-nerd-font'
     end
 
     task :peco do

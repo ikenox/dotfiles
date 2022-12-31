@@ -1,5 +1,5 @@
 // If you'd like to override the default keybindings completely, be sure to change "keybinds" to "keybinds clear-defaults=true"
-keybinds {
+keybinds clear-defaults=true {
     normal {
         // uncomment this and adjust key if using copy_on_select=false
         // bind "Alt c" { Copy; }
@@ -8,7 +8,7 @@ keybinds {
         bind "Ctrl g" { SwitchToMode "Normal"; }
     }
     resize {
-        bind "Ctrl n" { SwitchToMode "Normal"; }
+        // bind "Ctrl z" { SwitchToMode "Normal"; }
         bind "h" "Left" { Resize "Increase Left"; }
         bind "j" "Down" { Resize "Increase Down"; }
         bind "k" "Up" { Resize "Increase Up"; }
@@ -22,10 +22,16 @@ keybinds {
     }
     pane {
         bind "Ctrl p" { SwitchToMode "Normal"; }
-        bind "h" "Left" { MoveFocus "Left"; }
-        bind "l" "Right" { MoveFocus "Right"; }
-        bind "j" "Down" { MoveFocus "Down"; }
-        bind "k" "Up" { MoveFocus "Up"; }
+        // bind "h" "Left" { MoveFocus "Left"; }
+        // bind "l" "Right" { MoveFocus "Right"; }
+        // bind "j" "Down" { MoveFocus "Down"; }
+        // bind "k" "Up" { MoveFocus "Up"; }
+        bind "h" "Left" { Resize "Increase Left"; }
+        bind "j" "Down" { Resize "Increase Down"; }
+        bind "k" "Up" { Resize "Increase Up"; }
+        bind "l" "Right" { Resize "Increase Right"; }
+        bind "=" "+" { Resize "Increase"; }
+        bind "-" { Resize "Decrease"; }
         bind "p" { SwitchFocus; }
         bind "n" { NewPane; SwitchToMode "Normal"; }
         bind "s" { NewPane "Down"; SwitchToMode "Normal"; }
@@ -38,7 +44,7 @@ keybinds {
         bind "c" { SwitchToMode "RenamePane"; PaneNameInput 0;}
     }
     move {
-        bind "Ctrl h" { SwitchToMode "Normal"; }
+        bind "Ctrl z" { SwitchToMode "Normal"; }
         bind "n" "Tab" { MovePane; }
         bind "h" "Left" { MovePane "Left"; }
         bind "j" "Down" { MovePane "Down"; }
@@ -85,8 +91,8 @@ keybinds {
         bind "k" "Up" { ScrollUp; }
         bind "Ctrl f" "PageDown" "Right" "l" { PageScrollDown; }
         bind "Ctrl b" "PageUp" "Left" "h" { PageScrollUp; }
-        bind "d" { HalfPageScrollDown; }
-        bind "u" { HalfPageScrollUp; }
+        bind "Ctrl d" { HalfPageScrollDown; }
+        bind "Ctrl u" { HalfPageScrollUp; }
         bind "n" { Search "down"; }
         bind "N" { Search "up"; }
         bind "c" { SearchToggleOption "CaseSensitivity"; }
@@ -132,17 +138,17 @@ keybinds {
         bind "d" { Detach; }
     }
     shared_except "locked" {
-        bind "Ctrl g" { SwitchToMode "Locked"; }
-        unbind "Ctrl g"
-        bind "Ctrl q" { Quit; }
-        unbind "Ctrl q"
+        // bind "Ctrl g" { SwitchToMode "Locked"; }
+        // bind "Ctrl q" { Quit; }
         bind "Alt n" { NewPane; }
-        bind "Alt h" "Alt Left" { MoveFocusOrTab "Left"; }
-        bind "Alt l" "Alt Right" { MoveFocusOrTab "Right"; }
+        bind "Alt h" { MoveFocusOrTab "Left"; }
+        bind "Alt l" { MoveFocusOrTab "Right"; }
         bind "Alt j" "Alt Down" { MoveFocus "Down"; }
         bind "Alt k" "Alt Up" { MoveFocus "Up"; }
         bind "Alt =" "Alt +" { Resize "Increase"; }
         bind "Alt -" { Resize "Decrease"; }
+        bind "Ctrl n" { GoToNextTab; }
+        // bind "Ctrl p" { MoveFocusOrTab "Right"; }
     }
     shared_except "normal" "locked" {
         bind "Enter" "Esc" { SwitchToMode "Normal"; }
@@ -151,7 +157,7 @@ keybinds {
         bind "Ctrl p" { SwitchToMode "Pane"; }
     }
     shared_except "resize" "locked" {
-        bind "Ctrl n" { SwitchToMode "Resize"; }
+        // bind "Ctrl z" { SwitchToMode "Resize"; }
     }
     shared_except "scroll" "locked" {
         bind "Ctrl s" { SwitchToMode "Scroll"; }
@@ -164,7 +170,7 @@ keybinds {
         bind "Ctrl t" { SwitchToMode "Tab"; }
     }
     shared_except "move" "locked" {
-        bind "Ctrl h" { SwitchToMode "Move"; }
+        bind "Ctrl z" { SwitchToMode "Move"; }
     }
     shared_except "tmux" "locked" {
         bind "Ctrl b" { SwitchToMode "Tmux"; }
@@ -191,7 +197,7 @@ plugins {
 //    - true
 //    - false (Default)
 //
-// simplified_ui true
+simplified_ui true
 
 // Choose the path to the default shell that zellij will use for opening new panes
 // Default: $SHELL
@@ -209,31 +215,44 @@ default_shell "fish"
 // For more examples, see: https://github.com/zellij-org/zellij/tree/main/example/themes
 // Once these themes are defined, one of them should to be selected in the "theme" section of this file
 //
-themes {
-    dracula {
-        fg 248 248 242
-        bg 40 42 54
-        red 255 85 85
-        green 80 250 123
-        yellow 241 250 140
-        blue 98 114 164
-        magenta 255 121 198
-        orange 255 184 108
-        cyan 139 233 253
-        black 0 0 0
-        white 255 255 255
-    }
-}
+ themes {
+     dracula {
+         fg 248 248 242
+         bg 40 42 54
+         red 255 85 85
+         green 80 250 123
+         yellow 241 250 140
+         blue 98 114 164
+         magenta 255 121 198
+         orange 255 184 108
+         cyan 139 233 253
+         black 0 0 0
+         white 255 255 255
+     }
+     tokyo-night {
+         fg 169 177 214
+         bg 26 27 38
+         black 26 27 38
+         red 249 51 87
+         green 158 206 106
+         yellow 224 175 104
+         blue 122 162 247
+         magenta 187 154 247
+         cyan 42 195 222
+         white 192 202 245
+         orange 255 158 100
+     }
+ }
 
 // Choose the theme that is specified in the themes section.
 // Default: default
 //
-theme "dracula"
+theme "tokyo-night"
 
 // The name of the default layout to load on startup
 // Default: "default"
 //
-// default_layout "compact"
+default_layout "compact"
 
 // Choose the mode that zellij uses when starting up.
 // Default: normal
