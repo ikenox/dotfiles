@@ -8,7 +8,7 @@ SETUVAR Z_EXCLUDE:/Users/naoto\x2eikeno
 SETUVAR __fish_init_2_39_8:\x1d
 SETUVAR __fish_init_2_3_0:\x1d
 SETUVAR __fish_init_3_x:\x1d
-SETUVAR __fish_initialized:3400
+SETUVAR __fish_initialized:3100
 SETUVAR _fisher_decors_2F_fish_2D_ghq_files:/Users/naoto\x2eikeno/\x2econfig/fish/functions/__ghq_repository_search\x2efish\x1e/Users/naoto\x2eikeno/\x2econfig/fish/conf\x2ed/ghq_key_bindings\x2efish\x1e/Users/naoto\x2eikeno/\x2econfig/fish/completions/ghq\x2efish
 SETUVAR _fisher_edc_2F_bass_files:/Users/naoto\x2eikeno/\x2econfig/fish/functions/__bass\x2epy\x1e/Users/naoto\x2eikeno/\x2econfig/fish/functions/bass\x2efish
 SETUVAR _fisher_plugins:decors/fish\x2dghq\x1eedc/bass
