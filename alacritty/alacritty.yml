@@ -185,7 +185,7 @@ font:
 #draw_bold_text_with_bright_colors: false
 colors:
   primary:
-    background: '#2e3440'
+    background: '#252835'
     foreground: '#d8dee9'
     dim_foreground: '#a5abb6'
   cursor:

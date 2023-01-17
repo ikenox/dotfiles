@@ -258,9 +258,8 @@ default_shell "fish"
  }
 
 // Choose the theme that is specified in the themes section.
-// Default: default
 //
-theme "nord"
+ theme "nord"
 
 // The name of the default layout to load on startup
 // Default: "default"
