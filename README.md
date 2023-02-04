@@ -2,7 +2,7 @@
 
 ```sh
 python3 -m pip install --user ansible
-ansible-playbook playbook.yml  --extra-vars 'name=naoto.ikeno email=ikenox@gmail.com'
+ansible-playbook playbook.yml --extra-vars 'name=naoto.ikeno email=ikenox@gmail.com'
 ```
 
 ## TODO list of tasks to be automated
