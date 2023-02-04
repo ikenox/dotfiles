@@ -1,18 +1,11 @@
-## First time
-
-For M1 Mac, we should open a terminal with Rosetta
+# dotfiles
 
 ```sh
-bash -c 'ruby -e "$({ curl -fsSL https://raw.github.com/ikenox/dotfiles/master/provision-tasks.rb; curl -fsSL https://raw.githubusercontent.com/ikenox/equil/0.2.0/equil.rb; })" essentials'
+python3 -m pip install --user ansible
+ansible-playbook playbook.yml  --extra-vars 'name=naoto.ikeno email=ikenox@gmail.com'
 ```
 
-## Second time or later
-
-```sh
-bash -c 'ruby -e "$({ cat ~/.dotfiles/provision-tasks.rb; curl -fsSL https://raw.githubusercontent.com/ikenox/equil/0.2.0/equil.rb; })" essentials'
-```
-
-## TODO list which should be automated
+## TODO list of tasks to be automated
 
 - Set default browser to Chrome
 - Setup Touch ID
@@ -53,10 +46,6 @@ bash -c 'ruby -e "$({ cat ~/.dotfiles/provision-tasks.rb; curl -fsSL https://raw
 - 環境設定 > Bluetooth > Bluetoothをメニューバーに表示
 - 環境設定 > キーボード > ユーザ辞書 > uncheck "英字入力中にスペルを自動変換"
 - add "ひらがな(Google)" to "キーボード > 入力ソース"
-- karabiner-elements
-    - use version 12.10.0
-        - case A: can't allow karabiner-elements in Security & Policy window -> https://spring-mt.hatenablog.com/entry/2020/10/01/125713
-        - case B: karabiner_grabber is not found -> https://github.com/pqrs-org/Karabiner-Elements/issues/1867#issue-451740679
 - sign-in to slack with magic link
 - iterm2
     - If color theme is not applied well: change "Profiles -> Colors -> Color Presets" will solve the problem
