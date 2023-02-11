@@ -1,9 +1,9 @@
 // https://code.visualstudio.com/docs/getstarted/keybindings
 {
   "vim.autoSwitchInputMethod.enable": true,
-  "vim.autoSwitchInputMethod.defaultIM": "com.apple.inputmethod.Kotoeri.RomajiTyping.Roman",
+  "vim.autoSwitchInputMethod.defaultIM": "com.apple.keylayout.ABC",
   "vim.autoSwitchInputMethod.obtainIMCmd": "/usr/bin/true",
-  "vim.autoSwitchInputMethod.switchIMCmd": "/usr/local/bin/im-select {im}",
+  "vim.autoSwitchInputMethod.switchIMCmd": "/opt/homebrew/bin/im-select {im}",
 
   "editor.quickSuggestions": {
     "comments": "on",
@@ -350,6 +350,9 @@
   "[json]": {
     "editor.defaultFormatter": "esbenp.prettier-vscode"
   },
+  "[yaml]": {
+    "editor.formatOnSave": false
+  },
   "editor.formatOnSave": true,
   "editor.cursorStyle": "line",
   "editor.insertSpaces": false,
@@ -360,5 +363,5 @@
     "editor.defaultFormatter": "vscode.html-language-features"
   },
   "editor.unicodeHighlight.nonBasicASCII": false,
-  "window.zoomLevel": 1
+  "extensions.ignoreRecommendations": true
 }

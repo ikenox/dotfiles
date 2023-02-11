@@ -77,6 +77,7 @@
         - fish
         - docker
         - zellij
+        - im-select
     - brew_cask_packages:
         - karabiner-elements
         - alacritty
