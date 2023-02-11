@@ -350,9 +350,6 @@
   "[json]": {
     "editor.defaultFormatter": "esbenp.prettier-vscode"
   },
-  "[yaml]": {
-    "editor.formatOnSave": false
-  },
   "editor.formatOnSave": true,
   "editor.cursorStyle": "line",
   "editor.insertSpaces": false,
@@ -363,5 +360,6 @@
     "editor.defaultFormatter": "vscode.html-language-features"
   },
   "editor.unicodeHighlight.nonBasicASCII": false,
-  "extensions.ignoreRecommendations": true
+  "extensions.ignoreRecommendations": true,
+  "prettier.printWidth": 120
 }
