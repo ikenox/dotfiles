@@ -31,6 +31,7 @@
   },
   "window.openFoldersInNewWindow": "on",
   "editor.cursorSurroundingLines": 10,
+  "rust-analyzer.diagnostics.enable": true,
   "rust-analyzer.checkOnSave.enable": true,
   "rust-analyzer.checkOnSave.command": "check",
   "rust-analyzer.checkOnSave.allFeatures": false,
@@ -48,6 +49,8 @@
   "editor.tabSize": 8,
   "vim.insertModeKeyBindings": [{ "before": ["j", "f"], "after": ["<Esc>"] }],
   "vim.normalModeKeyBindingsNonRecursive": [
+    { "before": ["u"], "commands": ["undo"] },
+    { "before": ["<C-r>"], "commands": ["redo"] },
     { "before": [":", "w"], "commands": ["editor.action.files.save"] },
     { "before": ["<leader>", "c"], "commands": ["rust-analyzer.check"] },
     { "before": ["v"], "after": ["v", "l", "h"] },
