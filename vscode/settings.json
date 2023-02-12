@@ -86,7 +86,7 @@
     { "before": ["Q"], "commands": ["editor.action.quickFix"] },
     { "before": ["g", "h"], "commands": ["workbench.action.navigateBack"] },
     { "before": ["g", "l"], "commands": ["workbench.action.navigateForward"] },
-    { "before": ["g", "b"], "commands": ["workbench.action.editor.previousChange"] },
+    { "before": ["g", "b"], "commands": ["workbench.action.navigateBackInEditLocations"] },
     { "before": [",", "g"], "commands": ["workbench.action.findInFiles"] },
     { "before": [",", "a"], "commands": ["workbench.action.showCommands"] },
     { "before": [",", "z"], "commands": ["workbench.action.openRecent"] },
