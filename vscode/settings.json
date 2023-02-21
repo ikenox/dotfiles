@@ -30,7 +30,7 @@
     }
   },
   "window.openFoldersInNewWindow": "on",
-  "editor.cursorSurroundingLines": 10,
+  "editor.cursorSurroundingLines": 0,
   "rust-analyzer.diagnostics.enable": true,
   "rust-analyzer.checkOnSave.enable": true,
   "rust-analyzer.checkOnSave.command": "check",
