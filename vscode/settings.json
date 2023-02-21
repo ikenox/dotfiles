@@ -91,8 +91,8 @@
     { "before": [",", "a"], "commands": ["workbench.action.showCommands"] },
     { "before": [",", "z"], "commands": ["workbench.action.openRecent"] },
     { "before": [",", "f"], "commands": ["workbench.action.quickOpen"] },
-    { "before": ["<C-u>"], "after": ["2", "0", "k"] },
-    { "before": ["<C-d>"], "after": ["2", "0", "j"] },
+    { "before": ["<C-u>"], "after": ["3", "0", "k"] },
+    { "before": ["<C-d>"], "after": ["3", "0", "j"] },
     { "before": ["q"], "commands": ["editor.action.quickFix"] },
     { "before": ["r"], "commands": ["editor.action.rename"] }
   ],
