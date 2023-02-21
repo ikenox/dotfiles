@@ -3,6 +3,8 @@
   hosts: localhost
   connection: local
   tasks:
+    - name: brew tap for im-select
+      command: "brew tap daipeihust/tap"
     - name: install packages via homebrew
       with_items: "{{ brew_packages }}"
       community.general.homebrew:
