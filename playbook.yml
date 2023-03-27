@@ -114,8 +114,6 @@
           vars:
             src: "$HOME/.dotfiles/zsh/.zshrc"
             dest: "$HOME/.zshrc"
-        - name: zplug
-          command: "ls ~/.zplug || curl -sL --proto-redir -all,https https://raw.githubusercontent.com/zplug/installer/master/installer.zsh | zsh"
         - <<: *brew_install
           vars:
             package: starship

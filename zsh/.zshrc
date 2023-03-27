@@ -7,35 +7,45 @@ setopt HIST_FIND_NO_DUPS
 setopt HIST_SAVE_NO_DUPS
 
 bindkey -d
-bindkey '^D' peco-src
+bindkey '^G' peco-src
+
+# https://stackoverflow.com/a/12403798
+bindkey "^[[1;3C" forward-word
+bindkey "^[[1;3D" backward-word
+
+# stop word-deletion on '/'
+autoload -U select-word-style
+select-word-style bash
+
+# disable closing window by Ctrl-D
+set -o ignoreeof
 
 eval "$(starship init zsh)"
 
 # ===================
-# zsh
+# plugin management
 # ===================
-source ~/.zplug/init.zsh
+# Download Znap, if it's not there yet.
+[[ -f ~/.znap/zsh-snap/znap.zsh ]] ||
+    git clone --depth 1 -- \
+        https://github.com/marlonrichert/zsh-snap.git ~/.znap/zsh-snap
+# Start Znap
+source ~/.znap/zsh-snap/znap.zsh
+# define plugins to be installed
+znap source zsh-users/zsh-autosuggestions
+znap source zsh-users/zsh-syntax-highlighting
+znap source jimeh/zsh-peco-history
+znap source marlonrichert/zsh-autocomplete
 
-zplug "jimeh/zsh-peco-history", defer:2
-zplug "zsh-users/zsh-autosuggestions"
-
-# Install plugins if there are plugins that have not been installed
-if ! zplug check --verbose; then
-    printf "Install? [y/N]: "
-    if read -q; then
-        echo; zplug install
-    fi
-fi
-# Then, source plugins and add commands to $PATH
-zplug load --verbose
+# ====================
+# functions
+# ====================
 
 function peco-src () {
-  local selected_dir=$(ghq list -p | peco --query "$LBUFFER")
+  local selected_dir=$(ghq list -p | peco --layout=bottom-up --query "$LBUFFER")
   if [ -n "$selected_dir" ]; then
     BUFFER="cd ${selected_dir}"
     zle accept-line
   fi
-  zle clear-screen
 }
 zle -N peco-src
-bindkey '^G' peco-src
