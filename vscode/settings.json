@@ -1,5 +1,9 @@
 // https://code.visualstudio.com/docs/getstarted/keybindings
 {
+  "editor.fontFamily": "Inter",
+  "editor.fontSize": 13,
+  "editor.lineHeight": 1.7,
+
   "vim.autoSwitchInputMethod.enable": true,
   "vim.autoSwitchInputMethod.defaultIM": "com.apple.keylayout.ABC",
   "vim.autoSwitchInputMethod.obtainIMCmd": "/usr/bin/true",
@@ -167,5 +171,6 @@
   },
   "editor.unicodeHighlight.nonBasicASCII": false,
   "extensions.ignoreRecommendations": true,
-  "prettier.printWidth": 120
+  "prettier.printWidth": 120,
+  "git.openRepositoryInParentFolders": "never"
 }
