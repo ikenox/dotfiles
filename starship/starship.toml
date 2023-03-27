@@ -31,5 +31,5 @@ renamed = "±$count"
 untracked = "+$count"
 
 [status]
-format = "[\\[$status\\]](red)"
+format = "[\\[$status\\]](red) "
 disabled = false

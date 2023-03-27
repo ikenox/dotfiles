@@ -10,90 +10,15 @@
             name: "{{ package }}"
             state: present
         - &symlink
+          name: "symlink {{ dest }} -> {{ src }}"
           block:
-            - name: symlink directories
-              file:
+            - file:
                 path: "{{ dest | dirname }}"
                 state: directory
-            - name: symlinks
-              file:
+            - file:
                 src: "{{ src }}"
                 dest: "{{ dest }}"
                 state: link
-
-    - brew_cask_packages:
-        - karabiner-elements
-        - alacritty
-        - google-japanese-ime
-        - hyperswitch
-        - jetbrains-toolbox
-        - visual-studio-code
-        - google-cloud-sdk
-        - slack
-        - alfred
-        - caffeine
-        - discord
-        - zoom
-    - symlinks:
-        - { src: "$HOME/repos/github.com/ikenox/dotfiles", dest: "$HOME/.dotfiles" }
-        - { src: "$HOME/.dotfiles/git/gitconfig", dest: "$HOME/.gitconfig" }
-        - { src: "$HOME/.dotfiles/karabiner", dest: "$HOME/.config/karabiner" }
-        - { src: "$HOME/.dotfiles/git/gitignore", dest: "$HOME/.gitignore" }
-        - { src: "$HOME/.dotfiles/vim/vimrc", dest: "$HOME/.vimrc" }
-        - { src: "$HOME/.dotfiles/vim/vimrc.keymap", dest: "$HOME/.vimrc.keymap" }
-        - { src: "$HOME/.dotfiles/zellij/config.kdl", dest: "$HOME/.config/zellij/config.kdl" }
-        - { src: "$HOME/.dotfiles/alacritty/alacritty.yml", dest: "$HOME/.config/alacritty/alacritty.yml" }
-        - { src: "$HOME/.dotfiles/peco/config.json", dest: "$HOME/.config/peco/config.json" }
-        - { src: "$HOME/.dotfiles/ag/agignore", dest: "$HOME/.agignore" }
-        - { src: "$HOME/.dotfiles/intellij/ideavimrc", dest: "$HOME/.ideavimrc" }
-        - { src: "$HOME/.dotfiles/vscode/settings.json", dest: "$HOME/Application Support/Code/User/settings.json" }
-        - {
-          src: "$HOME/.dotfiles/vscode/keybindings.json",
-          dest: "$HOME/.Application Support/Code/User/keybindings.json",
-        }
-        - { src: "$HOME/.dotfiles/vscode/tasks.json", dest: "$HOME/Application Support/Code/User/tasks.json" }
-    - mas_apps:
-        - "409183694" # keynote
-        - "409203825" # Numbers
-        - "409201541" # Pages
-        - "539883307" # LINE
-        - "485812721" # TweetDeck
-        - "405399194" # Kindle
-    - osx_defaults:
-        - "defaults write com.apple.dock autohide -bool true"
-        - "defaults write com.apple.dock persistent-apps -array"
-        - "defaults write com.apple.dock tilesize -int 55"
-        # task 'defaults write com.apple.dock wvous-bl-corner -int 10'
-        # task 'defaults write com.apple.dock wvous-bl-modifier -int 0'
-        # todo killall if updated
-        # killall Dock'
-
-        - "defaults write com.apple.finder AppleShowAllFiles YES"
-        - 'defaults write com.apple.finder NewWindowTarget -string "PfDe"'
-        - 'defaults write com.apple.finder NewWindowTargetPath -string "file://${HOME}/"'
-        # todo killall if updated
-        # killall Finder'
-
-        - "defaults write com.apple.Safari IncludeInternalDebugMenu -bool true"
-
-        - 'defaults write com.apple.screencapture "disable-shadow" -bool yes'
-        - "defaults write com.apple.screencapture name screenshot"
-        - "defaults write com.apple.screencapture location ~/screenshots/"
-
-        # todo needs restart
-        - "defaults write -g com.apple.trackpad.scaling -int 3"
-        - "defaults write -g InitialKeyRepeat -int 15"
-        - "defaults write -g KeyRepeat -int 2"
-        - "defaults -currentHost write -globalDomain com.apple.mouse.tapBehavior -int 1"
-
-        - "defaults write -g AppleShowAllExtensions -bool true"
-        - "defaults write com.apple.desktopservices DSDontWriteNetworkStores -bool true"
-
-        # TouchBar layout
-        - 'defaults write com.apple.controlstrip MiniCustomized ''( "com.apple.system.brightness", "com.apple.system.volume", "com.apple.system.mute", "com.apple.system.sleep")'''
-        - "defaults write com.microsoft.VSCode ApplePressAndHoldEnabled -bool false"
-        - "defaults write com.microsoft.VSCodeInsiders ApplePressAndHoldEnabled -bool false"
-        - "defaults write -g ApplePressAndHoldEnabled -bool false"
   vars_prompt:
     - name: name
       prompt: What is your name?
@@ -141,6 +66,20 @@
       command: "brew tap daipeihust/tap"
     - name: install packages via homebrew cask
       with_items: "{{ brew_cask_packages }}"
+      vars:
+        brew_cask_packages:
+          - karabiner-elements
+          - alacritty
+          - google-japanese-ime
+          - hyperswitch
+          - jetbrains-toolbox
+          - visual-studio-code
+          - google-cloud-sdk
+          - slack
+          - alfred
+          - caffeine
+          - discord
+          - zoom
       community.general.homebrew_cask:
         name: "{{ item }}"
         state: present
@@ -152,17 +91,37 @@
       command: "git clone https://github.com/ikenox/dotfiles.git $HOME/repos/github.com/ikenox/dotfiles"
       args:
         creates: "$HOME/repos/github.com/ikenox/dotfiles"
-    - name: symlink directories
-      with_items: "{{ symlinks }}"
-      file:
-        path: "{{ item.dest | dirname }}"
-        state: directory
     - name: symlinks
-      with_items: "{{ symlinks }}"
-      file:
-        src: "{{ item.src }}"
-        dest: "{{ item.dest }}"
-        state: link
+      vars:
+        symlinks:
+          - { src: "$HOME/repos/github.com/ikenox/dotfiles", dest: "$HOME/.dotfiles" }
+          - { src: "$HOME/.dotfiles/git/gitconfig", dest: "$HOME/.gitconfig" }
+          - { src: "$HOME/.dotfiles/karabiner", dest: "$HOME/.config/karabiner" }
+          - { src: "$HOME/.dotfiles/git/gitignore", dest: "$HOME/.gitignore" }
+          - { src: "$HOME/.dotfiles/vim/vimrc", dest: "$HOME/.vimrc" }
+          - { src: "$HOME/.dotfiles/vim/vimrc.keymap", dest: "$HOME/.vimrc.keymap" }
+          - { src: "$HOME/.dotfiles/zellij/config.kdl", dest: "$HOME/.config/zellij/config.kdl" }
+          - { src: "$HOME/.dotfiles/alacritty/alacritty.yml", dest: "$HOME/.config/alacritty/alacritty.yml" }
+          - { src: "$HOME/.dotfiles/peco/config.json", dest: "$HOME/.config/peco/config.json" }
+          - { src: "$HOME/.dotfiles/ag/agignore", dest: "$HOME/.agignore" }
+          - { src: "$HOME/.dotfiles/intellij/ideavimrc", dest: "$HOME/.ideavimrc" }
+          - { src: "$HOME/.dotfiles/vscode/settings.json", dest: "$HOME/Application Support/Code/User/settings.json" }
+          - {
+            src: "$HOME/.dotfiles/vscode/keybindings.json",
+            dest: "$HOME/.Application Support/Code/User/keybindings.json",
+          }
+          - { src: "$HOME/.dotfiles/vscode/tasks.json", dest: "$HOME/Application Support/Code/User/tasks.json" }
+      block:
+        - with_items: "{{ symlinks }}"
+          file:
+            path: "{{ item.dest | dirname }}"
+            state: directory
+        - name: symlinks
+          with_items: "{{ symlinks }}"
+          file:
+            src: "{{ item.src }}"
+            dest: "{{ item.dest }}"
+            state: link
     - name: gitconfig username
       command: "git config -f ~/.gitconfig.local user.name '{{ name }}'"
     - name: gitconfig email
@@ -171,17 +130,60 @@
       command: "curl -fLo ~/.vim/autoload/plug.vim --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim"
       args:
         creates: "$HOME/.vim/autoload/plug.vim"
-    - shell: "which cargo"
-      ignore_errors: true
-      register: which_cargo_result
-    - name: cargo
-      command: "curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh"
-      when: which_cargo_result.rc != 0
+    - name: install cargo
+      block:
+        - shell: "which cargo"
+          ignore_errors: true
+          register: which_cargo_result
+        - name: download cargo
+          command: "curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh"
+          when: which_cargo_result.rc != 0
     - name: osx defaults
-      with_items: "{{ osx_defaults }}"
-      command: "{{ item }}"
+      block:
+        - command: "defaults write com.apple.dock autohide -bool true"
+        - command: "defaults write com.apple.dock persistent-apps -array"
+        - command: "defaults write com.apple.dock tilesize -int 55"
+        # task 'defaults write com.apple.dock wvous-bl-corner -int 10'
+        # task 'defaults write com.apple.dock wvous-bl-modifier -int 0'
+        # todo killall if updated
+        # killall Dock'
+
+        - command: "defaults write com.apple.finder AppleShowAllFiles YES"
+        - command: 'defaults write com.apple.finder NewWindowTarget -string "PfDe"'
+        - command: 'defaults write com.apple.finder NewWindowTargetPath -string "file://${HOME}/"'
+        # todo killall if updated
+        # killall Finder'
+
+        - command: "defaults write com.apple.Safari IncludeInternalDebugMenu -bool true"
+
+        - command: 'defaults write com.apple.screencapture "disable-shadow" -bool yes'
+        - command: "defaults write com.apple.screencapture name screenshot"
+        - command: "defaults write com.apple.screencapture location ~/screenshots/"
+
+        # todo needs restart
+        - command: "defaults write -g com.apple.trackpad.scaling -int 3"
+        - command: "defaults write -g InitialKeyRepeat -int 15"
+        - command: "defaults write -g KeyRepeat -int 2"
+        - command: "defaults -currentHost write -globalDomain com.apple.mouse.tapBehavior -int 1"
+
+        - command: "defaults write -g AppleShowAllExtensions -bool true"
+        - command: "defaults write com.apple.desktopservices DSDontWriteNetworkStores -bool true"
+
+        # TouchBar layout
+        - command: 'defaults write com.apple.controlstrip MiniCustomized ''( "com.apple.system.brightness", "com.apple.system.volume", "com.apple.system.mute", "com.apple.system.sleep")'''
+        - command: "defaults write com.microsoft.VSCode ApplePressAndHoldEnabled -bool false"
+        - command: "defaults write com.microsoft.VSCodeInsiders ApplePressAndHoldEnabled -bool false"
+        - command: "defaults write -g ApplePressAndHoldEnabled -bool false"
     - name: install vscode extensions
       ansible.builtin.shell: "cat ~/.dotfiles/vscode/extensions.txt | while read line; do code --install-extension $line; done"
     - name: mas apps
+      vars:
+        mas_apps:
+          - "409183694" # keynote
+          - "409203825" # Numbers
+          - "409201541" # Pages
+          - "539883307" # LINE
+          - "485812721" # TweetDeck
+          - "405399194" # Kindle
       with_items: "{{ mas_apps }}"
       ansible.builtin.shell: "mas list | grep '^{{ item }} ' || mas install {{ item }}"
