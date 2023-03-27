@@ -1,15 +1,8 @@
 # Atom
 .DS_Store
 
-.tmux/plugins/*
-
 karabiner/*
 !karabiner/karabiner.json
-
-fish/functions/*
-!fish/functions/fish_prompt.fish
-fish/completions
-fish/conf.d
 
 vim/.netrwhist
 vim/autoload/

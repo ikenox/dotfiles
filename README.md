@@ -10,11 +10,10 @@ ansible-playbook playbook.yml --extra-vars 'name=naoto.ikeno email=ikenox@gmail.
 - Set default browser to Chrome
 - Setup Touch ID
 - `sudo ln -si /opt/homebrew/bin /usr/local/bin`
-    - iTerm config and tmux config uses `/usr/local/bin/fish`
     - older homebrew uses `/usr/local/bin`
 - remove all icons from dock
 - sign-in to app store
-- migrate fish history file from old machine
+- migrate zsh history file from old machine
 - add ssh public key to github
 - set mac dark mode
 - launch
