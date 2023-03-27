@@ -45,7 +45,6 @@
         - { src: "$HOME/.dotfiles/alacritty/alacritty.yml", dest: "$HOME/.config/alacritty/alacritty.yml" }
         - { src: "$HOME/.dotfiles/peco/config.json", dest: "$HOME/.config/peco/config.json" }
         - { src: "$HOME/.dotfiles/ag/agignore", dest: "$HOME/.agignore" }
-        - { src: "$HOME/.dotfiles/fish", dest: "$HOME/.config/fish" }
         - { src: "$HOME/.dotfiles/intellij/ideavimrc", dest: "$HOME/.ideavimrc" }
         - { src: "$HOME/.dotfiles/vscode/settings.json", dest: "$HOME/Application Support/Code/User/settings.json" }
         - {
@@ -136,7 +135,6 @@
           - mas
           - gnu-sed
           - ag
-          - fish
           - docker
           - zellij
           - im-select
@@ -184,14 +182,6 @@
     - name: cargo
       command: "curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh"
       when: which_cargo_result.rc != 0
-    - name: fisher
-      command: "curl -Lo ~/.config/fish/functions/fisher.fish --create-dirs git.io/fisher"
-      args:
-        creates: "$HOME/.config/fish/functions/fisher.fish"
-    - name: add login shell
-      ansible.builtin.shell: "cat /etc/shells | grep $(which fish) || sudo bash -c 'echo $(which fish) >> /etc/shells'"
-    - name: fish packages
-      ansible.builtin.shell: "cat $HOME/.config/fish/fishfile | xargs -I% fish -c 'fisher install %'"
     - name: osx defaults
       with_items: "{{ osx_defaults }}"
       command: "{{ item }}"
