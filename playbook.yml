@@ -138,42 +138,33 @@
         - name: download cargo
           command: "curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh"
           when: which_cargo_result.rc != 0
-    - name: osx defaults
+    - name: osx
       block:
-        - command: "defaults write com.apple.dock autohide -bool true"
-        - command: "defaults write com.apple.dock persistent-apps -array"
-        - command: "defaults write com.apple.dock tilesize -int 55"
-        # task 'defaults write com.apple.dock wvous-bl-corner -int 10'
-        # task 'defaults write com.apple.dock wvous-bl-modifier -int 0'
-        # todo killall if updated
-        # killall Dock'
-
-        - command: "defaults write com.apple.finder AppleShowAllFiles YES"
-        - command: 'defaults write com.apple.finder NewWindowTarget -string "PfDe"'
-        - command: 'defaults write com.apple.finder NewWindowTargetPath -string "file://${HOME}/"'
-        # todo killall if updated
-        # killall Finder'
-
-        - command: "defaults write com.apple.Safari IncludeInternalDebugMenu -bool true"
-
-        - command: 'defaults write com.apple.screencapture "disable-shadow" -bool yes'
-        - command: "defaults write com.apple.screencapture name screenshot"
-        - command: "defaults write com.apple.screencapture location ~/screenshots/"
-
-        # todo needs restart
-        - command: "defaults write -g com.apple.trackpad.scaling -int 3"
-        - command: "defaults write -g InitialKeyRepeat -int 15"
-        - command: "defaults write -g KeyRepeat -int 2"
-        - command: "defaults -currentHost write -globalDomain com.apple.mouse.tapBehavior -int 1"
-
-        - command: "defaults write -g AppleShowAllExtensions -bool true"
-        - command: "defaults write com.apple.desktopservices DSDontWriteNetworkStores -bool true"
-
-        # TouchBar layout
-        - command: 'defaults write com.apple.controlstrip MiniCustomized ''( "com.apple.system.brightness", "com.apple.system.volume", "com.apple.system.mute", "com.apple.system.sleep")'''
-        - command: "defaults write com.microsoft.VSCode ApplePressAndHoldEnabled -bool false"
-        - command: "defaults write com.microsoft.VSCodeInsiders ApplePressAndHoldEnabled -bool false"
-        - command: "defaults write -g ApplePressAndHoldEnabled -bool false"
+        - name: "{{ item }}"
+          with_items: "{{ commands }}"
+          command: "{{ item }}"
+          vars:
+            commands:
+              - "defaults write com.apple.dock autohide -bool true"
+              - "defaults write com.apple.dock persistent-apps -array"
+              - "defaults write com.apple.dock tilesize -int 55"
+              - "defaults write com.apple.finder AppleShowAllFiles YES"
+              - 'defaults write com.apple.finder NewWindowTarget -string "PfDe"'
+              - 'defaults write com.apple.finder NewWindowTargetPath -string "file://${HOME}/"'
+              - "defaults write com.apple.Safari IncludeInternalDebugMenu -bool true"
+              - 'defaults write com.apple.screencapture "disable-shadow" -bool yes'
+              - "defaults write com.apple.screencapture name screenshot"
+              - "defaults write com.apple.screencapture location ~/screenshots/"
+              - "defaults write -g com.apple.trackpad.scaling -int 3"
+              - "defaults write -g InitialKeyRepeat -int 15"
+              - "defaults write -g KeyRepeat -int 2"
+              - "defaults -currentHost write -globalDomain com.apple.mouse.tapBehavior -int 1"
+              - "defaults write -g AppleShowAllExtensions -bool true"
+              - "defaults write com.apple.desktopservices DSDontWriteNetworkStores -bool true"
+              - 'defaults write com.apple.controlstrip MiniCustomized ''( "com.apple.system.brightness", "com.apple.system.volume", "com.apple.system.mute", "com.apple.system.sleep")'''
+              - "defaults write com.microsoft.VSCode ApplePressAndHoldEnabled -bool false"
+              - "defaults write com.microsoft.VSCodeInsiders ApplePressAndHoldEnabled -bool false"
+              - "defaults write -g ApplePressAndHoldEnabled -bool false"
     - name: install vscode extensions
       ansible.builtin.shell: "cat ~/.dotfiles/vscode/extensions.txt | while read line; do code --install-extension $line; done"
     - name: mas apps
