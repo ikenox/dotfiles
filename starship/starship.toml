@@ -3,3 +3,33 @@
 
 # Inserts a blank line between shell prompts
 add_newline = false
+
+format = "$directory \\($git_branch|$git_status\\) $status"
+
+[directory]
+format = "[$path]($style)"
+style = "yellow"
+truncate_to_repo = false
+truncation_length = 3 # parent directories to show; default is 3
+truncation_symbol = "…/"
+
+[git_branch]
+format = "(green)[$branch]($style)"
+style = "italic green"
+
+[git_status]
+format = "[$all_status$ahead_behind]($style)"
+conflicted = "×$count"
+stashed = ""
+ahead = "↑$count"
+behind = "↓$count"
+deleted = "-$count"
+diverged = "$count"
+modified = "○$count"
+staged = '[●$count](green)'
+renamed = "±$count"
+untracked = "+$count"
+
+[status]
+format = "[\\[$status\\]](red)"
+disabled = false
