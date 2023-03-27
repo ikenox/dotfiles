@@ -2,14 +2,150 @@
 - name: dotfiles
   hosts: localhost
   connection: local
+  vars:
+    - aliases:
+        - &brew_install
+          name: "install {{ package }}"
+          community.general.homebrew:
+            name: "{{ package }}"
+            state: present
+        - &symlink
+          block:
+            - name: symlink directories
+              file:
+                path: "{{ dest | dirname }}"
+                state: directory
+            - name: symlinks
+              file:
+                src: "{{ src }}"
+                dest: "{{ dest }}"
+                state: link
+
+    - brew_cask_packages:
+        - karabiner-elements
+        - alacritty
+        - google-japanese-ime
+        - hyperswitch
+        - jetbrains-toolbox
+        - visual-studio-code
+        - google-cloud-sdk
+        - slack
+        - alfred
+        - caffeine
+        - discord
+        - zoom
+    - symlinks:
+        - { src: "$HOME/repos/github.com/ikenox/dotfiles", dest: "$HOME/.dotfiles" }
+        - { src: "$HOME/.dotfiles/git/gitconfig", dest: "$HOME/.gitconfig" }
+        - { src: "$HOME/.dotfiles/karabiner", dest: "$HOME/.config/karabiner" }
+        - { src: "$HOME/.dotfiles/git/gitignore", dest: "$HOME/.gitignore" }
+        - { src: "$HOME/.dotfiles/vim/vimrc", dest: "$HOME/.vimrc" }
+        - { src: "$HOME/.dotfiles/vim/vimrc.keymap", dest: "$HOME/.vimrc.keymap" }
+        - { src: "$HOME/.dotfiles/zellij/config.kdl", dest: "$HOME/.config/zellij/config.kdl" }
+        - { src: "$HOME/.dotfiles/alacritty/alacritty.yml", dest: "$HOME/.config/alacritty/alacritty.yml" }
+        - { src: "$HOME/.dotfiles/peco/config.json", dest: "$HOME/.config/peco/config.json" }
+        - { src: "$HOME/.dotfiles/ag/agignore", dest: "$HOME/.agignore" }
+        - { src: "$HOME/.dotfiles/fish", dest: "$HOME/.config/fish" }
+        - { src: "$HOME/.dotfiles/intellij/ideavimrc", dest: "$HOME/.ideavimrc" }
+        - { src: "$HOME/.dotfiles/vscode/settings.json", dest: "$HOME/Application Support/Code/User/settings.json" }
+        - {
+          src: "$HOME/.dotfiles/vscode/keybindings.json",
+          dest: "$HOME/.Application Support/Code/User/keybindings.json",
+        }
+        - { src: "$HOME/.dotfiles/vscode/tasks.json", dest: "$HOME/Application Support/Code/User/tasks.json" }
+    - mas_apps:
+        - "409183694" # keynote
+        - "409203825" # Numbers
+        - "409201541" # Pages
+        - "539883307" # LINE
+        - "485812721" # TweetDeck
+        - "405399194" # Kindle
+    - osx_defaults:
+        - "defaults write com.apple.dock autohide -bool true"
+        - "defaults write com.apple.dock persistent-apps -array"
+        - "defaults write com.apple.dock tilesize -int 55"
+        # task 'defaults write com.apple.dock wvous-bl-corner -int 10'
+        # task 'defaults write com.apple.dock wvous-bl-modifier -int 0'
+        # todo killall if updated
+        # killall Dock'
+
+        - "defaults write com.apple.finder AppleShowAllFiles YES"
+        - 'defaults write com.apple.finder NewWindowTarget -string "PfDe"'
+        - 'defaults write com.apple.finder NewWindowTargetPath -string "file://${HOME}/"'
+        # todo killall if updated
+        # killall Finder'
+
+        - "defaults write com.apple.Safari IncludeInternalDebugMenu -bool true"
+
+        - 'defaults write com.apple.screencapture "disable-shadow" -bool yes'
+        - "defaults write com.apple.screencapture name screenshot"
+        - "defaults write com.apple.screencapture location ~/screenshots/"
+
+        # todo needs restart
+        - "defaults write -g com.apple.trackpad.scaling -int 3"
+        - "defaults write -g InitialKeyRepeat -int 15"
+        - "defaults write -g KeyRepeat -int 2"
+        - "defaults -currentHost write -globalDomain com.apple.mouse.tapBehavior -int 1"
+
+        - "defaults write -g AppleShowAllExtensions -bool true"
+        - "defaults write com.apple.desktopservices DSDontWriteNetworkStores -bool true"
+
+        # ctrl + / -> next window in the same app
+        # task 'defaults write com.apple.symbolichotkeys AppleSymbolicHotKeys -dict-add 27 "{ enabled = 1; value =                 { parameters = ( 121, 16, 262144); type = standard; }; }""'
+        #
+        # TouchBar layout
+        - 'defaults write com.apple.controlstrip MiniCustomized ''( "com.apple.system.brightness", "com.apple.system.volume", "com.apple.system.mute", "com.apple.system.sleep")'''
+        - "defaults write com.microsoft.VSCode ApplePressAndHoldEnabled -bool false"
+        - "defaults write com.microsoft.VSCodeInsiders ApplePressAndHoldEnabled -bool false"
+        - "defaults write -g ApplePressAndHoldEnabled -bool false"
+  vars_prompt:
+    - name: name
+      prompt: What is your name?
+      private: false
+    - name: email
+      prompt: What is your email?
+      private: false
   tasks:
-    - name: brew tap for im-select
-      command: "brew tap daipeihust/tap"
+    - name: shell
+      block:
+        - <<: *brew_install
+          vars:
+            package: zsh
+        - <<: *symlink
+          vars:
+            src: "$HOME/.dotfiles/zsh/.zshrc"
+            dest: "$HOME/.zshrc"
+        - name: zplug
+          command: "ls ~/.zplug || curl -sL --proto-redir -all,https https://raw.githubusercontent.com/zplug/installer/master/installer.zsh | zsh"
+        - <<: *brew_install
+          vars:
+            package: starship
+        - <<: *symlink
+          vars:
+            src: "$HOME/.dotfiles/starship/starship.toml"
+            dest: "$HOME/.config/starship.toml"
     - name: install packages via homebrew
+      vars:
+        brew_packages:
+          - git
+          - ghq
+          - vim
+          - peco
+          - fzf
+          - jq
+          - mas
+          - gnu-sed
+          - ag
+          - fish
+          - docker
+          - zellij
+          - im-select
       with_items: "{{ brew_packages }}"
       community.general.homebrew:
         name: "{{ item }}"
         state: present
+    - name: brew tap for im-select
+      command: "brew tap daipeihust/tap"
     - name: install packages via homebrew cask
       with_items: "{{ brew_cask_packages }}"
       community.general.homebrew_cask:
@@ -64,103 +200,3 @@
     - name: mas apps
       with_items: "{{ mas_apps }}"
       ansible.builtin.shell: "mas list | grep '^{{ item }} ' || mas install {{ item }}"
-
-  vars:
-    - brew_packages:
-        - git
-        - ghq
-        - vim
-        - peco
-        - fzf
-        - jq
-        - mas
-        - gnu-sed
-        - ag
-        - fish
-        - docker
-        - zellij
-        - im-select
-    - brew_cask_packages:
-        - karabiner-elements
-        - alacritty
-        - google-japanese-ime
-        - hyperswitch
-        - jetbrains-toolbox
-        - visual-studio-code
-        - google-cloud-sdk
-        - slack
-        - alfred
-        - caffeine
-        - discord
-        - zoom
-    - symlinks:
-        - { src: "$HOME/repos/github.com/ikenox/dotfiles", dest: "$HOME/.dotfiles" }
-        - { src: "$HOME/.dotfiles/git/gitconfig", dest: "$HOME/.gitconfig" }
-        - { src: "$HOME/.dotfiles/karabiner", dest: "$HOME/.config/karabiner" }
-        - { src: "$HOME/.dotfiles/git/gitignore", dest: "$HOME/.gitignore" }
-        - { src: "$HOME/.dotfiles/vim/vimrc", dest: "$HOME/.vimrc" }
-        - { src: "$HOME/.dotfiles/vim/vimrc.keymap", dest: "$HOME/.vimrc.keymap" }
-        - { src: "$HOME/.dotfiles/zellij/config.kdl", dest: "$HOME/.config/zellij/config.kdl" }
-        - { src: "$HOME/.dotfiles/alacritty/alacritty.yml", dest: "$HOME/.config/alacritty/alacritty.yml" }
-        - { src: "$HOME/.dotfiles/peco/config.json", dest: "$HOME/.config/peco/config.json" }
-        - { src: "$HOME/.dotfiles/ag/agignore", dest: "$HOME/.agignore" }
-        - { src: "$HOME/.dotfiles/fish", dest: "$HOME/.config/fish" }
-        - { src: "$HOME/.dotfiles/intellij/ideavimrc", dest: "$HOME/.ideavimrc" }
-        - { src: "$HOME/.dotfiles/vscode/settings.json", dest: "$HOME/Application Support/Code/User/settings.json" }
-        - {
-            src: "$HOME/.dotfiles/vscode/keybindings.json",
-            dest: "$HOME/.Application Support/Code/User/keybindings.json",
-          }
-        - { src: "$HOME/.dotfiles/vscode/tasks.json", dest: "$HOME/Application Support/Code/User/tasks.json" }
-    - mas_apps:
-        - "409183694" # keynote
-        - "409203825" # Numbers
-        - "409201541" # Pages
-        - "539883307" # LINE
-        - "485812721" # TweetDeck
-        - "405399194" # Kindle
-    - osx_defaults:
-        - "defaults write com.apple.dock autohide -bool true"
-        - "defaults write com.apple.dock persistent-apps -array"
-        - "defaults write com.apple.dock tilesize -int 55"
-        # task 'defaults write com.apple.dock wvous-bl-corner -int 10'
-        # task 'defaults write com.apple.dock wvous-bl-modifier -int 0'
-        # todo killall if updated
-        # killall Dock'
-
-        - "defaults write com.apple.finder AppleShowAllFiles YES"
-        - 'defaults write com.apple.finder NewWindowTarget -string "PfDe"'
-        - 'defaults write com.apple.finder NewWindowTargetPath -string "file://${HOME}/"'
-        # todo killall if updated
-        # killall Finder'
-
-        - "defaults write com.apple.Safari IncludeInternalDebugMenu -bool true"
-
-        - 'defaults write com.apple.screencapture "disable-shadow" -bool yes'
-        - "defaults write com.apple.screencapture name screenshot"
-        - "defaults write com.apple.screencapture location ~/screenshots/"
-
-        # todo needs restart
-        - "defaults write -g com.apple.trackpad.scaling -int 3"
-        - "defaults write -g InitialKeyRepeat -int 15"
-        - "defaults write -g KeyRepeat -int 2"
-        - "defaults -currentHost write -globalDomain com.apple.mouse.tapBehavior -int 1"
-
-        - "defaults write -g AppleShowAllExtensions -bool true"
-        - "defaults write com.apple.desktopservices DSDontWriteNetworkStores -bool true"
-
-        # ctrl + / -> next window in the same app
-        # task 'defaults write com.apple.symbolichotkeys AppleSymbolicHotKeys -dict-add 27 "{ enabled = 1; value =                 { parameters = ( 121, 16, 262144); type = standard; }; }""'
-        #
-        # TouchBar layout
-        - 'defaults write com.apple.controlstrip MiniCustomized ''( "com.apple.system.brightness", "com.apple.system.volume", "com.apple.system.mute", "com.apple.system.sleep")'''
-        - "defaults write com.microsoft.VSCode ApplePressAndHoldEnabled -bool false"
-        - "defaults write com.microsoft.VSCodeInsiders ApplePressAndHoldEnabled -bool false"
-        - "defaults write -g ApplePressAndHoldEnabled -bool false"
-  vars_prompt:
-    - name: email
-      prompt: What is your name?
-      private: false
-    - name: email
-      prompt: What is your email?
-      private: false
