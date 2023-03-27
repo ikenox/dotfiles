@@ -27,6 +27,76 @@
       prompt: What is your email?
       private: false
   tasks:
+    - name: clone dotfiles repository
+      command: "git clone https://github.com/ikenox/dotfiles.git $HOME/repos/github.com/ikenox/dotfiles"
+      args:
+        creates: "$HOME/repos/github.com/ikenox/dotfiles"
+    - <<: *symlink
+      vars:
+        src: "$HOME/repos/github.com/ikenox/dotfiles"
+        dest: "$HOME/.dotfiles"
+    - name: generate ssh key
+      command: "ssh-keygen -t rsa -b 4096"
+      args:
+        creates: "$HOME/.ssh/id_rsa"
+    - name: git
+      block:
+        - <<: *brew_install
+          vars:
+            package: git
+        - <<: *symlink
+          vars:
+            src: "$HOME/.dotfiles/git/gitconfig"
+            dest: "$HOME/.gitconfig"
+        - <<: *symlink
+          vars:
+            src: "$HOME/.dotfiles/git/gitignore"
+            dest: "$HOME/.gitignore"
+        - name: gitconfig username
+          command: "git config -f ~/.gitconfig.local user.name '{{ name }}'"
+        - name: gitconfig email
+          command: "git config -f ~/.gitconfig.local user.email '{{ email }}'"
+    - name: brew
+      block:
+        - name: brew tap for im-select
+          command: "brew tap daipeihust/tap"
+        - name: install packages via homebrew
+          vars:
+            brew_packages:
+              - ghq
+              - peco
+              - fzf
+              - jq
+              - mas
+              - gnu-sed
+              - ag
+              - docker
+              - zellij
+              - im-select
+          with_items: "{{ brew_packages }}"
+          community.general.homebrew:
+            name: "{{ item }}"
+            state: present
+        - name: homebrew cask
+          block:
+            - name: install packages via homebrew cask
+              community.general.homebrew_cask:
+                name: "{{ item }}"
+                state: present
+              with_items: "{{ brew_cask_packages }}"
+              vars:
+                brew_cask_packages:
+                  - karabiner-elements
+                  - alacritty
+                  - google-japanese-ime
+                  - hyperswitch
+                  - jetbrains-toolbox
+                  - google-cloud-sdk
+                  - slack
+                  - alfred
+                  - caffeine
+                  - discord
+                  - zoom
     - name: shell
       block:
         - <<: *brew_install
@@ -43,74 +113,15 @@
           vars:
             src: "$HOME/.dotfiles/starship/starship.toml"
             dest: "$HOME/.config/starship.toml"
-    - name: install packages via homebrew
-      vars:
-        brew_packages:
-          - git
-          - ghq
-          - vim
-          - peco
-          - fzf
-          - jq
-          - mas
-          - gnu-sed
-          - ag
-          - docker
-          - zellij
-          - im-select
-      with_items: "{{ brew_packages }}"
-      community.general.homebrew:
-        name: "{{ item }}"
-        state: present
-    - name: brew tap for im-select
-      command: "brew tap daipeihust/tap"
-    - name: install packages via homebrew cask
-      with_items: "{{ brew_cask_packages }}"
-      vars:
-        brew_cask_packages:
-          - karabiner-elements
-          - alacritty
-          - google-japanese-ime
-          - hyperswitch
-          - jetbrains-toolbox
-          - visual-studio-code
-          - google-cloud-sdk
-          - slack
-          - alfred
-          - caffeine
-          - discord
-          - zoom
-      community.general.homebrew_cask:
-        name: "{{ item }}"
-        state: present
-    - name: generate ssh key
-      command: "ssh-keygen -t rsa -b 4096"
-      args:
-        creates: "$HOME/.ssh/id_rsa"
-    - name: clone dotfiles repository
-      command: "git clone https://github.com/ikenox/dotfiles.git $HOME/repos/github.com/ikenox/dotfiles"
-      args:
-        creates: "$HOME/repos/github.com/ikenox/dotfiles"
     - name: symlinks
       vars:
         symlinks:
-          - { src: "$HOME/repos/github.com/ikenox/dotfiles", dest: "$HOME/.dotfiles" }
-          - { src: "$HOME/.dotfiles/git/gitconfig", dest: "$HOME/.gitconfig" }
           - { src: "$HOME/.dotfiles/karabiner", dest: "$HOME/.config/karabiner" }
-          - { src: "$HOME/.dotfiles/git/gitignore", dest: "$HOME/.gitignore" }
-          - { src: "$HOME/.dotfiles/vim/vimrc", dest: "$HOME/.vimrc" }
-          - { src: "$HOME/.dotfiles/vim/vimrc.keymap", dest: "$HOME/.vimrc.keymap" }
           - { src: "$HOME/.dotfiles/zellij/config.kdl", dest: "$HOME/.config/zellij/config.kdl" }
           - { src: "$HOME/.dotfiles/alacritty/alacritty.yml", dest: "$HOME/.config/alacritty/alacritty.yml" }
           - { src: "$HOME/.dotfiles/peco/config.json", dest: "$HOME/.config/peco/config.json" }
           - { src: "$HOME/.dotfiles/ag/agignore", dest: "$HOME/.agignore" }
           - { src: "$HOME/.dotfiles/intellij/ideavimrc", dest: "$HOME/.ideavimrc" }
-          - { src: "$HOME/.dotfiles/vscode/settings.json", dest: "$HOME/Application Support/Code/User/settings.json" }
-          - {
-            src: "$HOME/.dotfiles/vscode/keybindings.json",
-            dest: "$HOME/.Application Support/Code/User/keybindings.json",
-          }
-          - { src: "$HOME/.dotfiles/vscode/tasks.json", dest: "$HOME/Application Support/Code/User/tasks.json" }
       block:
         - with_items: "{{ symlinks }}"
           file:
@@ -122,14 +133,43 @@
             src: "{{ item.src }}"
             dest: "{{ item.dest }}"
             state: link
-    - name: gitconfig username
-      command: "git config -f ~/.gitconfig.local user.name '{{ name }}'"
-    - name: gitconfig email
-      command: "git config -f ~/.gitconfig.local user.email '{{ email }}'"
-    - name: vim-plug
-      command: "curl -fLo ~/.vim/autoload/plug.vim --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim"
-      args:
-        creates: "$HOME/.vim/autoload/plug.vim"
+    - name: vscode
+      block:
+        - name: install vscode
+          community.general.homebrew_cask:
+            name: visual-studio-code
+            state: present
+        - <<: *symlink
+          vars:
+            src: "$HOME/.dotfiles/vscode/settings.json"
+            dest: "$HOME/Application Support/Code/User/settings.json"
+        - <<: *symlink
+          vars:
+            src: "$HOME/.dotfiles/vscode/keybindings.json"
+            dest: "$HOME/.Application Support/Code/User/keybindings.json"
+        - <<: *symlink
+          vars:
+            src: "$HOME/.dotfiles/vscode/tasks.json"
+            dest: "$HOME/Application Support/Code/User/tasks.json"
+        - name: install vscode extensions
+          ansible.builtin.shell: "cat ~/.dotfiles/vscode/extensions.txt | while read line; do code --install-extension $line; done"
+    - name: vim
+      block:
+        - <<: *brew_install
+          vars:
+            package: vim
+        - <<: *symlink
+          vars:
+            src: "$HOME/.dotfiles/vim/vimrc"
+            dest: "$HOME/.vimrc"
+        - <<: *symlink
+          vars:
+            src: "$HOME/.dotfiles/vim/vimrc.keymap"
+            dest: "$HOME/.vimrc.keymap"
+        - name: vim-plug
+          command: "curl -fLo ~/.vim/autoload/plug.vim --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim"
+          args:
+            creates: "$HOME/.vim/autoload/plug.vim"
     - name: install cargo
       block:
         - shell: "which cargo"
@@ -138,35 +178,31 @@
         - name: download cargo
           command: "curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh"
           when: which_cargo_result.rc != 0
-    - name: osx
-      block:
-        - name: "{{ item }}"
-          with_items: "{{ commands }}"
-          command: "{{ item }}"
-          vars:
-            commands:
-              - "defaults write com.apple.dock autohide -bool true"
-              - "defaults write com.apple.dock persistent-apps -array"
-              - "defaults write com.apple.dock tilesize -int 55"
-              - "defaults write com.apple.finder AppleShowAllFiles YES"
-              - 'defaults write com.apple.finder NewWindowTarget -string "PfDe"'
-              - 'defaults write com.apple.finder NewWindowTargetPath -string "file://${HOME}/"'
-              - "defaults write com.apple.Safari IncludeInternalDebugMenu -bool true"
-              - 'defaults write com.apple.screencapture "disable-shadow" -bool yes'
-              - "defaults write com.apple.screencapture name screenshot"
-              - "defaults write com.apple.screencapture location ~/screenshots/"
-              - "defaults write -g com.apple.trackpad.scaling -int 3"
-              - "defaults write -g InitialKeyRepeat -int 15"
-              - "defaults write -g KeyRepeat -int 2"
-              - "defaults -currentHost write -globalDomain com.apple.mouse.tapBehavior -int 1"
-              - "defaults write -g AppleShowAllExtensions -bool true"
-              - "defaults write com.apple.desktopservices DSDontWriteNetworkStores -bool true"
-              - 'defaults write com.apple.controlstrip MiniCustomized ''( "com.apple.system.brightness", "com.apple.system.volume", "com.apple.system.mute", "com.apple.system.sleep")'''
-              - "defaults write com.microsoft.VSCode ApplePressAndHoldEnabled -bool false"
-              - "defaults write com.microsoft.VSCodeInsiders ApplePressAndHoldEnabled -bool false"
-              - "defaults write -g ApplePressAndHoldEnabled -bool false"
-    - name: install vscode extensions
-      ansible.builtin.shell: "cat ~/.dotfiles/vscode/extensions.txt | while read line; do code --install-extension $line; done"
+    - name: "osx defaults"
+      with_items: "{{ commands }}"
+      command: "{{ item }}"
+      vars:
+        commands:
+          - "defaults write com.apple.dock autohide -bool true"
+          - "defaults write com.apple.dock persistent-apps -array"
+          - "defaults write com.apple.dock tilesize -int 55"
+          - "defaults write com.apple.finder AppleShowAllFiles YES"
+          - 'defaults write com.apple.finder NewWindowTarget -string "PfDe"'
+          - 'defaults write com.apple.finder NewWindowTargetPath -string "file://${HOME}/"'
+          - "defaults write com.apple.Safari IncludeInternalDebugMenu -bool true"
+          - 'defaults write com.apple.screencapture "disable-shadow" -bool yes'
+          - "defaults write com.apple.screencapture name screenshot"
+          - "defaults write com.apple.screencapture location ~/screenshots/"
+          - "defaults write -g com.apple.trackpad.scaling -int 3"
+          - "defaults write -g InitialKeyRepeat -int 15"
+          - "defaults write -g KeyRepeat -int 2"
+          - "defaults -currentHost write -globalDomain com.apple.mouse.tapBehavior -int 1"
+          - "defaults write -g AppleShowAllExtensions -bool true"
+          - "defaults write com.apple.desktopservices DSDontWriteNetworkStores -bool true"
+          - 'defaults write com.apple.controlstrip MiniCustomized ''( "com.apple.system.brightness", "com.apple.system.volume", "com.apple.system.mute", "com.apple.system.sleep")'''
+          - "defaults write com.microsoft.VSCode ApplePressAndHoldEnabled -bool false"
+          - "defaults write com.microsoft.VSCodeInsiders ApplePressAndHoldEnabled -bool false"
+          - "defaults write -g ApplePressAndHoldEnabled -bool false"
     - name: mas apps
       vars:
         mas_apps:
