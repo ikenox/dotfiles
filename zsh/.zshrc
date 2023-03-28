@@ -1,5 +1,9 @@
 export PATH=~/.cargo/bin:~/bin:~/go/bin:/opt/homebrew/bin:/usr/local/bin:/usr/bin:/bin:/sbin:/usr/sbin:/usr/local/Caskroom/google-cloud-sdk/latest/google-cloud-sdk/bin:$PATH
+eval "$(starship init zsh)"
 
+# ===================
+# settings
+# ===================
 setopt HIST_EXPIRE_DUPS_FIRST
 setopt HIST_IGNORE_DUPS
 setopt HIST_IGNORE_ALL_DUPS
@@ -20,7 +24,8 @@ select-word-style bash
 # disable closing window by Ctrl-D
 set -o ignoreeof
 
-eval "$(starship init zsh)"
+# case-insensitive completion for lowercase
+zstyle ':completion:*' matcher-list 'm:{[:lower:]}={[:upper:]}'
 
 # ===================
 # plugin management
@@ -31,11 +36,10 @@ eval "$(starship init zsh)"
         https://github.com/marlonrichert/zsh-snap.git ~/.znap/zsh-snap
 # Start Znap
 source ~/.znap/zsh-snap/znap.zsh
-# define plugins to be installed
+# plugins
 znap source zsh-users/zsh-autosuggestions
 znap source zsh-users/zsh-syntax-highlighting
 znap source jimeh/zsh-peco-history
-znap source marlonrichert/zsh-autocomplete
 
 # ====================
 # functions
