@@ -10,6 +10,9 @@ setopt HIST_IGNORE_ALL_DUPS
 setopt HIST_FIND_NO_DUPS
 setopt HIST_SAVE_NO_DUPS
 
+setopt inc_append_history
+setopt share_history
+
 bindkey -d
 bindkey '^G' peco-src
 
