@@ -30,6 +30,9 @@ set -o ignoreeof
 # case-insensitive completion for lowercase
 zstyle ':completion:*' matcher-list 'm:{[:lower:]}={[:upper:]}'
 
+# https://github.com/alacritty/alacritty/issues/2027#issuecomment-455907223
+export TERM=xterm-256color
+
 # ===================
 # plugin management
 # ===================
