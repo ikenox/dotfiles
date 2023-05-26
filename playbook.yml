@@ -73,6 +73,7 @@
               - docker
               - zellij
               - im-select
+              - expect
           with_items: "{{ brew_packages }}"
           community.general.homebrew:
             name: "{{ item }}"
