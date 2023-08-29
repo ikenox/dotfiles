@@ -3,3 +3,8 @@ dbaeumer.vscode-eslint
 esbenp.prettier-vscode
 matklad.rust-analyzer
 vscodevim.vim
+edhat.vscode-yaml
+circleci.circleci
+barrsan.reui
+graphql.vscode-graphql
+ms-azuretools.vscode-docker

@@ -2,30 +2,69 @@
   "editor.fontFamily": "Inter",
   "editor.fontSize": 13,
   "editor.lineHeight": 1.7,
-  "vim.autoSwitchInputMethod.enable": true,
-  "vim.autoSwitchInputMethod.defaultIM": "com.apple.keylayout.ABC",
-  "vim.autoSwitchInputMethod.obtainIMCmd": "/usr/bin/true",
-  "vim.autoSwitchInputMethod.switchIMCmd": "/opt/homebrew/bin/im-select {im}",
-  "editor.quickSuggestions": {
-    "comments": "on",
-    "strings": "on",
-    "other": "on"
-  },
+  "editor.cursorStyle": "line",
+  "editor.insertSpaces": false,
+  "editor.lineNumbers": "on",
+  "editor.wordSeparators": "/\\()\"':,.;<>~!@#$%^&*|+=[]{}`?-",
+  "editor.wordWrap": "off",
+  "editor.unicodeHighlight.nonBasicASCII": false,
   "editor.quickSuggestionsDelay": 10,
   "editor.suggestOnTriggerCharacters": true,
   "editor.suggestSelection": "recentlyUsed",
   "editor.suggest.showWords": false,
   "editor.parameterHints.enabled": true,
   "editor.smoothScrolling": true,
-  "window.openFoldersInNewWindow": "on",
   "editor.cursorSurroundingLines": 10,
+  "editor.tabSize": 2,
+  "editor.quickSuggestions": {
+    "comments": "on",
+    "strings": "on",
+    "other": "on"
+  },
+  "editor.formatOnSave": true,
+  "editor.minimap.enabled": false,
+  "editor.scrollBeyondLastLine": false,
+  "editor.bracketPairColorization.enabled": false,
+  "window.openFoldersInNewWindow": "on",
+  "search.useIgnoreFiles": true,
+  "files.trimTrailingWhitespace": true,
+  "scrollkey.line1": 1,
+  "scrollkey.line2": 15,
+  "scrollkey.line3": 30,
+  "git.openRepositoryInParentFolders": "never",
+  "files.autoSave": "onFocusChange",
+
+  "typescript.inlayHints.propertyDeclarationTypes.enabled": true,
+  "typescript.inlayHints.variableTypes.enabled": true,
+  "typescript.inlayHints.functionLikeReturnTypes.enabled": true,
+
+  "[jsonc]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+
+  // editor color
+  "workbench.colorTheme": "ReUI II",
+  "editor.inlayHints.fontSize": 11,
+  "workbench.colorCustomizations": {
+    // Overrides Theme Default Colors for InlayHints feature
+    "editorInlayHint.background": "#FFFFFF10",
+    "editorInlayHint.foreground": "#FFFFFF88"
+  },
+
+  // vim
+  "vim.autoSwitchInputMethod.enable": true,
+  "vim.autoSwitchInputMethod.defaultIM": "com.apple.keylayout.ABC",
+  "vim.autoSwitchInputMethod.obtainIMCmd": "/usr/bin/true",
+  "vim.autoSwitchInputMethod.switchIMCmd": "/opt/homebrew/bin/im-select {im}",
   "vim.easymotion": true,
   "vim.sneak": true,
   "vim.incsearch": true,
   "vim.useSystemClipboard": true,
   "vim.useCtrlKeys": true,
   "vim.hlsearch": true,
-  "editor.tabSize": 2,
+  "vim.leader": ",",
+  "vim.handleKeys": {},
+  "vim.visualstar": true,
   "vim.insertModeKeyBindings": [
     {
       "before": ["j", "f"],
@@ -159,8 +198,20 @@
       "commands": ["workbench.action.navigateBackInEditLocations"]
     },
     {
+      "before": ["g", "U"],
+      "commands": ["references-view.findReferences"]
+    },
+    {
+      "before": ["g", "I"],
+      "commands": ["references-view.findImplementations"]
+    },
+    {
       "before": [",", "g"],
       "commands": ["workbench.action.findInFiles"]
+    },
+    {
+      "before": [",", "r"],
+      "commands": ["workbench.action.showAllEditorsByMostRecentlyUsed"]
     },
     {
       "before": [",", "a"],
@@ -238,113 +289,5 @@
       "before": ["c", "c"],
       "commands": ["editor.action.commentLine"]
     }
-  ],
-  "vim.leader": ",",
-  "vim.handleKeys": {},
-  "files.associations": {
-    "*.tx": "html"
-  },
-  "search.useIgnoreFiles": true,
-  // カーソル上にあるワードを"*"で検索
-  "vim.visualstar": true,
-  "files.trimTrailingWhitespace": true,
-  //ミニマップをfalse
-  "editor.minimap.enabled": false,
-  //twigとvueでも有効にします
-  "emmet.includeLanguages": {
-    "twig": "html",
-    "vue-html": "html"
-  },
-  "editor.scrollBeyondLastLine": false,
-  "workbench.colorTheme": "Darcula",
-  "editor.tokenColorCustomizations": {
-    "[Darcula]": {
-      "textMateRules": [
-        {
-          "scope": "keyword",
-          "settings": {
-            "fontStyle": "bold"
-          }
-        },
-        {
-          "scope": "storage",
-          "settings": {
-            "fontStyle": "bold"
-          }
-        },
-        {
-          "scope": "constant.language",
-          "settings": {
-            "fontStyle": "bold"
-          }
-        },
-        {
-          "scope": "support.class.builtin",
-          "settings": {
-            "fontStyle": "bold"
-          }
-        },
-        {
-          "scope": "entity.name.type.lifetime.rust",
-          "settings": {
-            "foreground": "#1F888C"
-          }
-        },
-        {
-          "scope": "entity.name.type.primitive.rust",
-          "settings": {
-            "fontStyle": "bold",
-            "foreground": "#CC7832"
-          }
-        },
-        {
-          "scope": "entity.name.function.macro.rust",
-          "settings": {
-            "foreground": "#74b9ff"
-          }
-        },
-        {
-          "scope": "keyword.operator.question.rust",
-          "settings": {
-            "fontStyle": "bold",
-            "foreground": "#CC7832"
-          }
-        },
-        {
-          "scope": "entity.name.type.numeric.rust",
-          "settings": {
-            "foreground": "#CC7832"
-          }
-        },
-        {
-          "scope": "keyword.operator.borrow.and.rust",
-          "settings": {
-            "fontStyle": ""
-          }
-        },
-        {
-          "scope": "meta.attribute.rust",
-          "settings": {
-            "foreground": "#74b9ff"
-          }
-        }
-      ]
-    }
-  },
-  "scrollkey.line1": 1,
-  "scrollkey.line2": 15,
-  "scrollkey.line3": 30,
-  "editor.cursorStyle": "line",
-  "editor.insertSpaces": false,
-  "editor.lineNumbers": "on",
-  "editor.wordSeparators": "/\\()\"':,.;<>~!@#$%^&*|+=[]{}`?-",
-  "editor.wordWrap": "off",
-  "editor.unicodeHighlight.nonBasicASCII": false,
-  "git.openRepositoryInParentFolders": "never",
-  "files.autoSave": "onFocusChange",
-  "editor.formatOnSave": true,
-  "typescript.inlayHints.variableTypes.enabled": true,
-  "[jsonc]": {
-    "editor.defaultFormatter": "esbenp.prettier-vscode"
-  }
+  ]
 }

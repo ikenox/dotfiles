@@ -9,15 +9,71 @@
     "command": "workbench.action.previousEditor"
   },
   {
-    "key": "ctrl+w",
-    "command": "-workbench.action.switchWindow"
-  },
-  {
     "key": "ctrl+,",
     "command": "workbench.action.toggleSidebarVisibility"
   },
   {
     "key": "cmd+b",
     "command": "-workbench.action.toggleSidebarVisibility"
+  },
+  {
+    "key": "escape",
+    "command": "workbench.action.focusActiveEditorGroup",
+    "when": "!editorFocus"
+  },
+  {
+    "key": "cmd+n",
+    "command": "runCommands",
+    "args": {
+      "commands": [
+        "references-view.next",
+        "workbench.action.focusActiveEditorGroup"
+      ]
+    },
+    "when": "reference-list.hasResult && reference-list.isActive && !inReferenceSearchEditor && !referenceSearchVisible && !searchViewletVisible"
+  },
+  {
+    "key": "cmd+p",
+    "command": "runCommands",
+    "args": {
+      "commands": [
+        "references-view.prev",
+        "workbench.action.focusActiveEditorGroup"
+      ]
+    },
+    "when": "reference-list.hasResult && reference-list.isActive && !inReferenceSearchEditor && !referenceSearchVisible && !searchViewletVisible"
+  },
+  {
+    "key": "cmd+n",
+    "command": "search.action.focusNextSearchResult",
+    "when": "hasSearchResult && searchViewletVisible"
+  },
+  {
+    "key": "cmd+p",
+    "command": "search.action.focusPreviousSearchResult",
+    "when": "hasSearchResult && searchViewletVisible"
+  },
+  {
+    "key": "cmd+p",
+    "command": "-workbench.action.quickOpen"
+  },
+  {
+    "key": "-",
+    "command": "workbench.action.focusSideBar",
+    "when": "editorFocus && vim.mode == 'Normal' && !vim.waitingForKey"
+  },
+  {
+    "key": "ctrl+w",
+    "command": "-workbench.action.switchWindow"
+  },
+  {
+    "key": "ctrl+w",
+    "command": "search.action.clearSearchResults",
+    "when": "sideBarFocus && searchViewletVisible"
+  },
+  {
+    "key": "tab",
+    "command": "search.action.focusSearchList",
+    "when": "sideBarFocus && searchViewletVisible"
   }
 ]
