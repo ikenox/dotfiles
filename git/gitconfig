@@ -18,3 +18,5 @@
     vcs = git
 [diff]
 	algorithm = patience
+[init]
+	defaultBranch = main

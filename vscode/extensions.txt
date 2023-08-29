@@ -1,12 +1,5 @@
 74th.scrollkey
-barrsan.reui
-be5invis.toml
 dbaeumer.vscode-eslint
 esbenp.prettier-vscode
-Gruntfuggly.activitusbar
 matklad.rust-analyzer
-rokoroku.vscode-theme-darcula
-sainnhe.gruvbox-material
-trinm1709.dracula-theme-from-intellij
 vscodevim.vim
-yzhang.markdown-all-in-one

@@ -1,6 +1,10 @@
 export PATH=~/.cargo/bin:~/bin:~/go/bin:/opt/homebrew/bin:/usr/local/bin:/usr/bin:/bin:/sbin:/usr/sbin:/usr/local/Caskroom/google-cloud-sdk/latest/google-cloud-sdk/bin:$PATH
 eval "$(starship init zsh)"
 
+if [ -f ~/.zshrc.local ]; then
+  source ~/.zshrc.local
+fi
+
 # ===================
 # settings
 # ===================
@@ -63,4 +67,9 @@ zle -N peco-src
 # https://dev.classmethod.jp/articles/fzf-original-app-for-git-add/
 function ga() {
     unbuffer git status -s | fzf -m --ansi --preview="echo {} | awk '{print \$2}' | xargs git diff --color" | awk '{print $2}' | xargs git add
+}
+
+function activate-nvm(){
+   export NVM_DIR="$HOME/.config/nvm"
+  [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"
 }
