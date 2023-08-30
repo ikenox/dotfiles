@@ -43,7 +43,6 @@
   },
 
   // editor color
-  "workbench.colorTheme": "ReUI II",
   "editor.inlayHints.fontSize": 11,
   "workbench.colorCustomizations": {
     // Overrides Theme Default Colors for InlayHints feature
@@ -244,6 +243,13 @@
     {
       "before": ["r"],
       "commands": ["editor.action.rename"]
+    },
+    {
+      "before": ["z", "z"],
+      "commands": [
+        "workbench.files.action.focusFilesExplorer",
+        "workbench.action.focusActiveEditorGroup"
+      ]
     }
   ],
   "vim.visualModeKeyBindings": [

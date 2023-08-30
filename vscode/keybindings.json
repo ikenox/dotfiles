@@ -22,45 +22,8 @@
     "when": "!editorFocus"
   },
   {
-    "key": "cmd+n",
-    "command": "runCommands",
-    "args": {
-      "commands": [
-        "references-view.next",
-        "workbench.action.focusActiveEditorGroup"
-      ]
-    },
-    "when": "reference-list.hasResult && reference-list.isActive && !inReferenceSearchEditor && !referenceSearchVisible && !searchViewletVisible"
-  },
-  {
-    "key": "cmd+p",
-    "command": "runCommands",
-    "args": {
-      "commands": [
-        "references-view.prev",
-        "workbench.action.focusActiveEditorGroup"
-      ]
-    },
-    "when": "reference-list.hasResult && reference-list.isActive && !inReferenceSearchEditor && !referenceSearchVisible && !searchViewletVisible"
-  },
-  {
-    "key": "cmd+n",
-    "command": "search.action.focusNextSearchResult",
-    "when": "hasSearchResult && searchViewletVisible"
-  },
-  {
-    "key": "cmd+p",
-    "command": "search.action.focusPreviousSearchResult",
-    "when": "hasSearchResult && searchViewletVisible"
-  },
-  {
     "key": "cmd+p",
     "command": "-workbench.action.quickOpen"
-  },
-  {
-    "key": "-",
-    "command": "workbench.action.focusSideBar",
-    "when": "editorFocus && vim.mode == 'Normal' && !vim.waitingForKey"
   },
   {
     "key": "ctrl+w",
@@ -75,5 +38,42 @@
     "key": "tab",
     "command": "search.action.focusSearchList",
     "when": "sideBarFocus && searchViewletVisible"
+  },
+  {
+    "key": "enter",
+    "command": "workbench.action.focusActiveEditorGroup",
+    "when": "sideBarFocus && searchViewletVisible"
+  },
+  {
+    "key": "ctrl+g",
+    "command": "search.action.focusNextSearchResult",
+    "when": "hasSearchResult && searchViewletVisible && editorFocus && vim.mode == 'Normal' && !vim.waitingForKey"
+  },
+  {
+    "key": "ctrl+p",
+    "command": "search.action.focusPreviousSearchResult",
+    "when": "hasSearchResult && searchViewletVisible && editorFocus && vim.mode == 'Normal' && !vim.waitingForKey"
+  },
+  {
+    "key": "ctrl+g",
+    "command": "runCommands",
+    "args": {
+      "commands": [
+        "references-view.next",
+        "workbench.action.focusActiveEditorGroup"
+      ]
+    },
+    "when": "reference-list.hasResult && reference-list.isActive && !inReferenceSearchEditor && !referenceSearchVisible && !searchViewletVisible && vim.mode == 'Normal' && !vim.waitingForKey"
+  },
+  {
+    "key": "ctrl+p",
+    "command": "runCommands",
+    "args": {
+      "commands": [
+        "references-view.prev",
+        "workbench.action.focusActiveEditorGroup"
+      ]
+    },
+    "when": "reference-list.hasResult && reference-list.isActive && !inReferenceSearchEditor && !referenceSearchVisible && !searchViewletVisible && vim.mode == 'Normal' && !vim.waitingForKey"
   }
 ]
