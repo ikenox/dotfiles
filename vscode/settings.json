@@ -252,8 +252,7 @@
       "before": ["-"],
       "commands": [
         "workbench.files.action.focusFilesExplorer",
-        "workbench.action.focusActiveEditorGroup",
-        "workbench.action.closePanel"
+        "workbench.action.focusActiveEditorGroup"
       ]
     },
     {
