@@ -72,6 +72,10 @@
   ],
   "vim.normalModeKeyBindingsNonRecursive": [
     {
+      "before": ["_"],
+      "commands": ["workbench.action.focusPanel"]
+    },
+    {
       "before": ["u"],
       "commands": ["undo"]
     },
@@ -134,7 +138,7 @@
     },
     {
       "before": ["g", "d"],
-      "commands": ["editor.action.goToDeclaration"]
+      "commands": ["editor.action.revealDeclaration"]
     },
     {
       "before": ["g", "u"],
@@ -245,11 +249,16 @@
       "commands": ["editor.action.rename"]
     },
     {
-      "before": ["z", "z"],
+      "before": ["-"],
       "commands": [
         "workbench.files.action.focusFilesExplorer",
-        "workbench.action.focusActiveEditorGroup"
+        "workbench.action.focusActiveEditorGroup",
+        "workbench.action.closePanel"
       ]
+    },
+    {
+      "before": ["R"],
+      "commands": ["workbench.action.tasks.reRunTask"]
     }
   ],
   "vim.visualModeKeyBindings": [

@@ -1,6 +1,10 @@
 // Place your key bindings in this file to override the defaults
 [
   {
+    "key": "cmd+;",
+    "command": "workbench.action.togglePanel"
+  },
+  {
     "key": "cmd+ctrl+l",
     "command": "workbench.action.nextEditorInGroup"
   },
