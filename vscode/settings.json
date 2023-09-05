@@ -138,6 +138,10 @@
     },
     {
       "before": ["g", "d"],
+      "commands": ["editor.action.goToDeclaration"]
+    },
+    {
+      "before": ["g", "s"],
       "commands": ["editor.action.revealDeclaration"]
     },
     {
