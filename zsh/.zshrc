@@ -8,6 +8,12 @@ fi
 # ===================
 # settings
 # ===================
+
+# hisotry number in memory
+export HISTSIZE=1000
+# hisotry number in file
+export SAVEHIST=100000
+
 setopt HIST_EXPIRE_DUPS_FIRST
 setopt HIST_IGNORE_DUPS
 setopt HIST_IGNORE_ALL_DUPS
