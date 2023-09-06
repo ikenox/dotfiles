@@ -46,7 +46,12 @@
   {
     "key": "enter",
     "command": "workbench.action.focusActiveEditorGroup",
-    "when": "sideBarFocus && searchViewletVisible"
+    "when": "sideBarFocus && searchViewletVisible && inputFocus"
+  },
+  {
+    "key": "down",
+    "command": "search.focus.nextInputBox",
+    "when": "sideBarFocus && searchViewletVisible && inputFocus"
   },
   {
     "key": "ctrl+n",
