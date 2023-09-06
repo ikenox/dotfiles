@@ -8,7 +8,7 @@
   "editor.wordSeparators": "/\\()\"':,.;<>~!@#$%^&*|+=[]{}`?-",
   "editor.wordWrap": "off",
   "editor.unicodeHighlight.nonBasicASCII": false,
-  "editor.quickSuggestionsDelay": 10,
+  // "editor.quickSuggestionsDelay": 10,
   "editor.suggestOnTriggerCharacters": true,
   "editor.suggestSelection": "recentlyUsed",
   "editor.suggest.showWords": false,
