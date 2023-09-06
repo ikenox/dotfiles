@@ -7,3 +7,4 @@ edhat.vscode-yaml
 circleci.circleci
 graphql.vscode-graphql
 ms-azuretools.vscode-docker
+eamodio.gitlens
