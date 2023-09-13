@@ -193,9 +193,8 @@
       "commands": ["workbench.action.moveEditorToNextGroup"]
     },
     {
-      "before": ["s", "o"],
-      "commands": ["workbench.action.moveEditorToFirstGroup"],
-      "when": "activeEditorGroupLast"
+      "before": ["s", "O"],
+      "commands": ["workbench.action.moveEditorToPreviousGroup"]
     },
     {
       "before": ["Ctrl+o"],
