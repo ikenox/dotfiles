@@ -189,6 +189,15 @@
       "commands": ["workbench.action.focusAboveGroup"]
     },
     {
+      "before": ["s", "o"],
+      "commands": ["workbench.action.moveEditorToNextGroup"]
+    },
+    {
+      "before": ["s", "o"],
+      "commands": ["workbench.action.moveEditorToFirstGroup"],
+      "when": "activeEditorGroupLast"
+    },
+    {
       "before": ["Ctrl+o"],
       "commands": ["workbench.action.navigateEditorGroups"]
     },
