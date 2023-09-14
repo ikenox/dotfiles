@@ -12,7 +12,7 @@ export HOMEBREW_NO_AUTO_UPDATE=1
 # ===================
 
 # hisotry number in memory
-export HISTSIZE=1000
+export HISTSIZE=100000
 # hisotry number in file
 export SAVEHIST=100000
 
