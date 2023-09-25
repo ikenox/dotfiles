@@ -336,5 +336,6 @@
   "explorer.confirmDelete": false,
   "explorer.confirmDragAndDrop": false,
   "gitlens.codeLens.authors.enabled": false,
-  "gitlens.codeLens.recentChange.enabled": false
+  "gitlens.codeLens.recentChange.enabled": false,
+  "explorer.confirmDelete": false
 }

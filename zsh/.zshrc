@@ -5,6 +5,8 @@ if [ -f ~/.zshrc.local ]; then
   source ~/.zshrc.local
 fi
 
+export PATH=$HOME/.nodebrew/current/bin:$PATH
+
 export HOMEBREW_NO_AUTO_UPDATE=1
 
 # ===================
