@@ -14,9 +14,9 @@ export HOMEBREW_NO_AUTO_UPDATE=1
 # ===================
 
 # hisotry number in memory
-export HISTSIZE=100000
+export HISTSIZE=100000000000
 # hisotry number in file
-export SAVEHIST=100000
+export SAVEHIST=100000000000
 
 setopt HIST_EXPIRE_DUPS_FIRST
 setopt HIST_IGNORE_DUPS
@@ -82,6 +82,12 @@ function ga() {
 function activate-nvm(){
    export NVM_DIR="$HOME/.config/nvm"
   [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"
+}
+
+function docker-shell(){
+   local target=$1
+   docker build --target $target --progress=plain .
+   docker run --rm -it $(docker build  --target $target -q .) /bin/bash
 }
 
 # bun completions

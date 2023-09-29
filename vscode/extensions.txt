@@ -8,3 +8,4 @@ circleci.circleci
 graphql.vscode-graphql
 ms-azuretools.vscode-docker
 eamodio.gitlens
+wayou.vscode-todo-highlight

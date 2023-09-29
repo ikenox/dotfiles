@@ -38,6 +38,7 @@
   "scrollkey.line3": 30,
   "git.openRepositoryInParentFolders": "prompt",
   "files.autoSave": "onFocusChange",
+  "workbench.editor.closeOnFileDelete": true,
 
   "typescript.inlayHints.propertyDeclarationTypes.enabled": true,
   "typescript.inlayHints.variableTypes.enabled": true,
@@ -66,6 +67,7 @@
   },
 
   // vim
+  "vim.statusBarColorControl": false,
   "vim.autoSwitchInputMethod.enable": true,
   "vim.autoSwitchInputMethod.defaultIM": "com.apple.keylayout.ABC",
   "vim.autoSwitchInputMethod.obtainIMCmd": "/usr/bin/true",
@@ -337,5 +339,16 @@
   "explorer.confirmDragAndDrop": false,
   "gitlens.codeLens.authors.enabled": false,
   "gitlens.codeLens.recentChange.enabled": false,
-  "explorer.confirmDelete": false
+  "todohighlight.keywords": [
+    {
+      "text": "FIXME:",
+      "color": "#2DFE54",
+      "backgroundColor": "rgba(0,0,0,0)"
+    },
+    {
+      "text": "TODO:",
+      "color": "#2DFE54",
+      "backgroundColor": "rgba(0,0,0,0)"
+    }
+  ]
 }
