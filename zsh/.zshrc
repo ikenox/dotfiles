@@ -13,10 +13,12 @@ export HOMEBREW_NO_AUTO_UPDATE=1
 # settings
 # ===================
 
-# hisotry number in memory
-export HISTSIZE=100000000000
-# hisotry number in file
-export SAVEHIST=100000000000
+export HISTFILE="$HOME/.zsh_history"
+export HISTSIZE=500000
+export SAVEHIST=500000
+setopt appendhistory
+setopt INC_APPEND_HISTORY
+setopt SHARE_HISTORY
 
 setopt HIST_EXPIRE_DUPS_FIRST
 setopt HIST_IGNORE_DUPS
