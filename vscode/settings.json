@@ -350,5 +350,6 @@
       "color": "#2DFE54",
       "backgroundColor": "rgba(0,0,0,0)"
     }
-  ]
+  ],
+  "workbench.colorTheme": "Darcula"
 }

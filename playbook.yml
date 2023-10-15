@@ -147,7 +147,7 @@
         - <<: *symlink
           vars:
             src: "$HOME/.dotfiles/vscode/keybindings.json"
-            dest: "$HOME/.Application Support/Code/User/keybindings.json"
+            dest: "$HOME/Application Support/Code/User/keybindings.json"
         - <<: *symlink
           vars:
             src: "$HOME/.dotfiles/vscode/tasks.json"
