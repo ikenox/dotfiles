@@ -143,15 +143,15 @@
         - <<: *symlink
           vars:
             src: "$HOME/.dotfiles/vscode/settings.json"
-            dest: "$HOME/Application Support/Code/User/settings.json"
+            dest: "$HOME/Library/Application Support/Code/User/settings.json"
         - <<: *symlink
           vars:
             src: "$HOME/.dotfiles/vscode/keybindings.json"
-            dest: "$HOME/Application Support/Code/User/keybindings.json"
+            dest: "$HOME/Library/Application Support/Code/User/keybindings.json"
         - <<: *symlink
           vars:
             src: "$HOME/.dotfiles/vscode/tasks.json"
-            dest: "$HOME/Application Support/Code/User/tasks.json"
+            dest: "$HOME/Library/Application Support/Code/User/tasks.json"
         - name: install vscode extensions
           ansible.builtin.shell: "cat ~/.dotfiles/vscode/extensions.txt | while read line; do code --install-extension $line; done"
     - name: vim
