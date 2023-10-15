@@ -55,16 +55,6 @@
     "editorInlayHint.background": "#FFFFFF10",
     "editorInlayHint.foreground": "#FFFFFF88"
   },
-  "editor.tokenColorCustomizations": {
-    "textMateRules": [
-      {
-        "scope": "comment.line",
-        "settings": {
-          "foreground": "#FFFFFF5A"
-        }
-      }
-    ]
-  },
 
   // vim
   "vim.statusBarColorControl": false,
