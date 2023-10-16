@@ -71,14 +71,34 @@
   "editor.tokenColorCustomizations": {
     "textMateRules": [
       {
-        "scope": "support.type.property-name.json",
+        "scope": [
+          "support.type.property-name",
+          "variable.other.property",
+          "variable.other.object.property"
+        ],
         "settings": { "foreground": "#CC78D1" }
       },
       {
-        "scope": "constant.character.escape",
+        "scope": [
+          "support.type.primitive",
+          "keyword.operator.optional",
+          "constant.character.escape",
+          "support.type.builtin"
+        ],
         "settings": { "foreground": "#CC7832" }
+      },
+      {
+        "scope": ["entity.name.type", "punctuation.separator.comma"],
+        "settings": { "foreground": "#BBBBBB" }
       }
     ]
+  },
+  "editor.semanticHighlighting.enabled": true,
+  "editor.semanticTokenColorCustomizations": {
+    "enabled": true,
+    "rules": {
+      "typeParameter": "#287BDE"
+    }
   },
 
   // vim
