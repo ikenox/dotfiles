@@ -55,6 +55,31 @@
     "editorInlayHint.background": "#FFFFFF10",
     "editorInlayHint.foreground": "#FFFFFF88"
   },
+  "todohighlight.keywords": [
+    {
+      "text": "FIXME:",
+      "color": "#2DFE54",
+      "backgroundColor": "rgba(0,0,0,0)"
+    },
+    {
+      "text": "TODO:",
+      "color": "#2DFE54",
+      "backgroundColor": "rgba(0,0,0,0)"
+    }
+  ],
+  "workbench.colorTheme": "Darcula",
+  "editor.tokenColorCustomizations": {
+    "textMateRules": [
+      {
+        "scope": "support.type.property-name.json",
+        "settings": { "foreground": "#CC78D1" }
+      },
+      {
+        "scope": "constant.character.escape",
+        "settings": { "foreground": "#CC7832" }
+      }
+    ]
+  },
 
   // vim
   "vim.statusBarColorControl": false,
@@ -328,18 +353,5 @@
   "explorer.confirmDelete": false,
   "explorer.confirmDragAndDrop": false,
   "gitlens.codeLens.authors.enabled": false,
-  "gitlens.codeLens.recentChange.enabled": false,
-  "todohighlight.keywords": [
-    {
-      "text": "FIXME:",
-      "color": "#2DFE54",
-      "backgroundColor": "rgba(0,0,0,0)"
-    },
-    {
-      "text": "TODO:",
-      "color": "#2DFE54",
-      "backgroundColor": "rgba(0,0,0,0)"
-    }
-  ],
-  "workbench.colorTheme": "Darcula"
+  "gitlens.codeLens.recentChange.enabled": false
 }
