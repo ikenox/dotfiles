@@ -19,6 +19,7 @@ nnoremap ,e :action SearchEverywhere<CR>
 nnoremap ,s :action FileStructurePopup<CR>
 nnoremap ,g :action FindInPath<CR>
 nnoremap ,r :action RecentFiles<CR>
+nnoremap ,f :action GotoFile<CR>
 nnoremap ,c :action CallHierarchy<CR>
 nnoremap ,b :action ShowBookmarks<CR>
 

@@ -32,6 +32,7 @@
   "window.openFoldersInNewWindow": "on",
   "workbench.tree.indent": 16,
   "search.useIgnoreFiles": true,
+  "search.collapseResults": "alwaysExpand",
   "files.trimTrailingWhitespace": true,
   "scrollkey.line1": 1,
   "scrollkey.line2": 15,
