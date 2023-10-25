@@ -72,7 +72,7 @@
         "workbench.action.focusActiveEditorGroup"
       ]
     },
-    "when": "reference-list.hasResult && reference-list.isActive && !inReferenceSearchEditor && !referenceSearchVisible && !searchViewletVisible && vim.mode == 'Normal' && !vim.waitingForKey"
+    "when": "reference-list.hasResult && !inReferenceSearchEditor && !referenceSearchVisible && !searchViewletVisible && vim.mode == 'Normal' && !vim.waitingForKey"
   },
   {
     "key": "ctrl+p",
@@ -83,6 +83,6 @@
         "workbench.action.focusActiveEditorGroup"
       ]
     },
-    "when": "reference-list.hasResult && reference-list.isActive && !inReferenceSearchEditor && !referenceSearchVisible && !searchViewletVisible && vim.mode == 'Normal' && !vim.waitingForKey"
+    "when": "reference-list.hasResult && !inReferenceSearchEditor && !referenceSearchVisible && !searchViewletVisible && vim.mode == 'Normal' && !vim.waitingForKey"
   }
 ]
