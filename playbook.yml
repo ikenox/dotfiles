@@ -20,7 +20,7 @@
                 dest: "{{ dest }}"
                 state: link
   vars_prompt:
-    - name: name
+    - name: username
       prompt: What is your name?
       default: naoto.ikeno
       private: false
@@ -30,7 +30,7 @@
       private: false
   tasks:
     - name: create variables file
-      shell: "echo 'name: {{ name }}\nemail: {{ email }}' > $HOME/repos/github.com/ikenox/dotfiles/vars.yml"
+      shell: "echo 'username: {{ username }}\nemail: {{ email }}' > $HOME/repos/github.com/ikenox/dotfiles/vars.yml"
     - <<: *symlink
       vars:
         src: "$HOME/repos/github.com/ikenox/dotfiles"
@@ -53,7 +53,7 @@
             src: "$HOME/.dotfiles/git/gitignore"
             dest: "$HOME/.gitignore"
         - name: gitconfig username
-          command: "git config -f ~/.gitconfig.local user.name '{{ name }}'"
+          command: "git config -f ~/.gitconfig.local user.name '{{ username }}'"
         - name: gitconfig email
           command: "git config -f ~/.gitconfig.local user.email '{{ email }}'"
     - name: brew
