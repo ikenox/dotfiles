@@ -2,7 +2,11 @@
 
 DOTFILES_DIR=$HOME/repos/github.com/ikenox/dotfiles
 
-python3 -m pip install --user ansible
+if ! command -v ansible-playbook &> /dev/null
+then
+  python3 -m pip install --user ansible
+fi
+
 if [ ! -e "$DOTFILES_DIR" ]; then
   git clone https://github.com/ikenox/dotfiles.git $DOTFILES_DIR
 else
