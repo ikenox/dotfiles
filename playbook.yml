@@ -27,10 +27,8 @@
       prompt: What is your email?
       private: false
   tasks:
-    - name: clone dotfiles repository
-      command: "git clone https://github.com/ikenox/dotfiles.git $HOME/repos/github.com/ikenox/dotfiles"
-      args:
-        creates: "$HOME/repos/github.com/ikenox/dotfiles"
+    - name: create variables file
+      command: "echo 'name: {{ name }}\nemail: {{ email }}' > $HOME/repos/github.com/ikenox/dotfiles/vars.yml"
     - <<: *symlink
       vars:
         src: "$HOME/repos/github.com/ikenox/dotfiles"

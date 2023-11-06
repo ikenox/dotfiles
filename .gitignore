@@ -12,5 +12,7 @@ zshrc.myenv
 
 .idea/*
 
+vars.yml
+
 !.gitkeep
 

@@ -1,11 +1,10 @@
 # dotfiles
 
 ```sh
-python3 -m pip install --user ansible
-# first time
+# install
 /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/ikenox/dotfiles/master/install.sh)"
-# second time or later
-ansible-playbook playbook.yml --extra-vars 'name=naoto.ikeno email=ikenox@gmail.com'
+# execute
+./execute.yml
 ```
 
 ## TODO list of tasks to be automated
