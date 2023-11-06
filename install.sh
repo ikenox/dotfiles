@@ -4,7 +4,7 @@ DOTFILES_DIR=$HOME/repos/github.com/ikenox/dotfiles
 
 if ! command -v ansible-playbook &> /dev/null
 then
-  python3 -m pip install --user ansible
+   /usr/local/bin/python3 -m pip install --user ansible
 fi
 
 if [ ! -e "$DOTFILES_DIR" ]; then
@@ -14,5 +14,5 @@ else
 fi
 
 if [ ! -e "$DOTFILES_DIR/vars.yml" ]; then
-  echo '' > $HOME/repos/github.com/ikenox/dotfiles/vars.yml
+  echo 'this-is: dummy-value' > $HOME/repos/github.com/ikenox/dotfiles/vars.yml
 fi
