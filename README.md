@@ -1,10 +1,15 @@
 # dotfiles
 
+## Install
+
 ```sh
-# install
 /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/ikenox/dotfiles/master/install.sh)"
-# execute
-./execute.yml
+```
+
+## Execute
+
+```sh
+./execute.sh
 ```
 
 ## TODO list of tasks to be automated

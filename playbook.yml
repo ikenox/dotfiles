@@ -22,13 +22,15 @@
   vars_prompt:
     - name: name
       prompt: What is your name?
+      default: naoto.ikeno
       private: false
     - name: email
       prompt: What is your email?
+      default: ikenox@gmail.com
       private: false
   tasks:
     - name: create variables file
-      command: "echo 'name: {{ name }}\nemail: {{ email }}' > $HOME/repos/github.com/ikenox/dotfiles/vars.yml"
+      shell: "echo 'name: {{ name }}\nemail: {{ email }}' > $HOME/repos/github.com/ikenox/dotfiles/vars.yml"
     - <<: *symlink
       vars:
         src: "$HOME/repos/github.com/ikenox/dotfiles"
