@@ -28,6 +28,7 @@
   "editor.minimap.enabled": false,
   "editor.scrollBeyondLastLine": false,
   "editor.bracketPairColorization.enabled": false,
+  "editor.rulers": [80],
   "git.autoRepositoryDetection": true,
   "window.openFoldersInNewWindow": "on",
   "workbench.tree.indent": 16,
@@ -54,7 +55,8 @@
   "workbench.colorCustomizations": {
     // Overrides Theme Default Colors for InlayHints feature
     "editorInlayHint.background": "#FFFFFF10",
-    "editorInlayHint.foreground": "#FFFFFF88"
+    "editorInlayHint.foreground": "#FFFFFF88",
+    "editorRuler.foreground": "#FFFFFF10"
   },
   "todohighlight.keywords": [
     {

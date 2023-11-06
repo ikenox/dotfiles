@@ -204,6 +204,7 @@
           - "defaults write com.microsoft.VSCode ApplePressAndHoldEnabled -bool false"
           - "defaults write com.microsoft.VSCodeInsiders ApplePressAndHoldEnabled -bool false"
           - "defaults write -g ApplePressAndHoldEnabled -bool false"
+          - "defaults write com.lwouis.alt-tab-macos windowDisplayDelay 100"
     - name: mas apps
       vars:
         mas_apps:
