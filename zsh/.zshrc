@@ -1,4 +1,5 @@
 export PATH=~/.cargo/bin:~/bin:~/go/bin:/opt/homebrew/bin:/usr/local/bin:/usr/bin:/bin:/sbin:/usr/sbin:/usr/local/Caskroom/google-cloud-sdk/latest/google-cloud-sdk/bin:$PATH
+export PATH=$(python3 -m site --user-base)"/bin":$PATH
 eval "$(starship init zsh)"
 
 if [ -f ~/.zshrc.local ]; then
@@ -90,6 +91,16 @@ function docker-shell(){
    local target=$1
    docker build --target $target --progress=plain .
    docker run --rm -it $(docker build  --target $target -q .) /bin/bash
+}
+
+gg() {
+  git branch -a --sort=-authordate |
+    grep -v -e '->' -e '*' |
+    perl -pe 's/^\h+//g' |
+    perl -pe 's#^remotes/origin/##' |
+    perl -nle 'print if !$c{$_}++' |
+    peco |
+    xargs git checkout
 }
 
 # bun completions
