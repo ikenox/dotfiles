@@ -119,7 +119,7 @@
         symlinks:
           - { src: "$HOME/.dotfiles/karabiner", dest: "$HOME/.config/karabiner" }
           - { src: "$HOME/.dotfiles/zellij/config.kdl", dest: "$HOME/.config/zellij/config.kdl" }
-          - { src: "$HOME/.dotfiles/alacritty/alacritty.yml", dest: "$HOME/.config/alacritty/alacritty.yml" }
+          - { src: "$HOME/.dotfiles/alacritty/alacritty.toml", dest: "$HOME/.config/alacritty/alacritty.toml" }
           - { src: "$HOME/.dotfiles/peco/config.json", dest: "$HOME/.config/peco/config.json" }
           - { src: "$HOME/.dotfiles/ag/agignore", dest: "$HOME/.agignore" }
           - { src: "$HOME/.dotfiles/intellij/ideavimrc", dest: "$HOME/.ideavimrc" }
