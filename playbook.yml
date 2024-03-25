@@ -74,6 +74,7 @@
               - zellij
               - im-select
               - expect
+              - blueutil
           with_items: "{{ brew_packages }}"
           community.general.homebrew:
             name: "{{ item }}"

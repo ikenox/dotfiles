@@ -103,6 +103,17 @@ gg() {
     xargs git checkout
 }
 
+function connect_to_bluetooth_device(){
+  local DEVICE_ID="$1"
+  local res=$(blueutil --is-connected $DEVICE_ID)
+  echo "pairing..."
+  blueutil --pair $DEVICE_ID
+  echo "paired. connecting..."
+  sleep 1
+  blueutil --connect $DEVICE_ID
+  echo "connected"
+}
+
 # bun completions
 [ -s "/Users/ikenonaoto/.bun/_bun" ] && source "/Users/ikenonaoto/.bun/_bun"
 
