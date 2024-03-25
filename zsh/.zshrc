@@ -103,12 +103,15 @@ gg() {
     xargs git checkout
 }
 
+# https://gist.github.com/imekachi/c0c76f12f0abc3709d7162c7d3d6f2e3
 function connect_to_bluetooth_device(){
   local DEVICE_ID="$1"
-  local res=$(blueutil --is-connected $DEVICE_ID)
+  echo "unpairing..."
+  blueutil --unpair $DEVICE_ID
   echo "pairing..."
+  sleep 1
   blueutil --pair $DEVICE_ID
-  echo "paired. connecting..."
+  echo "connecting..."
   sleep 1
   blueutil --connect $DEVICE_ID
   echo "connected"
