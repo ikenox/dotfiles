@@ -16,6 +16,7 @@
 	default = simple
 [ghq]
     vcs = git
+    root = ~/repos
 [diff]
 	algorithm = patience
 [init]

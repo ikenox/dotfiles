@@ -36,26 +36,9 @@
         src: "$HOME/repos/github.com/ikenox/dotfiles"
         dest: "$HOME/.dotfiles"
     - name: generate ssh key
-      command: "ssh-keygen -t rsa -b 4096"
+      command: "ssh-keygen -q -C '{{ email }}' -t ed25519 -f ~/.ssh/id_ed25519 -N ''"
       args:
-        creates: "$HOME/.ssh/id_rsa"
-    - name: git
-      block:
-        - <<: *brew_install
-          vars:
-            package: git
-        - <<: *symlink
-          vars:
-            src: "$HOME/.dotfiles/git/gitconfig"
-            dest: "$HOME/.gitconfig"
-        - <<: *symlink
-          vars:
-            src: "$HOME/.dotfiles/git/gitignore"
-            dest: "$HOME/.gitignore"
-        - name: gitconfig username
-          command: "git config -f ~/.gitconfig.local user.name '{{ username }}'"
-        - name: gitconfig email
-          command: "git config -f ~/.gitconfig.local user.email '{{ email }}'"
+        creates: "$HOME/.ssh/id_ed25519"
     - name: brew
       block:
         - name: brew tap for im-select
@@ -74,7 +57,6 @@
               - zellij
               - im-select
               - expect
-              - blueutil
           with_items: "{{ brew_packages }}"
           community.general.homebrew:
             name: "{{ item }}"
@@ -86,6 +68,7 @@
                 name: "{{ item }}"
                 state: present
               with_items: "{{ brew_cask_packages }}"
+              ignore_errors: true
               vars:
                 brew_cask_packages:
                   - karabiner-elements
@@ -94,11 +77,26 @@
                   - alt-tab
                   - jetbrains-toolbox
                   - google-cloud-sdk
-                  - slack
                   - alfred
                   - caffeine
                   - discord
-                  - zoom
+    - name: git
+      block:
+        - <<: *brew_install
+          vars:
+            package: git
+        - <<: *symlink
+          vars:
+            src: "$HOME/.dotfiles/git/gitconfig"
+            dest: "$HOME/.gitconfig"
+        - <<: *symlink
+          vars:
+            src: "$HOME/.dotfiles/git/gitignore"
+            dest: "$HOME/.gitignore"
+        - name: gitconfig username
+          command: "git config -f ~/.gitconfig.local user.name '{{ username }}'"
+        - name: gitconfig email
+          command: "git config -f ~/.gitconfig.local user.email '{{ email }}'"
     - name: shell
       block:
         - <<: *brew_install
@@ -178,7 +176,7 @@
           ignore_errors: true
           register: which_cargo_result
         - name: download cargo
-          command: "curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh"
+          command: "curl -sSf https://sh.rustup.rs | sh -s -- -y"
           when: which_cargo_result.rc != 0
     - name: "osx defaults"
       with_items: "{{ commands }}"
@@ -216,7 +214,5 @@
           - "409203825" # Numbers
           - "409201541" # Pages
           - "539883307" # LINE
-          - "485812721" # TweetDeck
-          - "405399194" # Kindle
       with_items: "{{ mas_apps }}"
       ansible.builtin.shell: "mas list | grep '^{{ item }} ' || mas install {{ item }}"
