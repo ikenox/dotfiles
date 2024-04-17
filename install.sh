@@ -17,3 +17,9 @@ fi
 if [ ! -e "$DOTFILES_DIR/vars.yml" ]; then
   echo 'this-is: dummy-value' > $HOME/repos/github.com/ikenox/dotfiles/vars.yml
 fi
+
+if ! command -v brew &> /dev/null
+then
+  /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+  eval "$(/opt/homebrew/bin/brew shellenv)"
+fi
