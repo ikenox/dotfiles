@@ -4,7 +4,7 @@ DOTFILES_DIR=$HOME/repos/github.com/ikenox/dotfiles
 
 if ! command -v ansible-playbook &> /dev/null
 then
-   /usr/local/bin/python3 -m pip install --user ansible
+   /usr/bin/python3 -m pip install --user ansible
 fi
 
 if [ ! -e "$DOTFILES_DIR" ]; then
