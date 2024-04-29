@@ -80,6 +80,7 @@
                   - alfred
                   - caffeine
                   - discord
+                  - docker
     - name: git
       block:
         - <<: *brew_install
