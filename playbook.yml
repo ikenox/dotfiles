@@ -123,6 +123,7 @@
           - { src: "$HOME/.dotfiles/peco/config.json", dest: "$HOME/.config/peco/config.json" }
           - { src: "$HOME/.dotfiles/ag/agignore", dest: "$HOME/.agignore" }
           - { src: "$HOME/.dotfiles/intellij/ideavimrc", dest: "$HOME/.ideavimrc" }
+          - { src: "$HOME/.dotfiles/jupyter/lab/user-settings", dest: "$HOME/.jupyter/lab/user-settings" }
       block:
         - with_items: "{{ symlinks }}"
           file:

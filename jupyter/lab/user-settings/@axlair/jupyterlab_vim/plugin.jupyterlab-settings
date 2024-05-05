@@ -1,0 +1,19 @@
+{
+    "enabled": true,
+    "enabledInEditors": true,
+    "extraKeybindings": [
+        {
+            "command": "H",
+            "keys": "^"
+        },
+        {
+            "command": "L",
+            "keys": "$"
+        },
+        {
+            "command": "jf",
+            "keys": "<Esc>",
+            "context": "insert"
+        }
+    ]
+}
