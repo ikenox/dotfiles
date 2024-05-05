@@ -11,6 +11,16 @@
             "keys": "$"
         },
         {
+            "command": "H",
+            "keys": "^",
+            "context": "visual"
+        },
+        {
+            "command": "L",
+            "keys": "$",
+            "context": "visual"
+        },
+        {
             "command": "jf",
             "keys": "<Esc>",
             "context": "insert"
