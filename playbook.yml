@@ -39,6 +39,27 @@
       command: "ssh-keygen -q -C '{{ email }}' -t ed25519 -f ~/.ssh/id_ed25519 -N ''"
       args:
         creates: "$HOME/.ssh/id_ed25519"
+    - name: symlinks
+      vars:
+        symlinks:
+          - { src: "$HOME/.dotfiles/karabiner", dest: "$HOME/.config/karabiner" }
+          - { src: "$HOME/.dotfiles/zellij/config.kdl", dest: "$HOME/.config/zellij/config.kdl" }
+          - { src: "$HOME/.dotfiles/alacritty/alacritty.toml", dest: "$HOME/.config/alacritty/alacritty.toml" }
+          - { src: "$HOME/.dotfiles/peco/config.json", dest: "$HOME/.config/peco/config.json" }
+          - { src: "$HOME/.dotfiles/ag/agignore", dest: "$HOME/.agignore" }
+          - { src: "$HOME/.dotfiles/intellij/ideavimrc", dest: "$HOME/.ideavimrc" }
+          - { src: "$HOME/.dotfiles/jupyter/lab/user-settings", dest: "$HOME/.jupyter/lab/user-settings" }
+      block:
+        - with_items: "{{ symlinks }}"
+          file:
+            path: "{{ item.dest | dirname }}"
+            state: directory
+        - name: symlinks
+          with_items: "{{ symlinks }}"
+          file:
+            src: "{{ item.src }}"
+            dest: "{{ item.dest }}"
+            state: link
     - name: brew
       block:
         - name: brew tap for im-select
@@ -114,27 +135,6 @@
           vars:
             src: "$HOME/.dotfiles/starship/starship.toml"
             dest: "$HOME/.config/starship.toml"
-    - name: symlinks
-      vars:
-        symlinks:
-          - { src: "$HOME/.dotfiles/karabiner", dest: "$HOME/.config/karabiner" }
-          - { src: "$HOME/.dotfiles/zellij/config.kdl", dest: "$HOME/.config/zellij/config.kdl" }
-          - { src: "$HOME/.dotfiles/alacritty/alacritty.toml", dest: "$HOME/.config/alacritty/alacritty.toml" }
-          - { src: "$HOME/.dotfiles/peco/config.json", dest: "$HOME/.config/peco/config.json" }
-          - { src: "$HOME/.dotfiles/ag/agignore", dest: "$HOME/.agignore" }
-          - { src: "$HOME/.dotfiles/intellij/ideavimrc", dest: "$HOME/.ideavimrc" }
-          - { src: "$HOME/.dotfiles/jupyter/lab/user-settings", dest: "$HOME/.jupyter/lab/user-settings" }
-      block:
-        - with_items: "{{ symlinks }}"
-          file:
-            path: "{{ item.dest | dirname }}"
-            state: directory
-        - name: symlinks
-          with_items: "{{ symlinks }}"
-          file:
-            src: "{{ item.src }}"
-            dest: "{{ item.dest }}"
-            state: link
     - name: vscode
       block:
         - name: install vscode
