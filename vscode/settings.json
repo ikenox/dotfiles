@@ -70,7 +70,6 @@
       "backgroundColor": "rgba(0,0,0,0)"
     }
   ],
-  "workbench.colorTheme": "Darcula",
   "editor.tokenColorCustomizations": {
     "textMateRules": [
       {
@@ -376,5 +375,6 @@
   "explorer.confirmDelete": false,
   "explorer.confirmDragAndDrop": false,
   "gitlens.codeLens.authors.enabled": false,
-  "gitlens.codeLens.recentChange.enabled": false
+  "gitlens.codeLens.recentChange.enabled": false,
+  "workbench.colorTheme": "Dark Low Contrast"
 }
