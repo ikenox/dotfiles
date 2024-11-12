@@ -8,8 +8,6 @@ fi
 
 export PATH=$HOME/.nodebrew/current/bin:$PATH
 
-export HOMEBREW_NO_AUTO_UPDATE=1
-
 # ===================
 # settings
 # ===================
