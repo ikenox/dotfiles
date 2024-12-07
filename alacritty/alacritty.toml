@@ -757,9 +757,11 @@ chars = "\u001B|"
 key = "Backslash"
 mods = "Alt|Shift"
 
-[shell]
+[terminal.shell]
 args = ["-c", "-l", "zellij attach --index 0 --create"]
 program = "/bin/bash"
 
 [window]
 decorations = "full"
+
+[terminal]
