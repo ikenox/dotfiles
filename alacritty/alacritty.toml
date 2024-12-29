@@ -759,7 +759,7 @@ mods = "Alt|Shift"
 
 [shell]
 args = ["-c", "-l", "zellij attach --index 0 --create"]
-program = "/bin/bash"
+program = "/bin/zsh"
 
 [window]
 decorations = "full"
