@@ -5,13 +5,13 @@
 ### Initial execution from remote
 
 ```sh
-/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/ikenox/dotfiles/master/provision.sh)"
+/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/ikenox/dotfiles/master/init-and-provision.sh)"
 ```
 
 ### Re-execution on local
 
 ```sh
-./provision.sh
+./init-and-provision.sh
 ```
 
 ## Manual tasks
