@@ -2,6 +2,9 @@ macos-titlebar-style = tabs
 macos-titlebar-proxy-icon = hidden
 font-family = JetBrains Mono
 font-family = Hiragino Kaku Gothic ProN
+font-feature = -dlig
+font-feature = -calt
+font-feature = -liga
 window-padding-x = 10
 window-padding-y = 10
 cursor-style = block
@@ -10,9 +13,7 @@ window-padding-color = extend
 theme = arthur
 shell-integration-features = no-cursor
 
-keybind = ctrl+t=new_tab
-keybind = ctrl+n=next_tab
-keybind = ctrl+p=previous_tab
-keybind = ctrl+v=new_split:right
-keybind = ctrl+s=new_split:down
-keybind = ctrl+o=goto_split:next
+keybind = super+n=next_tab
+keybind = super+p=previous_tab
+keybind = super+s=new_split:down
+keybind = super+o=goto_split:next
