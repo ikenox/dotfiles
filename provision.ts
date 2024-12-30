@@ -15,10 +15,10 @@ const execute = async () => {
   const tasks: Task[] = [
     shell("brew bundle --no-upgrade"),
     // configure git
-    shell(`git config -f ~/.gitconfig.local user.name '${vars.username}'`),
-    shell(`git config -f ~/.gitconfig.local user.email '${vars.email}'`),
+    gitConfig("user.name", vars.username, { configFile: "~/.gitconfig.local" }),
+    gitConfig("user.email", vars.email, { configFile: "~/.gitconfig.local" }),
     // ssh-key
-    shell(`ssh-keygen -q -C '{{ email }}' -t ed25519 -f ~/.ssh/id_ed25519 -N ''`, {
+    shell(`ssh-keygen -q -C '${vars.email}' -t ed25519 -f ~/.ssh/id_ed25519 -N ''`, {
       condition: ifNotExists(`${home}/.ssh/id_ed25519`),
     }),
     // symlinks
@@ -95,6 +95,19 @@ type Task = {
 type Condition = () => Promise<boolean> | boolean;
 type Execute = () => Promise<void> | void;
 
+const gitConfig = (key: string, value: string, options: {
+  configFile: string;
+}): Task => {
+  return {
+    name: `set gitconfig ${key}=${value}`,
+    condition: async () => {
+      const { stdout } = await getResult(`git config get -f ${options.configFile} ${key}`);
+      return stdout !== value;
+    },
+    execute: run(`git config -f ${options.configFile} ${key} ${value}`),
+  };
+};
+
 const symlink = (src: string, dest: string): Task => {
   return {
     name: `symlink ${src} -> ${dest}`,
@@ -103,31 +116,45 @@ const symlink = (src: string, dest: string): Task => {
   };
 };
 
-const shell = (shellCommand: string, options?: {
+const shell = (cmd: string, options?: {
   condition?: Condition;
 }): Task => {
   return {
-    name: `shell \`${shellCommand}\``,
+    name: `shell \`${cmd}\``,
     condition: options?.condition ?? (() => true),
-    execute: async () => {
-      const command = new Deno.Command("bash", {
-        args: ["-c", shellCommand],
-        stdout: "piped",
-        stderr: "piped",
-      });
-      const process = command.spawn();
-
-      await Promise.all([
-        process.stdout.pipeTo(Deno.stdout.writable, { preventClose: true }),
-        process.stderr.pipeTo(Deno.stderr.writable, { preventClose: true }),
-      ]);
-      const { code, success } = await process.status;
-      if (!success) {
-        console.error("ERROR: script exited with code:", code);
-        Deno.exit(1);
-      }
-    },
+    execute: run(cmd),
   };
+};
+
+const run = (cmd: string): Execute => async () => {
+  const command = new Deno.Command("bash", {
+    args: ["-c", cmd],
+    stdout: "piped",
+    stderr: "piped",
+  });
+  const process = command.spawn();
+
+  await Promise.all([
+    process.stdout.pipeTo(Deno.stdout.writable, { preventClose: true }),
+    process.stderr.pipeTo(Deno.stderr.writable, { preventClose: true }),
+  ]);
+  const { code, success } = await process.status;
+  if (!success) {
+    console.error("ERROR: script exited with code:", code);
+    Deno.exit(1);
+  }
+};
+
+const getResult = async (cmd: string) => {
+  const command = new Deno.Command("bash", {
+    args: ["-c", cmd],
+    stdout: "piped",
+    stderr: "piped",
+  });
+  const process = command.spawn();
+  const output = await process.output();
+  const { code, success } = await process.status;
+  return { success, code, stdout: new TextDecoder().decode(output.stdout).trimEnd() };
 };
 
 const ifNotExists = (
