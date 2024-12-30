@@ -49,18 +49,18 @@ const execute = async () => {
     shell('defaults write com.apple.screencapture "disable-shadow" -bool yes'),
     shell("defaults write com.apple.screencapture name screenshot"),
     shell("defaults write com.apple.screencapture location ~/screenshots/"),
-    shell("defaults write -g com.apple.trackpad.scaling -int 3"),
-    shell("defaults write -g InitialKeyRepeat -int 15"),
-    shell("defaults write -g KeyRepeat -int 2"),
-    shell("defaults -currentHost write -globalDomain com.apple.mouse.tapBehavior -int 1"),
-    shell("defaults write -g AppleShowAllExtensions -bool true"),
     shell("defaults write com.apple.desktopservices DSDontWriteNetworkStores -bool true"),
     shell(`defaults write com.apple.controlstrip MiniCustomized '( "com.apple.system.brightness", "com.apple.system.volume", "com.apple.system.mute", "com.apple.system.sleep")'`),
     shell("defaults write com.microsoft.VSCode ApplePressAndHoldEnabled -bool false"),
     shell("defaults write com.microsoft.VSCodeInsiders ApplePressAndHoldEnabled -bool false"),
-    shell("defaults write -g ApplePressAndHoldEnabled -bool false"),
     shell("defaults write com.lwouis.alt-tab-macos windowDisplayDelay 100"),
     shell("defaults write com.apple.inputmethod.Kotoeri JIMPrefCharacterForYenKey 1"), // ことえり > ￥キーで入力する文字: \
+    shell("defaults write -g com.apple.mouse.tapBehavior -int 1"),
+    shell("defaults write -g com.apple.trackpad.scaling -int 3"),
+    shell("defaults write -g InitialKeyRepeat -int 15"),
+    shell("defaults write -g KeyRepeat -int 2"),
+    shell("defaults write -g AppleShowAllExtensions -bool true"),
+    shell("defaults write -g ApplePressAndHoldEnabled -bool false"),
     shell("defaults write -g NSAutomaticSpellingCorrectionEnabled 1"), // 環境設定 > キーボード > ユーザ辞書 > 英字入力中にスペルを自動変換
     shell('defaults write -g AppleInterfaceStyle -string "Dark"'), // Dark mode
     // vscode extension
