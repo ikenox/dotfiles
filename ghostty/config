@@ -13,9 +13,7 @@ window-padding-color = extend
 theme = arthur
 shell-integration-features = no-cursor
 
-keybind = ctrl+t=new_tab
-keybind = ctrl+n=next_tab
-keybind = ctrl+p=previous_tab
-keybind = ctrl+v=new_split:right
-keybind = ctrl+s=new_split:down
-keybind = ctrl+o=goto_split:next
+keybind = super+n=next_tab
+keybind = super+p=previous_tab
+keybind = super+s=new_split:down
+keybind = super+o=goto_split:next
