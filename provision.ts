@@ -64,7 +64,7 @@ const execute = async () => {
     shell("defaults write -g NSAutomaticSpellingCorrectionEnabled 1"), // 環境設定 > キーボード > ユーザ辞書 > 英字入力中にスペルを自動変換
     shell('defaults write -g AppleInterfaceStyle -string "Dark"'), // Dark mode
     // vscode extension
-    shell("cat ~/.dotfiles/vscode/extensions.txt | while read line; do code --install-extension $line; done"),
+    ...(await vscodeExtensions(`${home}/.dotfiles/vscode/extensions.txt`)),
     // install vim-plug
     shell("curl -fLo ~/.vim/autoload/plug.vim --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim", {
       condition: ifNotExists(`${home}/.vim/autoload/plug.vim`),
@@ -94,6 +94,17 @@ type Task = {
 };
 type Condition = () => Promise<boolean> | boolean;
 type Execute = () => Promise<void> | void;
+
+const vscodeExtensions = async (extensionsTxtFile: string): Promise<Task[]> => {
+  const extensions = await Deno.readTextFile(extensionsTxtFile).then((s) => s.split("\n").map((s) => s.trim()).filter((s) => s));
+  const installedExtensions = new Set(await getResult("code --list-extensions").then((r) => r.stdout.split("\n")));
+
+  return extensions.map((ext) => ({
+    name: `install vscode extension ${ext}`,
+    condition: () => !installedExtensions.has(ext),
+    execute: run(`code --install-extension ${ext}`),
+  }));
+};
 
 const gitConfig = (key: string, value: string, options: {
   configFile: string;
