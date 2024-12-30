@@ -15,10 +15,10 @@ const execute = async () => {
   const tasks: Task[] = [
     shell("brew bundle --no-upgrade"),
     // configure git
-    shell(`git config -f ~/.gitconfig.local user.name '${vars.username}'`),
-    shell(`git config -f ~/.gitconfig.local user.email '${vars.email}'`),
+    gitConfig("user.name", vars.username, { configFile: "~/.gitconfig.local" }),
+    gitConfig("user.email", vars.email, { configFile: "~/.gitconfig.local" }),
     // ssh-key
-    shell(`ssh-keygen -q -C '{{ email }}' -t ed25519 -f ~/.ssh/id_ed25519 -N ''`, {
+    shell(`ssh-keygen -q -C '${vars.email}' -t ed25519 -f ~/.ssh/id_ed25519 -N ''`, {
       condition: ifNotExists(`${home}/.ssh/id_ed25519`),
     }),
     // symlinks
@@ -49,22 +49,22 @@ const execute = async () => {
     shell('defaults write com.apple.screencapture "disable-shadow" -bool yes'),
     shell("defaults write com.apple.screencapture name screenshot"),
     shell("defaults write com.apple.screencapture location ~/screenshots/"),
-    shell("defaults write -g com.apple.trackpad.scaling -int 3"),
-    shell("defaults write -g InitialKeyRepeat -int 15"),
-    shell("defaults write -g KeyRepeat -int 2"),
-    shell("defaults -currentHost write -globalDomain com.apple.mouse.tapBehavior -int 1"),
-    shell("defaults write -g AppleShowAllExtensions -bool true"),
     shell("defaults write com.apple.desktopservices DSDontWriteNetworkStores -bool true"),
     shell(`defaults write com.apple.controlstrip MiniCustomized '( "com.apple.system.brightness", "com.apple.system.volume", "com.apple.system.mute", "com.apple.system.sleep")'`),
     shell("defaults write com.microsoft.VSCode ApplePressAndHoldEnabled -bool false"),
     shell("defaults write com.microsoft.VSCodeInsiders ApplePressAndHoldEnabled -bool false"),
-    shell("defaults write -g ApplePressAndHoldEnabled -bool false"),
     shell("defaults write com.lwouis.alt-tab-macos windowDisplayDelay 100"),
     shell("defaults write com.apple.inputmethod.Kotoeri JIMPrefCharacterForYenKey 1"), // ことえり > ￥キーで入力する文字: \
+    shell("defaults write -g com.apple.mouse.tapBehavior -int 1"),
+    shell("defaults write -g com.apple.trackpad.scaling -int 3"),
+    shell("defaults write -g InitialKeyRepeat -int 15"),
+    shell("defaults write -g KeyRepeat -int 2"),
+    shell("defaults write -g AppleShowAllExtensions -bool true"),
+    shell("defaults write -g ApplePressAndHoldEnabled -bool false"),
     shell("defaults write -g NSAutomaticSpellingCorrectionEnabled 1"), // 環境設定 > キーボード > ユーザ辞書 > 英字入力中にスペルを自動変換
     shell('defaults write -g AppleInterfaceStyle -string "Dark"'), // Dark mode
     // vscode extension
-    shell("cat ~/.dotfiles/vscode/extensions.txt | while read line; do code --install-extension $line; done"),
+    ...(await vscodeExtensions(`${home}/.dotfiles/vscode/extensions.txt`)),
     // install vim-plug
     shell("curl -fLo ~/.vim/autoload/plug.vim --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim", {
       condition: ifNotExists(`${home}/.vim/autoload/plug.vim`),
@@ -95,6 +95,30 @@ type Task = {
 type Condition = () => Promise<boolean> | boolean;
 type Execute = () => Promise<void> | void;
 
+const vscodeExtensions = async (extensionsTxtFile: string): Promise<Task[]> => {
+  const extensions = await Deno.readTextFile(extensionsTxtFile).then((s) => s.split("\n").map((s) => s.trim()).filter((s) => s));
+  const installedExtensions = new Set(await getResult("code --list-extensions").then((r) => r.stdout.split("\n")));
+
+  return extensions.map((ext) => ({
+    name: `install vscode extension ${ext}`,
+    condition: () => !installedExtensions.has(ext),
+    execute: run(`code --install-extension ${ext}`),
+  }));
+};
+
+const gitConfig = (key: string, value: string, options: {
+  configFile: string;
+}): Task => {
+  return {
+    name: `set gitconfig ${key}=${value}`,
+    condition: async () => {
+      const { stdout } = await getResult(`git config get -f ${options.configFile} ${key}`);
+      return stdout !== value;
+    },
+    execute: run(`git config -f ${options.configFile} ${key} ${value}`),
+  };
+};
+
 const symlink = (src: string, dest: string): Task => {
   return {
     name: `symlink ${src} -> ${dest}`,
@@ -103,31 +127,45 @@ const symlink = (src: string, dest: string): Task => {
   };
 };
 
-const shell = (shellCommand: string, options?: {
+const shell = (cmd: string, options?: {
   condition?: Condition;
 }): Task => {
   return {
-    name: `shell \`${shellCommand}\``,
+    name: `shell \`${cmd}\``,
     condition: options?.condition ?? (() => true),
-    execute: async () => {
-      const command = new Deno.Command("bash", {
-        args: ["-c", shellCommand],
-        stdout: "piped",
-        stderr: "piped",
-      });
-      const process = command.spawn();
-
-      await Promise.all([
-        process.stdout.pipeTo(Deno.stdout.writable, { preventClose: true }),
-        process.stderr.pipeTo(Deno.stderr.writable, { preventClose: true }),
-      ]);
-      const { code, success } = await process.status;
-      if (!success) {
-        console.error("ERROR: script exited with code:", code);
-        Deno.exit(1);
-      }
-    },
+    execute: run(cmd),
   };
+};
+
+const run = (cmd: string): Execute => async () => {
+  const command = new Deno.Command("bash", {
+    args: ["-c", cmd],
+    stdout: "piped",
+    stderr: "piped",
+  });
+  const process = command.spawn();
+
+  await Promise.all([
+    process.stdout.pipeTo(Deno.stdout.writable, { preventClose: true }),
+    process.stderr.pipeTo(Deno.stderr.writable, { preventClose: true }),
+  ]);
+  const { code, success } = await process.status;
+  if (!success) {
+    console.error("ERROR: script exited with code:", code);
+    Deno.exit(1);
+  }
+};
+
+const getResult = async (cmd: string) => {
+  const command = new Deno.Command("bash", {
+    args: ["-c", cmd],
+    stdout: "piped",
+    stderr: "piped",
+  });
+  const process = command.spawn();
+  const output = await process.output();
+  const { code, success } = await process.status;
+  return { success, code, stdout: new TextDecoder().decode(output.stdout).trimEnd() };
 };
 
 const ifNotExists = (

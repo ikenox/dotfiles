@@ -1,9 +1,9 @@
 74th.scrollkey
 dbaeumer.vscode-eslint
 esbenp.prettier-vscode
-matklad.rust-analyzer
+rust-lang.rust-analyzer
 vscodevim.vim
-edhat.vscode-yaml
+redhat.vscode-yaml
 circleci.circleci
 graphql.vscode-graphql
 ms-azuretools.vscode-docker
