@@ -12,6 +12,8 @@ cursor-style-blink = false
 window-padding-color = extend
 theme = arthur
 shell-integration-features = no-cursor
+cursor-opacity = 0.5
+cursor-invert-fg-bg = true
 
 keybind = super+n=next_tab
 keybind = super+p=previous_tab
