@@ -15,7 +15,7 @@ shell-integration-features = no-cursor
 cursor-opacity = 0.5
 cursor-invert-fg-bg = true
 
+keybind = super+shift+d=new_split:down
 keybind = super+n=next_tab
 keybind = super+p=previous_tab
-keybind = super+s=new_split:down
 keybind = super+o=goto_split:next
