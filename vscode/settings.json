@@ -39,7 +39,6 @@
   "scrollkey.line2": 15,
   "scrollkey.line3": 30,
   "git.openRepositoryInParentFolders": "prompt",
-  "files.autoSave": "onFocusChange",
   "workbench.editor.closeOnFileDelete": true,
 
   "typescript.inlayHints.propertyDeclarationTypes.enabled": true,
@@ -376,5 +375,11 @@
   "explorer.confirmDragAndDrop": false,
   "gitlens.codeLens.authors.enabled": false,
   "gitlens.codeLens.recentChange.enabled": false,
-  "workbench.colorTheme": "Dark Low Contrast"
+  "workbench.colorTheme": "Dark Low Contrast",
+  "prisma.showPrismaDataPlatformNotification": false,
+  "[javascript]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  "files.autoSave": "onFocusChange",
+  "database-client.autoSync": true
 }

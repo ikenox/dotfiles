@@ -10,9 +10,7 @@ vim/plugged/
 
 zshrc.myenv
 
-.idea/*
-
-vars.yml
+vars.json
 
 !.gitkeep
 
