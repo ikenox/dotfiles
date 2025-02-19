@@ -64,7 +64,7 @@ const execute = async () => {
     shell("defaults write -g NSAutomaticSpellingCorrectionEnabled 1"), // 環境設定 > キーボード > ユーザ辞書 > 英字入力中にスペルを自動変換
     shell('defaults write -g AppleInterfaceStyle -string "Dark"'), // Dark mode
     // vscode extension
-    ...(await vscodeExtensions(`${home}/.dotfiles/vscode/extensions.txt`)),
+    ...(await vscodeExtensions(`${home}/repos/github.com/ikenox/dotfiles/vscode/extensions.txt`)),
     // install vim-plug
     shell("curl -fLo ~/.vim/autoload/plug.vim --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim", {
       condition: ifNotExists(`${home}/.vim/autoload/plug.vim`),
