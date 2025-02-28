@@ -1,6 +1,7 @@
 macos-titlebar-style = tabs
 macos-titlebar-proxy-icon = hidden
 font-family = JetBrains Mono
+font-family = Menlo
 font-family = Hiragino Kaku Gothic ProN
 font-feature = -dlig
 font-feature = -calt
