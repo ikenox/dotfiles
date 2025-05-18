@@ -375,11 +375,12 @@
   "explorer.confirmDragAndDrop": false,
   "gitlens.codeLens.authors.enabled": false,
   "gitlens.codeLens.recentChange.enabled": false,
-  "workbench.colorTheme": "Dark Low Contrast",
   "prisma.showPrismaDataPlatformNotification": false,
   "[javascript]": {
     "editor.defaultFormatter": "esbenp.prettier-vscode"
   },
   "files.autoSave": "onFocusChange",
-  "database-client.autoSync": true
+  "database-client.autoSync": true,
+  "github.copilot.chat.localeOverride": "ja",
+  "github.copilot.chat.edits.codesearch.enabled": true
 }
