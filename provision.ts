@@ -33,8 +33,8 @@ const execute = async () => {
     symlink(`${home}/.dotfiles/git/gitignore`, `${home}/.gitignore`),
     symlink(`${home}/.dotfiles/zsh/.zshrc`, `${home}/.zshrc`),
     symlink(`${home}/.dotfiles/starship/starship.toml`, `${home}/.config/starship.toml`),
-    symlink(`${home}/.dotfiles/vim/.vimrc`, `${home}/.vimrc`),
-    symlink(`${home}/.dotfiles/vim/.vimrc.keymap`, `${home}/.vimrc.keymap`),
+    symlink(`${home}/.dotfiles/vim/vimrc`, `${home}/.vimrc`),
+    symlink(`${home}/.dotfiles/vim/vimrc.keymap`, `${home}/.vimrc.keymap`),
     symlink(`${home}/.dotfiles/vscode/settings.json`, `${home}/Library/Application Support/Code/User/settings.json`),
     symlink(`${home}/.dotfiles/vscode/keybindings.json`, `${home}/Library/Application Support/Code/User/keybindings.json`),
     symlink(`${home}/.dotfiles/vscode/tasks.json`, `${home}/Library/Application Support/Code/User/tasks.json`),
@@ -64,7 +64,7 @@ const execute = async () => {
     shell("defaults write -g NSAutomaticSpellingCorrectionEnabled 1"), // 環境設定 > キーボード > ユーザ辞書 > 英字入力中にスペルを自動変換
     shell('defaults write -g AppleInterfaceStyle -string "Dark"'), // Dark mode
     // vscode extension
-    ...(await vscodeExtensions(`${home}/.dotfiles/vscode/extensions.txt`)),
+    ...(await vscodeExtensions(`${home}/repos/github.com/ikenox/dotfiles/vscode/extensions.txt`)),
     // install vim-plug
     shell("curl -fLo ~/.vim/autoload/plug.vim --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim", {
       condition: ifNotExists(`${home}/.vim/autoload/plug.vim`),

@@ -382,5 +382,8 @@
   "files.autoSave": "onFocusChange",
   "database-client.autoSync": true,
   "github.copilot.chat.localeOverride": "ja",
-  "github.copilot.chat.edits.codesearch.enabled": true
+  "github.copilot.chat.edits.codesearch.enabled": true,
+  "[typescript]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  }
 }

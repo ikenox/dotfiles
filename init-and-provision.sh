@@ -7,10 +7,10 @@ else
   echo "skip: git repository already exists to $DOTFILES_DIR"
 fi
 
+PATH=$PATH:/opt/homebrew/bin
 if ! command -v brew &> /dev/null
 then
   /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
-  eval "$(/opt/homebrew/bin/brew shellenv)"
 else
   echo "skip: homebrew is already installed"
 fi
