@@ -35,6 +35,7 @@ const execute = async () => {
     symlink(`${home}/.dotfiles/starship/starship.toml`, `${home}/.config/starship.toml`),
     symlink(`${home}/.dotfiles/vim/vimrc`, `${home}/.vimrc`),
     symlink(`${home}/.dotfiles/vim/vimrc.keymap`, `${home}/.vimrc.keymap`),
+    symlink(`${home}/.dotfiles/claude/settings.json`, `${home}/.claude/settings.json`),
     symlink(`${home}/.dotfiles/vscode/settings.json`, `${home}/Library/Application Support/Code/User/settings.json`),
     symlink(`${home}/.dotfiles/vscode/keybindings.json`, `${home}/Library/Application Support/Code/User/keybindings.json`),
     symlink(`${home}/.dotfiles/vscode/tasks.json`, `${home}/Library/Application Support/Code/User/tasks.json`),
