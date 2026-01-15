@@ -20,6 +20,8 @@
 - Settings > Keyboard > Shortcut
     - uncheck "select next input source by ^ + space".
     - disable spotlight from keyboard shortcut
+- Settings > Keyboard > 辞書
+    - Disable "スマート引用符とスマートダッシュを使用"
 - Set default browser to Chrome
 - Setup Touch ID
 - Remove all icons from dock
