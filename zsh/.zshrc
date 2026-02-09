@@ -1,4 +1,4 @@
-export PATH=~/.cargo/bin:~/bin:~/.local/bin:~/go/bin:/usr/bin:/opt/homebrew/bin:/usr/local/bin:/bin:/sbin:/usr/sbin:/usr/local/Caskroom/google-cloud-sdk/latest/google-cloud-sdk/bin:$PATH
+export PATH=~/.cargo/bin:~/bin:~/.local/bin:~/go/bin:/opt/homebrew/bin:/usr/bin:/usr/local/bin:/bin:/sbin:/usr/sbin:/usr/local/Caskroom/google-cloud-sdk/latest/google-cloud-sdk/bin:$PATH
 export PATH=$(python3 -m site --user-base)"/bin":$PATH
 eval "$(starship init zsh)"
 
@@ -135,4 +135,14 @@ esac
 if command -v mise &> /dev/null; then
   eval "$(mise activate zsh --shims)"
 fi
-alias claude="/Users/ikenonaoto/.claude/local/claude"
+
+function new-git-worktree() {
+    git worktree add ".git/my-worktrees/$1" -b "$1"
+    cd ".git/my-worktrees/$1"
+}
+
+function ww() {
+    local dir
+    dir=$(git worktree list | peco | awk '{print $1}')
+    [ -n "$dir" ] && cd "$dir"
+}
