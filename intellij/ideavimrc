@@ -44,6 +44,7 @@ nnoremap gp :action PreviousOccurence<CR>
 
 " code editing
 nnoremap r :action RenameElement<CR>
+nnoremap M :action Move<CR>
 nnoremap q :action ShowIntentionActions<CR>
 nnoremap == :action ReformatCode<CR>
 vnoremap == :action ReformatCode<CR>

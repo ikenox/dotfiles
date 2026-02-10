@@ -1,12 +1,10 @@
 export PATH=~/.cargo/bin:~/bin:~/.local/bin:~/go/bin:/opt/homebrew/bin:/usr/bin:/usr/local/bin:/bin:/sbin:/usr/sbin:/usr/local/Caskroom/google-cloud-sdk/latest/google-cloud-sdk/bin:$PATH
-export PATH=$(python3 -m site --user-base)"/bin":$PATH
+
 eval "$(starship init zsh)"
 
 if [ -f ~/.zshrc.local ]; then
   source ~/.zshrc.local
 fi
-
-export PATH=$HOME/.nodebrew/current/bin:$PATH
 
 # ===================
 # settings
@@ -80,11 +78,6 @@ function ga() {
     unbuffer git status -s | fzf -m --ansi --preview="echo {} | awk '{print \$2}' | xargs git diff --color" | awk '{print $2}' | xargs git add
 }
 
-function activate-nvm(){
-   export NVM_DIR="$HOME/.config/nvm"
-  [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"
-}
-
 function docker-shell(){
    local target=$1
    docker build --target $target --progress=plain .
@@ -101,27 +94,6 @@ gg() {
     xargs git checkout
 }
 
-# https://gist.github.com/imekachi/c0c76f12f0abc3709d7162c7d3d6f2e3
-function connect_to_bluetooth_device(){
-  local DEVICE_ID="$1"
-  echo "unpairing..."
-  blueutil --unpair $DEVICE_ID
-  echo "pairing..."
-  sleep 1
-  blueutil --pair $DEVICE_ID
-  echo "connecting..."
-  sleep 1
-  blueutil --connect $DEVICE_ID
-  echo "connected"
-}
-
-# bun completions
-[ -s "/Users/ikenonaoto/.bun/_bun" ] && source "/Users/ikenonaoto/.bun/_bun"
-
-# bun
-export BUN_INSTALL="$HOME/.bun"
-export PATH="$BUN_INSTALL/bin:$PATH"
-
 # pnpm
 export PNPM_HOME="$HOME/.local/share/pnpm"
 case ":$PATH:" in
@@ -129,11 +101,10 @@ case ":$PATH:" in
   *) export PATH="$PNPM_HOME:$PATH" ;;
 esac
 # pnpm end
-[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
 
 # mise
 if command -v mise &> /dev/null; then
-  eval "$(mise activate zsh --shims)"
+  eval "$(mise activate zsh)"
 fi
 
 function new-git-worktree() {

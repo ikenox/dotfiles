@@ -385,5 +385,10 @@
   "github.copilot.chat.edits.codesearch.enabled": true,
   "[typescript]": {
     "editor.defaultFormatter": "esbenp.prettier-vscode"
-  }
+  },
+  "github.copilot.chat.localeOverride": "ja",
+  "[typescriptreact]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  "go.testEnvFile": "${workspaceFolder}/env/.env.test"
 }
