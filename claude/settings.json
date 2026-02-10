@@ -1,17 +1,25 @@
 {
   "permissions": {
     "allow": [
+      "Edit",
+      "Write",
+
+      "Bash(git show:*)",
+      "Bash(git add:*)",
+      "Bash(git commit:*)",
+      "Bash(git push:*)",
+      "Bash(git diff:*)",
+      "Bash(git log:*)",
+      "Bash(git checkout:*)",
+      "Bash(git worktree:*)",
+
+      "Bash(gh pr create)",
+
       "Bash(grep:*)",
       "Bash(rg:*)",
       "Bash(mkdir:*)",
       "Bash(ls:*)",
-      "WebFetch(domain:github.com)",
-      "Bash(npm info:*)",
-      "Bash(find:*)",
-      "Bash(cat:*)",
-      "Bash(sed:*)",
-      "Bash(mv:*)",
-      "Bash(rm:*)"
+      "WebSearch"
     ],
     "deny": []
   }
