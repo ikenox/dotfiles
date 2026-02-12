@@ -1,2 +1,3 @@
 .DS_Store
 .ikenox
+.claude/*/*.local.*

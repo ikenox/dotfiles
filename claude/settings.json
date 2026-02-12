@@ -18,8 +18,7 @@
       "Bash(grep:*)",
       "Bash(rg:*)",
       "Bash(mkdir:*)",
-      "Bash(ls:*)",
-      "WebSearch"
+      "Bash(ls:*)"
     ],
     "deny": []
   }
