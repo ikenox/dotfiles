@@ -18,7 +18,8 @@
       "Bash(grep:*)",
       "Bash(rg:*)",
       "Bash(mkdir:*)",
-      "Bash(ls:*)"
+      "Bash(ls:*)",
+      "Bash(pnpx difit)"
     ],
     "deny": []
   }

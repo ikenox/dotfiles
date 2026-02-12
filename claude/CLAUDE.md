@@ -4,3 +4,7 @@
 
 1. Create a branch and worktree: fetch the latest remote default branch (`git fetch origin $DEFAULT_BRANCH`), then create a new branch from `origin/$DEFAULT_BRANCH` and a git worktree for it under `.worktree/`, and `cd` into it so that all subsequent commands run inside the worktree. Choose an appropriate branch/worktree name based on the task description. Do not commit directly to main. Unless the user explicitly instructs otherwise (e.g., working on an existing branch, or skipping worktree creation), always follow this step.
 2. Make your changes in the worktree.
+
+## Git
+
+- Do not use the `-C` option with git commands. Always `cd` into the target directory instead.
