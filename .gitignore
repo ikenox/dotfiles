@@ -1,4 +1,3 @@
-# Atom
 .DS_Store
 
 karabiner/*
@@ -13,4 +12,3 @@ zshrc.myenv
 vars.json
 
 !.gitkeep
-

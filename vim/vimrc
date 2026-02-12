@@ -73,20 +73,6 @@ let g:lexima_no_default_rules = 1
 autocmd BufReadPost * call lexima#set_default_rules()
 autocmd BufReadPost * call lexima#insmode#map_hook('before', '<CR>', '')
 
-" ========== neocomplcache ==========
-Plug 'Shougo/neocomplcache'
-" Disable AutoComplPop.
-let g:acp_enableAtStartup = 0
-" Use neocomplcache.
-let g:neocomplcache_enable_at_startup = 1
-" Use smartcase.
-let g:neocomplcache_enable_smart_case = 1
-" Set minimum syntax keyword length.
-let g:neocomplcache_min_syntax_length = 2
-let g:neocomplcache_lock_buffer_name_pattern = '\*ku\*'
-let g:neocomplcache_enable_auto_select = 1
-inoremap <expr><CR>  pumvisible() ? neocomplcache#close_popup() : "<CR>"
-
 "
 Plug 'Shougo/vimproc.vim', {'do' : 'make'}
 
