@@ -1,5 +1,5 @@
-import {execute} from "./executor.js";
-import {gitConfig, ifNotExists, shell, symlink, vscodeExtensions} from "./task.js";
+import {execute} from "./executor.ts";
+import {gitConfig, ifNotExists, shell, symlink, vscodeExtensions} from "./task.ts";
 
 void execute(['username', 'email'], ({username, email}, {home}) => [
   shell("brew bundle --no-upgrade"),

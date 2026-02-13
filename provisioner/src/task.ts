@@ -1,7 +1,7 @@
 import {spawn} from "node:child_process";
 import {mkdir, readFile, symlink as fsSymlink} from "node:fs/promises";
 import {dirname} from "node:path";
-import {exists} from "./util.js";
+import {exists} from "./util.ts";
 
 export type Task = {
   name: string;

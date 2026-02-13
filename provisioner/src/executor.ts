@@ -2,8 +2,8 @@ import {mkdir, readFile, writeFile} from "node:fs/promises";
 import {dirname} from "node:path";
 import {parseArgs} from "node:util";
 import {createInterface} from "node:readline/promises";
-import {Task} from "./task.js";
-import {exists} from "./util.js";
+import type {Task} from "./task.ts";
+import {exists} from "./util.ts";
 
 export const execute = async <const VarNames extends string[]>(
     varNames: VarNames,
@@ -22,7 +22,7 @@ export const execute = async <const VarNames extends string[]>(
   const variables = Object.entries(vars).map(([key, value]) => `${key}: ${value}`).join('\n')
   console.log(`[variables]\n${variables}`);
 
-  const home = process.env.HOME;
+  const home = process.env["HOME"];
   if (!home) {
     throw new Error('Environment variable $HOME is not set')
   }
@@ -45,7 +45,7 @@ export const execute = async <const VarNames extends string[]>(
 };
 
 const setupVars = async <T extends string[]>(keys: T): Promise<Record<T[number], string>> => {
-  const filepath = `${import.meta.dirname}/vars.json`;
+  const filepath = `${import.meta.dirname}/../vars.json`;
   await mkdir(dirname(filepath), {recursive: true});
   if (!await exists(filepath)) {
     await writeFile(filepath, "");
