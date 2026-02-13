@@ -3,7 +3,6 @@
     "allow": [
       "Edit",
       "Write",
-
       "Bash(git show:*)",
       "Bash(git add:*)",
       "Bash(git commit:*)",
@@ -11,10 +10,9 @@
       "Bash(git diff:*)",
       "Bash(git log:*)",
       "Bash(git checkout:*)",
+      "Bash(git fetch:*)",
       "Bash(git worktree:*)",
-
       "Bash(gh pr create)",
-
       "Bash(grep:*)",
       "Bash(rg:*)",
       "Bash(mkdir:*)",
