@@ -2,7 +2,7 @@
   "private": true,
   "type": "module",
   "scripts": {
-    "check": "tsc --noEmit provision.ts"
+    "check": "tsc --noEmit executor.ts"
   },
   "devDependencies": {
     "@types/node": "^25.2.3",
