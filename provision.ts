@@ -1,16 +1,26 @@
-import { ensureFile, ensureSymlink, exists } from "jsr:@std/fs";
-import { gray, green, yellow } from "jsr:@std/fmt/colors";
-import { parseArgs } from "jsr:@std/cli/parse-args";
+import { existsSync, mkdirSync, symlinkSync, writeFileSync } from "node:fs";
+import { readFile, writeFile } from "node:fs/promises";
+import { dirname } from "node:path";
+import { parseArgs } from "node:util";
+import { spawn } from "node:child_process";
+import { createInterface } from "node:readline/promises";
+
+const green = (s: string) => `\x1b[32m${s}\x1b[0m`;
+const yellow = (s: string) => `\x1b[33m${s}\x1b[0m`;
+const gray = (s: string) => `\x1b[90m${s}\x1b[0m`;
 
 const execute = async () => {
-  const args = parseArgs(Deno.args, {
-    boolean: ["dry-run"],
+  const { values: args } = parseArgs({
+    args: process.argv.slice(2),
+    options: {
+      "dry-run": { type: "boolean", default: false },
+    },
   });
 
   const vars = await setupVars("username", "email");
   console.log("vars:", vars);
 
-  const home = Deno.env.get("HOME");
+  const home = process.env.HOME;
 
   const tasks: Task[] = [
     shell("brew bundle --no-upgrade"),
@@ -36,9 +46,9 @@ const execute = async () => {
     symlink(`${home}/.dotfiles/vim/vimrc`, `${home}/.vimrc`),
     symlink(`${home}/.dotfiles/vim/vimrc.keymap`, `${home}/.vimrc.keymap`),
     symlink(`${home}/.dotfiles/claude/settings.json`, `${home}/.claude/settings.json`),
-    symlink(`${home}/.dotfiles/claude/commands`, `${home}/.claude/commands`),
-    symlink(`${home}/.dotfiles/claude/skills`, `${home}/.claude/skills`),
-    symlink(`${home}/.dotfiles/claude/agents`, `${home}/.claude/agents`),
+    symlink(`${home}/.dotfiles/claude/commands`, `${home}/.claude/commands/`),
+    symlink(`${home}/.dotfiles/claude/skills`, `${home}/.claude/skills/`),
+    symlink(`${home}/.dotfiles/claude/agents`, `${home}/.claude/agents/`),
     symlink(`${home}/.dotfiles/claude/CLAUDE.md`, `${home}/.claude/CLAUDE.md`),
     symlink(`${home}/.dotfiles/vscode/settings.json`, `${home}/Library/Application Support/Code/User/settings.json`),
     symlink(`${home}/.dotfiles/vscode/keybindings.json`, `${home}/Library/Application Support/Code/User/keybindings.json`),
@@ -101,7 +111,7 @@ type Condition = () => Promise<boolean> | boolean;
 type Execute = () => Promise<void> | void;
 
 const vscodeExtensions = async (extensionsTxtFile: string): Promise<Task[]> => {
-  const extensions = await Deno.readTextFile(extensionsTxtFile).then((s) => s.split("\n").map((s) => s.trim()).filter((s) => s));
+  const extensions = await readFile(extensionsTxtFile, "utf-8").then((s) => s.split("\n").map((s) => s.trim()).filter((s) => s));
   const installedExtensions = new Set(await getResult("code --list-extensions").then((r) => r.stdout.split("\n")));
 
   return extensions.map((ext) => ({
@@ -111,9 +121,7 @@ const vscodeExtensions = async (extensionsTxtFile: string): Promise<Task[]> => {
   }));
 };
 
-const gitConfig = (key: string, value: string, options: {
-  configFile: string;
-}): Task => {
+const gitConfig = (key: string, value: string, options: { configFile: string }): Task => {
   return {
     name: `set gitconfig ${key}=${value}`,
     condition: async () => {
@@ -128,13 +136,14 @@ const symlink = (src: string, dest: string): Task => {
   return {
     name: `symlink ${src} -> ${dest}`,
     condition: ifNotExists(dest),
-    execute: () => ensureSymlink(src, dest),
+    execute: () => {
+      mkdirSync(dirname(dest), { recursive: true });
+      symlinkSync(src, dest);
+    },
   };
 };
 
-const shell = (cmd: string, options?: {
-  condition?: Condition;
-}): Task => {
+const shell = (cmd: string, options?: { condition?: Condition }): Task => {
   return {
     name: `shell \`${cmd}\``,
     condition: options?.condition ?? (() => true),
@@ -142,57 +151,56 @@ const shell = (cmd: string, options?: {
   };
 };
 
-const run = (cmd: string): Execute => async () => {
-  const command = new Deno.Command("bash", {
-    args: ["-c", cmd],
-    stdout: "piped",
-    stderr: "piped",
+const run = (cmd: string): Execute => () => {
+  return new Promise<void>((resolve, reject) => {
+    const proc = spawn("bash", ["-c", cmd], { stdio: "inherit" });
+    proc.on("error", reject);
+    proc.on("close", (code) => {
+      if (code !== 0) {
+        console.error("ERROR: script exited with code:", code);
+        process.exit(1);
+      }
+      resolve();
+    });
   });
-  const process = command.spawn();
-
-  await Promise.all([
-    process.stdout.pipeTo(Deno.stdout.writable, { preventClose: true }),
-    process.stderr.pipeTo(Deno.stderr.writable, { preventClose: true }),
-  ]);
-  const { code, success } = await process.status;
-  if (!success) {
-    console.error("ERROR: script exited with code:", code);
-    Deno.exit(1);
-  }
 };
 
-const getResult = async (cmd: string) => {
-  const command = new Deno.Command("bash", {
-    args: ["-c", cmd],
-    stdout: "piped",
-    stderr: "piped",
+const getResult = (cmd: string): Promise<{ success: boolean; code: number | null; stdout: string }> => {
+  return new Promise((resolve, reject) => {
+    const proc = spawn("bash", ["-c", cmd], { stdio: ["inherit", "pipe", "pipe"] });
+    let stdout = "";
+    proc.stdout.on("data", (data: Buffer) => {
+      stdout += data.toString();
+    });
+    proc.on("error", reject);
+    proc.on("close", (code) => {
+      resolve({ success: code === 0, code, stdout: stdout.trimEnd() });
+    });
   });
-  const process = command.spawn();
-  const output = await process.output();
-  const { code, success } = await process.status;
-  return { success, code, stdout: new TextDecoder().decode(output.stdout).trimEnd() };
 };
 
-const ifNotExists = (
-  file: string,
-): Condition =>
-() => exists(file).then((exists) => !exists);
+const ifNotExists = (file: string): Condition => () => !existsSync(file);
 
 const setupVars = async <T extends string[]>(...keys: T): Promise<Record<T[number], string>> => {
   const filepath = `${import.meta.dirname}/vars.json`;
-  await ensureFile(filepath);
-  const vars = JSON.parse(await Deno.readTextFile(filepath).then((s) => s || "{}"));
+  mkdirSync(dirname(filepath), { recursive: true });
+  if (!existsSync(filepath)) {
+    writeFileSync(filepath, "");
+  }
+  const vars = JSON.parse((await readFile(filepath, "utf-8").then((s) => s || "{}")));
   for (const key of keys) {
     if (vars[key] == null) {
-      const value = prompt(`${key}:`);
+      const rl = createInterface({ input: process.stdin, output: process.stdout });
+      const value = await rl.question(`${key}: `);
+      rl.close();
       if (!value) {
         console.log("abort");
-        Deno.exit(1);
+        process.exit(1);
       }
       vars[key] = value;
     }
   }
-  await Deno.writeTextFile(filepath, JSON.stringify(vars, null, 2));
+  await writeFile(filepath, JSON.stringify(vars, null, 2));
   return vars as Record<T[number], string>;
 };
 

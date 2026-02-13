@@ -7,6 +7,8 @@ else
   echo "skip: git repository already exists to $DOTFILES_DIR"
 fi
 
+cd $DOTFILES_DIR
+
 PATH=$PATH:/opt/homebrew/bin
 if ! command -v brew &> /dev/null
 then
@@ -15,11 +17,12 @@ else
   echo "skip: homebrew is already installed"
 fi
 
-if ! command -v deno &> /dev/null
+if ! command -v node &> /dev/null
 then
-  brew install deno
+  brew install node
+  npm install
 else
-  echo "skip: deno is already installed"
+  echo "skip: node is already installed"
 fi
 
-cd $DOTFILES_DIR && deno run --allow-all provision.ts
+node provision.ts
