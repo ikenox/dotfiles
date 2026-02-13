@@ -14,7 +14,7 @@ brew "ag"
 brew "docker"
 brew "im-select"
 brew "expect"
-brew "deno"
+brew "node"
 
 cask "karabiner-elements"
 cask "ghostty"

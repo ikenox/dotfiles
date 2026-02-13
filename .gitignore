@@ -10,5 +10,6 @@ vim/plugged/
 zshrc.myenv
 
 vars.json
+node_modules/
 
 !.gitkeep
