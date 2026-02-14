@@ -1,5 +1,5 @@
 import {spawn} from "node:child_process";
-import {mkdir, readFile, symlink as fsSymlink} from "node:fs/promises";
+import {lstat, mkdir, readFile, readlink, symlink as fsSymlink} from "node:fs/promises";
 import {dirname} from "node:path";
 import {exists} from "./util.ts";
 
@@ -8,7 +8,11 @@ export type Task = {
   condition: Condition;
   execute: Execute;
 };
-export type Condition = () => Promise<boolean> | boolean;
+export type ConditionResult =
+    | { status: "not-provisioned" }
+    | { status: "already-provisioned" }
+    | { status: "error"; message: string };
+export type Condition = () => Promise<ConditionResult> | ConditionResult;
 export type Execute = () => Promise<void> | void;
 
 export const vscodeExtensions = async (extensionsTxtFile: string): Promise<Task[]> => {
@@ -17,7 +21,9 @@ export const vscodeExtensions = async (extensionsTxtFile: string): Promise<Task[
 
   return extensions.map((ext) => ({
     name: `install vscode extension ${ext}`,
-    condition: () => !installedExtensions.has(ext),
+    condition: (): ConditionResult => installedExtensions.has(ext)
+        ? {status: "already-provisioned"}
+        : {status: "not-provisioned"},
     execute: run(`code --install-extension ${ext}`),
   }));
 };
@@ -25,9 +31,9 @@ export const vscodeExtensions = async (extensionsTxtFile: string): Promise<Task[
 export const gitConfig = (key: string, value: string, options: { configFile: string }): Task => {
   return {
     name: `set gitconfig ${key}=${value}`,
-    condition: async () => {
+    condition: async (): Promise<ConditionResult> => {
       const {stdout} = await getResult(`git config get -f ${options.configFile} ${key}`);
-      return stdout !== value;
+      return stdout === value ? {status: "already-provisioned"} : {status: "not-provisioned"};
     },
     execute: run(`git config -f ${options.configFile} ${key} ${value}`),
   };
@@ -36,7 +42,20 @@ export const gitConfig = (key: string, value: string, options: { configFile: str
 export const symlink = (src: string, dest: string): Task => {
   return {
     name: `symlink ${src} -> ${dest}`,
-    condition: ifNotExists(dest),
+    condition: async (): Promise<ConditionResult> => {
+      if (!await exists(dest)) {
+        return {status: "not-provisioned"};
+      }
+      const stat = await lstat(dest);
+      if (!stat.isSymbolicLink()) {
+        return {status: "error", message: `${dest} already exists and is not a symlink`};
+      }
+      const target = await readlink(dest);
+      if (target !== src) {
+        return {status: "error", message: `${dest} is a symlink to ${target}, expected ${src}`};
+      }
+      return {status: "already-provisioned"};
+    },
     execute: async () => {
       await mkdir(dirname(dest), {recursive: true});
       await fsSymlink(src, dest);
@@ -44,10 +63,28 @@ export const symlink = (src: string, dest: string): Task => {
   };
 };
 
+export const defaults = (domain: string, key: string, writeArgs: string, expected: string): Task => ({
+  name: `defaults ${domain} ${key}`,
+  condition: async (): Promise<ConditionResult> => {
+    const {stdout} = await getResult(`defaults read ${domain} ${key}`);
+    return stdout === expected ? {status: "already-provisioned"} : {status: "not-provisioned"};
+  },
+  execute: run(`defaults write ${domain} ${key} ${writeArgs}`),
+});
+
+export const brewBundle = (): Task => ({
+  name: "brew bundle",
+  condition: async (): Promise<ConditionResult> => {
+    const {success} = await getResult("brew bundle check");
+    return success ? {status: "already-provisioned"} : {status: "not-provisioned"};
+  },
+  execute: run("brew bundle --no-upgrade"),
+});
+
 export const shell = (cmd: string, options?: { condition?: Condition }): Task => {
   return {
     name: `shell \`${cmd}\``,
-    condition: options?.condition ?? (() => true),
+    condition: options?.condition ?? ((): ConditionResult => ({status: "not-provisioned"})),
     execute: run(cmd),
   };
 };
@@ -58,8 +95,8 @@ const run = (cmd: string): Execute => () => {
     proc.on("error", reject);
     proc.on("close", (code) => {
       if (code !== 0) {
-        console.error("ERROR: script exited with code:", code);
-        process.exit(1);
+        reject(new Error(`script exited with code: ${code}`));
+        return;
       }
       resolve();
     });
@@ -84,5 +121,6 @@ const getResult = (cmd: string): Promise<{
   });
 };
 
-export const ifNotExists = (file: string): Condition => () => exists(file).then((e) => !e);
+export const ifNotExists = (file: string): Condition => () =>
+    exists(file).then((e): ConditionResult => e ? {status: "already-provisioned"} : {status: "not-provisioned"});
 
