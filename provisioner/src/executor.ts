@@ -32,15 +32,37 @@ export const execute = async <const VarNames extends string[]>(
     Array.isArray(a) ? tasks.push(...a) : tasks.push(a)
   }
 
+  const errors: { name: string; message: string }[] = [];
   for (const task of tasks) {
-    const shouldExecute = await task.condition();
-    const status = !shouldExecute ? green("[OK]") : args["dry-run"] ? gray("[SKIP]") : yellow("[EXECUTE]");
-    console.log(`${status} ${task.name}`);
-    if (shouldExecute && !args["dry-run"]) {
-      await task.execute();
+    const result = await task.condition();
+    switch (result.status) {
+      case "already-provisioned":
+        console.log(`${green("[OK]")} ${task.name}`);
+        break;
+      case "error":
+        console.error(`${red("[ERROR]")} ${task.name}: ${result.message}`);
+        errors.push({name: task.name, message: result.message});
+        break;
+      case "not-provisioned":
+        console.log(`${yellow("[EXECUTE]")} ${task.name}`);
+        if (!args["dry-run"]) {
+          await Promise.resolve(task.execute()).catch((e) => {
+            const message = e instanceof Error ? e.message : String(e);
+            console.error(`${red("[ERROR]")} ${task.name}: ${message}`);
+            errors.push({name: task.name, message});
+          });
+        }
+        break;
     }
   }
 
+  if (errors.length > 0) {
+    console.error(`\n${red(`Provisioning completed with ${errors.length} error(s):`)}`);
+    for (const {name} of errors) {
+      console.error(`  - ${name}`);
+    }
+    process.exit(1);
+  }
   console.log(green("Provisioning completed!"));
 };
 
@@ -67,6 +89,7 @@ const setupVars = async <T extends string[]>(keys: T): Promise<Record<T[number],
   return vars as Record<T[number], string>;
 };
 
+const red = (s: string) => `\x1b[31m${s}\x1b[0m`;
 const green = (s: string) => `\x1b[32m${s}\x1b[0m`;
 const yellow = (s: string) => `\x1b[33m${s}\x1b[0m`;
 const gray = (s: string) => `\x1b[90m${s}\x1b[0m`;
