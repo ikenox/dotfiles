@@ -91,7 +91,7 @@ const toDefaultsArgs = (value: DefaultsValue): { writeArgs: string; expected: st
 export const brewBundle = (): Task => ({
   name: "brew bundle",
   condition: async (): Promise<ConditionResult> => {
-    const {success} = await getResult("brew bundle check");
+    const {success} = await getResult("brew bundle check --no-upgrade");
     return success ? {status: "already-provisioned"} : {status: "not-provisioned"};
   },
   execute: run("brew bundle --no-upgrade"),
