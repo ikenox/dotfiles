@@ -63,19 +63,35 @@ export const symlink = (src: string, dest: string): Task => {
   };
 };
 
-export const defaults = (domain: string, key: string, writeArgs: string, expected: string): Task => ({
-  name: `defaults ${domain} ${key}`,
-  condition: async (): Promise<ConditionResult> => {
-    const {stdout} = await getResult(`defaults read ${domain} ${key}`);
-    return stdout === expected ? {status: "already-provisioned"} : {status: "not-provisioned"};
-  },
-  execute: run(`defaults write ${domain} ${key} ${writeArgs}`),
-});
+type DefaultsValue =
+  | { bool: boolean }
+  | { int: number }
+  | { string: string }
+  | { array: string; expected: string };
+
+export const defaults = (domain: string, key: string, value: DefaultsValue): Task => {
+  const {writeArgs, expected} = toDefaultsArgs(value);
+  return {
+    name: `defaults ${domain} ${key}`,
+    condition: async (): Promise<ConditionResult> => {
+      const {stdout} = await getResult(`defaults read ${domain} '${key}'`);
+      return stdout === expected ? {status: "already-provisioned"} : {status: "not-provisioned"};
+    },
+    execute: run(`defaults write ${domain} '${key}' ${writeArgs}`),
+  };
+};
+
+const toDefaultsArgs = (value: DefaultsValue): { writeArgs: string; expected: string } => {
+  if ("bool" in value) return {writeArgs: `-bool ${value.bool}`, expected: value.bool ? "1" : "0"};
+  if ("int" in value) return {writeArgs: `-int ${value.int}`, expected: String(value.int)};
+  if ("string" in value) return {writeArgs: `-string '${value.string}'`, expected: value.string};
+  return {writeArgs: `-array ${value.array}`, expected: value.expected};
+};
 
 export const brewBundle = (): Task => ({
   name: "brew bundle",
   condition: async (): Promise<ConditionResult> => {
-    const {success} = await getResult("brew bundle check");
+    const {success} = await getResult("brew bundle check --no-upgrade");
     return success ? {status: "already-provisioned"} : {status: "not-provisioned"};
   },
   execute: run("brew bundle --no-upgrade"),
@@ -121,6 +137,26 @@ const getResult = (cmd: string): Promise<{
   });
 };
 
+export const defaultsDictAdd = (
+  domain: string,
+  key: string,
+  dictKey: string,
+  plistValue: string,
+): Task => ({
+  name: `defaults dict-add ${domain} ${key} ${dictKey}`,
+  condition: async (): Promise<ConditionResult> => {
+    const {stdout} = await getResult(`defaults read ${domain} ${key}`);
+    const pattern = new RegExp(`${dictKey}\\s*=\\s*\\{\\s*enabled\\s*=\\s*0`);
+    return pattern.test(stdout) ? {status: "already-provisioned"} : {status: "not-provisioned"};
+  },
+  execute: run(`defaults write ${domain} ${key} -dict-add ${dictKey} '${plistValue}'`),
+});
+
 export const ifNotExists = (file: string): Condition => () =>
     exists(file).then((e): ConditionResult => e ? {status: "already-provisioned"} : {status: "not-provisioned"});
+
+export const ifNotRunning = (processName: string): Condition => async () => {
+  const {success} = await getResult(`pgrep '${processName}'`);
+  return success ? {status: "already-provisioned"} : {status: "not-provisioned"};
+};
 

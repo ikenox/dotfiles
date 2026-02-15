@@ -1,5 +1,5 @@
 import {execute} from "./executor.ts";
-import {brewBundle, defaults, gitConfig, ifNotExists, shell, symlink, vscodeExtensions} from "./task.ts";
+import {brewBundle, defaults, defaultsDictAdd, gitConfig, ifNotExists, ifNotRunning, shell, symlink, vscodeExtensions} from "./task.ts";
 
 void execute(['username', 'email'], ({username, email}, {home}) => [
   brewBundle(),
@@ -33,36 +33,50 @@ void execute(['username', 'email'], ({username, email}, {home}) => [
   symlink(`${home}/.dotfiles/vscode/keybindings.json`, `${home}/Library/Application Support/Code/User/keybindings.json`),
   symlink(`${home}/.dotfiles/vscode/tasks.json`, `${home}/Library/Application Support/Code/User/tasks.json`),
   // osx defaults
-  defaults("com.apple.dock", "autohide", "-bool true", "1"),
-  defaults("com.apple.dock", "persistent-apps", "-array", "(\n)"),
-  defaults("com.apple.dock", "tilesize", "-int 55", "55"),
-  defaults("com.apple.finder", "AppleShowAllFiles", "-bool true", "1"),
-  defaults("com.apple.finder", "NewWindowTarget", "-string PfDe", "PfDe"),
-  defaults("com.apple.finder", "NewWindowTargetPath", `-string 'file://${home}/'`, `file://${home}/`),
-  defaults("com.apple.screencapture", "disable-shadow", "-bool true", "1"),
-  defaults("com.apple.screencapture", "name", "-string screenshot", "screenshot"),
-  defaults("com.apple.screencapture", "location", `-string '${home}/screenshots/'`, `${home}/screenshots/`),
-  defaults("com.apple.desktopservices", "DSDontWriteNetworkStores", "-bool true", "1"),
-  defaults("com.apple.controlstrip", "MiniCustomized",
-    "-array 'com.apple.system.brightness' 'com.apple.system.volume' 'com.apple.system.mute' 'com.apple.system.sleep'",
-    `(
+  defaults("com.apple.dock", "autohide", {bool: true}),
+  defaults("com.apple.dock", "persistent-apps", {array: "", expected: "(\n)"}),
+  defaults("com.apple.dock", "tilesize", {int: 55}),
+  defaults("com.apple.finder", "AppleShowAllFiles", {bool: true}),
+  defaults("com.apple.finder", "NewWindowTarget", {string: "PfDe"}),
+  defaults("com.apple.finder", "NewWindowTargetPath", {string: `file://${home}/`}),
+  defaults("com.apple.screencapture", "disable-shadow", {bool: true}),
+  defaults("com.apple.screencapture", "name", {string: "screenshot"}),
+  defaults("com.apple.screencapture", "location", {string: `${home}/screenshots/`}),
+  defaults("com.apple.desktopservices", "DSDontWriteNetworkStores", {bool: true}),
+  defaults("com.apple.controlstrip", "MiniCustomized", {
+    array: "'com.apple.system.brightness' 'com.apple.system.volume' 'com.apple.system.mute' 'com.apple.system.sleep'",
+    expected: `(
     "com.apple.system.brightness",
     "com.apple.system.volume",
     "com.apple.system.mute",
     "com.apple.system.sleep"
-)`),
-  defaults("com.microsoft.VSCode", "ApplePressAndHoldEnabled", "-bool false", "0"),
-  defaults("com.microsoft.VSCodeInsiders", "ApplePressAndHoldEnabled", "-bool false", "0"),
-  defaults("com.lwouis.alt-tab-macos", "windowDisplayDelay", "-int 100", "100"),
-  defaults("com.apple.inputmethod.Kotoeri", "JIMPrefCharacterForYenKey", "-int 1", "1"), // ことえり > ￥キーで入力する文字: \
-  defaults("-g", "com.apple.mouse.tapBehavior", "-int 1", "1"),
-  defaults("-g", "com.apple.trackpad.scaling", "-int 3", "3"),
-  defaults("-g", "InitialKeyRepeat", "-int 15", "15"),
-  defaults("-g", "KeyRepeat", "-int 2", "2"),
-  defaults("-g", "AppleShowAllExtensions", "-bool true", "1"),
-  defaults("-g", "ApplePressAndHoldEnabled", "-bool false", "0"),
-  defaults("-g", "NSAutomaticSpellingCorrectionEnabled", "-int 1", "1"), // 環境設定 > キーボード > ユーザ辞書 > 英字入力中にスペルを自動変換
-  defaults("-g", "AppleInterfaceStyle", "-string Dark", "Dark"), // Dark mode
+)`,
+  }),
+  defaults("com.microsoft.VSCode", "ApplePressAndHoldEnabled", {bool: false}),
+  defaults("com.microsoft.VSCodeInsiders", "ApplePressAndHoldEnabled", {bool: false}),
+  defaults("com.lwouis.alt-tab-macos", "windowDisplayDelay", {int: 100}),
+  defaults("com.apple.inputmethod.Kotoeri", "JIMPrefCharacterForYenKey", {int: 1}), // Kotoeri > Character for Yen key: \
+  defaults("-g", "com.apple.mouse.tapBehavior", {int: 1}),
+  defaults("-g", "com.apple.trackpad.scaling", {int: 3}),
+  defaults("-g", "InitialKeyRepeat", {int: 15}),
+  defaults("-g", "KeyRepeat", {int: 2}),
+  defaults("-g", "AppleShowAllExtensions", {bool: true}),
+  defaults("-g", "ApplePressAndHoldEnabled", {bool: false}),
+  defaults("-g", "NSAutomaticSpellingCorrectionEnabled", {int: 1}), // Keyboard > Text Replacements > Correct spelling automatically
+  defaults("-g", "NSAutomaticQuoteSubstitutionEnabled", {bool: false}), // Keyboard > Text Replacements > Use smart quotes
+  defaults("-g", "NSAutomaticDashSubstitutionEnabled", {bool: false}), // Keyboard > Text Replacements > Use smart dashes
+  defaults("com.apple.controlcenter", "NSStatusItem Visible Bluetooth", {bool: true}), // Show Bluetooth in menu bar
+  defaults("-g", "AppleInterfaceStyle", {string: "Dark"}), // Dark mode
+  // Keyboard > Shortcuts > Input Sources > Disable "Select next input source" (^ + Space)
+  defaultsDictAdd(
+    "com.apple.symbolichotkeys", "AppleSymbolicHotKeys", "60",
+    '<dict><key>enabled</key><false/><key>value</key><dict><key>parameters</key><array><integer>32</integer><integer>49</integer><integer>262144</integer></array><key>type</key><string>standard</string></dict></dict>',
+  ),
+  // Keyboard > Shortcuts > Spotlight > Disable "Show Spotlight search"
+  defaultsDictAdd(
+    "com.apple.symbolichotkeys", "AppleSymbolicHotKeys", "64",
+    '<dict><key>enabled</key><false/><key>value</key><dict><key>parameters</key><array><integer>32</integer><integer>49</integer><integer>1048576</integer></array><key>type</key><string>standard</string></dict></dict>',
+  ),
   // vscode extension
   vscodeExtensions(`${home}/repos/github.com/ikenox/dotfiles/vscode/extensions.txt`),
   // install vim-plug
@@ -73,4 +87,12 @@ void execute(['username', 'email'], ({username, email}, {home}) => [
   shell("curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh", {
     condition: ifNotExists(`${home}/.cargo`),
   }),
+  // vim PlugInstall
+  shell("vim +PlugInstall +qall", {
+    condition: ifNotExists(`${home}/.vim/plugged`),
+  }),
+  // launch apps
+  shell("open -a 'Alfred 5'", {condition: ifNotRunning("Alfred")}),
+  shell("open -a 'Karabiner-Elements'", {condition: ifNotRunning("karabiner")}),
+  shell("open -a 'AltTab'", {condition: ifNotRunning("AltTab")}),
 ])
