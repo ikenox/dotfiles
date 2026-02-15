@@ -33,16 +33,16 @@ void execute(['username', 'email'], ({username, email}, {home}) => [
   symlink(`${home}/.dotfiles/vscode/keybindings.json`, `${home}/Library/Application Support/Code/User/keybindings.json`),
   symlink(`${home}/.dotfiles/vscode/tasks.json`, `${home}/Library/Application Support/Code/User/tasks.json`),
   // osx defaults
-  defaults("com.apple.dock", "autohide", "-bool true", "1"),
+  defaults("com.apple.dock", "autohide", "-bool true"),
   defaults("com.apple.dock", "persistent-apps", "-array", "(\n)"),
-  defaults("com.apple.dock", "tilesize", "-int 55", "55"),
-  defaults("com.apple.finder", "AppleShowAllFiles", "-bool true", "1"),
-  defaults("com.apple.finder", "NewWindowTarget", "-string PfDe", "PfDe"),
-  defaults("com.apple.finder", "NewWindowTargetPath", `-string 'file://${home}/'`, `file://${home}/`),
-  defaults("com.apple.screencapture", "disable-shadow", "-bool true", "1"),
-  defaults("com.apple.screencapture", "name", "-string screenshot", "screenshot"),
-  defaults("com.apple.screencapture", "location", `-string '${home}/screenshots/'`, `${home}/screenshots/`),
-  defaults("com.apple.desktopservices", "DSDontWriteNetworkStores", "-bool true", "1"),
+  defaults("com.apple.dock", "tilesize", "-int 55"),
+  defaults("com.apple.finder", "AppleShowAllFiles", "-bool true"),
+  defaults("com.apple.finder", "NewWindowTarget", "-string PfDe"),
+  defaults("com.apple.finder", "NewWindowTargetPath", `-string 'file://${home}/'`),
+  defaults("com.apple.screencapture", "disable-shadow", "-bool true"),
+  defaults("com.apple.screencapture", "name", "-string screenshot"),
+  defaults("com.apple.screencapture", "location", `-string '${home}/screenshots/'`),
+  defaults("com.apple.desktopservices", "DSDontWriteNetworkStores", "-bool true"),
   defaults("com.apple.controlstrip", "MiniCustomized",
     "-array 'com.apple.system.brightness' 'com.apple.system.volume' 'com.apple.system.mute' 'com.apple.system.sleep'",
     `(
@@ -51,21 +51,21 @@ void execute(['username', 'email'], ({username, email}, {home}) => [
     "com.apple.system.mute",
     "com.apple.system.sleep"
 )`),
-  defaults("com.microsoft.VSCode", "ApplePressAndHoldEnabled", "-bool false", "0"),
-  defaults("com.microsoft.VSCodeInsiders", "ApplePressAndHoldEnabled", "-bool false", "0"),
-  defaults("com.lwouis.alt-tab-macos", "windowDisplayDelay", "-int 100", "100"),
-  defaults("com.apple.inputmethod.Kotoeri", "JIMPrefCharacterForYenKey", "-int 1", "1"), // Kotoeri > Character for Yen key: \
-  defaults("-g", "com.apple.mouse.tapBehavior", "-int 1", "1"),
-  defaults("-g", "com.apple.trackpad.scaling", "-int 3", "3"),
-  defaults("-g", "InitialKeyRepeat", "-int 15", "15"),
-  defaults("-g", "KeyRepeat", "-int 2", "2"),
-  defaults("-g", "AppleShowAllExtensions", "-bool true", "1"),
-  defaults("-g", "ApplePressAndHoldEnabled", "-bool false", "0"),
-  defaults("-g", "NSAutomaticSpellingCorrectionEnabled", "-int 1", "1"), // Keyboard > Text Replacements > Correct spelling automatically
-  defaults("-g", "NSAutomaticQuoteSubstitutionEnabled", "-bool false", "0"), // Keyboard > Text Replacements > Use smart quotes
-  defaults("-g", "NSAutomaticDashSubstitutionEnabled", "-bool false", "0"), // Keyboard > Text Replacements > Use smart dashes
-  defaults("com.apple.controlcenter", "NSStatusItem Visible Bluetooth", "-bool true", "1"), // Show Bluetooth in menu bar
-  defaults("-g", "AppleInterfaceStyle", "-string Dark", "Dark"), // Dark mode
+  defaults("com.microsoft.VSCode", "ApplePressAndHoldEnabled", "-bool false"),
+  defaults("com.microsoft.VSCodeInsiders", "ApplePressAndHoldEnabled", "-bool false"),
+  defaults("com.lwouis.alt-tab-macos", "windowDisplayDelay", "-int 100"),
+  defaults("com.apple.inputmethod.Kotoeri", "JIMPrefCharacterForYenKey", "-int 1"), // Kotoeri > Character for Yen key: \
+  defaults("-g", "com.apple.mouse.tapBehavior", "-int 1"),
+  defaults("-g", "com.apple.trackpad.scaling", "-int 3"),
+  defaults("-g", "InitialKeyRepeat", "-int 15"),
+  defaults("-g", "KeyRepeat", "-int 2"),
+  defaults("-g", "AppleShowAllExtensions", "-bool true"),
+  defaults("-g", "ApplePressAndHoldEnabled", "-bool false"),
+  defaults("-g", "NSAutomaticSpellingCorrectionEnabled", "-int 1"), // Keyboard > Text Replacements > Correct spelling automatically
+  defaults("-g", "NSAutomaticQuoteSubstitutionEnabled", "-bool false"), // Keyboard > Text Replacements > Use smart quotes
+  defaults("-g", "NSAutomaticDashSubstitutionEnabled", "-bool false"), // Keyboard > Text Replacements > Use smart dashes
+  defaults("com.apple.controlcenter", "NSStatusItem Visible Bluetooth", "-bool true"), // Show Bluetooth in menu bar
+  defaults("-g", "AppleInterfaceStyle", "-string Dark"), // Dark mode
   // Keyboard > Shortcuts > Input Sources > Disable "Select next input source" (^ + Space)
   defaultsDictAdd(
     "com.apple.symbolichotkeys", "AppleSymbolicHotKeys", "60",
