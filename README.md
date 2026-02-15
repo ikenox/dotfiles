@@ -26,6 +26,7 @@
 - Configure alfred
     - Change hotkey -> ctrl + space
     - Change appearance to "Alfred Dark"
+- Install IntelliJ via JetBrains Toolbox
 - Sync IntelliJ
   settings https://www.jetbrains.com/help/idea/sharing-your-ide-settings.html#IDE_settings_sync
     - login on JetBrains Toolbox
