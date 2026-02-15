@@ -93,6 +93,6 @@ void execute(['username', 'email'], ({username, email}, {home}) => [
   }),
   // launch apps
   shell("open -a 'Alfred 5'", {condition: ifNotRunning("Alfred")}),
-  shell("open -a 'Karabiner-Elements'", {condition: ifNotRunning("karabiner_grabber")}),
+  shell("open -a 'Karabiner-Elements'", {condition: ifNotRunning("karabiner")}),
   shell("open -a 'AltTab'", {condition: ifNotRunning("AltTab")}),
 ])

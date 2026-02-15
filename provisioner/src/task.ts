@@ -156,7 +156,7 @@ export const ifNotExists = (file: string): Condition => () =>
     exists(file).then((e): ConditionResult => e ? {status: "already-provisioned"} : {status: "not-provisioned"});
 
 export const ifNotRunning = (processName: string): Condition => async () => {
-  const {success} = await getResult(`pgrep -x '${processName}'`);
+  const {success} = await getResult(`pgrep '${processName}'`);
   return success ? {status: "already-provisioned"} : {status: "not-provisioned"};
 };
 
