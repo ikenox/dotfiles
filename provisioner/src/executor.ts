@@ -15,6 +15,7 @@ export const execute = async <const VarNames extends string[]>(
     args: process.argv.slice(2),
     options: {
       "dry-run": {type: "boolean", default: false},
+      "filter": {type: "string"},
     },
   });
 
@@ -34,6 +35,10 @@ export const execute = async <const VarNames extends string[]>(
 
   const errors: { name: string; message: string }[] = [];
   for (const task of tasks) {
+    if (args.filter && !task.name.includes(args.filter)) {
+      console.log(`${gray("[SKIP]")} ${task.name}`);
+      continue;
+    }
     const result = await task.condition();
     switch (result.status) {
       case "already-provisioned":
