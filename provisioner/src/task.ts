@@ -63,31 +63,29 @@ export const symlink = (src: string, dest: string): Task => {
   };
 };
 
-export const defaults = (domain: string, key: string, writeArgs: string, expected?: string): Task => {
-  const resolved = expected ?? deriveExpected(writeArgs);
-  if (resolved == null) {
-    throw new Error(`Cannot derive expected value from writeArgs: ${writeArgs}`);
-  }
+type DefaultsValue =
+  | { bool: boolean }
+  | { int: number }
+  | { string: string }
+  | { array: string; expected: string };
+
+export const defaults = (domain: string, key: string, value: DefaultsValue): Task => {
+  const {writeArgs, expected} = toDefaultsArgs(value);
   return {
     name: `defaults ${domain} ${key}`,
     condition: async (): Promise<ConditionResult> => {
       const {stdout} = await getResult(`defaults read ${domain} '${key}'`);
-      return stdout === resolved ? {status: "already-provisioned"} : {status: "not-provisioned"};
+      return stdout === expected ? {status: "already-provisioned"} : {status: "not-provisioned"};
     },
     execute: run(`defaults write ${domain} '${key}' ${writeArgs}`),
   };
 };
 
-const deriveExpected = (writeArgs: string): string | undefined => {
-  const match = writeArgs.match(/^-(\w+)\s+(.*)/s);
-  if (!match) return undefined;
-  const [, type, value] = match;
-  switch (type) {
-    case "bool": return value === "true" ? "1" : "0";
-    case "int": return value;
-    case "string": return value.replace(/^'(.*)'$/s, "$1");
-    default: return undefined;
-  }
+const toDefaultsArgs = (value: DefaultsValue): { writeArgs: string; expected: string } => {
+  if ("bool" in value) return {writeArgs: `-bool ${value.bool}`, expected: value.bool ? "1" : "0"};
+  if ("int" in value) return {writeArgs: `-int ${value.int}`, expected: String(value.int)};
+  if ("string" in value) return {writeArgs: `-string '${value.string}'`, expected: value.string};
+  return {writeArgs: `-array ${value.array}`, expected: value.expected};
 };
 
 export const brewBundle = (): Task => ({
