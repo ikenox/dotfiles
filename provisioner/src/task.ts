@@ -66,10 +66,10 @@ export const symlink = (src: string, dest: string): Task => {
 export const defaults = (domain: string, key: string, writeArgs: string, expected: string): Task => ({
   name: `defaults ${domain} ${key}`,
   condition: async (): Promise<ConditionResult> => {
-    const {stdout} = await getResult(`defaults read ${domain} ${key}`);
+    const {stdout} = await getResult(`defaults read ${domain} '${key}'`);
     return stdout === expected ? {status: "already-provisioned"} : {status: "not-provisioned"};
   },
-  execute: run(`defaults write ${domain} ${key} ${writeArgs}`),
+  execute: run(`defaults write ${domain} '${key}' ${writeArgs}`),
 });
 
 export const brewBundle = (): Task => ({
@@ -126,12 +126,12 @@ export const defaultsDictAdd = (
   key: string,
   dictKey: string,
   plistValue: string,
-  conditionCheck: (stdout: string) => boolean,
 ): Task => ({
   name: `defaults dict-add ${domain} ${key} ${dictKey}`,
   condition: async (): Promise<ConditionResult> => {
     const {stdout} = await getResult(`defaults read ${domain} ${key}`);
-    return conditionCheck(stdout) ? {status: "already-provisioned"} : {status: "not-provisioned"};
+    const pattern = new RegExp(`${dictKey}\\s*=\\s*\\{\\s*enabled\\s*=\\s*0`);
+    return pattern.test(stdout) ? {status: "already-provisioned"} : {status: "not-provisioned"};
   },
   execute: run(`defaults write ${domain} ${key} -dict-add ${dictKey} '${plistValue}'`),
 });

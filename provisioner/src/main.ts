@@ -54,29 +54,27 @@ void execute(['username', 'email'], ({username, email}, {home}) => [
   defaults("com.microsoft.VSCode", "ApplePressAndHoldEnabled", "-bool false", "0"),
   defaults("com.microsoft.VSCodeInsiders", "ApplePressAndHoldEnabled", "-bool false", "0"),
   defaults("com.lwouis.alt-tab-macos", "windowDisplayDelay", "-int 100", "100"),
-  defaults("com.apple.inputmethod.Kotoeri", "JIMPrefCharacterForYenKey", "-int 1", "1"), // ことえり > ￥キーで入力する文字: \
+  defaults("com.apple.inputmethod.Kotoeri", "JIMPrefCharacterForYenKey", "-int 1", "1"), // Kotoeri > Character for Yen key: \
   defaults("-g", "com.apple.mouse.tapBehavior", "-int 1", "1"),
   defaults("-g", "com.apple.trackpad.scaling", "-int 3", "3"),
   defaults("-g", "InitialKeyRepeat", "-int 15", "15"),
   defaults("-g", "KeyRepeat", "-int 2", "2"),
   defaults("-g", "AppleShowAllExtensions", "-bool true", "1"),
   defaults("-g", "ApplePressAndHoldEnabled", "-bool false", "0"),
-  defaults("-g", "NSAutomaticSpellingCorrectionEnabled", "-int 1", "1"), // 環境設定 > キーボード > ユーザ辞書 > 英字入力中にスペルを自動変換
-  defaults("-g", "NSAutomaticQuoteSubstitutionEnabled", "-bool false", "0"),
-  defaults("-g", "NSAutomaticDashSubstitutionEnabled", "-bool false", "0"),
-  defaults("com.apple.controlcenter", "NSStatusItem Visible Bluetooth", "-bool true", "1"),
+  defaults("-g", "NSAutomaticSpellingCorrectionEnabled", "-int 1", "1"), // Keyboard > Text Replacements > Correct spelling automatically
+  defaults("-g", "NSAutomaticQuoteSubstitutionEnabled", "-bool false", "0"), // Keyboard > Text Replacements > Use smart quotes
+  defaults("-g", "NSAutomaticDashSubstitutionEnabled", "-bool false", "0"), // Keyboard > Text Replacements > Use smart dashes
+  defaults("com.apple.controlcenter", "NSStatusItem Visible Bluetooth", "-bool true", "1"), // Show Bluetooth in menu bar
   defaults("-g", "AppleInterfaceStyle", "-string Dark", "Dark"), // Dark mode
-  // disable ^ + Space input source switching
+  // Keyboard > Shortcuts > Input Sources > Disable "Select next input source" (^ + Space)
   defaultsDictAdd(
     "com.apple.symbolichotkeys", "AppleSymbolicHotKeys", "60",
     '<dict><key>enabled</key><false/><key>value</key><dict><key>parameters</key><array><integer>32</integer><integer>49</integer><integer>262144</integer></array><key>type</key><string>standard</string></dict></dict>',
-    (stdout) => /60\s*=\s*\{\s*enabled\s*=\s*0/.test(stdout),
   ),
-  // disable Spotlight shortcut
+  // Keyboard > Shortcuts > Spotlight > Disable "Show Spotlight search"
   defaultsDictAdd(
     "com.apple.symbolichotkeys", "AppleSymbolicHotKeys", "64",
     '<dict><key>enabled</key><false/><key>value</key><dict><key>parameters</key><array><integer>32</integer><integer>49</integer><integer>1048576</integer></array><key>type</key><string>standard</string></dict></dict>',
-    (stdout) => /64\s*=\s*\{\s*enabled\s*=\s*0/.test(stdout),
   ),
   // vscode extension
   vscodeExtensions(`${home}/repos/github.com/ikenox/dotfiles/vscode/extensions.txt`),
