@@ -16,7 +16,7 @@
 
 ## Manual tasks
 
-- Add "日本語" to 入力ソース
+- Add "日本語" to "入力ソース"
 - Set default browser to Chrome
 - Set up Touch ID
 - Sign-in to app store
