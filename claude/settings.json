@@ -12,6 +12,7 @@
       "Bash(git checkout:*)",
       "Bash(git fetch:*)",
       "Bash(git worktree:*)",
+      "Bash(git branch:*)",
       "Bash(gh pr create)",
       "Bash(grep:*)",
       "Bash(rg:*)",
