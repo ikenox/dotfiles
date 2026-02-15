@@ -1,5 +1,5 @@
 import {execute} from "./executor.ts";
-import {brewBundle, defaults, gitConfig, ifNotExists, shell, symlink, vscodeExtensions} from "./task.ts";
+import {brewBundle, defaults, defaultsDictAdd, gitConfig, ifNotExists, ifNotRunning, shell, symlink, vscodeExtensions} from "./task.ts";
 
 void execute(['username', 'email'], ({username, email}, {home}) => [
   brewBundle(),
@@ -62,7 +62,22 @@ void execute(['username', 'email'], ({username, email}, {home}) => [
   defaults("-g", "AppleShowAllExtensions", "-bool true", "1"),
   defaults("-g", "ApplePressAndHoldEnabled", "-bool false", "0"),
   defaults("-g", "NSAutomaticSpellingCorrectionEnabled", "-int 1", "1"), // 環境設定 > キーボード > ユーザ辞書 > 英字入力中にスペルを自動変換
+  defaults("-g", "NSAutomaticQuoteSubstitutionEnabled", "-bool false", "0"),
+  defaults("-g", "NSAutomaticDashSubstitutionEnabled", "-bool false", "0"),
+  defaults("com.apple.controlcenter", "NSStatusItem Visible Bluetooth", "-bool true", "1"),
   defaults("-g", "AppleInterfaceStyle", "-string Dark", "Dark"), // Dark mode
+  // disable ^ + Space input source switching
+  defaultsDictAdd(
+    "com.apple.symbolichotkeys", "AppleSymbolicHotKeys", "60",
+    '<dict><key>enabled</key><false/><key>value</key><dict><key>parameters</key><array><integer>32</integer><integer>49</integer><integer>262144</integer></array><key>type</key><string>standard</string></dict></dict>',
+    (stdout) => /60\s*=\s*\{\s*enabled\s*=\s*0/.test(stdout),
+  ),
+  // disable Spotlight shortcut
+  defaultsDictAdd(
+    "com.apple.symbolichotkeys", "AppleSymbolicHotKeys", "64",
+    '<dict><key>enabled</key><false/><key>value</key><dict><key>parameters</key><array><integer>32</integer><integer>49</integer><integer>1048576</integer></array><key>type</key><string>standard</string></dict></dict>',
+    (stdout) => /64\s*=\s*\{\s*enabled\s*=\s*0/.test(stdout),
+  ),
   // vscode extension
   vscodeExtensions(`${home}/repos/github.com/ikenox/dotfiles/vscode/extensions.txt`),
   // install vim-plug
@@ -73,4 +88,12 @@ void execute(['username', 'email'], ({username, email}, {home}) => [
   shell("curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh", {
     condition: ifNotExists(`${home}/.cargo`),
   }),
+  // vim PlugInstall
+  shell("vim +PlugInstall +qall", {
+    condition: ifNotExists(`${home}/.vim/plugged`),
+  }),
+  // launch apps
+  shell("open -a 'Alfred 5'", {condition: ifNotRunning("Alfred")}),
+  shell("open -a 'Karabiner-Elements'", {condition: ifNotRunning("karabiner_grabber")}),
+  shell("open -a 'AltTab'", {condition: ifNotRunning("AltTab")}),
 ])

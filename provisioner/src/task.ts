@@ -121,6 +121,26 @@ const getResult = (cmd: string): Promise<{
   });
 };
 
+export const defaultsDictAdd = (
+  domain: string,
+  key: string,
+  dictKey: string,
+  plistValue: string,
+  conditionCheck: (stdout: string) => boolean,
+): Task => ({
+  name: `defaults dict-add ${domain} ${key} ${dictKey}`,
+  condition: async (): Promise<ConditionResult> => {
+    const {stdout} = await getResult(`defaults read ${domain} ${key}`);
+    return conditionCheck(stdout) ? {status: "already-provisioned"} : {status: "not-provisioned"};
+  },
+  execute: run(`defaults write ${domain} ${key} -dict-add ${dictKey} '${plistValue}'`),
+});
+
 export const ifNotExists = (file: string): Condition => () =>
     exists(file).then((e): ConditionResult => e ? {status: "already-provisioned"} : {status: "not-provisioned"});
+
+export const ifNotRunning = (processName: string): Condition => async () => {
+  const {success} = await getResult(`pgrep -x '${processName}'`);
+  return success ? {status: "already-provisioned"} : {status: "not-provisioned"};
+};
 
