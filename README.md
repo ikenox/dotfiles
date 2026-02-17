@@ -16,7 +16,7 @@
 
 ## Manual tasks
 
-- Add "日本語" to 入力ソース
+- Add "日本語" to "入力ソース"
 - Set default browser to Chrome
 - Set up Touch ID
 - Sign-in to app store
@@ -26,6 +26,7 @@
 - Configure alfred
     - Change hotkey -> ctrl + space
     - Change appearance to "Alfred Dark"
+- Install IntelliJ via JetBrains Toolbox
 - Sync IntelliJ
   settings https://www.jetbrains.com/help/idea/sharing-your-ide-settings.html#IDE_settings_sync
     - login on JetBrains Toolbox
