@@ -8,4 +8,4 @@
 ## Git
 
 - Do not use the `-C` option with git commands. Always `cd` into the target directory instead.
-- When writing commit messages, pull request descriptions, and code comments, match the natural language used in the repository (e.g., English or Japanese). Determine the appropriate language by checking the existing commit log.
+- **IMPORTANT: When writing commit messages, pull request descriptions, and code comments, you MUST match the natural language used in the repository. Before writing any commit message or PR description, ALWAYS run `git log --oneline -10` first to check the language (e.g., English or Japanese) used in recent commits, and write in that same language. This is a strict requirement — do NOT default to English without checking.**
