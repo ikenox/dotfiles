@@ -1,6 +1,6 @@
 ---
 name: human-review
-description: Pipe the current git diff into `pnpx difit` to open a browser-based code review UI, then apply fixes based on the review comments.
+description: 開発者にコードレビューを依頼し、レビューコメントに基づいて修正を行う。
 allowed-tools: Bash(git add -N . && git diff | pnpx difit)
 ---
 
