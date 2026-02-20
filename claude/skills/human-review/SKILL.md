@@ -1,4 +1,8 @@
-Pipe the current git diff into `pnpx difit` to open a browser-based code review UI, then apply fixes based on the review comments.
+---
+name: human-review
+description: Pipe the current git diff into `pnpx difit` to open a browser-based code review UI, then apply fixes based on the review comments.
+allowed-tools: Bash(git add -N . && git diff | pnpx difit)
+---
 
 1. Run `git add -N . && git diff | pnpx difit` to open the diff in a browser-based review UI. `git add -N .` ensures untracked new files are included in the diff. The reviewer will read the diff and leave comments on specific lines. When the reviewer closes the UI, the review comments (with file paths, line numbers, and comment text) are printed to stdout.
 2. Read the review output carefully. For each comment, understand the requested change and apply the fix to the corresponding file and line.
