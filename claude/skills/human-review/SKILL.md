@@ -1,6 +1,6 @@
 ---
 name: human-review
-description: 開発者にコードレビューを依頼し、レビューコメントに基づいて修正を行う。
+description: Request a code review from the developer and apply fixes based on review comments.
 ---
 
 1. Run `git add -N . && git diff | pnpx difit` to open the diff in a browser-based review UI. `git add -N .` ensures untracked new files are included in the diff. The reviewer will read the diff and leave comments on specific lines. When the reviewer closes the UI, the review comments (with file paths, line numbers, and comment text) are printed to stdout.
