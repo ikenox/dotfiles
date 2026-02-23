@@ -13,13 +13,17 @@
       "Bash(git fetch:*)",
       "Bash(git worktree:*)",
       "Bash(git branch:*)",
+      "Bash(git stash:*)",
       "Bash(gh pr create)",
       "Bash(grep:*)",
       "Bash(rg:*)",
       "Bash(mkdir:*)",
       "Bash(ls:*)",
-      "Bash(pnpx difit)"
+      "Bash(pnpx difit:*)"
     ],
     "deny": []
+  },
+  "enabledPlugins": {
+    "document-skills@anthropic-agent-skills": true
   }
 }
