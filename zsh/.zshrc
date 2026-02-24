@@ -117,3 +117,13 @@ function ww() {
     dir=$(git worktree list | peco | awk '{print $1}')
     [ -n "$dir" ] && cd "$dir"
 }
+
+function remove-all-git-worktrees() {
+    local main_wt
+    main_wt=$(git worktree list --porcelain | head -1 | sed 's/^worktree //')
+    git worktree list --porcelain | grep '^worktree ' | sed 's/^worktree //' | while read -r wt; do
+        [ "$wt" = "$main_wt" ] && continue
+        echo "Removing worktree: $wt"
+        git worktree remove "$wt"
+    done
+}
