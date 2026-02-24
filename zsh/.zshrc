@@ -124,6 +124,6 @@ function remove-all-git-worktrees() {
     git worktree list --porcelain | grep '^worktree ' | sed 's/^worktree //' | while read -r wt; do
         [ "$wt" = "$main_wt" ] && continue
         echo "Removing worktree: $wt"
-        git worktree remove --force "$wt"
+        git worktree remove "$wt"
     done
 }
