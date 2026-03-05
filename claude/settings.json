@@ -1,4 +1,17 @@
 {
+  "hooks": {
+    "PreToolUse": [
+      {
+        "matcher": "Bash",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "bash -c 'CMD=$(jq -r .tool_input.command); if echo \"$CMD\" | grep -qE \"git\\s+-C\"; then echo \"Do not use git -C option. Use cd to change directory instead.\" >&2; exit 2; fi'"
+          }
+        ]
+      }
+    ]
+  },
   "permissions": {
     "allow": [
       "Edit",
@@ -15,8 +28,6 @@
       "Bash(git branch:*)",
       "Bash(git stash:*)",
       "Bash(gh pr create)",
-      "Bash(gh run list)",
-      "Bash(gh run view)",
       "Bash(grep:*)",
       "Bash(rg:*)",
       "Bash(mkdir:*)",
