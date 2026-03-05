@@ -113,9 +113,16 @@ function new-git-worktree() {
 }
 
 function ww() {
-    local dir
-    dir=$(git worktree list | peco | awk '{print $1}')
-    [ -n "$dir" ] && cd "$dir"
+    local root selected
+    root=$(git worktree list | awk 'NR==1{print $1}')
+    selected=$(git worktree list | awk -v root="$root" '{
+        path = $1
+        if (path == root) { $1 = "." } else { $1 = substr(path, length(root) + 2) }
+        print
+    }' | peco | awk '{print $1}')
+    [ -n "$selected" ] && {
+        if [ "$selected" = "." ]; then cd "$root"; else cd "$root/$selected"; fi
+    }
 }
 
 function remove-all-git-worktrees() {
