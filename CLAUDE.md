@@ -12,7 +12,7 @@ A dotfiles repository for managing macOS development environment setup. Running 
 
 ## Note
 
-- This repo contains two `claude/`-related paths that serve different purposes:
-  - `.claude/` — Claude Code project config for **this repository itself** (e.g., this `CLAUDE.md`)
-  - `claude/` — Dotfiles-managed Claude Code settings (symlinked to `~/.claude/`, applied globally)
-- When an instruction references "claude" config or settings, ask which one is intended if it's ambiguous.
+- This is a dotfiles repo, so there are two kinds of config files that can be confused:
+  - **Repo-internal config** — Files that configure this repository's own tooling (e.g., `.claude/`, `.git/`)
+  - **Dotfiles-managed config** — Files checked into this repo to be symlinked to the home directory (e.g., `claude/`, `git/`)
+- When an instruction about editing config is ambiguous about which one is intended, always ask for clarification before proceeding.
