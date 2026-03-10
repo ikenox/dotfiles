@@ -87,7 +87,7 @@ bash <path-to-scripts>/reply_to_thread.sh <PR_NUMBER> <COMMENT_DATABASE_ID> <REP
 The `COMMENT_DATABASE_ID` is the `databaseId` of any comment in the thread (available from the fetch output in step 2).
 
 Guidelines for replies:
-- For code changes: mention the commit hash and briefly describe what was changed
+- For code changes: mention the commit hash (surrounded by spaces so GitHub auto-links it) and briefly describe what was changed
 - For explanations: post the approved explanation text
 - Reply in the same language the reviewer used in their comment
 - Do NOT resolve the conversation — leave that to the reviewer
