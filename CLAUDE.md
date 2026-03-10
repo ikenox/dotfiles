@@ -9,3 +9,10 @@ A dotfiles repository for managing macOS development environment setup. Running 
 - `Brewfile` — List of packages to install via Homebrew
 - `claude/` — Global Claude Code settings (symlinked to `~/.claude/`)
 - Per-tool config directories (`git/`, `zsh/`, `vim/`, `ghostty/`, `karabiner/`, `vscode/`, `starship/`, `peco/`, `ag/`, `intellij/`, `jupyter/`, `qmk/`) — Configuration files for each tool
+
+## Note
+
+- This repo contains two `claude/`-related paths that serve different purposes:
+  - `.claude/` — Claude Code project config for **this repository itself** (e.g., this `CLAUDE.md`)
+  - `claude/` — Dotfiles-managed Claude Code settings (symlinked to `~/.claude/`, applied globally)
+- When an instruction references "claude" config or settings, ask which one is intended if it's ambiguous.
