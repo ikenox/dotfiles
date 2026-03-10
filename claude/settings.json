@@ -27,9 +27,6 @@
     ],
     "deny": []
   },
-  "enabledPlugins": {
-    "document-skills@anthropic-agent-skills": true
-  },
   "hooks": {
     "PreToolUse": [
       {
@@ -42,5 +39,9 @@
         ]
       }
     ]
+  },
+  "enabledPlugins": {
+    "document-skills@anthropic-agent-skills": true,
+    "skill-creator@claude-plugins-official": true
   }
 }
