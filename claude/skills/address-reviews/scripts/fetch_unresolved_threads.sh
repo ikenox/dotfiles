@@ -23,7 +23,7 @@ query($owner: String!, $repo: String!, $pr: Int!) {
     pullRequest(number: $pr) {
       url
       title
-      reviewThreads(first: 100) {
+      reviewThreads(first: 100) {  # Note: limited to 100 threads; pagination not implemented
         nodes {
           id
           isResolved
@@ -32,7 +32,7 @@ query($owner: String!, $repo: String!, $pr: Int!) {
           line
           startLine
           subjectType
-          comments(first: 100) {
+          comments(first: 100) {  # Note: limited to 100 comments per thread; pagination not implemented
             nodes {
               databaseId
               body
