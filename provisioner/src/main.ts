@@ -28,6 +28,7 @@ void execute(['username', 'email'], ({username, email}, {home}) => [
 symlink(`${home}/.dotfiles/claude/skills`, `${home}/.claude/skills`),
   symlink(`${home}/.dotfiles/claude/agents`, `${home}/.claude/agents`),
   symlink(`${home}/.dotfiles/claude/CLAUDE.md`, `${home}/.claude/CLAUDE.md`),
+  symlink(`${home}/.dotfiles/claude/hooks`, `${home}/.claude/hooks`),
   symlink(`${home}/.dotfiles/vscode/settings.json`, `${home}/Library/Application Support/Code/User/settings.json`),
   symlink(`${home}/.dotfiles/vscode/keybindings.json`, `${home}/Library/Application Support/Code/User/keybindings.json`),
   symlink(`${home}/.dotfiles/vscode/tasks.json`, `${home}/Library/Application Support/Code/User/tasks.json`),
