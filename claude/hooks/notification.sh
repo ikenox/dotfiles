@@ -19,6 +19,15 @@ case "$NOTIFICATION_TYPE" in
 esac
 
 afplay "$SOUND_MAC" 2>/dev/null &
-osascript -e "display notification \"$MESSAGE\" with title \"Claude Code\"" 2>/dev/null &
+
+if command -v terminal-notifier >/dev/null 2>&1; then
+    terminal-notifier \
+        -title "Claude Code" \
+        -message "$MESSAGE" \
+        -activate "com.mitchellh.ghostty" \
+        >/dev/null 2>&1 &
+else
+    osascript -e "display notification \"$MESSAGE\" with title \"Claude Code\"" 2>/dev/null &
+fi
 
 exit 0
