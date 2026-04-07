@@ -15,6 +15,7 @@ brew "docker"
 brew "im-select"
 brew "expect"
 brew "node"
+brew "terminal-notifier"
 
 cask "karabiner-elements"
 cask "ghostty"
