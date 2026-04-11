@@ -25,7 +25,7 @@
 
       // ideavimrc: , (leader) bindings
       ", a": "command_palette::Toggle",      // GotoAction
-      ", e": "file_finder::Toggle",           // SearchEverywhere
+      ", e": "project_symbols::Toggle",          // SearchEverywhere (symbol/class name search)
       ", s": "outline::Toggle",               // FileStructurePopup
       ", g": "workspace::NewSearch",          // FindInPath
       ", r": "recent_files::Toggle",          // RecentFiles
