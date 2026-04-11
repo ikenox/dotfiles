@@ -77,6 +77,13 @@
     }
   },
   {
+    "context": "Pane",
+    "bindings": {
+      "cmd-ctrl-g": "pane::ActivateNextItem",
+      "cmd-ctrl-h": "pane::ActivatePreviousItem"
+    }
+  },
+  {
     "context": "Editor && vim_mode == insert",
     "bindings": {
       // vimrc.keymap: jf -> <ESC>
