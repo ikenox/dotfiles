@@ -1,5 +1,6 @@
 // Zed Key Bindings
 // Ported from ideavimrc + vimrc.keymap
+// $schema: zed://schemas/keymaps
 [
   {
     "context": "Editor && vim_mode == normal && !menu",
@@ -45,7 +46,7 @@
       "r": "editor::Rename",                     // RenameElement
       "q": "editor::ToggleCodeActions",          // ShowIntentionActions
       "= =": "editor::Format",                   // ReformatCode
-      "c c": "editor::ToggleComments",           // CommentByLineComment
+      // cc removed: conflicts with vim's c operator (use gcc / gc<motion> instead)
       "ctrl-i": "editor::Hover",                 // QuickJavaDoc
 
       // ideavimrc: bookmarks/breakpoints
@@ -63,7 +64,7 @@
       "shift-l": ["workspace::SendKeystrokes", "$"],
       "shift-h": ["workspace::SendKeystrokes", "^"],
       "= =": "editor::Format",
-      "c c": "editor::ToggleComments",
+      // cc removed: conflicts with vim's c operator (use gc<motion> instead)
       // ideavimrc: p -> EditorSelectWord (expand), n -> EditorUnSelectWord (shrink)
       "p": "editor::SelectLargerSyntaxNode",
       "n": "editor::SelectSmallerSyntaxNode",
