@@ -77,15 +77,10 @@
     }
   },
   {
-    "context": "Pane",
-    "bindings": {
-      "ctrl-cmd-h": "pane::ActivatePreviousItem"
-    }
-  },
-  {
     "context": "Editor && mode == full",
     "bindings": {
-      "ctrl-cmd-l": "pane::ActivateNextItem"
+      "ctrl-cmd-l": "pane::ActivateNextItem",
+      "ctrl-cmd-h": "pane::ActivatePreviousItem"
     }
   },
   {
