@@ -42,6 +42,10 @@
       "g n": "editor::FindNextMatch",            // NextOccurence
       "g p": "editor::FindPreviousMatch",        // PreviousOccurence
 
+      // vimrc.keymap: ; <-> : swap
+      ";": ["workspace::SendKeystrokes", ":"],
+      ":": "vim::RepeatFind",
+
       // ideavimrc: code editing
       "r": "editor::Rename",                     // RenameElement
       "q": "editor::ToggleCodeActions",          // ShowIntentionActions
@@ -63,6 +67,8 @@
     "bindings": {
       "shift-l": ["workspace::SendKeystrokes", "$"],
       "shift-h": ["workspace::SendKeystrokes", "^"],
+      ";": ["workspace::SendKeystrokes", ":"],
+      ":": "vim::RepeatFind",
       "= =": "editor::Format",
       // cc removed: conflicts with vim's c operator (use gc<motion> instead)
       // ideavimrc: p -> EditorSelectWord (expand), n -> EditorUnSelectWord (shrink)
