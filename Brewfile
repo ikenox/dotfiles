@@ -27,6 +27,7 @@ cask "caffeine"
 cask "discord"
 cask "docker"
 cask "visual-studio-code"
+cask "zed"
 cask "raycast"
 
 mas "Numbers", id: 409203825
