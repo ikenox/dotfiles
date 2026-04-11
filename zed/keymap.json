@@ -79,8 +79,8 @@
   {
     "context": "Pane",
     "bindings": {
-      "cmd-ctrl-l": "pane::ActivateNextItem",
-      "cmd-ctrl-h": "pane::ActivatePreviousItem"
+      "ctrl-cmd-l": "pane::ActivateNextItem",
+      "ctrl-cmd-h": "pane::ActivatePreviousItem"
     }
   },
   {
