@@ -1,5 +1,6 @@
 // Zed Key Bindings
 // Ported from ideavimrc + vimrc.keymap
+// $schema: zed://schemas/keymaps
 [
   {
     "context": "Editor && vim_mode == normal && !menu",
@@ -13,48 +14,51 @@
       "g l": "pane::GoForward",
 
       // vimrc.keymap: s-prefix window/pane management
-      "s h": ["workspace::ActivatePaneInDirection", "Left"],
-      "s j": ["workspace::ActivatePaneInDirection", "Down"],
-      "s k": ["workspace::ActivatePaneInDirection", "Up"],
-      "s l": ["workspace::ActivatePaneInDirection", "Right"],
+      "s h": "workspace::ActivatePaneLeft",
+      "s j": "workspace::ActivatePaneDown",
+      "s k": "workspace::ActivatePaneUp",
+      "s l": "workspace::ActivatePaneRight",
       "s s": "pane::SplitDown",
       "s v": "pane::SplitRight",
       "s n": "pane::ActivateNextItem",
-      "s p": "pane::ActivatePrevItem",
+      "s p": "pane::ActivatePreviousItem",
       "s ;": "pane::CloseActiveItem",
 
       // ideavimrc: , (leader) bindings
-      ", a": "command_palette::Toggle",      // GotoAction
+      ", a": "command_palette::Toggle",          // GotoAction
       ", e": "project_symbols::Toggle",          // SearchEverywhere (symbol/class name search)
-      ", s": "outline::Toggle",               // FileStructurePopup
-      ", g": "workspace::NewSearch",          // FindInPath
-      ", r": "recent_files::Toggle",          // RecentFiles
-      ", f": "file_finder::Toggle",           // GotoFile
-      ", z": "workspace::OpenRecent",         // RecentProjectListGroup
+      ", s": "outline::Toggle",                  // FileStructurePopup
+      ", g": "workspace::NewSearch",             // FindInPath
+      ", r": "file_finder::Toggle",              // RecentFiles (no direct equivalent)
+      ", f": "file_finder::Toggle",              // GotoFile
+      ", z": "projects::OpenRecent",             // RecentProjectListGroup
 
       // ideavimrc: code navigation
-      "g d": "editor::GoToDefinition",        // GotoDeclaration
-      "g i": "editor::GoToImplementation",    // GotoImplementation
-      "g u": "editor::FindAllReferences",     // ShowUsages
-      "g shift-u": "editor::FindAllReferences", // FindUsages
-      "g f": "file_finder::Toggle",           // GotoFile
-      "g n": "editor::SelectNextMatch",       // NextOccurence
-      "g p": "editor::SelectPreviousMatch",   // PreviousOccurence
+      "g d": "editor::GoToDefinition",           // GotoDeclaration
+      "g i": "editor::GoToImplementation",       // GotoImplementation
+      "g u": "editor::FindAllReferences",        // ShowUsages
+      "g shift-u": "editor::FindAllReferences",  // FindUsages
+      "g f": "file_finder::Toggle",              // GotoFile
+      "g n": "editor::FindNextMatch",            // NextOccurence
+      "g p": "editor::FindPreviousMatch",        // PreviousOccurence
+
+      // vimrc.keymap: ; -> : (so ;w saves, ;e opens, etc.)
+      ";": ["workspace::SendKeystrokes", ":"],
 
       // ideavimrc: code editing
-      "r": "editor::Rename",                  // RenameElement
-      "q": "editor::ToggleCodeActions",       // ShowIntentionActions
-      "= =": "editor::Format",                // ReformatCode (overrides indent current line)
-      "c c": "editor::ToggleComments",        // CommentByLineComment (overrides change line)
-      "ctrl-i": "editor::Hover",              // QuickJavaDoc
+      "r": "editor::Rename",                     // RenameElement
+      "q": "editor::ToggleCodeActions",          // ShowIntentionActions
+      "= =": "editor::Format",                   // ReformatCode
+      // cc removed: conflicts with vim's c operator (use gcc / gc<motion> instead)
+      "ctrl-i": "editor::Hover",                 // QuickJavaDoc
 
       // ideavimrc: bookmarks/breakpoints
-      "shift-b": "editor::ToggleBreakpoint",  // ToggleBookmark (closest equivalent)
+      "shift-b": "editor::ToggleBreakpoint",     // ToggleBookmark (closest equivalent)
 
       // ideavimrc: run / debug
-      "shift-r": "tasks::Spawn",              // ChooseRunConfiguration
-      "-": "debugger::StepOver",              // StepOver
-      "_": "debugger::Continue"               // Resume
+      "shift-r": "task::Spawn",                  // ChooseRunConfiguration
+      "-": "debugger::StepOver",                 // StepOver
+      "_": "debugger::Continue"                  // Resume
     }
   },
   {
@@ -62,13 +66,21 @@
     "bindings": {
       "shift-l": ["workspace::SendKeystrokes", "$"],
       "shift-h": ["workspace::SendKeystrokes", "^"],
+      ";": ["workspace::SendKeystrokes", ":"],
       "= =": "editor::Format",
-      "c c": "editor::ToggleComments",
+      // cc removed: conflicts with vim's c operator (use gc<motion> instead)
       // ideavimrc: p -> EditorSelectWord (expand), n -> EditorUnSelectWord (shrink)
       "p": "editor::SelectLargerSyntaxNode",
       "n": "editor::SelectSmallerSyntaxNode",
       // vimrc.keymap: vmap s S (surround)
       "s": ["workspace::SendKeystrokes", "shift-s"]
+    }
+  },
+  {
+    "context": "Pane",
+    "bindings": {
+      "cmd-ctrl-l": "pane::ActivateNextItem",
+      "cmd-ctrl-h": "pane::ActivatePreviousItem"
     }
   },
   {
