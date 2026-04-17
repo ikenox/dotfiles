@@ -45,8 +45,8 @@ q = "code_action"
 C-i = "hover"
 
 # ideavimrc: , leader bindings
-# ,a GotoAction, ,s FileStructurePopup, ,g FindInPath, ,r RecentFiles, ,f GotoFile
-"," = { a = "command_mode", s = "symbol_picker", g = "global_search", r = "file_picker", f = "file_picker" }
+# ,a GotoAction, ,e SearchEverywhere, ,s FileStructurePopup, ,g FindInPath, ,r RecentFiles, ,f GotoFile
+"," = { a = "command_mode", e = "workspace_symbol_picker", s = "symbol_picker", g = "global_search", r = "file_picker", f = "file_picker" }
 
 [keys.normal.g]
 # vimrc.keymap: gh -> <C-o> (jump backward), gl -> <C-i> (jump forward)
