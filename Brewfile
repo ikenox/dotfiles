@@ -16,6 +16,8 @@ brew "docker"
 brew "im-select"
 brew "expect"
 brew "node"
+brew "gopls"
+brew "hashicorp/tap/terraform-ls"
 brew "terminal-notifier"
 
 cask "karabiner-elements"
