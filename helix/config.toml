@@ -1,0 +1,104 @@
+# Helix config
+# Keybindings ported from vimrc.keymap and ideavimrc
+
+[editor]
+line-number = "relative"
+scrolloff = 5
+mouse = true
+auto-save = false
+idle-timeout = 250
+color-modes = true
+
+[editor.cursor-shape]
+insert = "bar"
+normal = "block"
+select = "underline"
+
+[editor.soft-wrap]
+enable = true
+
+[editor.lsp]
+display-messages = true
+display-inlay-hints = true
+
+[keys.normal]
+# vimrc.keymap: L -> $, H -> ^
+L = "goto_line_end"
+H = "goto_first_nonwhitespace"
+
+# vimrc.keymap: j/k -> visual line movement
+j = "move_visual_line_down"
+k = "move_visual_line_up"
+
+# vimrc.keymap: ; -> : (enter command mode)
+";" = "command_mode"
+
+# ideavimrc: r -> RenameElement, q -> ShowIntentionActions
+r = "rename_symbol"
+q = "code_action"
+
+# ideavimrc: == -> ReformatCode
+# (single = becomes a prefix; use == to format, or :format for whole buffer)
+"=" = { "=" = "format_selections" }
+
+# ideavimrc: <C-I> -> QuickJavaDoc (hover docs)
+C-i = "hover"
+
+# ideavimrc: , leader bindings
+# ,a GotoAction, ,e SearchEverywhere, ,s FileStructurePopup, ,g FindInPath, ,r RecentFiles, ,f GotoFile
+"," = { a = "command_mode", e = "workspace_symbol_picker", s = "symbol_picker", g = "global_search", r = "file_picker", f = "file_picker" }
+
+[keys.normal.g]
+# vimrc.keymap: gh -> <C-o> (jump backward), gl -> <C-i> (jump forward)
+h = "jump_backward"
+l = "jump_forward"
+# ideavimrc: gd -> GotoDeclaration, gi -> GotoImplementation
+d = "goto_definition"
+i = "goto_implementation"
+# ideavimrc: gu/gU -> ShowUsages/FindUsages
+u = "find_all_references"
+U = "find_all_references"
+# ideavimrc: gf -> GotoFile
+f = "file_picker"
+# ideavimrc: gn/gp -> NextOccurence/PreviousOccurence (mapped to diagnostics navigation)
+n = "goto_next_diag"
+p = "goto_prev_diag"
+
+[keys.normal.s]
+# vimrc.keymap: s-prefix window management
+# (overrides Helix's built-in 's' select command; use ctrl-s or :select instead)
+h = "jump_view_left"
+j = "jump_view_down"
+k = "jump_view_up"
+l = "jump_view_right"
+# Split
+s = "hsplit"
+v = "vsplit"
+# Buffer navigation (replaces vim tab navigation sn/sp)
+n = "goto_next_buffer"
+p = "goto_previous_buffer"
+# ideavimrc: s; -> CloseActiveTab
+";" = ":quit"
+
+[keys.select]
+# vimrc.keymap: L -> $, H -> ^
+L = "goto_line_end"
+H = "goto_first_nonwhitespace"
+
+# vimrc.keymap: j/k -> visual line movement
+j = "move_visual_line_down"
+k = "move_visual_line_up"
+
+# ideavimrc: p -> EditorSelectWord (expand), n -> EditorUnSelectWord (shrink)
+p = "expand_selection"
+n = "shrink_selection"
+
+[keys.insert]
+# vimrc.keymap: jf -> <ESC>
+j = { f = "normal_mode" }
+
+# vimrc.keymap: ctrl-h/j/k/l -> arrow keys
+C-h = "move_char_left"
+C-j = "move_line_down"
+C-k = "move_line_up"
+C-l = "move_char_right"
