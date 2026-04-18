@@ -1,6 +1,8 @@
 # Helix config
 # Keybindings ported from vimrc.keymap and ideavimrc
 
+theme = "jetbrains_dark"
+
 [editor]
 line-number = "relative"
 scrolloff = 5
