@@ -39,6 +39,9 @@ k = "move_visual_line_up"
 # vimrc.keymap: x -> delete without yanking (blackhole)
 x = "delete_selection_noyank"
 
+# shift+v -> line selection (x is remapped away from extend_line_below)
+V = "extend_line_below"
+
 # vimrc.keymap: <CR> -> o<Esc> (open new line below without entering insert mode)
 ret = ["open_below", "normal_mode"]
 
@@ -117,6 +120,9 @@ n = "shrink_selection"
 [keys.insert]
 # vimrc.keymap: jf -> <ESC>
 j = { f = "normal_mode" }
+
+# ctrl-w -> delete word backward
+C-w = "delete_word_backward"
 
 # vimrc.keymap: ctrl-h/j/k/l -> arrow keys
 C-h = "move_char_left"
