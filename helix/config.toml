@@ -1,6 +1,8 @@
 # Helix config
 # Keybindings ported from vimrc.keymap and ideavimrc
 
+theme = "jetbrains_dark"
+
 [editor]
 line-number = "relative"
 scrolloff = 5
@@ -30,23 +32,35 @@ H = "goto_first_nonwhitespace"
 j = "move_visual_line_down"
 k = "move_visual_line_up"
 
-# vimrc.keymap: ; -> : (enter command mode)
+# vimrc.keymap: ; -> : (enter command mode), : -> ; (collapse selection)
 ";" = "command_mode"
+":" = "collapse_selection"
+
+# vimrc.keymap: x -> delete without yanking (blackhole)
+x = "delete_selection_noyank"
+
+# vimrc.keymap: <CR> -> o<Esc> (open new line below without entering insert mode)
+ret = ["open_below", "normal_mode"]
 
 # ideavimrc: r -> RenameElement, q -> ShowIntentionActions
 r = "rename_symbol"
 q = "code_action"
 
 # ideavimrc: == -> ReformatCode
-# (single = becomes a prefix; use == to format, or :format for whole buffer)
 "=" = { "=" = "format_selections" }
 
 # ideavimrc: <C-I> -> QuickJavaDoc (hover docs)
 C-i = "hover"
 
 # ideavimrc: , leader bindings
-# ,a GotoAction, ,e SearchEverywhere, ,s FileStructurePopup, ,g FindInPath, ,r RecentFiles, ,f GotoFile
-"," = { a = "command_mode", e = "workspace_symbol_picker", s = "symbol_picker", g = "global_search", r = "file_picker", f = "file_picker" }
+# ,a GotoAction -> command_mode
+# ,e SearchEverywhere -> workspace_symbol_picker
+# ,s FileStructurePopup -> symbol_picker
+# ,g FindInPath -> global_search
+# ,r RecentFiles -> buffer_picker (open buffers)
+# ,f GotoFile -> file_picker
+# ,c CallHierarchy -> toggle_comments (no helix equivalent for CallHierarchy)
+"," = { a = "command_mode", e = "workspace_symbol_picker", s = "symbol_picker", g = "global_search", r = "buffer_picker", f = "file_picker", c = "toggle_comments" }
 
 [keys.normal.g]
 # vimrc.keymap: gh -> <C-o> (jump backward), gl -> <C-i> (jump forward)
@@ -55,9 +69,11 @@ l = "jump_forward"
 # ideavimrc: gd -> GotoDeclaration, gi -> GotoImplementation
 d = "goto_definition"
 i = "goto_implementation"
+# ideavimrc: gs -> GotoSuperMethod (goto_type_definition is closest equivalent)
+s = "goto_type_definition"
 # ideavimrc: gu/gU -> ShowUsages/FindUsages
-u = "find_all_references"
-U = "find_all_references"
+u = "select_references_to_symbol_under_cursor"
+U = "select_references_to_symbol_under_cursor"
 # ideavimrc: gf -> GotoFile
 f = "file_picker"
 # ideavimrc: gn/gp -> NextOccurence/PreviousOccurence (mapped to diagnostics navigation)
@@ -66,7 +82,6 @@ p = "goto_prev_diag"
 
 [keys.normal.s]
 # vimrc.keymap: s-prefix window management
-# (overrides Helix's built-in 's' select command; use ctrl-s or :select instead)
 h = "jump_view_left"
 j = "jump_view_down"
 k = "jump_view_up"
@@ -88,6 +103,12 @@ H = "goto_first_nonwhitespace"
 # vimrc.keymap: j/k -> visual line movement
 j = "move_visual_line_down"
 k = "move_visual_line_up"
+
+# vimrc.keymap: : -> ; (collapse selection)
+":" = "collapse_selection"
+
+# vimrc.keymap: x -> delete without yanking (blackhole)
+x = "delete_selection_noyank"
 
 # ideavimrc: p -> EditorSelectWord (expand), n -> EditorUnSelectWord (shrink)
 p = "expand_selection"
