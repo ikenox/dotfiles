@@ -17,13 +17,29 @@
       "Bash(gh pr create)",
       "Bash(gh pr ready *)",
       "Bash(gh pr edit *)",
-      "Bash(gh run list)",
-      "Bash(gh run view)",
+      "Bash(gh run list:*)",
+      "Bash(gh run view:*)",
+      "Bash(gh pr diff:*),
       "Bash(grep:*)",
       "Bash(rg:*)",
       "Bash(mkdir:*)",
       "Bash(ls:*)",
-      "Bash(pnpx difit:*)"
+      "Bash(sed:*)",
+      "Bash(cat:*)",
+      "Bash(head:*)",
+      "Bash(tail:*)",
+      "Bash(wc:*)",
+      "Bash(find:*)",
+      "Bash(awk:*)",
+      "Bash(which:*)",
+      "Bash(file:*)",
+      "Bash(tree:*)",
+      "Bash(stat:*)",
+      "Bash(git status:*)",
+      "Bash(git blame:*)",
+      "Bash(gh issue view:*)",
+      "Bash(gh issue list:*)",
+      "Bash(hx --health)"
     ],
     "deny": []
   },
@@ -42,6 +58,7 @@
   },
   "enabledPlugins": {
     "document-skills@anthropic-agent-skills": true,
-    "skill-creator@claude-plugins-official": true
+    "skill-creator@claude-plugins-official": true,
+    "typescript-lsp@claude-plugins-official": true
   }
 }

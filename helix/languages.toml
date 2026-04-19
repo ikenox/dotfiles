@@ -1,27 +1,47 @@
+[language-server.tsgo]
+command = "bun"
+args = ["x", "-p", "@typescript/native-preview", "tsgo", "--lsp", "--stdio"]
+
 [language-server.oxlint]
-command = "npx"
-args = ["oxlint-language-server", "--stdio"]
+command = "bun"
+args = ["x", "oxlint", "--lsp"]
+
+[language-server.oxfmt]
+command = "bun"
+args = ["x", "oxfmt", "--lsp"]
 
 [[language]]
 name = "typescript"
-language-servers = ["typescript-language-server", "oxlint"]
-formatter = { command = "npx", args = ["oxfmt", "--stdin-filepath", "%f"] }
 auto-format = true
+language-servers = [
+  { name = "tsgo", except-features = ["format"] },
+  { name = "oxlint", only-features = ["diagnostics", "code-action"] },
+  { name = "oxfmt", only-features = ["format"] },
+]
 
 [[language]]
 name = "tsx"
-language-servers = ["typescript-language-server", "oxlint"]
-formatter = { command = "npx", args = ["oxfmt", "--stdin-filepath", "%f"] }
 auto-format = true
+language-servers = [
+  { name = "tsgo", except-features = ["format"] },
+  { name = "oxlint", only-features = ["diagnostics", "code-action"] },
+  { name = "oxfmt", only-features = ["format"] },
+]
 
 [[language]]
 name = "javascript"
-language-servers = ["typescript-language-server", "oxlint"]
-formatter = { command = "npx", args = ["oxfmt", "--stdin-filepath", "%f"] }
 auto-format = true
+language-servers = [
+  { name = "tsgo", except-features = ["format"] },
+  { name = "oxlint", only-features = ["diagnostics", "code-action"] },
+  { name = "oxfmt", only-features = ["format"] },
+]
 
 [[language]]
 name = "jsx"
-language-servers = ["typescript-language-server", "oxlint"]
-formatter = { command = "npx", args = ["oxfmt", "--stdin-filepath", "%f"] }
 auto-format = true
+language-servers = [
+  { name = "tsgo", except-features = ["format"] },
+  { name = "oxlint", only-features = ["diagnostics", "code-action"] },
+  { name = "oxfmt", only-features = ["format"] },
+]
