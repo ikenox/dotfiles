@@ -25,7 +25,7 @@ fi
 
 exec deno run \
   --allow-read \
-  --allow-write \
+  --allow-write="$PWD" \
   --no-prompt \
   "$SCRIPT" \
   "$@"

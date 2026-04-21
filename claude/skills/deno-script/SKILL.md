@@ -14,6 +14,7 @@ Writing throwaway Python/Node scripts forces the user to approve each Bash invoc
 - No network access (can't exfiltrate)
 - No subprocess spawning (can't escape via `Deno.Command`)
 - No FFI, no env var reads, no system info
+- Writes are restricted to the cwd subtree (`--allow-write=$PWD`); reads are unrestricted
 - Filesystem is the only side channel, and the user's machine is already trusted to run local code
 
 That's safe enough that the wrapper is pre-approved in `settings.json`, so no permission prompt.
@@ -31,9 +32,9 @@ The wrapper enforces the sandbox — you cannot override its flags. Anything aft
 
 ## What's available inside the script
 
-- Full Deno std library (import via `jsr:` or `https://deno.land/std`) — **but only cached modules**, since network is disabled. First-run imports will fail; prefetch with `deno cache <script>` if needed (that's a separate, allowed step).
-- `Deno.readTextFile`, `Deno.writeTextFile`, `Deno.readDir`, file globbing via std, etc.
+- Built-in `Deno.*` APIs: `readTextFile`, `writeTextFile`, `readDir`, `stat`, `remove`, etc.
 - Plain TypeScript — no transpile step needed.
+- Remote imports (`jsr:`, `https://`) are **not** available since network is disabled. Stick to built-ins. If you genuinely need a remote module, ask the user to run `deno cache <script>` manually first.
 
 ## What's NOT available
 
