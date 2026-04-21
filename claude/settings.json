@@ -21,11 +21,12 @@
       "Bash(gh pr ready *)",
       "Bash(gh pr edit *)",
       "Bash(gh pr checks *)",
+      "Bash(gh pr diff *)",
       "Bash(gh run list *)",
       "Bash(gh run view *)",
       "Bash(gh issue view *)",
       "Bash(gh issue list *)",
-      "Bash(gh pr diff *)",
+      "Bash(gh repo view *)",
       "Bash(grep *)",
       "Bash(rg *)",
       "Bash(mkdir *)",
@@ -40,7 +41,8 @@
       "Bash(which *)",
       "Bash(file *)",
       "Bash(tree *)",
-      "Bash(stat *)"
+      "Bash(stat *)",
+      "Bash(/Users/ikenonaoto/.claude/skills/address-reviews/scripts/reply_to_thread.sh *)"
     ],
     "deny": []
   },

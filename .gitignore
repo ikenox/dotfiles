@@ -12,4 +12,6 @@ zshrc.myenv
 vars.json
 node_modules/
 
+.claude/tmp
+
 !.gitkeep
