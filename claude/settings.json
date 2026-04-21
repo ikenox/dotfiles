@@ -3,6 +3,7 @@
     "allow": [
       "Edit",
       "Write",
+      "Agent",
       "Bash(git show *)",
       "Bash(git add *)",
       "Bash(git commit *)",
@@ -17,6 +18,7 @@
       "Bash(git stash *)",
       "Bash(git status *)",
       "Bash(git blame *)",
+      "Bash(git ls-tree *)",
       "Bash(gh pr create *)",
       "Bash(gh pr ready *)",
       "Bash(gh pr edit *)",
