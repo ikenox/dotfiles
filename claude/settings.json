@@ -43,7 +43,12 @@
       "Bash(tree *)",
       "Bash(stat *)",
       "Bash(/Users/ikenonaoto/.claude/skills/address-reviews/scripts/fetch_unresolved_threads.sh *)",
-      "Bash(/Users/ikenonaoto/.claude/skills/address-reviews/scripts/reply_to_thread.sh *)"
+      "Bash(/Users/ikenonaoto/.claude/skills/address-reviews/scripts/reply_to_thread.sh *)",
+      "Bash(/Users/ikenonaoto/.claude/skills/deno-script/scripts/run.sh *)",
+      "Bash(~/.claude/skills/deno-script/scripts/run.sh *)",
+      "Bash(deno cache *)",
+      "Bash(deno fmt *)",
+      "Bash(deno check *)"
     ],
     "deny": []
   },
@@ -55,6 +60,10 @@
           {
             "type": "command",
             "command": "~/.claude/hooks/block-git-c.sh"
+          },
+          {
+            "type": "command",
+            "command": "~/.claude/hooks/block-adhoc-scripts.sh"
           }
         ]
       }

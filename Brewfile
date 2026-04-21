@@ -17,6 +17,7 @@ brew "im-select"
 brew "expect"
 brew "node"
 brew "oven-sh/bun/bun"
+brew "deno"
 brew "terminal-notifier"
 
 cask "karabiner-elements"
