@@ -10,4 +10,4 @@
 
 ## Temporary files
 
-- Claude が作業中に作成する一時ファイルは `.claude/tmp/` 以下に置くこと。プロジェクトルート直下や `/tmp` に散らかさない。
+- Claude が作業中に作成する一時ファイルは `./.agent-workspace/` 以下に置くこと。プロジェクトルート直下や `/tmp` に散らかさない。
