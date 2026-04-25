@@ -31,6 +31,17 @@ Extra args after the code are available as `Deno.args`.
 
 Use single quotes around the code so bash doesn't expand `$`, backticks, etc. If the code itself contains single quotes, close-escape-reopen (`'\''`) or use a bash heredoc-to-variable first.
 
+### IMPORTANT: keep the entire command on a single line
+
+The pre-approved permission rule is `Bash(~/.claude/skills/deno-script/scripts/run.sh *)`. Claude Code's Bash matcher does **not** match commands that contain literal newlines — if the code argument spans multiple lines, the rule misses and the user gets a permission prompt every time.
+
+Rules to avoid the prompt:
+
+- Write the whole `run.sh '...'` invocation on one physical line. No line breaks inside the quoted code, no backslash continuations.
+- Separate TypeScript statements with `;` instead of newlines.
+- Need a literal newline in *output* (e.g. inside a generated file)? Use `\n` inside a string — that's fine, the source stays one line.
+- If the code is too long to be readable on one line, that's a sign it should be a real `.ts` file run via `deno run` directly (and just accept the one-time permission prompt), not this skill.
+
 ## What's available
 
 - Built-in `Deno.*` APIs: `readTextFile`, `writeTextFile`, `readDir`, `stat`, `remove`, etc.
@@ -50,37 +61,24 @@ If you need one of these, don't try to work around the sandbox — tell the user
 
 ## Examples
 
+All examples are written on a single line — that's mandatory (see above).
+
 **Parse JSON, filter, write CSV:**
 
 ```bash
-~/.claude/skills/deno-script/scripts/run.sh '
-  const data = JSON.parse(await Deno.readTextFile("data.json"));
-  const active = data.filter((x: any) => x.status === "active");
-  const csv = "id,name\n" + active.map((x: any) => `${x.id},${x.name}`).join("\n");
-  await Deno.writeTextFile("out.csv", csv);
-  console.log(`wrote ${active.length} rows`);
-'
+~/.claude/skills/deno-script/scripts/run.sh 'const data = JSON.parse(await Deno.readTextFile("data.json")); const active = data.filter((x: any) => x.status === "active"); const csv = "id,name\n" + active.map((x: any) => `${x.id},${x.name}`).join("\n"); await Deno.writeTextFile("out.csv", csv); console.log(`wrote ${active.length} rows`);'
 ```
 
 **Bulk-rename files:**
 
 ```bash
-~/.claude/skills/deno-script/scripts/run.sh '
-  for await (const entry of Deno.readDir(".")) {
-    if (entry.isFile && entry.name.endsWith(".jpeg")) {
-      await Deno.rename(entry.name, entry.name.replace(/\.jpeg$/, ".jpg"));
-    }
-  }
-'
+~/.claude/skills/deno-script/scripts/run.sh 'for await (const entry of Deno.readDir(".")) { if (entry.isFile && entry.name.endsWith(".jpeg")) { await Deno.rename(entry.name, entry.name.replace(/\.jpeg$/, ".jpg")); } }'
 ```
 
 **Pass runtime args:**
 
 ```bash
-~/.claude/skills/deno-script/scripts/run.sh '
-  const [src, dst] = Deno.args;
-  await Deno.copyFile(src, dst);
-' source.txt dest.txt
+~/.claude/skills/deno-script/scripts/run.sh 'const [src, dst] = Deno.args; await Deno.copyFile(src, dst);' source.txt dest.txt
 ```
 
 ## When to reach for this
