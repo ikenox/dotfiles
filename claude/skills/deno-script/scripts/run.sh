@@ -1,6 +1,6 @@
 #!/bin/bash
 # Sandbox wrapper for running inline Deno (TypeScript) code.
-# Grants filesystem read (unrestricted) and write (cwd subtree only).
+# Grants filesystem read/write restricted to the current project (git toplevel).
 # No network, no subprocess, no FFI, no env. Flags are hard-coded so the
 # permission in settings.json is safe to pre-approve.
 #
@@ -18,9 +18,14 @@ fi
 CODE="$1"
 shift
 
+if ! ROOT="$(git rev-parse --show-toplevel 2>/dev/null)"; then
+  echo "deno-script: must be run inside a git repository (project root is resolved via git)." >&2
+  exit 1
+fi
+
 exec deno run \
-  --allow-read \
-  --allow-write="$PWD" \
+  --allow-read="$ROOT" \
+  --allow-write="$ROOT" \
   --no-prompt \
   - \
   "$@" <<<"$CODE"

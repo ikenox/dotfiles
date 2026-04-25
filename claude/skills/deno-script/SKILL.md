@@ -1,6 +1,6 @@
 ---
 name: deno-script
-description: Run ad-hoc local data-processing TypeScript inline via Deno's sandbox instead of writing Python/Perl/Node one-liners. Use this skill whenever you need a throwaway script to transform files, parse/reshape data, do text/JSON/CSV munging, bulk-rename files, compute statistics, or any other non-trivial local computation that feels too involved for plain shell pipelines. Code is passed as a single argument (no file needed). The sandbox wrapper runs with filesystem-only permissions (no network, no subprocess, no FFI, no env access), so it's pre-approved in settings — users don't get a permission prompt per run. Prefer this over `python -c`, `perl -e`, `node -e`, `ruby -e`, or writing throwaway `.py`/`.js` files (those are blocked by a hook anyway).
+description: Run ad-hoc local data-processing TypeScript inline via Deno's sandbox instead of writing Python/Perl/Node one-liners OR chaining shell utilities. Use this skill whenever you need a throwaway script to transform files, parse/reshape data, do text/JSON/CSV munging, bulk-rename files, compute statistics, or any other non-trivial local computation that feels too involved for plain shell pipelines. ALSO use this for filesystem inspection / codebase reconnaissance tasks that you'd otherwise express as `find`/`ls`/`wc`/`grep`/`head`/`tail` pipelines — e.g. listing files matching a pattern with extra filtering, counting lines across many files, summarizing directory structure, extracting snippets from many files at once, or any multi-step `find ... | xargs ...` style command. Code is passed as a single argument (no file needed). The sandbox wrapper runs with filesystem-only permissions (no network, no subprocess, no FFI, no env access), so it's pre-approved in settings — users don't get a permission prompt per run. Prefer this over `python -c`, `perl -e`, `node -e`, `ruby -e`, writing throwaway `.py`/`.js` files (those are blocked by a hook anyway), and over multi-stage shell pipelines for inspection. Single-purpose dedicated tools (Read for one known file, Grep for a single regex, a plain `ls` of one directory) are still fine — reach for deno-script when the task involves combining/aggregating across files.
 ---
 
 # deno-script
@@ -9,12 +9,13 @@ Ad-hoc TypeScript runner using Deno's capability-based sandbox. When you need a 
 
 ## Why this exists
 
-Writing throwaway Python/Node scripts forces the user to approve each Bash invocation. Deno with inline eval + `--allow-read --allow-write=$PWD` and nothing else gives us:
+Writing throwaway Python/Node scripts forces the user to approve each Bash invocation. Deno with inline eval + `--allow-read=$ROOT --allow-write=$ROOT` (where `$ROOT` is the git toplevel) and nothing else gives us:
 
 - No network access (can't exfiltrate)
 - No subprocess spawning (can't escape via `Deno.Command`)
 - No FFI, no env var reads, no system info
-- Writes are restricted to the cwd subtree; reads are unrestricted
+- Reads and writes are both restricted to the current project (git toplevel) subtree
+- Must be run inside a git repository — the wrapper resolves the project root via `git rev-parse --show-toplevel` and exits with an error otherwise
 - Filesystem is the only side channel, and the user's machine is already trusted to run local code
 
 That's safe enough that the wrapper is pre-approved in `settings.json`.
@@ -87,3 +88,10 @@ All examples are written on a single line — that's mandatory (see above).
 - Bulk file operations with any conditional logic
 - Quick parsing/validation/statistics
 - Anything you'd otherwise write as a `python -c` one-liner
+- **Filesystem inspection / codebase recon** that would otherwise be a chain of `find` / `ls` / `wc` / `grep` / `head`: listing files by pattern with extra filtering, counting lines across many files, peeking at the first N lines of each match, summarizing a directory tree, etc. Single shell commands (`ls one-dir`, single `grep`) stay in Bash; combinations move here.
+
+**Filesystem inspection example — list `.rs` files under a path with their line counts, sorted:**
+
+```bash
+~/.claude/skills/deno-script/scripts/run.sh 'const root = Deno.args[0]; const out: {path: string, lines: number}[] = []; async function walk(d: string) { for await (const e of Deno.readDir(d)) { const p = `${d}/${e.name}`; if (e.isDirectory) await walk(p); else if (e.isFile && e.name.endsWith(".rs")) { const n = (await Deno.readTextFile(p)).split("\n").length; out.push({path: p, lines: n}); } } } await walk(root); out.sort((a, b) => b.lines - a.lines); for (const r of out) console.log(`${r.lines}\t${r.path}`);' packages/exchangeapi/src
+```
