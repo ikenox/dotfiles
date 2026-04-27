@@ -80,7 +80,23 @@
     "context": "Pane",
     "bindings": {
       "cmd-ctrl-l": "pane::ActivateNextItem",
-      "cmd-ctrl-h": "pane::ActivatePreviousItem"
+      "cmd-ctrl-h": "pane::ActivatePreviousItem",
+      "cmd-n": "pane::ActivatePreviousItem",
+      "cmd-p": "pane::ActivateNextItem"
+    }
+  },
+  {
+    "context": "Workspace",
+    "bindings": {
+      "cmd-n": "pane::ActivatePreviousItem",
+      "cmd-p": "pane::ActivateNextItem"
+    }
+  },
+  {
+    "context": "Editor",
+    "bindings": {
+      "cmd-n": "pane::ActivatePreviousItem",
+      "cmd-p": "pane::ActivateNextItem"
     }
   },
   {
