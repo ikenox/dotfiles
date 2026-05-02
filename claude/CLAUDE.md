@@ -10,4 +10,8 @@
 
 ## Temporary files
 
-- Claude が作業中に作成する一時ファイルは `./.agent-workspace/` 以下に置くこと。プロジェクトルート直下や `/tmp` に散らかさない。
+- Place any temporary files created during work under `./.ikenox/`. Do not clutter the project root or `/tmp`.
+
+## File reading
+
+- When bulk-reading multiple files or doing complex file processing, use the deno-script skill instead of calling the Read tool repeatedly. This reduces the number of permission prompts.

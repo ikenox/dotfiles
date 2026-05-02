@@ -12,6 +12,6 @@ zshrc.myenv
 vars.json
 node_modules/
 
-.agent-workspace
+.ikenox
 
 !.gitkeep
