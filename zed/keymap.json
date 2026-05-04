@@ -35,6 +35,9 @@
       ", t": "project_panel::ToggleFocus",       // project tree
       ", d": "git_panel::ToggleFocus",           // git diff
 
+      // normal mode: cmd-> selects current line and adds to agent thread
+      "cmd->": ["workspace::SendKeystrokes", "shift-v cmd->"],
+
       // ideavimrc: code navigation
       "g d": "editor::GoToDefinition",           // GotoDeclaration
       "g i": "editor::GoToImplementation",       // GotoImplementation

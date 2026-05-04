@@ -17,7 +17,6 @@
   "git_panel": {
     "dock": "left",
   },
-  "$schema": "zed://schemas/settings",
   "telemetry": {
     "diagnostics": false,
     "metrics": false,
@@ -35,7 +34,7 @@
     "calt": false,
   },
   "ui_font_features": {
-    "calt": false,
+    "calt": true,
   },
   "theme": {
     "mode": "system",
