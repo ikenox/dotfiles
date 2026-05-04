@@ -39,7 +39,7 @@
     "claude-acp": {
       "type": "registry",
       "env": {
-        "CLAUDE_CODE_EXECUTABLE": "$HOME/.local/bin/claude"
+        "CLAUDE_CODE_EXECUTABLE": "~/.local/bin/claude"
       }
     }
   },
