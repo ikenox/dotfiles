@@ -1,4 +1,21 @@
 {
+  "project_panel": {
+    "dock": "left"
+  },
+  "outline_panel": {
+    "dock": "left"
+  },
+  "collaboration_panel": {
+    "dock": "left"
+  },
+  "agent": {
+    "dock": "right",
+    "favorite_models": [],
+    "model_parameters": []
+  },
+  "git_panel": {
+    "dock": "left"
+  },
   "$schema": "zed://schemas/settings",
   "telemetry": {
     "diagnostics": false,
@@ -17,5 +34,13 @@
     "mode": "system",
     "light": "One Light",
     "dark": "One Dark",
+  },
+  "agent_servers": {
+    "claude-acp": {
+      "type": "registry",
+      "env": {
+        "CLAUDE_CODE_EXECUTABLE": "$HOME/.local/bin/claude"
+      }
+    }
   },
 }
