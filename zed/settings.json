@@ -1,35 +1,42 @@
 {
+  "cli_default_open_behavior": "new_window",
   "project_panel": {
-    "dock": "left"
+    "dock": "left",
   },
   "outline_panel": {
-    "dock": "left"
+    "dock": "left",
   },
   "collaboration_panel": {
-    "dock": "left"
+    "dock": "left",
   },
   "agent": {
     "dock": "right",
     "favorite_models": [],
-    "model_parameters": []
+    "model_parameters": [],
   },
   "git_panel": {
-    "dock": "left"
+    "dock": "left",
   },
   "$schema": "zed://schemas/settings",
   "telemetry": {
     "diagnostics": false,
-    "metrics": false
+    "metrics": false,
   },
   "vim_mode": true,
   "vim": {
-    "use_system_clipboard": "always"
+    "use_system_clipboard": "always",
   },
   "base_keymap": "JetBrains",
   "ui_font_size": 14,
   "ui_font_family": "JetBrains Mono",
   "buffer_font_size": 12,
   "buffer_font_family": "JetBrains Mono",
+  "buffer_font_features": {
+    "calt": false,
+  },
+  "ui_font_features": {
+    "calt": false,
+  },
   "theme": {
     "mode": "system",
     "light": "One Light",
@@ -38,9 +45,6 @@
   "agent_servers": {
     "claude-acp": {
       "type": "registry",
-      "env": {
-        "CLAUDE_CODE_EXECUTABLE": "~/.local/bin/claude"
-      }
-    }
+    },
   },
 }

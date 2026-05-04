@@ -32,6 +32,8 @@
       ", r": "file_finder::Toggle",              // RecentFiles (no direct equivalent)
       ", f": "file_finder::Toggle",              // GotoFile
       ", z": "projects::OpenRecent",             // RecentProjectListGroup
+      ", t": "project_panel::ToggleFocus",       // project tree
+      ", d": "git_panel::ToggleFocus",           // git diff
 
       // ideavimrc: code navigation
       "g d": "editor::GoToDefinition",           // GotoDeclaration
@@ -68,6 +70,9 @@
       "shift-h": ["workspace::SendKeystrokes", "^"],
       ";": ["workspace::SendKeystrokes", ":"],
       "= =": "editor::Format",
+
+      ", a": "command_palette::Toggle",
+
       // cc removed: conflicts with vim's c operator (use gc<motion> instead)
       // ideavimrc: p -> EditorSelectWord (expand), n -> EditorUnSelectWord (shrink)
       "p": "editor::SelectLargerSyntaxNode",
@@ -81,22 +86,22 @@
     "bindings": {
       "cmd-ctrl-l": "pane::ActivateNextItem",
       "cmd-ctrl-h": "pane::ActivatePreviousItem",
-      "cmd-n": "pane::ActivatePreviousItem",
-      "cmd-p": "pane::ActivateNextItem"
+      "cmd-n": "pane::ActivateNextItem",
+      "cmd-p": "pane::ActivatePreviousItem"
     }
   },
   {
     "context": "Workspace",
     "bindings": {
-      "cmd-n": "pane::ActivatePreviousItem",
-      "cmd-p": "pane::ActivateNextItem"
+      "cmd-n": "pane::ActivateNextItem",
+      "cmd-p": "pane::ActivatePreviousItem"
     }
   },
   {
     "context": "Editor",
     "bindings": {
-      "cmd-n": "pane::ActivatePreviousItem",
-      "cmd-p": "pane::ActivateNextItem"
+      "cmd-n": "pane::ActivateNextItem",
+      "cmd-p": "pane::ActivatePreviousItem"
     }
   },
   {

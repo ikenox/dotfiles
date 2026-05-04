@@ -2,4 +2,4 @@
 .ikenox
 .claude/**/*.local.*
 .claude/*.local.*
-.worktree
+.claude/worktrees
