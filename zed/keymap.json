@@ -104,7 +104,8 @@
     "context": "Editor",
     "bindings": {
       "cmd-n": "pane::ActivateNextItem",
-      "cmd-p": "pane::ActivatePreviousItem"
+      "cmd-p": "pane::ActivatePreviousItem",
+      "cmd-d": "editor::ToggleSelectedDiffHunks"
     }
   },
   {

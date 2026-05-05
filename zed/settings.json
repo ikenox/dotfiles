@@ -1,5 +1,10 @@
 {
   "cli_default_open_behavior": "new_window",
+  "auto_install_extensions": {
+    "xml": true,
+    "html": true,
+    "toml": true,
+  },
   "project_panel": {
     "dock": "left",
   },
@@ -39,7 +44,7 @@
   "theme": {
     "mode": "system",
     "light": "One Light",
-    "dark": "One Dark",
+    "dark": "Ayu Mirage",
   },
   "agent_servers": {
     "claude-acp": {
