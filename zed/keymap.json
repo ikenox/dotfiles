@@ -112,7 +112,13 @@
     "context": "Editor && vim_mode == insert",
     "bindings": {
       // vimrc.keymap: jf -> <ESC>
-      "j f": "vim::NormalBefore"
+      "j f": "vim::NormalBefore",
+
+      // emacs-style motion
+      "alt-f": "editor::MoveToNextWordEnd",
+      "alt-b": "editor::MoveToPreviousWordStart",
+      "ctrl-a": "editor::MoveToBeginningOfLine",
+      "ctrl-e": "editor::MoveToEndOfLine"
     }
   },
   {
