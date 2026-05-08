@@ -4,6 +4,8 @@
     "xml": true,
     "html": true,
     "toml": true,
+    "dockerfile": true,
+    "terraform": true,
   },
   "project_panel": {
     "dock": "left",
