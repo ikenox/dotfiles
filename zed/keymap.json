@@ -44,6 +44,7 @@
       "g u": "editor::FindAllReferences",        // ShowUsages
       "g shift-u": "editor::FindAllReferences",  // FindUsages
       "g f": "file_finder::Toggle",              // GotoFile
+      "g o": "editor::OpenExcerpts",             // jump from search results to the source file
       "g n": "editor::FindNextMatch",            // NextOccurence
       "g p": "editor::FindPreviousMatch",        // PreviousOccurence
 
