@@ -56,7 +56,7 @@
       "r": "editor::Rename",                     // RenameElement
       "q": "editor::ToggleCodeActions",          // ShowIntentionActions
       "= =": "editor::Format",                   // ReformatCode
-      // cc removed: conflicts with vim's c operator (use gcc / gc<motion> instead)
+      // cc removed: conflicts with vim's c operator (breaks ciw etc.) — use gcc instead
       "ctrl-i": "editor::Hover",                 // QuickJavaDoc
 
       // ideavimrc: bookmarks/breakpoints
@@ -78,12 +78,14 @@
 
       ", a": "command_palette::Toggle",
 
-      // cc removed: conflicts with vim's c operator (use gc<motion> instead)
+      "c c": "editor::ToggleComments", // toggle comment for selection
       // ideavimrc: p -> EditorSelectWord (expand), n -> EditorUnSelectWord (shrink)
       "p": "editor::SelectLargerSyntaxNode",
       "n": "editor::SelectSmallerSyntaxNode",
       // vimrc.keymap: vmap s S (surround)
-      "s": ["workspace::SendKeystrokes", "shift-s"]
+      "s": ["workspace::SendKeystrokes", "shift-s"],
+      // visual mode shift-s: add surrounds (vim-surround)
+      "shift-s": "vim::PushAddSurrounds"
     }
   },
   {
