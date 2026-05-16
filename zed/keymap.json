@@ -34,6 +34,7 @@
       ", z": "projects::OpenRecent",             // RecentProjectListGroup
       ", t": "project_panel::ToggleFocus",       // project tree
       ", d": "git_panel::ToggleFocus",           // git diff
+      ", shift-d": "git::BranchDiff",            // diff against base branch
 
       // normal mode: cmd-> selects current line and adds to agent thread
       "cmd->": ["workspace::SendKeystrokes", "shift-v cmd->"],
