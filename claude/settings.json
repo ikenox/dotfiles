@@ -62,10 +62,6 @@
           {
             "type": "command",
             "command": "~/.claude/hooks/block-git-c.sh"
-          },
-          {
-            "type": "command",
-            "command": "~/.claude/hooks/block-adhoc-scripts.sh"
           }
         ]
       }
