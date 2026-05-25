@@ -72,8 +72,7 @@
     "skill-creator@claude-plugins-official": true,
     "typescript-lsp@claude-plugins-official": true
   },
-  "model": "auto",
+  "language": "japanese",
   "effortLevel": "medium",
-  "autoCompactEnabled": false,
-  "language": "japanese"
+  "autoCompactEnabled": false
 }
