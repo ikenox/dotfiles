@@ -54,19 +54,6 @@
     ],
     "deny": []
   },
-  "hooks": {
-    "PreToolUse": [
-      {
-        "matcher": "Bash",
-        "hooks": [
-          {
-            "type": "command",
-            "command": "~/.claude/hooks/block-git-c.sh"
-          }
-        ]
-      }
-    ]
-  },
   "enabledPlugins": {
     "document-skills@anthropic-agent-skills": true,
     "skill-creator@claude-plugins-official": true,
