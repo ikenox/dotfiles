@@ -66,6 +66,7 @@ export const symlink = (src: string, dest: string): Task => {
 type DefaultsValue =
   | { bool: boolean }
   | { int: number }
+  | { float: number }
   | { string: string }
   | { array: string; expected: string };
 
@@ -84,6 +85,7 @@ export const defaults = (domain: string, key: string, value: DefaultsValue): Tas
 const toDefaultsArgs = (value: DefaultsValue): { writeArgs: string; expected: string } => {
   if ("bool" in value) return {writeArgs: `-bool ${value.bool}`, expected: value.bool ? "1" : "0"};
   if ("int" in value) return {writeArgs: `-int ${value.int}`, expected: String(value.int)};
+  if ("float" in value) return {writeArgs: `-float ${value.float}`, expected: String(value.float)};
   if ("string" in value) return {writeArgs: `-string '${value.string}'`, expected: value.string};
   return {writeArgs: `-array ${value.array}`, expected: value.expected};
 };
