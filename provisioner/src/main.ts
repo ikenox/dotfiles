@@ -38,6 +38,8 @@ symlink(`${home}/.dotfiles/claude/skills`, `${home}/.claude/skills`),
   symlink(`${home}/.dotfiles/vscode/tasks.json`, `${home}/Library/Application Support/Code/User/tasks.json`),
   // osx defaults
   defaults("com.apple.dock", "autohide", {bool: true}),
+  defaults("com.apple.dock", "autohide-delay", {float: 0}), // Remove the show delay when moving the cursor to the screen edge
+  defaults("com.apple.dock", "autohide-time-modifier", {float: 0.15}), // Speed up the Dock hide/show animation
   defaults("com.apple.dock", "persistent-apps", {array: "", expected: "(\n)"}),
   defaults("com.apple.dock", "tilesize", {int: 55}),
   defaults("com.apple.finder", "AppleShowAllFiles", {bool: true}),
