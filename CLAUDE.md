@@ -10,6 +10,10 @@ A dotfiles repository for managing macOS development environment setup. Running 
 - `claude/` — Global Claude Code settings (symlinked to `~/.claude/`)
 - Per-tool config directories (`git/`, `zsh/`, `vim/`, `ghostty/`, `karabiner/`, `vscode/`, `starship/`, `peco/`, `ag/`, `intellij/`, `jupyter/`, `qmk/`) — Configuration files for each tool
 
+## Language
+
+- Everything in this project is written in English, including code comments, commit messages, PR titles, and PR descriptions. Always write in English regardless of the language used in the conversation.
+
 ## Note
 
 - This is a dotfiles repo, so there are two kinds of config files that can be confused:
