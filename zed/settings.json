@@ -36,13 +36,12 @@
   "base_keymap": "JetBrains",
   "ui_font_size": 14,
   "ui_font_family": "JetBrains Mono",
-  "buffer_font_size": 12,
+  "ui_font_weight": 300,
+  "buffer_font_size": 13,
   "buffer_font_family": "JetBrains Mono",
+  "buffer_font_weight": 300,
   "buffer_font_features": {
     "calt": false,
-  },
-  "ui_font_features": {
-    "calt": true,
   },
   "theme": {
     "mode": "dark",
@@ -52,7 +51,7 @@
   "agent_servers": {
     "claude-acp": {
       "default_config_options": {
-        "mode": "auto"
+        "mode": "auto",
       },
       "type": "registry",
     },
