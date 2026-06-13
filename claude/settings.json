@@ -52,7 +52,8 @@
       "Bash(~/.claude/skills/deno-script/scripts/run.sh *)",
       "Bash(~/.claude/skills/deno-script/scripts/run.sh *)"
     ],
-    "deny": []
+    "deny": [],
+    "defaultMode": "auto"
   },
   "enabledPlugins": {
     "document-skills@anthropic-agent-skills": true,
@@ -61,5 +62,6 @@
   },
   "language": "japanese",
   "effortLevel": "medium",
-  "autoCompactEnabled": false
+  "autoCompactEnabled": false,
+  "skipAutoPermissionPrompt": true
 }
