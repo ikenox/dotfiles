@@ -62,6 +62,6 @@
   },
   "language": "japanese",
   "effortLevel": "medium",
-  "autoCompactEnabled": false,
+  "autoCompactEnabled": true,
   "skipAutoPermissionPrompt": true
 }
