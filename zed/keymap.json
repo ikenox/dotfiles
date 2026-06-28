@@ -132,5 +132,14 @@
         { "agent": { "custom": { "name": "claude-acp" } } }
       ]
     }
+  },
+  {
+    // agent thread switcher: no context so it matches at the lowest tree level,
+    // overriding the default cmd-j (ToggleBottomDock) and staying active while the
+    // switcher popup is open. hold cmd, j -> next / shift-j -> prev, release to confirm
+    "bindings": {
+      "cmd-j": "agents_sidebar::ToggleThreadSwitcher",
+      "cmd-shift-j": ["agents_sidebar::ToggleThreadSwitcher", { "select_last": true }]
+    }
   }
 ]
