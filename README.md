@@ -5,7 +5,7 @@
 ### Initial remote execution
 
 ```sh
-/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/ikenox/dotfiles/master/provision.sh)"
+/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/ikenox/dotfiles/main/provision.sh)"
 ```
 
 ### Local re-execution
