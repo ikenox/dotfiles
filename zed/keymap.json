@@ -141,5 +141,13 @@
       "cmd-j": "agents_sidebar::ToggleThreadSwitcher",
       "cmd-shift-j": ["agents_sidebar::ToggleThreadSwitcher", { "select_last": true }]
     }
+  },
+  {
+    // cmd-o toggles focus between editor and panels (e.g. terminal).
+    // no context so it matches at the lowest tree level and overrides the
+    // default cmd-o = workspace::Open (which is a no-context binding too)
+    "bindings": {
+      "cmd-o": "editor::ToggleFocus"
+    }
   }
 ]
