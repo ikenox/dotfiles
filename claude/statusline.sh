@@ -21,7 +21,7 @@ $(printf '%s' "$input" | jq -r '
     (.effort.level // "default"),
     ((.context_window.total_input_tokens // 0) | floor | tostring),
     ((.context_window.context_window_size // 200000) | floor | tostring),
-    num(.context_window.used_percentage),
+    ((.context_window.used_percentage // 0) | floor | tostring),
     num(.rate_limits.five_hour.used_percentage),
     ((.rate_limits.five_hour.resets_at) // "" | tostring),
     num(.rate_limits.seven_day.used_percentage),
