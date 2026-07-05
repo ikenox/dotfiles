@@ -93,4 +93,31 @@ if [ -n "$seven_pct" ]; then
   out+="${sep}${seg}"
 fi
 
-printf '%s' "$out"
+# Second line: worktree, branch, and diff stats vs HEAD (git info is not in
+# the payload, so query git in the session's working directory).
+dir=$(printf '%s' "$input" | jq -r '.workspace.current_dir // .cwd // ""')
+line2=""
+if [ -n "$dir" ] && git -C "$dir" rev-parse --is-inside-work-tree >/dev/null 2>&1; then
+  worktree=$(basename "$(git -C "$dir" rev-parse --show-toplevel 2>/dev/null)")
+  branch=$(git -C "$dir" rev-parse --abbrev-ref HEAD 2>/dev/null)
+  [ "$branch" = "HEAD" ] && branch="detached@$(git -C "$dir" rev-parse --short HEAD 2>/dev/null)"
+
+  line2="📁 ${cyan}${worktree}${reset}${sep}🌿 ${cyan}${branch}${reset}"
+
+  stat=$(git -C "$dir" diff --shortstat HEAD 2>/dev/null)
+  files=0 ins=0 del=0
+  [[ $stat =~ ([0-9]+)\ file ]] && files=${BASH_REMATCH[1]}
+  [[ $stat =~ ([0-9]+)\ insertion ]] && ins=${BASH_REMATCH[1]}
+  [[ $stat =~ ([0-9]+)\ deletion ]] && del=${BASH_REMATCH[1]}
+  if [ "$files" -gt 0 ]; then
+    line2+="${sep}📝 ${files}f ${green}+${ins}${reset} ${red}-${del}${reset}"
+  else
+    line2+="${sep}${green}✓ clean${reset}"
+  fi
+fi
+
+if [ -n "$line2" ]; then
+  printf '%s\n%s' "$out" "$line2"
+else
+  printf '%s' "$out"
+fi
