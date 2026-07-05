@@ -87,7 +87,7 @@ fi
 
 if [ -n "$seven_pct" ]; then
   seg="📅 7d $(color_for "$seven_pct")${seven_pct}%${reset}"
-  [ -n "$seven_reset" ] && seg+=" ↻$(jst "$seven_reset" '+%m/%d %H:%M')"
+  [ -n "$seven_reset" ] && seg+=" ↻$(jst "$seven_reset" '+%m/%d(%H:%M)')"
   out+="${sep}${seg}"
 fi
 
