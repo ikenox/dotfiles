@@ -102,7 +102,7 @@ if [ -n "$dir" ] && git -C "$dir" rev-parse --is-inside-work-tree >/dev/null 2>&
   branch=$(git -C "$dir" rev-parse --abbrev-ref HEAD 2>/dev/null)
   [ "$branch" = "HEAD" ] && branch="detached@$(git -C "$dir" rev-parse --short HEAD 2>/dev/null)"
 
-  line2="📁 ${cyan}${worktree}${reset}${sep}🌿 ${cyan}${branch}${reset}"
+  line2="${cyan}${worktree}${reset} ⎇ ${cyan}${branch}${reset}"
 
   stat=$(git -C "$dir" diff --shortstat HEAD 2>/dev/null)
   files=0 ins=0 del=0
