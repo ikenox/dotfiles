@@ -117,7 +117,7 @@ if [ -n "$dir" ] && git -C "$dir" rev-parse --is-inside-work-tree >/dev/null 2>&
 fi
 
 if [ -n "$line2" ]; then
-  printf '%s\n%s' "$out" "$line2"
+  printf '%s\n%s' "$line2" "$out"
 else
   printf '%s' "$out"
 fi
