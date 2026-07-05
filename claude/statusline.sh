@@ -30,6 +30,8 @@ EOF
 green=$'\033[32m'
 yellow=$'\033[33m'
 red=$'\033[31m'
+cyan=$'\033[36m'
+magenta=$'\033[35m'
 reset=$'\033[0m'
 
 # Color code for a used-percentage: green < 60 <= yellow < 80 <= red.
@@ -42,6 +44,18 @@ color_for() {
   else
     printf '%s' "$red"
   fi
+}
+
+# Color code for the effort level, by intensity.
+effort_color() {
+  case "$1" in
+    low) printf '%s' "$cyan" ;;
+    medium) printf '%s' "$green" ;;
+    high) printf '%s' "$yellow" ;;
+    xhigh) printf '%s' "$red" ;;
+    max) printf '%s' "$magenta" ;;
+    *) printf '%s' "$reset" ;;
+  esac
 }
 
 # Human-readable token count (e.g. 82000 -> 82k).
@@ -60,7 +74,7 @@ sep=" │ "
 [ "${limit:-0}" -ge 1000000 ] && model="$model[1m]"
 
 out="🤖 $model"
-out+="${sep}⚡ $effort"
+out+="${sep}⚡ $(effort_color "$effort")${effort}${reset}"
 out+="${sep}🧠 $(kfmt "$used")/$(kfmt "$limit") $(color_for "$ctx_pct")${ctx_pct}%${reset}"
 
 if [ -n "$five_pct" ]; then
