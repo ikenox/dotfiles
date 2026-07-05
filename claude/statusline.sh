@@ -83,13 +83,13 @@ out+="${sep}🧠 $(kfmt "$used")/$(kfmt "$limit") $(color_for "$ctx_pct")${ctx_p
 
 if [ -n "$five_pct" ]; then
   seg="⏱ 5h $(color_for "$five_pct")${five_pct}%${reset}"
-  [ -n "$five_reset" ] && seg+=" ↻$(jst "$five_reset" '+%H:%M')"
+  [ -n "$five_reset" ] && seg+=" →$(jst "$five_reset" '+%H:%M')"
   out+="${sep}${seg}"
 fi
 
 if [ -n "$seven_pct" ]; then
   seg="📅 7d $(color_for "$seven_pct")${seven_pct}%${reset}"
-  [ -n "$seven_reset" ] && seg+=" ↻$(jst "$seven_reset" '+%m/%d(%H:%M)')"
+  [ -n "$seven_reset" ] && seg+=" →$(jst "$seven_reset" '+%m/%d(%H:%M)')"
   out+="${sep}${seg}"
 fi
 
