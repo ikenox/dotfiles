@@ -55,6 +55,10 @@ jst() { TZ='Asia/Tokyo' date -r "$1" "$2" 2>/dev/null; }
 
 sep=" │ "
 
+# The payload does not flag the 1M context variant in the model name, so
+# derive it from the context window size.
+[ "${limit:-0}" -ge 1000000 ] && model="$model[1m]"
+
 out="🤖 $model"
 out+="${sep}⚡ $effort"
 out+="${sep}🧠 $(kfmt "$used")/$(kfmt "$limit") $(color_for "$ctx_pct")${ctx_pct}%${reset}"
