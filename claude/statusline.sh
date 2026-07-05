@@ -10,8 +10,10 @@
 
 input=$(cat)
 
-# Pull the raw values as tab-separated fields (empty string when absent).
-IFS=$'\t' read -r model effort used limit ctx_pct \
+# Pull the raw values, separated by a non-whitespace control char (US, 0x1f).
+# A whitespace separator (like tab) would let `read` collapse empty fields and
+# shift every following value left when an optional field is absent.
+IFS=$'\x1f' read -r model effort used limit ctx_pct \
   five_pct five_reset seven_pct seven_reset <<EOF
 $(printf '%s' "$input" | jq -r '
   def num(f): (f) | if . == null then "" else (.|floor|tostring) end;
@@ -24,7 +26,7 @@ $(printf '%s' "$input" | jq -r '
     ((.rate_limits.five_hour.resets_at) // "" | tostring),
     num(.rate_limits.seven_day.used_percentage),
     ((.rate_limits.seven_day.resets_at) // "" | tostring)
-  ] | @tsv')
+  ] | join("")')
 EOF
 
 green=$'\033[32m'
