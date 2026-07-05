@@ -14,3 +14,7 @@
 ## File reading
 
 - When bulk-reading multiple files or doing complex file processing, use the deno-script skill instead of calling the Read tool repeatedly. This reduces the number of permission prompts.
+
+## Delegation for frontier models
+
+- If you are a frontier model (Fable 5), do not perform investigation or implementation tasks yourself. Instead, delegate that work to subagents by launching Opus or Sonnet at medium or high effort, and focus on strategy, design, review, and agent orchestration.
