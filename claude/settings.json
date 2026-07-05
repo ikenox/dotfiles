@@ -55,6 +55,11 @@
     "deny": [],
     "defaultMode": "auto"
   },
+  "statusLine": {
+    "type": "command",
+    "command": "~/.claude/statusline.sh",
+    "padding": 0
+  },
   "enabledPlugins": {
     "document-skills@anthropic-agent-skills": true,
     "skill-creator@claude-plugins-official": true,
