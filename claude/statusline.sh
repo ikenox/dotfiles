@@ -32,6 +32,7 @@ yellow=$'\033[33m'
 red=$'\033[31m'
 cyan=$'\033[36m'
 magenta=$'\033[35m'
+bold_magenta=$'\033[1;35m'
 reset=$'\033[0m'
 
 # Color code for a used-percentage: green < 60 <= yellow < 80 <= red.
@@ -54,6 +55,7 @@ effort_color() {
     high) printf '%s' "$yellow" ;;
     xhigh) printf '%s' "$red" ;;
     max) printf '%s' "$magenta" ;;
+    ultracode) printf '%s' "$bold_magenta" ;;
     *) printf '%s' "$reset" ;;
   esac
 }
