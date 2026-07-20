@@ -143,6 +143,16 @@
     }
   },
   {
+    // the JetBrains keymap binds "shift shift" (Search Everywhere) to the command
+    // palette. it fires way too easily while typing in the terminal, and the palette
+    // puts the last used command first, so a stray shift shift + enter can run
+    // workspace::Reload and restart the whole app. use cmd-shift-a / ,a instead.
+    "context": "Workspace",
+    "bindings": {
+      "shift shift": null
+    }
+  },
+  {
     // cmd-o toggles focus between editor and panels (e.g. terminal).
     // no context so it matches at the lowest tree level and overrides the
     // default cmd-o = workspace::Open (which is a no-context binding too)
