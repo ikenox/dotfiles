@@ -66,6 +66,7 @@
     "typescript-lsp@claude-plugins-official": true
   },
   "language": "japanese",
+  "preferredNotifChannel": "terminal_bell",
   "effortLevel": "medium",
   "autoCompactEnabled": false,
   "skipAutoPermissionPrompt": true
