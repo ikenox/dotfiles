@@ -18,6 +18,7 @@
     "dock": "left",
   },
   "agent": {
+    "terminal_init_command": "claude",
     "dock": "right",
     "favorite_models": [],
     "model_parameters": [],
