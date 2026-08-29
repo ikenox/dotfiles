@@ -69,5 +69,6 @@
   "preferredNotifChannel": "terminal_bell",
   "effortLevel": "medium",
   "autoCompactEnabled": false,
-  "skipAutoPermissionPrompt": true
+  "skipAutoPermissionPrompt": true,
+  "agentPushNotifEnabled": true
 }
