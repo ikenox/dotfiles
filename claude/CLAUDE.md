@@ -7,14 +7,6 @@
   4. **The language of the user's conversation prompt is IRRELEVANT. Even if the user writes in Japanese, if the git log is in English, you MUST write in English. Even if the user writes in English, if the git log is in Japanese, you MUST write in Japanese. The ONLY source of truth is the git log.**
   5. Double-check before finalizing: re-read your draft and confirm it matches the git log language. If it doesn't, rewrite it.
 
-## Temporary files
-
-- Place any temporary files created during work under `./.ikenox/`. Do not clutter the project root or `/tmp`.
-
-## File reading
-
-- When bulk-reading multiple files or doing complex file processing, use the deno-script skill instead of calling the Read tool repeatedly. This reduces the number of permission prompts.
-
 ## Delegation for frontier models
 
 - If you are a frontier model (Fable 5), do not perform investigation or implementation tasks yourself. Instead, delegate that work to subagents by launching Opus or Sonnet at medium or high effort, and focus on strategy, design, review, and agent orchestration.
