@@ -1,4 +1,5 @@
 {
+  "diff_view_style": "split",
   "icon_theme": "Zed (Default)",
   "cli_default_open_behavior": "new_window",
   "auto_install_extensions": {
